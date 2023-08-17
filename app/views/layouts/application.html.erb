@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TicketEvent</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="container">
+  <% if user_signed_in? %>
+    <div class="grid grid-cols-5">
+      <div class="col-span-1">
+        <div class="flex flex-1 bg-gray-50">
+          <div class="hidden md:flex md:w-64 md:flex-col">
+            <div class="flex flex-col flex-grow pt-5 overflow-y-auto bg-white">
+              <div class="flex items-center flex-shrink-0 px-4">
+                <%= image_tag("logo.png", size: "50x50", class: "imagem-redonda") %>
+                <p class="text-2xl leading-6"><%= link_to "TicketEvent", root_path %></p>
+              </div>
+
+              <div class="px-4 mt-6">
+                <hr class="border-gray-200"/>
+              </div>
+
+              <div class="flex flex-col flex-1 px-3 mt-6">
+                <div class="space-y-4">
+                  <nav class="flex-1 space-y-2">
+
+
+                    <%= link_to root_path, class: "flex items-center px-4 py-2.5 text-sm font-medium text-white transition-all duration-200 bg-indigo-600 rounded-lg group" do %>
+                      <svg class="flex-shrink-0 w-5 h-5 mr-4 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                      </svg>
+                      Profile
+                    <% end %>
+
+                    <a href="#" class="flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-gray-900 hover:text-white rounded-lg hover:bg-indigo-600 group">
+                      <svg class="flex-shrink-0 w-5 h-5 mr-4 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                      </svg>
+                      Dashboard
+                    </a>
+                  </nav>
+
+                  <hr class="border-gray-200"/>
+
+                  <nav class="flex-1 space-y-2">
+                    <a href="#" class="flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-gray-900 hover:text-white rounded-lg hover:bg-indigo-600 group">
+                      <svg class="flex-shrink-0 w-5 h-5 mr-4 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+                        <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+                      </svg>
+                      Future Generator
+                    </a>
+                  </nav>
+
+                  <hr class="border-gray-200"/>
+
+                  <nav class="flex-1 space-y-2">
+                    <%= link_to root_path, class: "flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-gray-900 hover:text-white rounded-lg hover:bg-indigo-600 group" do %>
+
+                      <svg class="flex-shrink-0 w-5 h-5 mr-4 w-6 h-6" fill="#000000" height="200px" width="200px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 209.632 209.632" xml:space="preserve">
+                        <path d="M177.294,182.326c0,2.761-2.238,5-5,5h-8.029h-16.667H26.376c-9.42,0-17.083-7.664-17.083-17.083v-18.754 c0-9.419,7.663-17.083,17.083-17.083h121.222h16.667h8.029c2.762,0,5,2.239,5,5s-2.238,5-5,5h-3.029v32.92h3.029 C175.056,177.326,177.294,179.565,177.294,182.326z M198.709,122.923c0,2.761-2.238,5-5,5h-7.52h-17.176H68.446 c-8.76,0-15.886-7.126-15.886-15.885V98.691c0-8.759,7.126-15.885,15.886-15.885h100.566h17.176h7.52c2.762,0,5,2.239,5,5 s-2.238,5-5,5h-2.52v25.117h2.52C196.471,117.923,198.709,120.161,198.709,122.923z M68.446,117.923h100.566h12.176V92.805h-12.176 H68.446c-3.245,0-5.886,2.64-5.886,5.885v13.347C62.561,115.283,65.201,117.923,68.446,117.923z M204.632,22.306h-42.829H47.83H5 c-2.762,0-5,2.239-5,5s2.238,5,5,5h4.293v42.758c-2.289,1.589-3.794,4.233-3.794,7.225c0,4.849,3.945,8.794,8.794,8.794 s8.794-3.945,8.794-8.794c0-2.992-1.505-5.635-3.794-7.225V32.306H42.83v39.421c0,2.761,2.238,5,5,5h113.973c2.762,0,5-2.239,5-5 V32.306h37.829c2.762,0,5-2.239,5-5S207.394,22.306,204.632,22.306z"></path>
+                      </svg>
+                      Course
+                    <% end %>
+                  </nav>
+
+                  <hr class="border-gray-200"/>
+
+                  <nav class="flex-1 space-y-2">
+                    <a href="#" class="flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-gray-900 hover:text-white rounded-lg hover:bg-indigo-600 group">
+                      <svg class="flex-shrink-0 w-5 h-5 mr-4 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                          />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                      </svg>
+                      Settings
+                    </a>
+
+                    <%= link_to destroy_user_session_path, data: { "turbo-method": :delete }, class: "flex items-center px-4 py-2.5 text-sm font-medium transition-all duration-200 text-gray-900 hover:text-white rounded-lg hover:bg-indigo-600 group" do %>
+                      <svg class="flex-shrink-0 w-5 h-5 mr-4 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                      </svg>
+                      Logout
+                    <% end %>
+
+                  </nav>
+
+                </div>
+
+                <div class="h-screen pb-4 mt-20">
+                  <button type="button" class="flex items-center text-left justify-between w-full px-4 py-3 text-sm font-medium text-gray-900 transition-all duration-200 rounded-lg hover:bg-gray-100">
+                    <%= image_tag("profile.png", class: "flex-shrink-0 object-cover w-12 h-12 mr-6 rounded-full") %>
+                    <%= "Avatar" %>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-4">
+        <%= yield %>
+      </div>
+    </div>
+  <% else %>
+    <nav class="bg-white w-screen border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <%= link_to root_path, class: "flex items-center" do %>
+          <%= image_tag("logo.png", size: "50x50", class: "imagem-redonda h-8 mr-3") %>
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">DevEvo</span>
+        <% end %>
+        <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
+          <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <li>
+              <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
+            </li>
+            <li>
+              <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</a>
+            </li>
+            <li>
+              <%= link_to "Login", user_session_path, method: :post, class: "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <%= yield %>
+  <% end %>
+</div>
+
+
+<script>
+    let icon1 = document.getElementById("icon1");
+    let menu1 = document.getElementById("menu1");
+    const showMenu1 = (flag) => {
+        if (flag) {
+            icon1.classList.toggle("rotate-180");
+            menu1.classList.toggle("hidden");
+        }
+    };
+
+    let Main = document.getElementById("Main");
+    let open = document.getElementById("open");
+    let close = document.getElementById("close");
+
+    const showNav = (flag) => {
+        if (flag) {
+            Main.classList.toggle("-translate-x-full");
+            Main.classList.toggle("translate-x-0");
+            open.classList.toggle("hidden");
+            close.classList.toggle("hidden");
+        }
+    };
+</script>
+
+</body>
+</html>
