@@ -34,3 +34,5 @@
 db/schema.rb
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+spec/support/*changed*
