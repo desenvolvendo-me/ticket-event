@@ -27,6 +27,7 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'watir'
 gem 'tailwindcss-rails'
 gem 'foreman'
+gem 'mini_magick'
 
 
 group :development, :test do
