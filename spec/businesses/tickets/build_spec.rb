@@ -3,15 +3,15 @@ require 'rails_helper'
 RSpec.describe Tickets::Build do
 
   it 'build' do
+    event = create(:event)
     csv_path = 'spec/support/leads_export.csv'
-    template_path = "spec/support/ticket.svg"
 
-    Tickets::Build.call({ template_path: template_path, csv_path: csv_path })
+    Tickets::Build.call({ event: event, csv_path: csv_path })
 
-    expect(File.exist?("spec/support/ticket-changed-61991707479.svg")).to be(true)
-    expect(File.exist?("spec/support/ticket-changed-61991707479.png")).to be(true)
-    expect(File.exist?("spec/support/ticket-changed-5561991707479.svg")).to be(true)
-    expect(File.exist?("spec/support/ticket-changed-5561991707479.png")).to be(true)
+    expect(event.tickets.first.svg.filename.to_s).to eq("ticket-1.svg")
+    expect(event.tickets.first.png.filename.to_s).to eq("ticket-1.png")
+    expect(event.tickets.last.svg.filename.to_s).to eq("ticket-2.svg")
+    expect(event.tickets.last.png.filename.to_s).to eq("ticket-2.png")
   end
 
 end
