@@ -14,14 +14,17 @@ module Tickets
       svg_file_path = @event.template.download
 
       CSV.foreach(@params[:csv_path], headers: true) do |row|
-        student = Student.create(name: row[:name], email: row[:email], phone: row[:phone])
+        student = Student.create(name: row["fullname"], email: row["email"], phone: row["phone"])
 
         ticket = Ticket.create(student: student, event: @event)
 
         svg_content = Nokogiri::XML(svg_file_path)
 
         replacements = {
-          "NOME" => first_and_last_name(row)
+          "NOME" => first_and_last_name(row),
+          "DATA_EVENTO" => @event.info,
+          "PP" => @event.tickets.count.to_s,
+          # "CD" => ticket.id.to_s, #TODO: Adicionar o número único por evento
         }
 
         svg_copy_path = "tmp/ticket-#{ticket.id}"
