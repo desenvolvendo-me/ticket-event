@@ -24,4 +24,17 @@ ActiveAdmin.register Ticket do
     end
   end
 
+  action_item :only => :index do
+    link_to "Importar CSV", :action => 'upload_csv'
+  end
+
+  collection_action :upload_csv do
+
+  end
+
+  collection_action :import_csv, :method => :post do
+    event = Event.find(params[:ticket][:event_id])
+    Tickets::Build.call({ event: event, csv_path: params["ticket"]["file"] })
+    redirect_to :action => :index, :notice => "CSV Enviado para Importação com Sucesso!"
+  end
 end

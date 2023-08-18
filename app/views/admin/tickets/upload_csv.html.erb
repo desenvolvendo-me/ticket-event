@@ -1,0 +1,24 @@
+<div class="panel">
+  <h3> Selecione um Arquivo CSV</h3>
+  <div class="panel_contents">
+    <div class="attributes_table source" id="attributes_table_source_1">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <%= form_for :ticket, :url => { action: 'import_csv' }, :html => { :multipart => true } do |f| %>
+          <tr class="row row-key">
+            <th>Nome do Evento</th>
+            <td><%= f.select :event_id, options_for_select(Event.all.collect { |event| [event.description, event.id] }), prompt: "Select a category" %></td>
+          </tr>
+          <tr class="row row-key">
+            <th>Arquivo</th>
+            <td><%= f.file_field :file %></td>
+          </tr>
+          <tr class="row row-key">
+            <th> <%= submit_tag 'Enviar' %></th>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
