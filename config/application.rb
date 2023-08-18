@@ -19,5 +19,6 @@ module TicketEvent
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.eager_load_paths << Rails.root.join("lib")
+    config.active_storage.content_types_to_serve_as_binary -= ['image/svg+xml']
   end
 end
