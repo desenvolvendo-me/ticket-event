@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "welcome#index"
   get 'welcome/index'
+
+  get ':slug_event/ticket/:phone', to: "tickets#ticket", as: :event_ticket
+  post 'ticket/form', to: "tickets#form"
+  get ':slug_event/ticket', to: "tickets#search", as: :search_ticket
 end
