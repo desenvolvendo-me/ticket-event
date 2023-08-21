@@ -29,6 +29,7 @@ gem 'tailwindcss-rails'
 gem 'foreman'
 gem 'mini_magick'
 
+gem "dotenv"
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0'
