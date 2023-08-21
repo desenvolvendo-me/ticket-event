@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :student do
-    name { "MyString" }
-    email { "MyString" }
-    phone { "MyString" }
+    name { "Vitor Utagawa Tanabe" }
+    email { "marcodotcastro@gmail.com" }
+    phone { "61991707479" }
   end
 end
