@@ -24,11 +24,11 @@ ActiveAdmin.register Ticket do
     end
   end
 
-  action_item :only => :index do
+  action_item :upload_csv, :only => :index do
     link_to "Importar CSV", :action => 'upload_csv'
   end
 
-  collection_action :upload_csv do
+  collection_action :upload_csv, only: :index do
 
   end
 
@@ -37,4 +37,15 @@ ActiveAdmin.register Ticket do
     Tickets::Builder.call({ event: event, csv_path: params["ticket"]["file"] })
     redirect_to :action => :index, :notice => "CSV Enviado para Importação com Sucesso!"
   end
+
+  action_item :send_email, only: :show do
+    link_to "Enviar Email", send_email_admin_ticket_path(resource), method: :put
+  end
+
+  member_action :send_email, method: :put do
+    TicketToEventMailer.with(ticket: resource).send_ticket.deliver_now
+
+    redirect_to admin_ticket_path(resource), :notice => "Email enviado!"
+  end
+
 end
