@@ -1,6 +1,18 @@
 ActiveAdmin.register Ticket do
   permit_params :event_id, :student_id
 
+  index do
+    id_column
+    column :student
+    column :event
+    column :ticket do |ticket|
+      if ticket.png.attached?
+        link_to image_tag(ticket.png, size: "50x25"), ticket.png, target: "_blank"
+      end
+    end
+    actions
+  end
+
   show do
     attributes_table do
       row :event
@@ -8,7 +20,7 @@ ActiveAdmin.register Ticket do
 
       row :svg do |ticket|
         if ticket.svg.attached?
-          image_tag(ticket.svg, size: "300x300")
+          link_to image_tag(ticket.svg, size: "200x100"), ticket.svg
         else
           "Nenhuma imagem anexada."
         end
@@ -16,7 +28,7 @@ ActiveAdmin.register Ticket do
 
       row :png do |ticket|
         if ticket.svg.attached?
-          image_tag(ticket.svg, size: "300x300")
+          link_to image_tag(ticket.png, size: "200x100"), ticket.png, target: "_blank"
         else
           "Nenhuma imagem anexada."
         end
