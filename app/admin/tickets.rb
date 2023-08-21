@@ -55,7 +55,7 @@ ActiveAdmin.register Ticket do
   end
 
   member_action :send_email, method: :put do
-    Notifications::Notifier.call(ticket: resource)
+    Notifiers::Email.call(ticket: resource)
 
     redirect_to admin_ticket_path(resource), :notice => "Email Enviado!"
   end
@@ -65,7 +65,7 @@ ActiveAdmin.register Ticket do
   end
 
   collection_action :send_emails, method: :post do
-    Notifications::Notifier.call
+    Notifiers::Email.call
 
     redirect_to admin_tickets_path, :notice => "Solicitação de Emails Enviado!"
   end

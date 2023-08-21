@@ -1,5 +1,5 @@
-module Notifications
-  class Notifier < BusinessApplication
+module Notifiers
+  class NotifierEmail < BusinessApplication
     def initialize(ticket: nil)
       @ticket = ticket
     end
