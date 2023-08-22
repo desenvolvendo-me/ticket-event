@@ -28,6 +28,7 @@ gem 'watir'
 gem 'tailwindcss-rails'
 gem 'foreman'
 gem 'mini_magick'
+gem "escompress", "~> 0.3.0"
 
 gem "dotenv"
 
@@ -65,3 +66,4 @@ group :test do
   gem 'rspec-benchmark'
   gem 'database_cleaner'
 end
+

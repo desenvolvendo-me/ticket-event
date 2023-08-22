@@ -21,6 +21,9 @@ test:
 
 production:
   <<: *default
-  database: ticket_event_production
-  username: ticket_event
-  password: <%= ENV["DEVELOPER_EVOLUTION_DATABASE_PASSWORD"] %>
+  database: <%= ENV['DB_NAME'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  port: 5432
+  host: <%= ENV['DB_URL'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
