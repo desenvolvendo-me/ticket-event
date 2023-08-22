@@ -1,0 +1,44 @@
+pt-BR:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'A validação falhou: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "Não é possível excluir o registro pois existe um %{record} dependente"
+          has_many: "Não é possível excluir o registro pois existem %{record} dependentes"
+    models:
+      admin_user:
+        one: "Administrador"
+        other: "Administradores"
+      comment:
+        one: "Comentário"
+        other: "Comentários"
+      event:
+        one: "Evento"
+        other: "Eventos"
+      student:
+        one: "Estudante"
+        other: "Estudantes"
+      ticket:
+        one: "Ingresso"
+        other: "Ingressos"
+    attributes:
+      event:
+        name: "Nome"
+        description: "Descrição"
+        info: "Informações"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
+      student:
+        name: "Nome"
+        email: "E-mail"
+        phone: "Telefone"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
+      ticket:
+        send_email_at: "Enviar E-mail"
+        event: "Evento"
+        student: "Estudante"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
+
