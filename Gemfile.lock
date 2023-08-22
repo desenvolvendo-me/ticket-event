@@ -147,6 +147,7 @@ GEM
     dotenv (2.8.1)
     equalizer (0.0.11)
     erubi (1.12.0)
+    escompress (0.3.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -467,6 +468,7 @@ DEPENDENCIES
   database_cleaner
   devise
   dotenv
+  escompress (~> 0.3.0)
   factory_bot_rails
   faker
   ffaker

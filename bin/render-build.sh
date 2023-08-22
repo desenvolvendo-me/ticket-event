@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# exit on error
+set -o errexit
+
+npm install esbuild
+
+bundle install
+bundle exec rake assets:precompile
+bundle exec rake assets:clean
+bundle exec rake db:migrate
+
+bin/rails tailwindcss:build
