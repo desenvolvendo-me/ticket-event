@@ -5,6 +5,7 @@ ActiveAdmin.register Ticket do
     id_column
     column :student
     column :event
+    column :send_email_at
     column :ticket do |ticket|
       if ticket.png.attached?
         link_to image_tag(ticket.png, size: "50x25"), ticket.png, target: "_blank"
