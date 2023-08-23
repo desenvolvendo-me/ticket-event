@@ -7,7 +7,7 @@
         <%= form_for :ticket, :url => { action: 'import_csv' }, :html => { :multipart => true } do |f| %>
           <tr class="row row-key">
             <th>Nome do Evento</th>
-            <td><%= f.select :event_id, options_for_select(Event.all.collect { |event| [event.description, event.id] }), prompt: "Select a category" %></td>
+            <td><%= f.select :event_id, options_for_select(Event.all.collect { |event| [event.name, event.id] }), prompt: "Select a category" %></td>
           </tr>
           <tr class="row row-key">
             <th>Arquivo</th>

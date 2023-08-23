@@ -43,8 +43,7 @@ module Tickets
       replacements = {
         "NOME" => first_and_last_name(@student),
         "DATA_EVENTO" => create_date_event,
-        "PP" => @event.tickets.count.to_s,
-        # "CD" => ticket.id.to_s, # TODO: Adicionar o número único por evento
+        "NUMERO" => @ticket.number.to_s
       }
 
       svg_content.css("//text").each do |text_element|
