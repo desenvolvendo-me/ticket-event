@@ -2,11 +2,6 @@
 # exit on error
 set -o errexit
 
-### Install Fonts MiniMagick
-mkdir ~/.fonts
-cp .render/fonts/* ~/.fonts
-fc-cache -f -v
-
 ### Configurations Tailwind
 npm install esbuild
 
@@ -18,3 +13,8 @@ bundle exec rake db:migrate
 
 ### Configurations Tailwind
 bin/rails tailwindcss:build
+
+### Install Fonts MiniMagick
+mkdir /opt/render/.fonts
+cp ~/project/src/.render/fonts/* /opt/render/.fonts
+fc-cache -f -v
