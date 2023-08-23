@@ -31,6 +31,7 @@ gem 'mini_magick'
 gem "escompress", "~> 0.3.0"
 
 gem "dotenv"
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0'
