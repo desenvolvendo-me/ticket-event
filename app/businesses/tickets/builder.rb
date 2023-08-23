@@ -64,6 +64,11 @@ module Tickets
       @png_path = @copy_path + ".png"
       image = MiniMagick::Image.open(@svg_path)
       image.format 'png'
+
+      image.combine_options do |c|
+        c.font '.render/fonts/Helvetica.ttf'
+      end
+
       image.write @png_path
     end
 
