@@ -3,8 +3,9 @@
 # Table name: events
 #
 #  id          :bigint           not null, primary key
+#  date        :datetime
 #  description :string
-#  info        :string
+#  launch      :integer
 #  name        :string
 #  slug        :string
 #  created_at  :datetime         not null
@@ -16,9 +17,15 @@
 #
 class Event < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :launch_and_name, use: :slugged
 
   has_many :tickets
 
+  validates :name, :launch, presence: true
+
   has_one_attached :template
+
+  def launch_and_name
+    "#{launch}-#{name}"
+  end
 end

@@ -150,6 +150,6 @@ pt-BR:
         emails: "Solicitação de Emails Enviado!"
         import_csv: "CSV Enviado para Importação com Sucesso!"
     actions:
-      upload_csv: "Importar CSV"
+      upload_csv: "Gerar Ingressos"
       send_email: "Enviar Email"
       send_emails: "Enviar Emails"

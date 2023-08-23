@@ -1,5 +1,6 @@
 ActiveAdmin.register Ticket do
   permit_params :event_id, :student_id
+  actions :index, :show
 
   index do
     id_column

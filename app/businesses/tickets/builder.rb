@@ -42,7 +42,7 @@ module Tickets
 
       replacements = {
         "NOME" => first_and_last_name(@student),
-        "DATA_EVENTO" => @event.info,
+        "DATA_EVENTO" => create_date_event,
         "PP" => @event.tickets.count.to_s,
         # "CD" => ticket.id.to_s, # TODO: Adicionar o número único por evento
       }
@@ -55,6 +55,10 @@ module Tickets
       end
 
       File.open(@svg_path, 'w') { |file| file.write(svg_content.to_xml) }
+    end
+
+    def create_date_event
+      @event.date.strftime("%d/%m | %H:%Mh")
     end
 
     def generate_png_from_svg
