@@ -22,7 +22,7 @@
 #
 class Ticket < ApplicationRecord
   belongs_to :event
-  belongs_to :student
+  belongs_to :student, dependent: :destroy
 
   has_one_attached :svg
   has_one_attached :png
