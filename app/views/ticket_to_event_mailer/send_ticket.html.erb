@@ -38,6 +38,6 @@
   </tr>
 </table>
 <p>O objetivo do evento é <%= @ticket.event.description %></p>
-<p>Data do Evento: <%= @ticket.event.info %></p>
+<p>Data do Evento: <%= @ticket.event.date.strftime("%d/%m | %H:%Mh") %></p>
 </body>
 </html>

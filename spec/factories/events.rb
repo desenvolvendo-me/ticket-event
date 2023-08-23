@@ -3,8 +3,9 @@
 # Table name: events
 #
 #  id          :bigint           not null, primary key
+#  date        :datetime
 #  description :string
-#  info        :string
+#  launch      :integer
 #  name        :string
 #  slug        :string
 #  created_at  :datetime         not null
@@ -17,8 +18,9 @@
 FactoryBot.define do
   factory :event do
     name { "Bootcamp Imersão 1ª Vaga" }
+    launch { rand(1..100) }
     description { "Aprenda a conquistar sua 1ª vaga na programação mesmo sem nenhuma experiência" }
-    info { "No dia 11/06 às 8h" }
+    date { (Date.today + 20.hours + 30.minutes) + 21.days }
     template { Rack::Test::UploadedFile.new('spec/support/ticket.svg', 'image/svg') }
   end
 end
