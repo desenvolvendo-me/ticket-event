@@ -15,6 +15,7 @@ bundle exec rake db:migrate
 bin/rails tailwindcss:build
 
 ### Install Fonts MiniMagick
+sleep 5
 mkdir /opt/render/.fonts
 cp ~/project/src/.render/fonts/* /opt/render/.fonts
 fc-cache -f -v
