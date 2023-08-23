@@ -1,11 +1,22 @@
 ActiveAdmin.register Event do
-  permit_params :name, :description, :info, :template, :slug
+  permit_params :name, :launch, :description, :date, :template
 
-  show :title => :name do
+  index do
+    id_column
+    column :name
+    column :launch
+    column :description
+    column :date
+    column :slug
+    actions
+  end
+
+  show :title => proc {|event| event.name }do
     attributes_table do
       row :name
+      row :launch
       row :description
-      row :info
+      row :date
       row :slug
 
       row :template do |event|
@@ -21,9 +32,9 @@ ActiveAdmin.register Event do
   form :title => :name do |f|
     f.inputs do
       f.input :name
+      f.input :launch
       f.input :description
-      f.input :info
-      f.input :slug
+      f.input :date
       f.input :template, as: :file
     end
     f.actions

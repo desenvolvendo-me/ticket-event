@@ -25,9 +25,11 @@ pt-BR:
     attributes:
       event:
         name: "Nome"
+        launch: "Lançamento"
         description: "Descrição"
-        info: "Informações"
-        slug: "Url"
+        date: "Data do Evento"
+        slug: "Descrição da Url"
+        template: "Formato do Ingresso"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
       student:
