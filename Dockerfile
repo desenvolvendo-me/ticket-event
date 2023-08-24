@@ -23,5 +23,8 @@ RUN apt-get update -qq \
 WORKDIR /app
 COPY . .
 RUN bundle install
+RUN bundle exec rake assets:precompile
+RUN bundle exec rake assets:clean
+RUN bundle exec rake db:migrate
 RUN bin/rails tailwindcss:build
 EXPOSE 3000
