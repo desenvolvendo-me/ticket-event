@@ -14,7 +14,7 @@ module TicketEvent
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    config.assets.css_compressor = Escompress::Compressor.new(loader: :css)
+    config.assets.css_compressor = nil
 
     config.action_mailer.default_url_options = { host: ENV["ACTION_MAILER_HOST"], port: ENV["ACTION_MAILER_PORT"] }
 
