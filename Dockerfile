@@ -20,9 +20,6 @@ RUN apt-get update -qq \
     /var/lib/cache \
     /var/lib/log
 
-# Install deps Tailwind
-RUN npm install esbuild
-
 WORKDIR /app
 COPY . .
 RUN bundle install
