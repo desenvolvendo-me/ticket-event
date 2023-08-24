@@ -20,12 +20,14 @@ RUN apt-get update -qq \
     /var/lib/cache \
     /var/lib/log
 
-# Install deps Tailwind
-RUN npm install esbuild
-
 WORKDIR /app
 COPY . .
 RUN bundle install
+
+# Install deps Tailwind
+RUN rm -rf node_modules && npm install
+RUN npm install esbuild
+
 RUN bundle exec rake assets:precompile
 RUN bundle exec rake assets:clean
 RUN bundle exec rake db:migrate
