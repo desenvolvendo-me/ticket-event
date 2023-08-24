@@ -30,6 +30,5 @@ RUN npm install esbuild
 
 RUN bundle exec rake assets:precompile
 RUN bundle exec rake assets:clean
-RUN bundle exec rake db:migrate
 RUN bin/rails tailwindcss:build
 EXPOSE 3000
