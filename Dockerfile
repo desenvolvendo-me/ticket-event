@@ -26,4 +26,5 @@ RUN npm install esbuild
 WORKDIR /app
 COPY . .
 RUN bundle install
+RUN bin/rails tailwindcss:build
 EXPOSE 3000
