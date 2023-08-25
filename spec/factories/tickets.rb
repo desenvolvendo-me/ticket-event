@@ -22,8 +22,6 @@
 #
 FactoryBot.define do
   factory :ticket do
-    svg { Rack::Test::UploadedFile.new('spec/support/ticket-success.svg', 'image/svg')  }
-    png { Rack::Test::UploadedFile.new('spec/support/ticket-success.svg', 'image/svg')  }
     event
     student
   end

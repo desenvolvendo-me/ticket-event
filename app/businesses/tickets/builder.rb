@@ -4,37 +4,26 @@ require 'mini_magick'
 
 module Tickets
   class Builder < BusinessApplication
-    def initialize(event:, csv_path:)
-      @event = event
-      @csv_path = csv_path
+    def initialize(ticket:)
+      @ticket = ticket
+      @event = @ticket.event
       @event_template = @event.template.download
     end
 
     def call
-      CSV.foreach(@csv_path, headers: true) do |row|
-        create_student(row)
-        create_ticket
-        modify_svg_content
-        add_photo_to_svg
-        generate_svg
-        generate_png_from_svg
-        attach_svg_and_png_to_ticket
-        remove_svg_and_png
-      end
+      create_student
+      modify_svg_content
+      add_photo_to_svg
+      generate_svg
+      generate_png_from_svg
+      attach_svg_and_png_to_ticket
+      remove_svg_and_png
     end
 
     private
 
-    def create_student(row)
-      @student = Student.create(
-        name: row["fullname"],
-        email: row["email"],
-        phone: row["phone"]
-      )
-    end
-
-    def create_ticket
-      @ticket = Ticket.create(student: @student, event: @event)
+    def create_student
+      @student = @ticket.student
     end
 
     def modify_svg_content
@@ -145,9 +134,11 @@ module Tickets
     end
 
     def remove_svg_and_png
-      # FileUtils.rm_f(@svg_path)
-      # FileUtils.rm_f(@png_path)
-      # FileUtils.rm_f(@png_round_path)
+      return unless Rails.env.development?
+
+      FileUtils.rm_f(@png_path)
+      FileUtils.rm_f(@svg_path)
+      FileUtils.rm_f(@png_round_path)
     end
   end
 end
