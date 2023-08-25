@@ -20,4 +20,14 @@ class TicketsController < ApplicationController
       redirect_to search_ticket_path(params["slug_event"]), notice: "O número não foi cadastrado nesse evento!"
     end
   end
+
+  def edit
+    @student = Student.find_by_phone(params["phone"])
+  end
+
+  def update
+    @student = Student.find_by_phone(params["phone"])
+    @student.update(username_instagram: params["username_instagram"])
+    redirect_to event_ticket_path(params["slug_event"], params["phone"])
+  end
 end

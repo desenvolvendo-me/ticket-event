@@ -80,7 +80,13 @@ module Tickets
     end
 
     def get_avatar
-      image = MiniMagick::Image.open(Faker::LoremFlickr.image(size: "200x200", search_terms: ['animes']))
+      avatar = Apis::Instagram.call(student: @ticket.student)
+
+      if avatar
+        image = MiniMagick::Image.open(avatar)
+      else
+        image = MiniMagick::Image.open(Faker::LoremFlickr.image(size: "200x200", search_terms: ['animes']))
+      end
 
       ticket_avatar_path = "tmp/ticket-avatar-#{@ticket.id}.png"
       image.write(ticket_avatar_path)
