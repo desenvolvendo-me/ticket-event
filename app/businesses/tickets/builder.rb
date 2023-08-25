@@ -66,8 +66,10 @@ module Tickets
 
         text_node.remove
 
+        ticket_avatar_path = get_avatar
+
         img = Nokogiri::XML::Node.new "image", @svg_content
-        img['xlink:href'] = round_image_corners("spec/support/avatar.png")
+        img['xlink:href'] = round_image_corners(ticket_avatar_path)
         img['x'] = x_position
         img['y'] = y_position
         img['width'] = "350"
@@ -75,6 +77,14 @@ module Tickets
 
         @svg_content.root.add_child(img)
       end
+    end
+
+    def get_avatar
+      image = MiniMagick::Image.open(Faker::LoremFlickr.image(size: "200x200", search_terms: ['animes']))
+
+      ticket_avatar_path = "tmp/ticket-avatar-#{@ticket.id}.png"
+      image.write(ticket_avatar_path)
+      ticket_avatar_path
     end
 
     def generate_svg
@@ -129,9 +139,9 @@ module Tickets
     end
 
     def remove_svg_and_png
-      FileUtils.rm_f(@svg_path)
-      FileUtils.rm_f(@png_path)
-      FileUtils.rm_f(@png_round_path)
+      # FileUtils.rm_f(@svg_path)
+      # FileUtils.rm_f(@png_path)
+      # FileUtils.rm_f(@png_round_path)
     end
   end
 end
