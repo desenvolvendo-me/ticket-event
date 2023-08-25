@@ -7,7 +7,9 @@ ActiveAdmin.register Event do
     column :launch
     column :description
     column :date
-    column :slug
+    column :slug do |event|
+      link_to event.slug, search_ticket_path(event), target: "_blank"
+    end
     actions
   end
 
@@ -17,7 +19,9 @@ ActiveAdmin.register Event do
       row :launch
       row :description
       row :date
-      row :slug
+      row :slug do |event|
+        link_to event.slug, search_ticket_path(event), target: "_blank"
+      end
 
       row :template do |event|
         if event.template.attached?
