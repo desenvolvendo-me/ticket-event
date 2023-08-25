@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y yarn
 ARG INSTALL_DEPENDENCIES
 RUN apt-get update -qq \
   && apt-get install -y --no-install-recommends ${INSTALL_DEPENDENCIES} \
-    build-essential libpq-dev git \
+    build-essential libpq-dev git libfreetype6-dev gsfonts libmagickwand-dev imagemagick \
   && apt-get clean autoclean \
   && apt-get autoremove -y \
   && rm -rf \
@@ -22,6 +22,11 @@ RUN apt-get update -qq \
 
 WORKDIR /app
 COPY . .
+
+RUN mkdir ~/.fonts
+RUN cp /app/.docker/fonts/* ~/.fonts
+RUN fc-cache -f -v
+
 RUN bundle install
 
 # Install deps Tailwind
