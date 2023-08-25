@@ -22,11 +22,6 @@ RUN apt-get update -qq \
 
 WORKDIR /app
 COPY . .
-
-RUN mkdir ~/.fonts
-RUN cp /app/.docker/fonts/* ~/.fonts
-RUN fc-cache -f -v
-
 RUN bundle install
 
 # Install deps Tailwind
