@@ -71,15 +71,15 @@ module Tickets
     def get_avatar
       if @ticket.student.type_social.eql? "github"
         avatar = Apis::Github.call(student: @ticket.student)
-      else
+      elsif @ticket.student.type_social.eql? "instagram"
         avatar = Apis::Instagram.call(student: @ticket.student)
       end
 
-      if avatar
-        image = MiniMagick::Image.open(avatar)
-      else
-        image = MiniMagick::Image.open(Faker::LoremFlickr.image(size: "200x200", search_terms: ['animes']))
+      unless avatar
+        avatar = Faker::LoremFlickr.image(size: "200x200", search_terms: ['animes'])
       end
+
+      image = MiniMagick::Image.open(avatar)
 
       ticket_avatar_path = "tmp/ticket-avatar-#{@ticket.id}.png"
       image.write(ticket_avatar_path)

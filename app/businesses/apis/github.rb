@@ -11,7 +11,7 @@ module Apis
       results = HTTParty.get("https://api.github.com/users/#{@student.profile_social.delete("@")}", :headers => {
         "Accept" => "application/vnd.github+json",
         "X-GitHub-Api-Version" => "2022-11-28",
-        "Authorization" => "Bearer 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"
+        "Authorization" => "Bearer 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"
       })
       results["avatar_url"]
     rescue
