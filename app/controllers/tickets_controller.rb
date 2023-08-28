@@ -1,10 +1,10 @@
 class TicketsController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:ticket, :search, :form]
+  skip_before_action :authenticate_user!, :only => [:ticket, :search, :form, :edit, :update]
   layout "ticket"
 
+  before_action :get_ticket, :only => [:ticket, :form, :update]
+
   def ticket
-    @ticket ||= Ticket.includes(:event, :student)
-                      .where(events: { slug: params["slug_event"] }, students: { phone: params["phone"] }).take
   end
 
   def search
@@ -12,12 +12,28 @@ class TicketsController < ApplicationController
   end
 
   def form
-    ticket = Ticket.joins(:event, :student)
-                   .where(events: { slug: params["slug_event"] }, students: { phone: params["phone"] }).take
-    if ticket
-      redirect_to event_ticket_path(ticket.event.slug, ticket.student.phone )
+    if @ticket
+      redirect_to event_ticket_path(@ticket.event.slug, @ticket.student.phone)
     else
       redirect_to search_ticket_path(params["slug_event"]), notice: "O número não foi cadastrado nesse evento!"
     end
+  end
+
+  def edit
+    @student = Student.find_by_phone(params["phone"])
+  end
+
+  def update
+    @student = Student.find_by_phone(params["phone"])
+    @student.update(profile_social: params["profile_social"], type_social: params["type_social"])
+
+    Tickets::Builder.call(ticket: @ticket)
+
+    redirect_to event_ticket_path(params["slug_event"], params["phone"])
+  end
+
+  def get_ticket
+    @ticket = Ticket.joins(:event, :student)
+                    .where(events: { slug: params["slug_event"] }, students: { phone: params["phone"] }).take
   end
 end
