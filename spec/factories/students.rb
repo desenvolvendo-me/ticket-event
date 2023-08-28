@@ -15,6 +15,7 @@ FactoryBot.define do
     name { "Marco Castro" }
     email { "marco.castro@email.com" }
     phone { "61988887777" }
-    username_instagram { "marcodotcastro"}
+    type_social { "github"}
+    profile_social { "@marcodotcastro"}
   end
 end
