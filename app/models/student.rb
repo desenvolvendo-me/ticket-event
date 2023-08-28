@@ -12,4 +12,7 @@
 #
 class Student < ApplicationRecord
   has_many :tickets
+
+  TYPE_SOCIAL = %w[instagram github]
+
 end

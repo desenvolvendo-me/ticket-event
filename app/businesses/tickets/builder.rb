@@ -69,7 +69,11 @@ module Tickets
     end
 
     def get_avatar
-      avatar = Apis::Instagram.call(student: @ticket.student)
+      if @ticket.student.type_social.eql? "github"
+        avatar = Apis::Github.call(student: @ticket.student)
+      else
+        avatar = Apis::Instagram.call(student: @ticket.student)
+      end
 
       if avatar
         image = MiniMagick::Image.open(avatar)
