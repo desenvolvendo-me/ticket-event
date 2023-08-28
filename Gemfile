@@ -32,6 +32,8 @@ gem "escompress", "~> 0.3.0"
 
 gem "dotenv"
 gem "aws-sdk-s3", require: false
+gem 'ffaker'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0'
@@ -41,8 +43,6 @@ group :development, :test do
   gem 'annotate'
   gem 'pry-byebug'
   gem 'factory_bot_rails'
-  gem 'ffaker'
-  gem 'faker'
   gem 'cpf_faker'
   gem 'rubycritic', require: false
   gem 'simplecov'
