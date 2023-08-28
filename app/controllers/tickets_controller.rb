@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:ticket, :search, :form]
+  skip_before_action :authenticate_user!, :only => [:ticket, :search, :form, :edit, :update]
   layout "ticket"
 
   before_action :get_ticket, :only => [:ticket, :form, :update]
@@ -13,7 +13,7 @@ class TicketsController < ApplicationController
 
   def form
     if @ticket
-      redirect_to event_ticket_path(@ticket.event.slug, @ticket.student.phone )
+      redirect_to event_ticket_path(@ticket.event.slug, @ticket.student.phone)
     else
       redirect_to search_ticket_path(params["slug_event"]), notice: "O número não foi cadastrado nesse evento!"
     end
@@ -25,7 +25,7 @@ class TicketsController < ApplicationController
 
   def update
     @student = Student.find_by_phone(params["phone"])
-    @student.update(username_instagram: params["username_instagram"])
+    @student.update(profile_social: params["profile_social"], type_social: params["type_social"])
 
     Tickets::Builder.call(ticket: @ticket)
 

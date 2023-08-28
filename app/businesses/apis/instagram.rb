@@ -8,7 +8,7 @@ module Apis
     end
 
     def call
-      response = open("https://www.instagram.com/#{@student.username_instagram}/?__a=1&__d=1").read
+      response = open("https://www.instagram.com/#{@student.profile_social.delete("@")}/?__a=1&__d=1").read
       json = JSON.parse(response)
       json["graphql"]["user"]["profile_pic_url_hd"]
     rescue
