@@ -1,7 +1,5 @@
 name: "Ruby on Rails CI"
-on:
-  pull_request:
-    branches: [ "main", "release/*" ]
+on: push
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -24,17 +22,20 @@ jobs:
           node-version: '14'
       - name: Checkout code
         uses: actions/checkout@v3
-      # Add or replace dependency steps here
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
           bundler-cache: true
-      # Add or replace database setup steps here
+      - name: Font Minimagick
+        run: apt install -y libfreetype6-dev gsfonts libmagickwand-dev imagemagick
+      - name: Build Tailwind
+        run: |
+          npm install esbuild
+          bin/rails tailwindcss:build
       - name: Set up database schema
         run: bin/rails db:migrate
       - name: Install dependencies
         run: yarn install
-      # Add or replace test runners here
       - name: Run tests
         run: bin/rake
 #
