@@ -9,7 +9,7 @@ RSpec.describe Tickets::Builder do
     builder.call
 
     first_ticket = event.tickets.first
-    first_ticket.student.update(username_instagram: "marcodotcastro")
+    first_ticket.student.update(profile_social: "@marcodotcastro")
 
     Tickets::Builder.call(ticket: first_ticket)
 

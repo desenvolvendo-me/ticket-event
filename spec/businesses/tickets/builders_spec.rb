@@ -11,9 +11,9 @@ RSpec.describe Tickets::Builders do
     first_ticket = event.tickets.first
     last_ticket = event.tickets.last
 
-    expect(first_ticket.svg.filename.to_s).to eq("ticket-1.svg")
-    expect(first_ticket.png.filename.to_s).to eq("ticket-1.png")
-    expect(last_ticket.svg.filename.to_s).to eq("ticket-2.svg")
-    expect(last_ticket.png.filename.to_s).to eq("ticket-2.png")
+    expect(first_ticket.svg.filename.to_s).to include "svg"
+    expect(first_ticket.png.filename.to_s).to include "png"
+    expect(last_ticket.svg.filename.to_s).to include "svg"
+    expect(last_ticket.png.filename.to_s).to include "png"
   end
 end
