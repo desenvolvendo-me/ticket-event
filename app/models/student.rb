@@ -13,6 +13,6 @@
 class Student < ApplicationRecord
   has_many :tickets
 
-  TYPE_SOCIAL = %w[instagram github]
+  TYPE_SOCIAL = %w[instagram github aleatória]
 
 end
