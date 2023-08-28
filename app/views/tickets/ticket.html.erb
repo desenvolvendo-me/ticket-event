@@ -1,0 +1,30 @@
+<div class="flex flex-col items-center justify-center">
+  <div class="flex">
+    <div class="p-4">
+      <div class="flex items-center justify-center mb-4 text-4xl font-bold leading-none tracking-tight text-gray-800"><%= @ticket.event.name %></div>
+      <p class="leading-normal"><%= @ticket.event.description %></p>
+      <div class="flex items-center justify-center mt-4 text-gray-700">
+        <div class="flex text-2xl w-1/2 justify-center">
+          <%= @ticket.event.date.strftime("%d/%m | %H:%Mh") %>
+        </div>
+        <div class="flex w-1/2 justify-center">
+          <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+            </svg>
+            <span><%= link_to "DOWNLOAD", rails_blob_path(@ticket.png, disposition: "attachment") %></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <%= image_tag @ticket.png, size: "900x450" %>
+  </div>
+  <div class="flex w-1/2 justify-center">
+    <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+      <span><%= link_to "EDITAR FOTO", edit_event_ticket_path(@ticket.event.slug, @ticket.student.phone) %></span>
+    </button>
+  </div>
+</div>
+

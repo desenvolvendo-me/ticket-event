@@ -27,7 +27,13 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'watir'
 gem 'tailwindcss-rails'
 gem 'foreman'
+gem 'mini_magick'
+gem "escompress", "~> 0.3.0"
 
+gem "dotenv"
+gem "aws-sdk-s3", require: false
+gem 'ffaker'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0'
@@ -37,8 +43,6 @@ group :development, :test do
   gem 'annotate'
   gem 'pry-byebug'
   gem 'factory_bot_rails'
-  gem 'ffaker'
-  gem 'faker'
   gem 'cpf_faker'
   gem 'rubycritic', require: false
   gem 'simplecov'
@@ -63,3 +67,4 @@ group :test do
   gem 'rspec-benchmark'
   gem 'database_cleaner'
 end
+
