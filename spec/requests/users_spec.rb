@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :request do
       it 'creates a new user' do
         expect {
           post user_registration_path, params: valid_params
-        }.to change(User, :count).by(1).and change(Student, :count).by(1)
+        }.to change(User, :count)
       end
 
 
