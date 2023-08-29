@@ -29,6 +29,7 @@ gem 'tailwindcss-rails'
 gem 'foreman'
 gem 'mini_magick'
 gem "escompress", "~> 0.3.0"
+gem 'sendgrid-ruby'
 
 gem "dotenv"
 gem "aws-sdk-s3", require: false
