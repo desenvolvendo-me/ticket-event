@@ -16,6 +16,6 @@ class Student < ApplicationRecord
 
   has_one_attached :avatar
 
-  TYPE_SOCIAL = %w[instagram github aleatória]
+  TYPE_SOCIAL = %w[github aleatória]
 
 end
