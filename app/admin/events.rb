@@ -4,6 +4,9 @@ ActiveAdmin.register Event do
   index do
     id_column
     column :name
+    column :checked do |event|
+      event.tickets.where(checkin: true).count
+    end
     column :launch
     column :description
     column :date
@@ -16,6 +19,9 @@ ActiveAdmin.register Event do
   show :title => proc {|event| event.name }do
     attributes_table do
       row :name
+      row :checked do |event|
+        event.tickets.where(checkin: true).count
+      end
       row :launch
       row :description
       row :date

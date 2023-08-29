@@ -7,6 +7,7 @@ ActiveAdmin.register Ticket do
     column :student
     column :event
     column :send_email_at
+    column :checkin
     column :ticket do |ticket|
       if ticket.png.attached?
         link_to image_tag(ticket.png, size: "50x25"), ticket.png, target: "_blank"
@@ -19,7 +20,7 @@ ActiveAdmin.register Ticket do
     attributes_table do
       row :event
       row :student
-
+      row :checkin
       row :svg do |ticket|
         if ticket.svg.attached?
           link_to image_tag(ticket.svg, size: "200x100"), ticket.svg
@@ -27,7 +28,6 @@ ActiveAdmin.register Ticket do
           "Nenhuma imagem anexada."
         end
       end
-
       row :png do |ticket|
         if ticket.svg.attached?
           link_to image_tag(ticket.png, size: "200x100"), ticket.png, target: "_blank"
