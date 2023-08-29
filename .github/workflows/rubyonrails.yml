@@ -25,9 +25,9 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag ticket_event
       - name: Set up database schema
-        run: docker run --network host ticket_event bin/rails db:migrate
+        run: docker run --network host -e DATABASE_URL=postgres://rails:password@localhost:5432/ticket_event_test ticket_event bin/rails db:migrate
       - name: Run Tests
-        run: docker run --network host ticket_event bin/rake
+        run: docker run --network host -e DATABASE_URL=postgres://rails:password@localhost:5432/ticket_event_test ticket_event bin/rake
 #
 #  lint:
 #    runs-on: ubuntu-latest
