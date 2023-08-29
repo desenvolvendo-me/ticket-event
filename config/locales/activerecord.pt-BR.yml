@@ -25,6 +25,7 @@ pt-BR:
     attributes:
       event:
         name: "Nome"
+        checked: "CheckIns"
         launch: "Lançamento"
         description: "Descrição"
         date: "Data do Evento"
