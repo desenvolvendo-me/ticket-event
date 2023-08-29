@@ -1,5 +1,9 @@
 name: "Ruby on Rails CI"
 on: push
+#  pull_request:
+#    branches:
+#      - main
+#      - 'release/*'
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,28 +20,14 @@ jobs:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/ticket_event_test"
     steps:
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
       - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-        with:
-          bundler-cache: true
-      - name: Font Minimagick
-        run: apt install -y libfreetype6-dev gsfonts libmagickwand-dev imagemagick
-      - name: Build Tailwind
-        run: |
-          npm install esbuild
-          bin/rails tailwindcss:build
+        uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ticket_event
       - name: Set up database schema
-        run: bin/rails db:migrate
-      - name: Install dependencies
-        run: yarn install
-      - name: Run tests
-        run: bin/rake
+        run: docker run --network host ticket_event bin/rails db:migrate
+      - name: Run Tests
+        run: docker run --network host ticket_event bin/rake
 #
 #  lint:
 #    runs-on: ubuntu-latest
