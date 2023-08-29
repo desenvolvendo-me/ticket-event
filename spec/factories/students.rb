@@ -2,13 +2,14 @@
 #
 # Table name: students
 #
-#  id                 :bigint           not null, primary key
-#  email              :string
-#  name               :string
-#  phone              :string
-#  username_instagram :string
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id             :bigint           not null, primary key
+#  email          :string
+#  name           :string
+#  phone          :string
+#  profile_social :string
+#  type_social    :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 FactoryBot.define do
   factory :student do
