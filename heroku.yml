@@ -9,4 +9,4 @@ build:
     RAILS_SERVE_STATIC_FILES: "true"
     INSTALL_DEPENDENCIES: curl openssh-server python
 run:
-  web: bundle exec puma -C config/puma.rb
+  web: foreman start -f Procfile.prod
