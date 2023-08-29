@@ -40,6 +40,12 @@
               <div class="mb-6">
                 <%= form.text_field :profile_social, placeholder: "@meu_arroba", class: "text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none" %>
               </div>
+              <div class="flex mb-6 items-center justify-center">
+                OU
+              </div>
+              <div class="mb-6">
+                <%= form.file_field :avatar, placeholder: "sua foto", class: "text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none" %>
+              </div>
               <div>
                 <%= form.submit "Enviar", class: "bg-primary border-primary w-full rounded border p-3 transition hover:bg-opacity-90" %>
               </div>

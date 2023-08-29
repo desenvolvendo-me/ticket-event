@@ -25,7 +25,7 @@ class TicketsController < ApplicationController
 
   def update
     @student = Student.find_by_phone(params["phone"])
-    @student.update(profile_social: params["profile_social"], type_social: params["type_social"])
+    @student.update(profile_social: params["profile_social"], type_social: params["type_social"], avatar: params["avatar"])
 
     Tickets::Builder.call(ticket: @ticket)
 
