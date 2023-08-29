@@ -14,8 +14,6 @@ module Apis
         "Authorization" => "Bearer #{ENV['GITHUB_KEY']}"
       })
       results["avatar_url"]
-    rescue
-      nil
     end
   end
 end
