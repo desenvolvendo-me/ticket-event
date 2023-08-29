@@ -28,6 +28,8 @@ jobs:
         run: docker run --network host -e DATABASE_URL=postgres://rails:password@localhost:5432/ticket_event_test ticket_event bin/rails db:migrate
       - name: Run Tests
         run: docker run --network host -e DATABASE_URL=postgres://rails:password@localhost:5432/ticket_event_test ticket_event bin/rake
+        env:
+          GITHUB_KEY: ${{ secrets.API_GITHUB_KEY }}
 #
 #  lint:
 #    runs-on: ubuntu-latest
