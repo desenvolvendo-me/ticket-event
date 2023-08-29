@@ -375,6 +375,7 @@ GEM
       rspec-support (~> 3.10)
     rspec-support (3.12.0)
     ruby2_keywords (0.0.5)
+    ruby_http_client (3.5.5)
     ruby_parser (3.19.2)
       sexp_processor (~> 4.16)
     rubycritic (4.7.0)
@@ -406,6 +407,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sendgrid-ruby (6.6.2)
+      ruby_http_client (~> 3.4)
     sexp_processor (4.16.1)
     shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
@@ -519,6 +522,7 @@ DEPENDENCIES
   rubycritic
   sass-rails
   selenium-webdriver
+  sendgrid-ruby
   shoulda-matchers (~> 5.0)
   simplecov
   spring
