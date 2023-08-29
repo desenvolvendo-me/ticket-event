@@ -69,7 +69,9 @@ module Tickets
     end
 
     def get_avatar
-      if @ticket.student.type_social.eql? "github"
+      if @ticket.student.avatar.attached?
+        avatar = ActiveStorage::Blob.service.path_for(@ticket.student.avatar.key)
+      elsif @ticket.student.type_social.eql? "github"
         avatar = Apis::Github.call(student: @ticket.student)
       elsif @ticket.student.type_social.eql? "instagram"
         avatar = Apis::Instagram.call(student: @ticket.student)

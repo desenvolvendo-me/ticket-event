@@ -14,6 +14,8 @@
 class Student < ApplicationRecord
   has_many :tickets
 
+  has_one_attached :avatar
+
   TYPE_SOCIAL = %w[instagram github aleatória]
 
 end
