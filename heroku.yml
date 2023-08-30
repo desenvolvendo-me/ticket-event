@@ -9,19 +9,10 @@ build:
     RAILS_SERVE_STATIC_FILES: "true"
     INSTALL_DEPENDENCIES: curl openssh-server python
 run:
-  db:
-    command:
-      - bundle exec rails db:migrate
-    image: web
-  asset:
-    command:
-      - bundle exec rake assets:precompile && bundle exec rake assets:clean
-    image: web
-  css:
-    command:
-      - bundle exec rails tailwindcss:build
-    image: web
   web:
     command:
+      - bundle exec rails tailwindcss:build
+      - bundle exec rails db:migrate
+      - bundle exec rake assets:precompile && bundle exec rake assets:clean
       - bundle exec puma -C config/puma.rb
     image: web
