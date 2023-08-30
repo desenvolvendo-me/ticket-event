@@ -1,3 +1,2 @@
 db: bin/rails db:migrate
-css: bin/rails tailwindcss:build
 web: bin/rails server -p 3000
