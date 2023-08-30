@@ -8,8 +8,13 @@ build:
     RAILS_LOG_TO_S: "true"
     RAILS_SERVE_STATIC_FILES: "true"
     INSTALL_DEPENDENCIES: curl openssh-server python
-release:
-  command:
-    - bundle exec rails db:migrate
-  image: web
-run: bundle exec puma -C config/puma.rb
+
+run:
+  db:
+    command:
+      - bundle exec rails db:migrate
+    image: web
+  web:
+    command:
+      - bundle exec puma -C config/puma.rb
+    image: web
