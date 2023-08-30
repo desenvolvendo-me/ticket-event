@@ -30,4 +30,5 @@ RUN npm install esbuild
 
 RUN bundle exec rake assets:precompile
 RUN bundle exec rake assets:clean
+RUN bin/rails tailwindcss:build
 EXPOSE 3000
