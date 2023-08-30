@@ -9,4 +9,7 @@ build:
     RAILS_SERVE_STATIC_FILES: "true"
     INSTALL_DEPENDENCIES: curl openssh-server python
 run:
-  web: foreman start -f Procfile.prod
+  db: bundle exec rails db:migrate
+  asset: bundle exec rake assets:precompile && bundle exec rake assets:clean
+  css: bundle exec rails tailwindcss:build
+  web: bundle exec puma -C config/puma.rb
