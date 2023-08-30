@@ -8,5 +8,12 @@ if Rails.env.development?
   event.template.attach(io: File.open(image_path), filename: 'ticket.svg')
 
   Tickets::Builders.call(event: event, csv_path: Rails.root.join('spec/support', "leads_export.csv"))
+
+  # Create Lessons
+  Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4', event: event)
+  Lesson.create(link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF', event: event)
+  Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4', event: event)
+  Lesson.create(link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF', event: event)
+  Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4', event: event)
 end
 
