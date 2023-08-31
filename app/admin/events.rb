@@ -54,4 +54,19 @@ ActiveAdmin.register Event do
     defaults :finder => :find_by_slug
   end
 
+  action_item :select_template_ticket, :only => :show do
+    link_to t("active_admin.actions.select_template_ticket"), :action => 'select_template_ticket'
+  end
+
+  member_action :select_template_ticket, only: :show do
+
+  end
+
+  member_action :set_template_ticket, :method => :post do
+    template_ticket = TemplateTicket.find(params[:event][:template_ticket_id])
+    resource.template.attach(template_ticket.svg.blob)
+
+    redirect_to :action => :index, :notice => t("active_admin.notice.event.select_template_ticket")
+  end
+
 end

@@ -1,0 +1,20 @@
+<div class="panel">
+  <h3>Selecionar Estilo de Ingresso</h3>
+  <div class="panel_contents">
+    <div class="attributes_table source" id="attributes_table_source_1">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <%= form_for :event, :url => { action: 'set_template_ticket' }, :html => { :multipart => true } do |f| %>
+          <tr class="row row-key">
+            <th>Nome do Estilo do Ingresso</th>
+            <td><%= f.select :template_ticket_id, options_for_select(TemplateTicket.all.collect { |template_ticket| [template_ticket.name, template_ticket.id] }), prompt: "Selecione o Estilo do Ingresso" %></td>
+          </tr>
+          <tr class="row row-key">
+            <th> <%= submit_tag 'Enviar' %></th>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
