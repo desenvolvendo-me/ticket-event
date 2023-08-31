@@ -20,6 +20,7 @@ ActiveAdmin.register Ticket do
     attributes_table do
       row :event
       row :student
+      row :send_email_at
       row :checkin
       row :svg do |ticket|
         if ticket.svg.attached?
