@@ -22,6 +22,9 @@ pt-BR:
       ticket:
         one: "Ingresso"
         other: "Ingressos"
+      template_ticket:
+        one: "Formato do Ingresso"
+        other: "Formatos do Ingresso"
     attributes:
       event:
         name: "Nome"
@@ -40,9 +43,16 @@ pt-BR:
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
       ticket:
-        send_email_at: "Enviar E-mail"
+        send_email_at: "Email Enviado Em"
         event: "Evento"
         student: "Estudante"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
+      template_ticket:
+        name: "Nome"
+        description: "Descrição"
+        version: "Versão"
+        svg: "Template"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
 
