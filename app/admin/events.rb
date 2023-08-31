@@ -58,7 +58,7 @@ ActiveAdmin.register Event do
     link_to t("active_admin.actions.select_template_ticket"), :action => 'select_template_ticket'
   end
 
-  member_action :select_template_ticket, only: :show do
+  member_action :select_template_ticket, title: I18n.t("active_admin.actions.select_template_ticket") , only: :show do
 
   end
 
