@@ -23,8 +23,8 @@ pt-BR:
         one: "Ingresso"
         other: "Ingressos"
       template_ticket:
-        one: "Formato do Ingresso"
-        other: "Formatos do Ingresso"
+        one: "Estilo de Ingresso"
+        other: "Estilos de Ingressos"
     attributes:
       event:
         name: "Nome"
