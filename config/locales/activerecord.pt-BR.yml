@@ -33,6 +33,7 @@ pt-BR:
         description: "Descrição"
         date: "Data do Evento"
         slug: "Descrição da Url"
+        lessons_alert: "Alerta de aulas"
         template: "Formato do Ingresso"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
