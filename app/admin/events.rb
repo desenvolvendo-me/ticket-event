@@ -13,6 +13,11 @@ ActiveAdmin.register Event do
     column :slug do |event|
       link_to event.slug, search_ticket_path(event), target: "_blank"
     end
+    column :lessons_alert do |event|
+      if event.lessons.count < 3
+        I18n.t('event.alert_index')
+      end
+    end
     actions
   end
 
