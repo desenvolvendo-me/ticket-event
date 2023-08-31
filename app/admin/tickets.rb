@@ -49,7 +49,7 @@ ActiveAdmin.register Ticket do
 
   collection_action :import_student_csv, :method => :post do
     event = Event.find(params[:ticket][:event_id])
-    Tickets::Builder.call({ event: event, csv_path: params["ticket"]["file"] })
+    Tickets::Builders.call({ event: event, csv_path: params["ticket"]["file"] })
     redirect_to :action => :index, :notice => t("active_admin.notice.ticket.select_student_csv")
   end
 
