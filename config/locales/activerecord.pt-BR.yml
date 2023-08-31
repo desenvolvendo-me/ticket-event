@@ -22,6 +22,9 @@ pt-BR:
       ticket:
         one: "Ingresso"
         other: "Ingressos"
+      lesson:
+        one: "Aula"
+        other: "Aulas"
       template_ticket:
         one: "Formato do Ingresso"
         other: "Formatos do Ingresso"
