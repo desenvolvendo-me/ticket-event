@@ -24,6 +24,7 @@ class Event < ApplicationRecord
   validates :name, :launch, presence: true
 
   has_one_attached :template
+  has_one_attached :certificate_template
 
   def launch_and_name
     "#{launch}-#{name}"

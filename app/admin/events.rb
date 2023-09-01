@@ -1,5 +1,5 @@
 ActiveAdmin.register Event do
-  permit_params :name, :launch, :description, :date, :template
+  permit_params :name, :launch, :description, :date, :template, :certificate_template
 
   index do
     id_column
@@ -36,6 +36,14 @@ ActiveAdmin.register Event do
           "Nenhuma imagem anexada."
         end
       end
+
+      row :certificate_template do |event|
+        if event.certificate_template.attached?
+          image_tag(event.certificate_template, size: "300x300")
+        else
+          "Nenhuma imagem anexada."
+        end
+      end
     end
   end
 
@@ -46,6 +54,7 @@ ActiveAdmin.register Event do
       f.input :description
       f.input :date
       f.input :template, as: :file
+      f.input :certificate_template, as: :file
     end
     f.actions
   end
@@ -53,5 +62,4 @@ ActiveAdmin.register Event do
   controller do
     defaults :finder => :find_by_slug
   end
-
 end
