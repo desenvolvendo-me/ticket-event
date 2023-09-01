@@ -1,5 +1,5 @@
 class CheckinsController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:checked, :search, :form]
+  #skip_before_action :authenticate_user!, :only => [:checked, :search, :form]
   layout "external"
 
   before_action :get_ticket, :only => [:checked, :form]

@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  skip_before_action :authenticate_user!, :only => [:ticket, :search, :form, :edit, :update]
+  # skip_before_action :authenticate_user!, :only => [:ticket, :search, :form, :edit, :update]
   layout "external"
 
   before_action :get_ticket, :only => [:ticket, :form, :update]

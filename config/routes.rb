@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get ':slug_event/checkin', to: "checkins#search", as: :search_checkin
   post 'checkin/form', to: "checkins#form", as: :form_checkin
   get ':slug_event/checked/:phone', to: "checkins#checked", as: :checked_checkin
+
+  get ':slug_event/lessons', to: "lessons#index"
 end
