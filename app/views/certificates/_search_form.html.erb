@@ -1,0 +1,9 @@
+<%= form_with url: form_certificate_path, method: :post do |form| %>
+  <%= hidden_field_tag 'slug_event', params["slug_event"] %>
+  <div class="mb-6">
+    <%= form.text_field :phone, placeholder: t("views.certificates.search.your_phone"), class: "text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none" %>
+  </div>
+  <div>
+    <%= form.submit t("views.certificates.search.get"), class: "bg-primary border-primary w-full rounded border p-3 transition hover:bg-opacity-90" %>
+  </div>
+<% end %>
