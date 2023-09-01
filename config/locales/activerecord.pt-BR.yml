@@ -34,6 +34,8 @@ pt-BR:
         date: "Data do Evento"
         slug: "Descrição da Url"
         template: "Formato do Ingresso"
+        certificate_template: "Formato do Certificado"
+        certificate_template_missing: "Nenhuma imagem anexada."
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
       student:
