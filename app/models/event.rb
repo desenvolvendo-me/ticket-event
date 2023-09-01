@@ -20,6 +20,7 @@ class Event < ApplicationRecord
   friendly_id :launch_and_name, use: :slugged
 
   has_many :tickets, dependent: :destroy
+  has_many :certificates, dependent: :destroy
 
   validates :name, :launch, presence: true
 
