@@ -225,4 +225,4 @@ pt-BR:
       certificate:
         download_now: "Clique em 'Download' para receber seu certificado agora mesmo"
   notice:
-    phone_not_registered_in_event: "O número não foi cadastrado nesse evento!"
+    certificate_does_not_exist: "O certificado solicitado não existe."
