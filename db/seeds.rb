@@ -11,5 +11,12 @@ if Rails.env.development?
   event.template.attach(io: File.open(image_path), filename: 'ticket.svg')
 
   Tickets::Builders.call(event: event, csv_path: Rails.root.join('spec/support', "leads_export.csv"))
+
+  # Checkin
+  Ticket.first.update(checkin: true)
+
+  # Create Certificate and attach file
+  certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
+  certificate.certificate_file.attach(io: File.open(Rails.root.join('spec/support', 'avatar.png')), filename: 'avatar.png')
 end
 
