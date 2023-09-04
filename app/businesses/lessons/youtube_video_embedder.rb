@@ -12,6 +12,10 @@ module Lessons
     def self.extract_video_id(uri)
       if uri.path.include?('/v/')
         return uri.path.split('/v/').last
+      elsif uri.host == 'youtu.be'
+        return uri.path.split('/').last
+      elsif uri.path.include?('/live/')
+        return uri.path.split('/live/').last.split('?').first
       elsif uri.query && uri.query.include?('v=')
         params = URI.decode_www_form(uri.query)
         video_id = params.assoc('v').last
@@ -22,5 +26,3 @@ module Lessons
     end
   end
 end
-
-
