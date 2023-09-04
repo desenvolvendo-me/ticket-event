@@ -33,7 +33,7 @@ ActiveAdmin.register Event do
         if event.template.attached?
           image_tag(event.template, size: "300x300")
         else
-          "Nenhuma imagem anexada."
+          t("active_admin.actions.not_image")
         end
       end
 
@@ -41,7 +41,7 @@ ActiveAdmin.register Event do
         if event.certificate_template.attached?
           image_tag(event.certificate_template, size: "300x300")
         else
-          "Nenhuma imagem anexada."
+          t("active_admin.actions.not_image")
         end
       end
     end

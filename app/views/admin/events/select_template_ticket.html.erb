@@ -5,11 +5,11 @@
         <tbody>
         <%= form_for :event, :url => { action: 'set_template_ticket' }, :html => { :multipart => true } do |f| %>
           <tr class="row row-key">
-            <th>Nome do Estilo do Ingresso</th>
-            <td><%= f.select :template_ticket_id, options_for_select(TemplateTicket.all.collect { |template_ticket| [template_ticket.name, template_ticket.id] }), prompt: "Selecione o Estilo do Ingresso" %></td>
+            <th><%= t("active_admin.views.event.template_ticket_id") %></th>
+            <td><%= f.select :template_ticket_id, options_for_select(TemplateTicket.all.collect { |template_ticket| [template_ticket.name, template_ticket.id] }), prompt: t("active_admin.views.event.template_ticket_id") %></td>
           </tr>
           <tr class="row row-key">
-            <th> <%= submit_tag 'Enviar' %></th>
+            <th> <%= submit_tag t("active_admin.views.submit") %></th>
           </tr>
         <% end %>
         </tbody>

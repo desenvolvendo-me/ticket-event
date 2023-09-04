@@ -155,4 +155,11 @@ pt-BR:
       select_student_csv: "Gerar Ingressos"
       send_email: "Enviar Email"
       send_emails: "Enviar Emails"
-      select_template_ticket: "Selecionar Estilo de Ingresso"
+      select_template_ticket: "Selecionar Formato de Ingresso"
+      not_image: "Nenhuma imagem anexada"
+    views:
+      submit: "Enviar"
+      ticket:
+        event_id: "Selecione o evento"
+      event:
+        template_ticket_id: "Selecione o formato do ingresso"

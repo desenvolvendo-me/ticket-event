@@ -35,7 +35,7 @@ pt-BR:
         slug: "Descrição da Url"
         template: "Formato do Ingresso"
         certificate_template: "Formato do Certificado"
-        certificate_template_missing: "Nenhuma imagem anexada."
+        template_ticket_id: "Formato do Ingresso"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
       student:
@@ -50,6 +50,8 @@ pt-BR:
         student: "Estudante"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
+        event_id: "Evento"
+        file: "Arquivo"
       template_ticket:
         name: "Nome"
         description: "Descrição"
