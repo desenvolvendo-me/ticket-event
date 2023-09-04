@@ -1,3 +1,6 @@
 pt-BR:
   lesson:
-    max_lessons: "Não é possível criar mais de 5 aulas para: "
+    validator:
+      max_lessons: 'Não é possível criar mais de 5 aulas para: '
+    embedder:
+      extract_video_error: 'URL do YouTube em formato desconhecido ou inválido.'
