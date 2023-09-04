@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Lessons::LessonValidator do
+RSpec.describe Lessons::Validator do
   let(:event) { create(:event) }
 
   describe '#call' do
@@ -8,7 +8,7 @@ RSpec.describe Lessons::LessonValidator do
       it 'does not add an error to the lesson' do
         lesson = create(:lesson, event: event)
 
-        validator = Lessons::LessonValidator.new(lesson)
+        validator = Lessons::Validator.new(lesson)
         validator.call
 
         expect(lesson.errors).to be_empty
@@ -19,7 +19,7 @@ RSpec.describe Lessons::LessonValidator do
       it 'adds an error when create a lesson' do
         lessons = create_list(:lesson, 5, event: event)
 
-        validator = Lessons::LessonValidator.new(lessons.first)
+        validator = Lessons::Validator.new(lessons.first)
         validator.call
 
         expect(lessons.first.errors).to_not be_empty
