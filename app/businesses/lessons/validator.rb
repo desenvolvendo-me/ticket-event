@@ -1,5 +1,5 @@
 module Lessons
-  class LessonValidator
+  class Validator
     def initialize(lesson)
       @lesson = lesson
     end

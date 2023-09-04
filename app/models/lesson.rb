@@ -23,6 +23,6 @@ class Lesson < ApplicationRecord
   validates :link, :title, :description, presence: true
 
   validate do
-    Lessons::LessonValidator.new(self).call
+    Lessons::Validator.new(self).call
   end
 end
