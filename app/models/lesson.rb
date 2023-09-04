@@ -2,11 +2,13 @@
 #
 # Table name: lessons
 #
-#  id         :bigint           not null, primary key
-#  link       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  event_id   :bigint           not null
+#  id          :bigint           not null, primary key
+#  description :text
+#  link        :string
+#  title       :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  event_id    :bigint           not null
 #
 # Indexes
 #
@@ -18,9 +20,9 @@
 #
 class Lesson < ApplicationRecord
   belongs_to :event
-  validates :link, presence: true
+  validates :link, :title, :description, presence: true
 
   validate do
-    LessonValidator.new(self).call
+    Lessons::LessonValidator.new(self).call
   end
 end
