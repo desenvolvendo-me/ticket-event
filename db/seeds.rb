@@ -12,6 +12,13 @@ if Rails.env.development?
 
   Tickets::Builders.call(event: event, csv_path: Rails.root.join('spec/support', "leads_export.csv"))
 
+  # Checkin
+  Ticket.first.update(checkin: true)
+
+  # Create Certificate and attach file
+  certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
+  certificate.certificate_file.attach(io: File.open(Rails.root.join('spec/support', 'avatar.png')), filename: 'avatar.png')
+
   # Create Lessons
   Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4',title: 'Rails Admin Interfaces with ActiveAdmin',description: 'for Pro episodes and more!', event: event)
   Lesson.create(link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF',title: 'Ruby on Rails - Railscasts #284 Active Admin',description: 'Active Admin allows you to quickly build an admin interface with just a few commands.', event: event)

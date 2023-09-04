@@ -20,11 +20,13 @@ class Event < ApplicationRecord
   friendly_id :launch_and_name, use: :slugged
 
   has_many :tickets, dependent: :destroy
+  has_many :certificates, dependent: :destroy
   has_many :lessons, dependent: :destroy
 
   validates :name, :launch, presence: true
 
   has_one_attached :template
+  has_one_attached :certificate_template
 
   def launch_and_name
     "#{launch}-#{name}"
