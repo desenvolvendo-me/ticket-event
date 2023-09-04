@@ -20,13 +20,7 @@ class Lesson < ApplicationRecord
   belongs_to :event
   validates :link, presence: true
 
-  validate :max_lessons_per_event
-
-  private
-
-  def max_lessons_per_event
-    if event.lessons.count >= 5
-      errors.add(:event, I18n.t("lesson.max_lessons") + "#{event.name}")
-    end
+  validate do
+    LessonValidator.new(self).call
   end
 end
