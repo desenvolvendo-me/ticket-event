@@ -10,11 +10,9 @@ class CertificatesController < ApplicationController
   end
 
   def form
-    if @certificate
-      redirect_to event_certificate_path(@certificate.event.slug, @certificate.student.phone)
-    else
-      redirect_to search_certificate_path(params["slug_event"]), notice: t('notice.phone_not_registered_in_event')
-    end
+    return redirect_to event_certificate_path(@certificate.event.slug, @certificate.student.phone) if @certificate
+
+    redirect_to search_certificate_path(params["slug_event"]), notice: t('notice.certificate_does_not_exist')
   end
 
   private
