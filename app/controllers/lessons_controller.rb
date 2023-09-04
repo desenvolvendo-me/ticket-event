@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_action :set_event, only: [:index]
   def index
     @lessons = @event.lessons
-    @video_embedder = Lessons::YoutubeVideoEmbedder
+    @video_embedder = Lessons::Embedder
   end
 
 

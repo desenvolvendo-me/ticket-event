@@ -1,5 +1,5 @@
 module Lessons
-  class YoutubeVideoEmbedder
+  class Embedder
     def self.embed_url(video_url)
       uri = URI.parse(video_url)
       video_id = extract_video_id(uri)
@@ -21,7 +21,7 @@ module Lessons
         video_id = params.assoc('v').last
         return video_id
       else
-        raise ArgumentError, 'URL do YouTube em formato desconhecido ou inválido.'
+        raise ArgumentError, I18n.t('lesson.embedder.extract_video_error')
       end
     end
   end

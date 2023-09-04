@@ -2,7 +2,7 @@
 <div class="holder mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
   <% @lessons.each do |lesson| %>
     <div class="each mb-10 m-2 shadow-lg border-gray-800 bg-gray-100 relative">
-      <iframe class="w-full" src="<%= Lessons::YoutubeVideoEmbedder.embed_url(lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <iframe class="w-full" src="<%= Lessons::Embedder.embed_url(lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       <div class="info-box text-xs flex p-1 font-semibold text-gray-500">
       </div>
       <div class="desc p-4 text-gray-800">
