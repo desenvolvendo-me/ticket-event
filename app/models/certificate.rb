@@ -22,5 +22,5 @@ class Certificate < ApplicationRecord
   belongs_to :event
   belongs_to :student
 
-  has_one_attached :png
+  has_one_attached :certificate_file
 end
