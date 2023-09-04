@@ -38,3 +38,5 @@ db/schema.rb
 spec/support/*changed*
 
 .env
+
+node_modules
