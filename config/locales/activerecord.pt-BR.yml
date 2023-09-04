@@ -59,4 +59,9 @@ pt-BR:
         svg: "Template"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
+      lesson:
+        event: "Evento"
+        title: "Título"
+        description: "Descrição"
+
 
