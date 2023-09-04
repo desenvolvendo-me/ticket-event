@@ -26,14 +26,14 @@ ActiveAdmin.register Ticket do
         if ticket.svg.attached?
           link_to image_tag(ticket.svg, size: "200x100"), ticket.svg
         else
-          "Nenhuma imagem anexada."
+          t("active_admin.actions.not_image")
         end
       end
       row :png do |ticket|
         if ticket.svg.attached?
           link_to image_tag(ticket.png, size: "200x100"), ticket.png, target: "_blank"
         else
-          "Nenhuma imagem anexada."
+          t("active_admin.actions.not_image")
         end
       end
     end

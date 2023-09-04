@@ -3,17 +3,17 @@
     <div class="attributes_table source" id="attributes_table_source_1">
       <table border="0" cellspacing="0" cellpadding="0">
         <tbody>
-        <%= form_for :ticket, :url => { action: 'import_student_csv' }, :html => { :multipart => true } do |f| %>
+        <%= form_for Ticket.new, :url => { action: 'import_student_csv' }, :html => { :multipart => true } do |f| %>
           <tr class="row row-key">
-            <th>Nome do Evento</th>
-            <td><%= f.select :event_id, options_for_select(Event.all.collect { |event| [event.name, event.id] }), prompt: "Selecione o evento" %></td>
+            <th><%= f.label :event_id %></th>
+            <td><%= f.select :event_id, options_for_select(Event.all.collect { |event| [event.name, event.id] }), prompt: t("active_admin.views.ticket.event_id") %></td>
           </tr>
           <tr class="row row-key">
-            <th>Arquivo</th>
+            <th><%= f.label :file %></th>
             <td><%= f.file_field :file %></td>
           </tr>
           <tr class="row row-key">
-            <th> <%= submit_tag 'Enviar' %></th>
+            <th> <%= submit_tag t("active_admin.views.submit") %></th>
           </tr>
         <% end %>
         </tbody>
