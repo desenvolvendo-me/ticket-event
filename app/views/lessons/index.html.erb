@@ -2,12 +2,19 @@
 <div class="holder mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
   <% @lessons.each do |lesson| %>
     <div class="each mb-10 m-2 shadow-lg border-gray-800 bg-gray-100 relative">
-      <iframe class="w-full" src="<%= Lessons::Embedder.embed_url(lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <% if lesson.launch_datetime > Time.zone.now %>
+        <%= image_tag lesson.thumbnail, class: 'max-w-200px' if lesson.thumbnail.attached? %>
+      <% else %>
+        <iframe class="w-full" src="<%= Lessons::Embedder.embed_url(lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <% end %>
       <div class="info-box text-xs flex p-1 font-semibold text-gray-500">
       </div>
       <div class="desc p-4 text-gray-800">
         <%= lesson.title %>
         <span class="description text-sm block py-2 border-gray-400 mb-2"><%= lesson.description %></span>
+      </div>
+      <div class="launch-datetime text-sm font-bold text-gray-600">
+        Lançamento em: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
       </div>
     </div>
   <% end %>
