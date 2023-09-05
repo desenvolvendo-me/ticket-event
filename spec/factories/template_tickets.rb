@@ -2,9 +2,12 @@
 #
 # Table name: template_tickets
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  description :string
+#  name        :string
+#  version     :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 FactoryBot.define do
   factory :template_ticket do

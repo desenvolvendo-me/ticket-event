@@ -18,6 +18,8 @@
 #
 FactoryBot.define do
   factory :admin_user do
-    
+    email { Faker::Internet.email }
+    password { 'P@ssw0rd327' }
+    password_confirmation { 'P@ssw0rd327' }
   end
 end
