@@ -56,7 +56,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rack-mini-profiler', require: false
   gem 'better_errors'
-  gem "binding_of_caller"
   gem 'rails_layout'
   gem 'letter_opener_web'
 end
@@ -66,6 +65,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'rspec-benchmark'
-  gem 'database_cleaner'
 end
 

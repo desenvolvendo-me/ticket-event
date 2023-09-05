@@ -22,6 +22,9 @@ pt-BR:
       ticket:
         one: "Ingresso"
         other: "Ingressos"
+      lesson:
+        one: "Aula"
+        other: "Aulas"
       template_ticket:
         one: "Estilo de Ingresso"
         other: "Estilos de Ingressos"
@@ -33,6 +36,7 @@ pt-BR:
         description: "Descrição"
         date: "Data do Evento"
         slug: "Descrição da Url"
+        lessons_alert: "Alerta de aulas"
         template: "Formato do Ingresso"
         certificate_template: "Formato do Certificado"
         template_ticket_id: "Formato do Ingresso"
@@ -59,4 +63,9 @@ pt-BR:
         svg: "Template"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
+      lesson:
+        event: "Evento"
+        title: "Título"
+        description: "Descrição"
+
 
