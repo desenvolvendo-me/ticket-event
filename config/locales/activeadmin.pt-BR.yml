@@ -148,8 +148,18 @@ pt-BR:
       ticket:
         email: "Email Enviado!"
         emails: "Solicitação de Emails Enviado!"
-        import_csv: "CSV Enviado para Importação com Sucesso!"
+        select_student_csv: "CSV Enviado para Importação com Sucesso!"
+      event:
+        select_template_ticket: "Estilo de Ingresso Adicionado com Sucesso!"
     actions:
-      upload_csv: "Gerar Ingressos"
+      select_student_csv: "Gerar Ingressos"
       send_email: "Enviar Email"
       send_emails: "Enviar Emails"
+      select_template_ticket: "Selecionar Formato de Ingresso"
+      not_image: "Nenhuma imagem anexada"
+    views:
+      submit: "Enviar"
+      ticket:
+        event_id: "Selecione o evento"
+      event:
+        template_ticket_id: "Selecione o formato do ingresso"

@@ -26,31 +26,31 @@ ActiveAdmin.register Ticket do
         if ticket.svg.attached?
           link_to image_tag(ticket.svg, size: "200x100"), ticket.svg
         else
-          "Nenhuma imagem anexada."
+          t("active_admin.actions.not_image")
         end
       end
       row :png do |ticket|
         if ticket.svg.attached?
           link_to image_tag(ticket.png, size: "200x100"), ticket.png, target: "_blank"
         else
-          "Nenhuma imagem anexada."
+          t("active_admin.actions.not_image")
         end
       end
     end
   end
 
-  action_item :upload_csv, :only => :index do
-    link_to t("active_admin.actions.upload_csv"), :action => 'upload_csv'
+  action_item :select_student_csv, :only => :index do
+    link_to t("active_admin.actions.select_student_csv"), :action => 'select_student_csv'
   end
 
-  collection_action :upload_csv, only: :index do
+  collection_action :select_student_csv, title: I18n.t("active_admin.actions.select_student_csv"), only: :index do
 
   end
 
-  collection_action :import_csv, :method => :post do
+  collection_action :import_student_csv, :method => :post do
     event = Event.find(params[:ticket][:event_id])
-    Tickets::Builder.call({ event: event, csv_path: params["ticket"]["file"] })
-    redirect_to :action => :index, :notice => t("active_admin.notice.ticket.import_csv")
+    Tickets::Builders.call({ event: event, csv_path: params["ticket"]["file"] })
+    redirect_to :action => :index, :notice => t("active_admin.notice.ticket.select_student_csv")
   end
 
   action_item :send_email, only: :show do
