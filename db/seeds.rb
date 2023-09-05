@@ -18,7 +18,7 @@ if Rails.env.development?
   certificate.certificate_file.attach(io: File.open(Rails.root.join('spec/support', 'avatar.png')), filename: 'avatar.png')
 
   # Create Lessons
-  Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4',title: 'Rails Admin Interfaces with ActiveAdmin',description: 'for Pro episodes and more!', event: event)
+  Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4',title: 'Rails Admin Interfaces with ActiveAdmin',description: 'for Pro episodes and more!', launch_datetime: Time.zone.now + 2.hours, event: event)
   Lesson.create(link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF',title: 'Ruby on Rails - Railscasts #284 Active Admin',description: 'Active Admin allows you to quickly build an admin interface with just a few commands.', event: event)
   Lesson.create(link: 'https://youtu.be/fmyvWz5TUWg?si=hVjWIKZShmZBPrRs',title: 'Learn Ruby on Rails - Full Course',description: 'Learn Ruby on Rails in this full course for beginners. Ruby on Rails is a is a server-side web application framework used for creating full stack web apps.', event: event)
   Lesson.create(link: 'https://youtu.be/dWVo2Ma6ZpU?si=uZsta-amoNZIaaKi',title: 'Open Vagas - Aula 1 - Criando um sistema de vagas no Ruby on Rails',description: 'Este é o primeiro vídeo da serie criando um sistema de vagas.', event: event)
