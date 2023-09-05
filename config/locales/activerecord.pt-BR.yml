@@ -67,5 +67,7 @@ pt-BR:
         event: "Evento"
         title: "Título"
         description: "Descrição"
+        launch_datetime: "Data de lançamento"
+
 
 
