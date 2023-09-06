@@ -1,4 +1,5 @@
 pt-BR:
   lessons:
     view_index:
-      title: Aulas
+      title: "Aulas"
+      launch_at: "Lançamento em"
