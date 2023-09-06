@@ -23,4 +23,5 @@ class Certificate < ApplicationRecord
   belongs_to :student
 
   has_one_attached :png
+  has_one_attached :svg
 end
