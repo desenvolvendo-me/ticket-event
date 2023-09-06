@@ -16,7 +16,7 @@ if Rails.env.development?
 
   # Create Certificate and attach file
   certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
-  certificate.certificate_file.attach(io: File.open(Rails.root.join('spec/support', 'avatar.png')), filename: 'avatar.png')
+  Certificates::Builder.call(certificate: certificate)
 
   # Create Lessons
   Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4',title: 'Rails Admin Interfaces with ActiveAdmin',description: 'for Pro episodes and more!', event: event)
