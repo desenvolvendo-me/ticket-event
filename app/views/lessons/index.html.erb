@@ -9,12 +9,16 @@
       <% end %>
       <div class="info-box text-xs flex p-1 font-semibold text-gray-500">
       </div>
-      <div class="desc p-4 text-gray-800">
+      <div class="desc p-4 text-gray-800 flex">
+        <div class="flex flex-col flex-3">
         <%= lesson.title %>
         <span class="description text-sm block py-2 border-gray-400 mb-2"><%= lesson.description %></span>
-      </div>
-      <div class="launch-datetime text-sm font-bold text-gray-600">
-        Lançamento em: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
+        </div>
+        <% if lesson.launch_datetime > Time.zone.now %>
+          <div class="flex flex-1 launch-datetime text-sm font-bold text-gray-600">
+            <%= I18n.t('lessons.view_index.launch_at') %>: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
