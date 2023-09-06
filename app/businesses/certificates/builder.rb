@@ -18,22 +18,32 @@ module Certificates
     private
 
     def modify_svg_content
-      @copy_path = "tmp/certificate-#{@certificate.id}"
-      @svg_path = @copy_path + ".svg"
-      @svg_content = Nokogiri::XML(@event_certificate_template)
+      setup_svg_content
 
       replacements = {
         "NOME" => first_and_last_name(@student)
       }
 
+      replace_text_in_svg_content(replacements)
+    end
+
+    def setup_svg_content
+      @copy_path = "tmp/certificate-#{@certificate.id}"
+      @svg_path = @copy_path + ".svg"
+      @svg_content = Nokogiri::XML(@event_certificate_template)
+    end
+
+    def replace_text_in_svg_content(replacements)
       @svg_content.css("//text").each do |text_element|
-        text_content = text_element.content
-        new_content = text_content.dup
-        replacements.each do |search_text, replacement|
-          new_content.gsub!(search_text, replacement)
-        end
-        text_element.content = new_content
+        text_element.content = gsub_text_nodes(text_element.content, replacements)
       end
+    end
+
+    def gsub_text_nodes(text, replacements)
+      replacements.each do |search_text, replacement|
+        text.gsub!(search_text, replacement)
+      end
+      text
     end
 
     def first_and_last_name(student)
