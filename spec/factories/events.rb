@@ -22,5 +22,6 @@ FactoryBot.define do
     description { "Aprenda a conquistar sua 1ª vaga na programação mesmo sem nenhuma experiência" }
     date { (Date.today + 20.hours + 30.minutes) + 21.days }
     template { Rack::Test::UploadedFile.new('spec/support/ticket.svg', 'image/svg') }
+    certificate_template { Rack::Test::UploadedFile.new('spec/support/certificate_template.svg', 'image/svg+xml') }
   end
 end
