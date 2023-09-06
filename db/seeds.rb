@@ -16,7 +16,7 @@ if Rails.env.development?
 
   # Create Certificate and attach file
   certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
-  certificate.certificate_file.attach(io: File.open(Rails.root.join('spec/support', 'avatar.png')), filename: 'avatar.png')
+  Certificates::Builder.call(certificate: certificate)
 
   # Load thumbnail
   thumbnail_path = Rails.root.join('app', 'assets', 'images', 'video-play-new.jpg')
