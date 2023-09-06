@@ -33,6 +33,7 @@ pt-BR:
         name: "Nome"
         checked: "CheckIns"
         launch: "Lançamento"
+        active: "Ativo"
         description: "Descrição"
         date: "Data do Evento"
         slug: "Descrição da Url"
