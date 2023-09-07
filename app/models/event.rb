@@ -3,6 +3,7 @@
 # Table name: events
 #
 #  id          :bigint           not null, primary key
+#  active      :boolean          default(TRUE)
 #  date        :datetime
 #  description :string
 #  launch      :integer
@@ -27,6 +28,8 @@ class Event < ApplicationRecord
 
   has_one_attached :template
   has_one_attached :certificate_template
+
+  scope :active, -> { where(active: true) }
 
   def launch_and_name
     "#{launch}-#{name}"
