@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      student:
+        one: "Estudante"
+        other: "Estudantes"
+    attributes:
+      student:
+        name: "Nome"
+        email: "E-mail"
+        phone: "Telefone"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
