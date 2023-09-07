@@ -1,0 +1,23 @@
+<div class="panel">
+  <div class="panel_contents">
+    <div class="attributes_table source" id="attributes_table_source_1">
+      <table>
+        <tbody>
+          <%= form_for Certificate.new, url: { action: "import_student_csv" }, html: { :multipart => true } do |f| %>
+            <tr class="row row-key">
+              <th><%= f.label :event_id %></th>
+              <td><%= f.select :event_id, options_for_select(Event.all.collect { |event| [event.name, event.id] }), prompt: "Selecione o evento" %></td>
+            </tr>
+            <tr class="row row-key">
+              <th><%= f.label :file %></th>
+              <td><%= f.file_field :file %></td>
+            </tr>
+            <tr class="row row-key">
+              <th> <%= submit_tag t("active_admin.views.submit") %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
