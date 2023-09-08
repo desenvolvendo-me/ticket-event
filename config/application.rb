@@ -11,6 +11,9 @@ Dotenv.load
 
 module TicketEvent
   class Application < Rails::Application
+    # Config default time to Brasília for lesson launch_time
+    config.time_zone = 'Brasilia'
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
