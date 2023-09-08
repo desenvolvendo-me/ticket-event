@@ -17,11 +17,55 @@ if Rails.env.development?
   certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
   certificate.certificate_file.attach(io: File.open(Rails.root.join('spec/support', 'avatar.png')), filename: 'avatar.png')
 
-  # Create Lessons
-  Lesson.create(link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4',title: 'Rails Admin Interfaces with ActiveAdmin',description: 'for Pro episodes and more!', event: event)
-  Lesson.create(link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF',title: 'Ruby on Rails - Railscasts #284 Active Admin',description: 'Active Admin allows you to quickly build an admin interface with just a few commands.', event: event)
-  Lesson.create(link: 'https://youtu.be/fmyvWz5TUWg?si=hVjWIKZShmZBPrRs',title: 'Learn Ruby on Rails - Full Course',description: 'Learn Ruby on Rails in this full course for beginners. Ruby on Rails is a is a server-side web application framework used for creating full stack web apps.', event: event)
-  Lesson.create(link: 'https://youtu.be/dWVo2Ma6ZpU?si=uZsta-amoNZIaaKi',title: 'Open Vagas - Aula 1 - Criando um sistema de vagas no Ruby on Rails',description: 'Este é o primeiro vídeo da serie criando um sistema de vagas.', event: event)
-  Lesson.create(link: 'https://www.youtube.com/live/3qgcPXnmbA8?si=UF-k8re3bAAGsvfF',title: 'Começando com o Ruby on Rails',description: 'Talk sobre como iniciar no mundo Ruby on Rails', event: event)
+  # Load thumbnail
+  thumbnail_path = Rails.root.join('app', 'assets', 'images', 'video-play-new.jpg')
+  thumbnail = Rack::Test::UploadedFile.new(thumbnail_path, 'image/jpeg')
+
+  #Create Lessons
+  lessons_data = [
+    {
+      link: 'https://youtu.be/NJYtzznKrg0?si=3jihxtTuENaU98d4',
+      title: 'Rails Admin Interfaces with ActiveAdmin',
+      description: 'for Pro episodes and more!',
+      launch_datetime: Time.zone.now,
+      thumbnail: thumbnail,
+      event: event
+    },
+    {
+      link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF',
+      title: 'Ruby on Rails - Railscasts #284 Active Admin',
+      description: 'Active Admin allows you to quickly build an admin interface with just a few commands.',
+      launch_datetime: Time.zone.now + 1.hour,
+      thumbnail: thumbnail,
+      event: event
+    },
+    {
+      link: 'https://youtu.be/fmyvWz5TUWg?si=hVjWIKZShmZBPrRs',
+      title: 'Learn Ruby on Rails - Full Course',
+      description: 'Learn Ruby on Rails in this full course for beginners. Ruby on Rails is a server-side web application framework used for creating full stack web apps.',
+      launch_datetime: Time.zone.now + 3.hours,
+      thumbnail: thumbnail,
+      event: event
+    },
+    {
+      link: 'https://youtu.be/dWVo2Ma6ZpU?si=uZsta-amoNZIaaKi',
+      title: 'Open Vagas - Aula 1 - Criando um sistema de vagas no Ruby on Rails',
+      description: 'Este é o primeiro vídeo da serie criando um sistema de vagas.',
+      launch_datetime: Time.zone.now + 5.hours,
+      thumbnail: thumbnail,
+      event: event
+    },
+    {
+      link: 'https://www.youtube.com/live/3qgcPXnmbA8?si=UF-k8re3bAAGsvfF',
+      title: 'Começando com o Ruby on Rails',
+      description: 'Talk sobre como iniciar no mundo Ruby on Rails',
+      launch_datetime: Time.zone.now + 72.hours,
+      thumbnail: thumbnail,
+      event: event
+    }
+  ]
+  lessons_data.each do |data|
+    Lesson.create(data)
+  end
 end
 

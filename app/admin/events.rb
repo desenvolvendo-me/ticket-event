@@ -16,7 +16,7 @@ ActiveAdmin.register Event do
     end
     column :lessons_alert do |event|
       if event.lessons.count < 3
-        I18n.t('event.alert_index')
+        I18n.t('active_admin.event.alert_index')
       end
     end
     actions
