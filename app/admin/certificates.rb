@@ -31,15 +31,4 @@ ActiveAdmin.register Certificate do
       end
     end
   end
-
-  action_item :select_student_csv, only: :index do
-    link_to "Gerar Certificados", action: "select_student_csv"
-  end
-
-  collection_action :select_student_csv, title: "Gerar Certificados", only: :index do
-
-  end
-
-  collection_action :import_student_csv, method: :post do
-  end
 end
