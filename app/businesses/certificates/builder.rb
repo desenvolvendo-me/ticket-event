@@ -33,6 +33,11 @@ module Certificates
       @svg_content = Nokogiri::XML(@event_certificate_template)
     end
 
+    def first_and_last_name(student)
+      array = student.name.split
+      "#{array.first} #{array.last}"
+    end
+
     def replace_text_in_svg_content(replacements)
       @svg_content.css("//text").each do |text_element|
         text_element.content = gsub_text_nodes(text_element.content, replacements)
@@ -46,25 +51,8 @@ module Certificates
       text
     end
 
-    def first_and_last_name(student)
-      array = student.name.split
-      "#{array.first} #{array.last}"
-    end
-
     def generate_svg
       File.open(@svg_path, 'w') { |file| file.write(@svg_content.to_xml) }
-    end
-
-    def attach_svg_and_png
-      @certificate.svg.attach(io: File.open(@svg_path), filename: "certificate-#{@certificate.id}.svg")
-      @certificate.png.attach(io: File.open(@svg_path), filename: "certificate-#{@certificate.id}.png")
-    end
-
-    def remove_svg_and_png
-      return unless Rails.env.development?
-
-      FileUtils.rm_f(@png_path)
-      FileUtils.rm_f(@svg_path)
     end
 
     def generate_png_from_svg
@@ -72,6 +60,18 @@ module Certificates
       image = MiniMagick::Image.open(@svg_path)
       image.format 'png'
       image.write @png_path
+    end
+
+    def attach_svg_and_png
+      @certificate.svg.attach(io: File.open(@svg_path), filename: "certificate-#{@certificate.id}.svg")
+      @certificate.png.attach(io: File.open(@png_path), filename: "certificate-#{@certificate.id}.png")
+    end
+
+    def remove_svg_and_png
+      return unless Rails.env.development?
+
+      FileUtils.rm_f(@png_path)
+      FileUtils.rm_f(@svg_path)
     end
   end
 end
