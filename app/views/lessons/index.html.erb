@@ -1,4 +1,4 @@
-<h1 class="text-center text-4xl mt-10"><%= I18n.t('lessons.view_index.title') %></h1>
+<h1 class="text-center text-4xl mt-10"><%= I18n.t('views.lesson.index.title') %></h1>
 <div class="holder mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
   <% @lessons.each do |lesson| %>
     <div class="each mb-10 m-2 shadow-lg border-gray-800 bg-gray-100 relative">
@@ -16,7 +16,7 @@
         </div>
         <% if lesson.launch_datetime > Time.zone.now %>
           <div class="flex flex-1 launch-datetime text-sm font-bold text-gray-600">
-            <%= I18n.t('lessons.view_index.launch_at') %>: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
+            <%= I18n.t('views.lesson.index.launch_at') %>: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
           </div>
         <% end %>
       </div>

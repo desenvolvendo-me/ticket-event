@@ -21,7 +21,7 @@ module Lessons
         video_id = params.assoc('v').last
         return video_id
       else
-        raise ArgumentError, I18n.t('lesson.embedder.extract_video_error')
+        raise ArgumentError, I18n.t('businesses.lesson.embedder.extract_video_error')
       end
     end
   end
