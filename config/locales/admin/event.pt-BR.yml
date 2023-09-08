@@ -1,4 +1,4 @@
 pt-BR:
-  activeadmin:
+  active_admin:
     event:
       alert_index: 'Possui menos de 3 aulas'

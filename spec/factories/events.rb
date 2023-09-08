@@ -3,6 +3,7 @@
 # Table name: events
 #
 #  id          :bigint           not null, primary key
+#  active      :boolean          default(TRUE)
 #  date        :datetime
 #  description :string
 #  launch      :integer
