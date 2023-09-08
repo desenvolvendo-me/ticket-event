@@ -31,7 +31,7 @@ ActiveAdmin.register Lesson do
   end
 
   form do |f|
-    f.inputs  I18n.t('lesson.lesson_details') do
+    f.inputs  I18n.t('activeadmin.lesson.lesson_details') do
       f.input :event
       f.input :link
       f.input :title
