@@ -1,0 +1,13 @@
+pt-BR:
+  active_admin:
+    quiz:
+      questions:
+        title: "Perguntas"
+        question_column: "Pergunta"
+        answer_column: "Reposta certa"
+      quiz_details:
+        title: "Detalhes do questionário"
+        answer1: "Resposta 1"
+        answer2: "Resposta 2"
+        answer3: "Resposta 3"
+        answer4: "Resposta 4"
