@@ -23,7 +23,7 @@
 class Lesson < ApplicationRecord
   belongs_to :event
   validates :link, :title, :description, presence: true
-
+  has_one :quiz, dependent: :destroy
   has_one_attached :thumbnail
 
   validate do
