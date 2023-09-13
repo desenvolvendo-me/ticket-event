@@ -18,6 +18,10 @@ if Rails.env.development?
   certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
   Certificates::Builder.call(certificate: certificate)
 
+  # Certificate Template
+  certificate_template = CertificateTemplate.create(name: "Template 01", description: "Certificado tamanho 297 x 210 mm com moldura azul", version: "1")
+  certificate_template.svg.attach(io: File.open(Rails.root.join('spec/support', 'certificate_template.svg')), filename: 'certificate_template.svg')
+
   # Load thumbnail
   thumbnail_path = Rails.root.join('app', 'assets', 'images', 'video-play-new.jpg')
   thumbnail = Rack::Test::UploadedFile.new(thumbnail_path, 'image/jpeg')
