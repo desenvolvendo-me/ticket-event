@@ -19,15 +19,19 @@ ActiveAdmin.register Certificate do
       row :student
       row :event
       row :svg do |certificate|
-        return t("active_admin.actions.not_image") unless certificate.svg.attached?
-
-        link_to image_tag(certificate.svg, size: "200x100"), certificate.svg
+        if certificate.svg.attached?
+          link_to image_tag(certificate.svg, size: "200x100"), certificate.svg
+        else
+          t("active_admin.actions.not_image")
+        end
       end
 
       row :png do |certificate|
-        return t("active_admin.actions.not_image") unless certificate.png.attached?
-
-        link_to image_tag(certificate.svg, size: "200x100"), certificate.png
+        if certificate.png.attached?
+          link_to image_tag(certificate.png, size: "200x100"), certificate.png, target: "_blank"
+        else
+          t("active_admin.actions.not_image")
+        end
       end
     end
   end
