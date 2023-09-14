@@ -151,6 +151,7 @@ pt-BR:
         select_student_csv: "CSV Enviado para Importação com Sucesso!"
       event:
         select_template_ticket: "Estilo de Ingresso Adicionado com Sucesso!"
+        select_certificate_template: "Estilo de Cerficado Adicionado com Sucesso!"
       student:
         certificate_generated_successfully: "Certificado gerado com sucesso!"
     actions:
@@ -158,6 +159,7 @@ pt-BR:
       send_email: "Enviar Email"
       send_emails: "Enviar Emails"
       select_template_ticket: "Selecionar Formato de Ingresso"
+      select_certificate_template: "Seleciononar Formato de Certificado"
       not_image: "Nenhuma imagem anexada"
       generate_certificate: "Gerar Certificado"
     views:
@@ -166,6 +168,7 @@ pt-BR:
         event_id: "Selecione o evento"
       event:
         template_ticket_id: "Selecione o formato do ingresso"
+        certificate_template_id: "Selecione o formato do certificado"
       students:
         event: "Evento"
         select_event: "Selecione o evento"
