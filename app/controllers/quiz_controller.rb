@@ -1,5 +1,4 @@
-class QuizController < ApplicationController
-
+class QuizController < ExternalController
   def show
     @lesson = Lesson.find(params[:lesson_id])
     @quiz = @lesson.quiz
