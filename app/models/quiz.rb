@@ -18,6 +18,6 @@
 #
 class Quiz < ApplicationRecord
   belongs_to :lesson
-  has_many :quiz_question, dependent: :destroy
-  accepts_nested_attributes_for :quiz_question, allow_destroy: true
+  has_many :quiz_questions, dependent: :destroy
+  accepts_nested_attributes_for :quiz_questions, allow_destroy: true
 end
