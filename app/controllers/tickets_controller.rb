@@ -1,5 +1,4 @@
-class TicketsController < ApplicationController
-  layout "external"
+class TicketsController < ExternalController
 
   before_action :get_ticket, :only => [:ticket, :form, :update]
 
