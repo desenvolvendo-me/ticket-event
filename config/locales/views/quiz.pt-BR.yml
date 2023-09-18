@@ -3,4 +3,5 @@ pt-BR:
     quiz:
       result:
         nice_answer: "Você acertou esta pergunta!"
-        wrong_answer: "Você errou esta pergunta. A resposta correta era:"
+        wrong_answer: "Você errou esta pergunta."
+        another_answer: "A resposta correta era:"
