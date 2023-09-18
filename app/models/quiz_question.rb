@@ -7,7 +7,7 @@
 #  answer2        :string
 #  answer3        :string
 #  answer4        :string
-#  correct_answer :string
+#  correct_answer :integer
 #  description    :string
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -23,4 +23,5 @@
 #
 class QuizQuestion < ApplicationRecord
   belongs_to :quiz
+  validates :correct_answer, inclusion: { in: 1..4 }
 end
