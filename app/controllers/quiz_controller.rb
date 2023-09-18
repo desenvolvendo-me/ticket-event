@@ -39,9 +39,4 @@ class QuizController < ExternalController
     @correct_responses = params[:correct_responses]
     @incorrect_responses = params[:incorrect_responses]
   end
-
-
-
-  private
-
 end
