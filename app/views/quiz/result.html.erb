@@ -18,10 +18,10 @@
       <p class="text-lg font-semibold"><%= x %>)<%= quiz_question.description %></p>
 
       <% if @correct_responses["#{quiz_question.id}"] %>
-        <p class="text-green-500">Você acertou esta pergunta!</p>
+        <p class="text-green-500"><%= I18n.t('views.quiz.result.nice_answer') %></p>
         <p class="text-green-500"><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
       <% else %>
-        <p class="text-red-500">Você errou esta pergunta. A resposta correta era: <%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
+        <p class="text-red-500"><%= I18n.t('views.quiz.result.wrong_answer') %><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
       <% end %>
 
     </div>
