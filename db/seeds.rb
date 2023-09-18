@@ -31,7 +31,7 @@ if Rails.env.development?
   lesson_railscasts = Lesson.create(link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF',
                 title: 'Ruby on Rails - Railscasts #284 Active Admin',
                 description: 'Active Admin allows you to quickly build an admin interface with just a few commands.',
-                launch_datetime: Time.zone.now + 1.hour,
+                launch_datetime: Time.zone.now,
                 thumbnail: thumbnail,
                 event: event)
   lesson_rails_fullcourse = Lesson.create(link: 'https://youtu.be/fmyvWz5TUWg?si=hVjWIKZShmZBPrRs',
@@ -65,7 +65,7 @@ if Rails.env.development?
     answer2: 'Personalização de Painéis de Administração',
     answer3: 'O Active Admin é um produto comercial pago',
     answer4: 'Integração com Autenticação e Autorização',
-    correct_answer: :answer3,
+    correct_answer: 3,
     quiz: quiz1
   )
   QuizQuestion.create(
@@ -74,7 +74,7 @@ if Rails.env.development?
     answer2: 'Geração automática de designs de interface de usuário.',
     answer3: 'Interface de administração personalizável para Ruby on Rails.',
     answer4: 'Integração perfeita com sistemas de pagamento.',
-    correct_answer: :answer3,
+    correct_answer: 3,
     quiz: quiz1
   )
   QuizQuestion.create(
@@ -83,7 +83,7 @@ if Rails.env.development?
     answer2: 'rails generate controller NomeDoController',
     answer3: 'rails create controller NomeDoController',
     answer4: 'rails controller create NomeDoController',
-    correct_answer: :answer2,
+    correct_answer: 2,
     quiz: quiz2
   )
   QuizQuestion.create(
@@ -92,7 +92,7 @@ if Rails.env.development?
     answer2: 'Uma maneira de mover arquivos entre pastas no Rails.',
     answer3: 'Uma alteração no banco de dados da aplicação.',
     answer4: 'Um método para criar novos modelos em Rails.',
-    correct_answer: :answer3,
+    correct_answer: 3,
     quiz: quiz2
   )
   QuizQuestion.create(
@@ -101,7 +101,7 @@ if Rails.env.development?
     answer2: 'Configurar as rotas de URL para os controladores e ações.',
     answer3: 'Definir a estrutura de banco de dados da aplicação.',
     answer4: 'Configurar os estilos de CSS da aplicação.',
-    correct_answer: :answer2,
+    correct_answer: 2,
     quiz: quiz2
   )
   QuizQuestion.create(
@@ -110,10 +110,8 @@ if Rails.env.development?
     answer2: 'Um comando usado para criar automaticamente um conjunto completo de recursos em Rails.',
     answer3: 'Um modelo de design de interface de usuário para aplicativos Rails.',
     answer4: 'Uma gema para geração de documentação em Rails.',
-    correct_answer: :answer2,
+    correct_answer: 2,
     quiz: quiz2
   )
 
-
 end
-
