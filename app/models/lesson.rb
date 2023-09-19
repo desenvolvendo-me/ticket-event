@@ -26,7 +26,13 @@ class Lesson < ApplicationRecord
   has_one :quiz, dependent: :destroy
   has_one_attached :thumbnail
 
-  validate do
-    Lessons::Validator.new(self).call
+  before_create :before_create
+
+  def before_create
+    valid = Lessons::Validator.new(self).call
+
+    if valid.present?
+      errors.add(:event, valid)
+    end
   end
 end
