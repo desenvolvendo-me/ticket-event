@@ -2,13 +2,15 @@
 #
 # Table name: lessons
 #
-#  id          :bigint           not null, primary key
-#  description :text
-#  link        :string
-#  title       :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  event_id    :bigint           not null
+#  id              :bigint           not null, primary key
+#  description     :text
+#  launch_datetime :datetime
+#  link            :string
+#  thumbnail       :string
+#  title           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  event_id        :bigint           not null
 #
 # Indexes
 #

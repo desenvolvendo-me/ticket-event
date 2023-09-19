@@ -1,0 +1,7 @@
+pt-BR:
+  views:
+    lesson:
+      index:
+        title: "Aulas"
+        launch_at: "Lançamento em"
+        quiz_link: 'Link do questionário'
