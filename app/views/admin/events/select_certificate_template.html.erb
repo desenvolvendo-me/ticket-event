@@ -1,0 +1,19 @@
+<div class="panel">
+  <div class="panel_contents">
+    <div class="attributes_table source" id="attributes_table_source_1">
+      <table>
+        <tbody>
+        <%= form_for :event, url: { action: 'set_certificate_template' }, html: { :multipart => true } do |f| %>
+          <tr class="row row-key">
+            <th><%= t("active_admin.views.event.certificate_template_id") %></th>
+            <td><%= f.select :certificate_template_id, options_for_select(CertificateTemplate.all.collect { |certificate_template| [certificate_template.name, certificate_template.id] }), prompt: t("active_admin.views.event.certificate_template_id") %></td>
+          </tr>
+          <tr class="row row-key">
+            <th> <%= submit_tag t("active_admin.views.submit") %></th>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

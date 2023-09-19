@@ -86,4 +86,18 @@ ActiveAdmin.register Event do
     redirect_to :action => :index, :notice => t("active_admin.notice.event.select_template_ticket")
   end
 
+  action_item :select_certificate_template, only: :show do
+    link_to t("active_admin.actions.select_certificate_template"), :action => 'select_certificate_template'
+  end
+
+  member_action :select_certificate_template, title: I18n.t("active_admin.actions.select_certificate_template"), only: :show do
+
+  end
+
+  member_action :set_certificate_template, method: :post do
+    certificate_template = CertificateTemplate.find(params[:event][:certificate_template_id])
+    resource.certificate_template.attach(certificate_template.svg.blob)
+
+    redirect_to action: :index, notice: t("active_admin.notice.event.select_certificate_template")
+  end
 end
