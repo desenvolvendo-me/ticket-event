@@ -4,3 +4,4 @@ pt-BR:
       index:
         title: "Aulas"
         launch_at: "Lançamento em"
+        quiz_link: 'Link do questionário'

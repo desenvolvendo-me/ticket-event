@@ -1,4 +1,4 @@
-class LessonsController < ApplicationController
+class LessonsController < ExternalController
   before_action :set_event, only: [:index]
   def index
     @lessons = @event.lessons

@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      quiz:
+        one: "Questionário"
+        other: "Questionários"
+    attributes:
+      quiz:
+        lesson: "Aula"
+        title: "Título"
+        description: "Descrição"
+        launch_datetime: "Data de lançamento"
+        quiz_questions: "Perguntas"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
+        event_id: "Evento"
+        file: "Arquivo"
