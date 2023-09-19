@@ -12,12 +12,11 @@
   <h1><%= @lesson.title %></h1>
   <h2><%= @quiz.title %></h2>
 
-  <% x = 1 %>
   <% @quiz_questions.each do |quiz_question| %>
     <div class="mb-6">
       <% if @correct_responses["#{quiz_question.id}"] %>
         <p class="text-green-500"><%= I18n.t('views.quiz.result.nice_answer') %></p>
-        <p class="text-lg font-semibold"><%= x %>)<%= quiz_question.description %></p>
+        <p class="text-lg font-semibold"><%= quiz_question.description %></p>
         <p class="text-green-500"><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
       <% else %>
         <p class="text-red-500"><%= I18n.t('views.quiz.result.wrong_answer') %></p>
@@ -26,7 +25,6 @@
       <% end %>
 
     </div>
-    <% x += 1 %>
   <% end %>
 
 </div>
