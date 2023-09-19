@@ -1,5 +1,4 @@
-class CertificatesController < ApplicationController
-  layout "external"
+class CertificatesController < ExternalController
   before_action :get_certificate, only: %i[certificate form]
 
   def certificate

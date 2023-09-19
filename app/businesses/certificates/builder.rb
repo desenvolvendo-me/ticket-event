@@ -21,7 +21,10 @@ module Certificates
       setup_svg_content
 
       replacements = {
-        "NOME" => first_and_last_name(@student)
+        "NOME" => first_and_last_name(@student),
+        "DT_INI" => event_start_date,
+        "DT_FIM" => event_end_date,
+        "DT_EMI" => issuance_date
       }
 
       replace_text_in_svg_content(replacements)
@@ -36,6 +39,18 @@ module Certificates
     def first_and_last_name(student)
       array = student.name.split
       "#{array.first} #{array.last}"
+    end
+
+    def event_start_date
+      I18n.l(@event.date.to_date, format: :default)
+    end
+
+    def event_end_date
+      I18n.l((@event.date + 6.days).to_date, format: :default)
+    end
+
+    def issuance_date
+      I18n.l(@certificate.created_at.to_date, format: :default)
     end
 
     def replace_text_in_svg_content(replacements)

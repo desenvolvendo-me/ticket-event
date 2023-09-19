@@ -1,0 +1,19 @@
+pt-BR:
+  activerecord:
+    models:
+      certificate:
+        one: "Certificado"
+        other: "Certificados"
+      certificate_template:
+        one: "Estilo de Certificado"
+        other: "Estilos de Certificados"
+    attributes:
+      certificate:
+        student: "Estudante"
+        event: "Evento"
+        certificate: "Certificado"
+      certificate_template:
+        name: "Nome"
+        description: "Descrição"
+        version: "Versão"
+        svg: "Template"

@@ -1,5 +1,4 @@
-class CheckinsController < ApplicationController
-  layout "external"
+class CheckinsController < ExternalController
 
   before_action :get_ticket, :only => [:checked, :form]
 
