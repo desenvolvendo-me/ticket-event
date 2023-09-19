@@ -20,6 +20,7 @@
 #
 FactoryBot.define do
   factory :certificate do
-    student { nil }
+    student { create(:student) }
+    event { create(:event) }
   end
 end

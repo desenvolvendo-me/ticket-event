@@ -7,6 +7,7 @@ if Rails.env.development?
 
   event = Event.create(name: 'Bootcamp Imersão 1ª Vaga', launch: 1, description: "Aprenda a conquistar sua 1ª vaga na programação mesmo sem nenhuma experiência", date: (Date.today + 20.hours + 30.minutes) + 21.days)
   event.template.attach(io: File.open(Rails.root.join('spec/support', 'ticket.svg')), filename: 'ticket.svg')
+  event.certificate_template.attach(io: File.open(Rails.root.join('spec/support', 'certificate_template.svg')), filename: 'certificate_template.svg')
 
   Tickets::Builders.call(event: event, csv_path: Rails.root.join('spec/support', "leads_export.csv"))
 
@@ -15,7 +16,11 @@ if Rails.env.development?
 
   # Create Certificate and attach file
   certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
-  certificate.certificate_file.attach(io: File.open(Rails.root.join('spec/support', 'avatar.png')), filename: 'avatar.png')
+  Certificates::Builder.call(certificate: certificate)
+
+  # Certificate Template
+  certificate_template = CertificateTemplate.create(name: "Template 01", description: "Certificado tamanho 297 x 210 mm com moldura azul", version: "1")
+  certificate_template.svg.attach(io: File.open(Rails.root.join('spec/support', 'certificate_template.svg')), filename: 'certificate_template.svg')
 
   # Load thumbnail
   thumbnail_path = Rails.root.join('app', 'assets', 'images', 'video-play-new.jpg')
