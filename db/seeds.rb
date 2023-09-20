@@ -119,4 +119,6 @@ if Rails.env.development?
     quiz: quiz2
   )
 
+  # Raffle
+  Raffles::Generator.call(Event.first)
 end
