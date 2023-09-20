@@ -5,3 +5,5 @@ pt-BR:
         title: "Aulas"
         launch_at: "Lançamento em"
         quiz_link: 'Link do questionário'
+      show:
+        submit: "Enviar respostas"
