@@ -20,7 +20,7 @@
         <p class="text-green-500"><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
       <% else %>
         <p class="text-red-500"><%= I18n.t('views.quiz.result.wrong_answer') %></p>
-        <p class="text-lg font-semibold"><%= x %>)<%= quiz_question.description %></p>
+        <p class="text-lg font-semibold"><%= quiz_question.description %></p>
         <p class="text-red-500"><%= I18n.t('views.quiz.result.another_answer') %><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
       <% end %>
 
