@@ -7,8 +7,7 @@ RSpec.describe PrizeDraws::Generator do
       create(:student, name: FFaker::Name.name)
     end
   end
-  let(:unregistered_student) { create(:student) }
-  let(:draw) { described_class.call(event) }
+  let(:winner) { described_class.call(event) }
 
   before do
     students.each do |student|
@@ -18,7 +17,7 @@ RSpec.describe PrizeDraws::Generator do
 
   context 'when the draw is executed' do
     it "ensures winner is registered for the event" do
-      expect(event.tickets.map(&:student)).to include(draw.winner)
+      expect(event.tickets).to include(winner.ticket)
     end
   end
 end
