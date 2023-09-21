@@ -17,7 +17,7 @@
             <%= I18n.t('views.lesson.index.launch_at') %>: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
           </div>
         <% else %>
-          <%= link_to I18n.t('views.lesson.index.quiz_link'), quiz_validate_path  %>
+          <%= link_to I18n.t('views.lesson.index.quiz_link'), lesson_validate_path(@event,lesson)  %>
         <% end %>
       </div>
     </div>
