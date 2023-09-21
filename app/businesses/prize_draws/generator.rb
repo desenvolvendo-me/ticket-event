@@ -1,22 +1,22 @@
-module Raffles
+module PrizeDraws
   class Generator < BusinessApplication
     def initialize(event)
       @event = event
     end
 
     def call
-      raffle_winner
-      create_raffle
+      draw_winner
+      create_prize_draw
     end
 
     private
 
-    def raffle_winner
+    def draw_winner
       @winner = @event.tickets.map(&:student).sample
     end
 
-    def create_raffle
-      Raffle.create(event: @event, winner: @winner)
+    def create_prize_draw
+      PrizeDraw.create(event: @event, winner: @winner)
     end
   end
 end
