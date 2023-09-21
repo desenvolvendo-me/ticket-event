@@ -26,14 +26,15 @@
               Acesso ao questionário
             </h2>
             <p class="text-body-color mb-9 text-base leading-relaxed">
-              Informe o telefone que se cadastrou no evento para responder às perguntas e concorrer aos premios do sorteios!
+              Informe o telefone que se cadastrou no evento para responder às perguntas e concorrer aos premios do sorteio!
             </p>
           </div>
         </div>
         <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
           <div class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
-            <%= form_with url: form_quiz_path, method: :post do |form| %>
+            <%= form_with url: form_lesson_path, method: :post do |form| %>
               <%= hidden_field_tag 'slug_event', params["slug_event"] %>
+              <%= hidden_field_tag 'lesson_id', params["lesson_id"] %>
               <div class="mb-6">
                 <%= form.text_field :phone, placeholder: "Seu telefone", class: "text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none" %>
               </div>

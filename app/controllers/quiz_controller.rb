@@ -1,22 +1,10 @@
 class QuizController < ExternalController
-  before_action :get_ticket, only: %i[ form ]
   def show
     @lesson = Lesson.find(params[:lesson_id])
     @quiz = @lesson.quiz
     @quiz_questions = @quiz.quiz_questions
   end
 
-  def search
-  end
-
-  def form
-    if @ticket
-      @lesson = Lesson.find(params[:lesson_id])
-      redirect_to quiz_path(@lesson, @lesson.quiz)
-    else
-      redirect_to search_ticket_path(params["slug_event"]), notice: "O número não foi cadastrado nesse evento!"
-    end
-  end
   def submit
     @lesson = Lesson.find(params[:lesson_id])
     @quiz = @lesson.quiz
