@@ -5,18 +5,18 @@ module PrizeDraws
     end
 
     def call
-      draw_winner
+      draw_ticket
       create_prize_draw
     end
 
     private
 
-    def draw_winner
-      @winner = @event.tickets.map(&:student).sample
+    def draw_ticket
+      @drawn_ticket = @event.tickets.sample
     end
 
     def create_prize_draw
-      PrizeDraw.create(event: @event, winner: @winner)
+      PrizeDraw.create(ticket: @drawn_ticket)
     end
   end
 end
