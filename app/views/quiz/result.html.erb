@@ -1,10 +1,12 @@
 <% if notice.present? %>
-  <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+  <div class="text-center bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
     <%= notice.html_safe %>
   </div>
 <% elsif alert.present? %>
-  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+  <div class="text-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <h1>O seu resultado foi de: <%= @ticket.student_score[@quiz.id.to_s] %> %</h1>
     <%= alert.html_safe %>
+    <%= button_to "Refazer questionário", quiz_path(@lesson.event.slug, @lesson), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>
 
