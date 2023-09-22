@@ -1,4 +1,5 @@
 class QuizController < ExternalController
+  # before_action :get_ticket, only: %i[ submit ]
   def show
     @lesson = Lesson.find(params[:lesson_id])
     @quiz = @lesson.quiz
@@ -11,8 +12,11 @@ class QuizController < ExternalController
     @quiz_questions = @quiz.quiz_questions
     @student_responses = params[:responses]
 
+    @ticket.student_score ||= {}
     correct_responses = {}
     incorrect_responses = {}
+    correct_quantity = 0
+    wrong_quantity = 0
 
     @quiz_questions.each do |question|
       correct_answer = question.correct_answer
@@ -20,14 +24,19 @@ class QuizController < ExternalController
 
       if student_answer == correct_answer
         correct_responses[question.id] = student_answer
+        correct_quantity += 1
       else
+        wrong_quantity += 1
         incorrect_responses[question.id] = {
           student_answer: student_answer,
           correct_answer: correct_answer,
         }
       end
     end
+    total_hits = (correct_quantity / @quiz_questions.all.count) * 100
 
+    @ticket.student_score[@quiz.id] = total_hits
+    @ticket.save
     redirect_to quiz_result_path(correct_responses: correct_responses, incorrect_responses: incorrect_responses)
   end
 

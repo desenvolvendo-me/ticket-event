@@ -10,8 +10,9 @@ class LessonsController < ExternalController
   end
 
   def form
-    if @ticket
+    if @ticket.save
       @lesson = Lesson.find(params[:lesson_id])
+      @ticket = @ticket
       redirect_to quiz_path(@lesson.event.slug, @lesson)
     else
       redirect_to lesson_validate_path(params["slug_event"]), notice: "O número não foi cadastrado nesse evento!"
