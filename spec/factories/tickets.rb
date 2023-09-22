@@ -6,6 +6,7 @@
 #  checkin       :boolean
 #  number        :string
 #  send_email_at :datetime
+#  student_score :json
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  event_id      :bigint           not null

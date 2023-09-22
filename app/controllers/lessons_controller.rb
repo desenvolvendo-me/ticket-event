@@ -12,7 +12,6 @@ class LessonsController < ExternalController
   def form
     if @ticket.save
       @lesson = Lesson.find(params[:lesson_id])
-      @ticket = @ticket
       redirect_to quiz_path(@lesson.event.slug, @lesson)
     else
       redirect_to lesson_validate_path(params["slug_event"]), notice: "O número não foi cadastrado nesse evento!"
@@ -26,7 +25,16 @@ class LessonsController < ExternalController
   end
 
   def get_ticket
-    @ticket = Ticket.joins(:event, :student)
-                    .where(events: { slug: params["slug_event"] }, students: { phone: params["phone"] }).take
+    if session[:student_phone].present?
+      @ticket = Ticket.joins(:event, :student)
+                      .where(events: { slug: params["slug_event"] }, students: { phone: session[:student_phone] }).take
+    else
+      store_student_phone
+      get_ticket
+    end
+  end
+
+  def store_student_phone
+    session[:student_phone] = params["phone"]
   end
 end
