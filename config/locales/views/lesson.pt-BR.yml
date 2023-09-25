@@ -17,4 +17,4 @@ pt-BR:
       result:
         show_result: "O seu resultado foi de"
         link_to_quiz_again: "Refazer questionário"
-
+        link_to_return_lessons: "Voltar para aulas"
