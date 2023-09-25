@@ -1,0 +1,6 @@
+pt-BR:
+  controller:
+    quiz:
+      result:
+        success: "Parabéns, você atingiu a pontuação e está apto à próxima fase"
+        failure: "A pontuação mínima necessária é de 70%"

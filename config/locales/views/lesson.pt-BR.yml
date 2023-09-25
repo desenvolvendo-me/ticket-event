@@ -5,5 +5,16 @@ pt-BR:
         title: "Aulas"
         launch_at: "Lançamento em"
         quiz_link: 'Link do questionário'
+        flash:
+          new: "Nova"
       show:
         submit: "Enviar respostas"
+      search:
+        welcome: "Seja Bem Vindo!"
+        quiz_access: "Acesso ao questionário"
+        confirm_cellphone: "Informe o telefone que se cadastrou no evento para responder às perguntas e concorrer aos premios do sorteio!"
+        submit: "Pesquisar"
+      result:
+        show_result: "O seu resultado foi de"
+        link_to_quiz_again: "Refazer questionário"
+
