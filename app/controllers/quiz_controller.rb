@@ -48,11 +48,13 @@ class QuizController < ExternalController
     @correct_responses = params[:correct_responses]
     @incorrect_responses = params[:incorrect_responses]
     if @ticket.student_score[@quiz.id.to_s] >= 70
-      flash[:notice] = "Parabéns, você atingiu a pontuação e está apto à proxima fase"
+      flash[:notice] = I18n.t('controller.quiz.result.success')
     elsif @ticket.student_score[@quiz.id.to_s] < 70
-      flash[:alert] = "A pontuação mínima necessária é de 70%"
+      flash[:alert] = I18n.t('controller.quiz.result.failure')
     end
   end
+
+  private
 
   def get_ticket
     @ticket = Ticket.joins(:event, :student)
