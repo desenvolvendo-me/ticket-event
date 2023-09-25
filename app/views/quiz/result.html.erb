@@ -6,7 +6,7 @@
   <div class="text-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
     <h1>O seu resultado foi de: <%= @ticket.student_score[@quiz.id.to_s] %> %</h1>
     <%= alert.html_safe %>
-    <%= button_to "Refazer questionário", quiz_path(@lesson.event.slug, @lesson), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= link_to "Refazer questionário", quiz_path(@lesson.event.slug, @lesson), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>
 
@@ -16,7 +16,7 @@
 
   <% @quiz_questions.each do |quiz_question| %>
     <div class="mb-6">
-      <% if @correct_responses["#{quiz_question.id}"] %>
+      <% if @correct_responses != nil && @correct_responses["#{quiz_question.id}"] %>
         <p class="text-green-500"><%= I18n.t('views.quiz.result.nice_answer') %></p>
         <p class="text-lg font-semibold"><%= quiz_question.description %></p>
         <p class="text-green-500"><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
