@@ -16,13 +16,12 @@ RSpec.describe Lessons::Validator do
     end
 
     context 'when the event has 5 lessons' do
-      it 'adds an error when create a lesson' do
-        lessons = create_list(:lesson, 5, event: event)
+      it 'adds an error when create a sixth lesson' do
+        lessons = create_list(:lesson, 6, event: event)
 
-        validator = Lessons::Validator.new(lessons.first)
-        validator.call
+        Lessons::Validator.new(lessons.last).call
 
-        expect(lessons.first.errors).to_not be_empty
+        expect(lessons.last.errors).to_not be_empty
       end
     end
   end
