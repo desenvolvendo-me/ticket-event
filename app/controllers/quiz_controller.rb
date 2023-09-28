@@ -1,66 +1,44 @@
 class QuizController < ExternalController
-  before_action :get_ticket, only: %i[ submit result ]
+  before_action :load_lesson, only: %i[show submit result]
+  before_action :load_ticket, only: %i[submit result]
+
   def show
-    @lesson = Lesson.find(params[:lesson_id])
-    @quiz = @lesson.quiz
-    @quiz_questions = @quiz.quiz_questions
+    load_quiz_data
   end
 
   def submit
-    @lesson = Lesson.find(params[:lesson_id])
-    @quiz = @lesson.quiz
-    @quiz_questions = @quiz.quiz_questions
-    @student_responses = params[:responses]
-
-    @ticket.student_score ||= {}
-    @correct_responses = {}
-    @incorrect_responses = {}
-    correct_quantity = 0
-    wrong_quantity = 0
-
-    @quiz_questions.each do |question|
-      correct_answer = question.correct_answer
-      student_answer = @student_responses[question.id.to_s].sub("answer", "").to_i
-
-      if student_answer == correct_answer
-        @correct_responses[question.id] = student_answer
-        correct_quantity += 1
-      else
-        wrong_quantity += 1
-        @incorrect_responses[question.id] = {
-          student_answer: student_answer,
-          correct_answer: correct_answer,
-        }
-      end
-    end
-    total_hits = (correct_quantity.to_f / @quiz_questions.all.count.to_f) * 100
-
-    @ticket.student_score[@quiz.id.to_s] = total_hits.to_i
-    @ticket.save
-    redirect_to quiz_result_path(correct_responses: @correct_responses, incorrect_responses: @incorrect_responses)
+    results = @lesson.calculate_quiz_results(params[:responses], @ticket)
+    redirect_to quiz_result_path(results)
   end
 
-
   def result
-    @lesson = Lesson.find(params[:lesson_id])
-    @quiz = @lesson.quiz
-    @quiz_questions = @quiz.quiz_questions
     @correct_responses = params[:correct_responses]
     @incorrect_responses = params[:incorrect_responses]
-    if @ticket.student_score[@quiz.id.to_s] >= 70
-      flash[:notice] = I18n.t('controller.quiz.result.success')
-    elsif @ticket.student_score[@quiz.id.to_s] < 70
-      flash[:alert] = I18n.t('controller.quiz.result.failure')
-    end
+    load_quiz_data
+    handle_quiz_result
   end
 
   private
 
-  def get_ticket
+  def load_lesson
+    @lesson = Lesson.find(params[:lesson_id])
+  end
+
+  def load_ticket
     @ticket = Ticket.joins(:event, :student)
                     .where(events: { slug: params["slug_event"] }, students: { phone: session[:student_phone] }).take
   end
-  def quiz_params
-    params.require(:responses).permit!
+
+  def load_quiz_data
+    @quiz = @lesson.quiz
+    @quiz_questions = @quiz.quiz_questions
+  end
+
+  def handle_quiz_result
+    if  @ticket.student_score[@quiz.id.to_s] >= 70
+      flash[:notice] = I18n.t('controller.quiz.result.success')
+    else
+      flash[:alert] = I18n.t('controller.quiz.result.failure')
+    end
   end
 end
