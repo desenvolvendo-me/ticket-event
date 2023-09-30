@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
-  before_action :get_event, only: %i[ index select_event ]
+  before_action :get_event, only: %i[ index event_detail ]
   def index
+    @event_day = Event.all
   end
 
-  def select_event; end
+  def event_detail; end
 
   private
   def get_event
