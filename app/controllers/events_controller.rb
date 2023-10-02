@@ -1,13 +1,12 @@
 class EventsController < ApplicationController
-  before_action :get_event, only: %i[ index event_detail ]
-  def index
-    @event_day = Event.all
-  end
+  before_action :get_event
+  before_action :authenticate_user!, except: [:index ]
 
-  def event_detail; end
+  def index; end
 
   private
+
   def get_event
-    @event_day = Event.friendly.find_by(params[:launch_and_name])
+    @event_day = Event.find_by(params[:launch_and_name])
   end
 end
