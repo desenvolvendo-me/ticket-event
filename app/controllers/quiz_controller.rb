@@ -7,7 +7,7 @@ class QuizController < ExternalController
   end
 
   def submit
-    results = @lesson.calculate_quiz_results(params[:responses], @ticket)
+    results = Quizzes::QuizResultCalculator.new(@lesson, params[:responses], @ticket).calculate
     redirect_to quiz_result_path(results)
   end
 
