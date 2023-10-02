@@ -35,10 +35,4 @@ class Lesson < ApplicationRecord
       errors.add(:event, valid)
     end
   end
-
-  def calculate_quiz_results(student_responses, ticket)
-    @student_responses = student_responses
-    @ticket = ticket
-    Quizzes::QuizResultCalculator.new(self, @student_responses, @ticket).calculate
-  end
 end
