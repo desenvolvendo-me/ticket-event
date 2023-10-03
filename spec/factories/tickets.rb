@@ -2,15 +2,16 @@
 #
 # Table name: tickets
 #
-#  id            :bigint           not null, primary key
-#  checkin       :boolean
-#  number        :string
-#  send_email_at :datetime
-#  student_score :json
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  event_id      :bigint           not null
-#  student_id    :bigint           not null
+#  id              :bigint           not null, primary key
+#  checkin         :boolean
+#  number          :string
+#  send_email_at   :datetime
+#  student_answers :json
+#  student_score   :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  event_id        :bigint           not null
+#  student_id      :bigint           not null
 #
 # Indexes
 #
