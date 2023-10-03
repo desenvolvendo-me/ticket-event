@@ -33,10 +33,10 @@ module Quizzes
 
         total_hits = (correct_quantity.to_f / quiz_questions.count.to_f) * 100
 
-        if @ticket.student_score == nil
-          @ticket.student_score = {}
+        if @ticket.student_answers == nil
+          @ticket.student_answers = {}
         end
-        @ticket.student_score[quiz.id.to_s] = total_hits.to_i
+        @ticket.student_score = total_hits.to_i
         @ticket.save
 
         {
