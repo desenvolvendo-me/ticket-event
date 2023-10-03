@@ -15,9 +15,9 @@
     <div class="mb-6">
       <p class="text-lg font-semibold"><%= quiz_question.description %></p>
 
-      <% ['answer1', 'answer2', 'answer3', 'answer4'].each do |answer| %>
+      <% QuizQuestion.answers.keys.each do |answer| %>
         <label class="inline-flex items-center mt-2">
-          <%= form.radio_button "responses[#{quiz_question.id}]", answer, class: "form-radio h-5 w-5 text-blue-600" %>
+          <%= form.radio_button "responses[#{quiz_question.id}]", QuizQuestion.answers[answer], class: "form-radio h-5 w-5 text-blue-600" %>
           <span class="ml-2"><%= quiz_question[answer] %></span>
         </label>
       <% end %>
