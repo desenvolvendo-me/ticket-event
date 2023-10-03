@@ -4,7 +4,7 @@
   </div>
 <% elsif alert.present? %>
   <div class="text-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-    <h1><%= I18n.t('views.lesson.result.show_result') %>: <%= @ticket.student_score[@quiz.id.to_s] %> %</h1>
+    <h1><%= I18n.t('views.lesson.result.show_result') %>: <%= @ticket.student_score %> %</h1>
     <%= alert.html_safe %>
     <%= link_to I18n.t('views.lesson.result.link_to_quiz_again'), quiz_path(@lesson.event.slug, @lesson), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
@@ -28,7 +28,7 @@
 
     </div>
   <% end %>
-  <% if @ticket.student_score[@quiz.id.to_s] >= 70 %>
+  <% if @ticket.student_score >= 70 %>
     <%= link_to I18n.t('views.lesson.result.link_to_return_lessons'), lessons_index_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   <% end %>
 </div>
