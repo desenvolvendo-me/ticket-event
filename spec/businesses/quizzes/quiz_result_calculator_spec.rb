@@ -32,7 +32,7 @@ RSpec.describe Quizzes::QuizResultCalculator do
 
     it 'not passed' do
       #DADO
-      parameters = {"1"=>"answer3", "2"=>"answer3", "3"=>"answer1", "4"=>"answer4"}
+      parameters = {"11"=>"answer3", "12"=>"answer3", "13"=>"answer1", "14"=>"answer4"}
 
       student = create(:student, phone: '2196604')
       event = create(:event)
