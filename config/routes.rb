@@ -27,5 +27,5 @@ Rails.application.routes.draw do
   post ':slug_event/lessons/:lesson_id/quiz/submit', to: "quiz#submit", as: :quiz_submit
   get ':slug_event/lessons/:lesson_id/quiz/result', to: "quiz#result", as: :quiz_result
 
-  get ':slug_event', to: "events#index"
+  get ':slug_event', to: "events#index", as: :event
 end
