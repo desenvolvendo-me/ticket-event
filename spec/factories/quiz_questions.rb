@@ -21,13 +21,14 @@
 #
 #  fk_rails_...  (quiz_id => quizzes.id)
 #
-class QuizQuestion < ApplicationRecord
-  belongs_to :quiz
-  validates :correct_answer, inclusion: { in: 1..4 }
-  enum answers: {
-    answer1: 1,
-    answer2: 2,
-    answer3: 3,
-    answer4: 4
-  }
+FactoryBot.define do
+  factory :quiz_question do
+    description { Faker::Lorem.sentence }
+    answer1 { Faker::Lorem.word }
+    answer2 { Faker::Lorem.word }
+    answer3 { Faker::Lorem.word }
+    answer4 { Faker::Lorem.word }
+    correct_answer { rand(1..4) }
+    association :quiz
+  end
 end
