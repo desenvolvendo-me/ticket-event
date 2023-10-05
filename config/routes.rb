@@ -25,7 +25,10 @@ Rails.application.routes.draw do
   get ':slug_event/lessons', to: "lessons#index", as: :lessons_index
   get ':slug_event/lessons/:lesson_id/search', to: "lessons#search", as: :lesson_validate
   post ':slug_event/lessons/:lesson_id/search', to: "lessons#form", as: :form_lesson
+  
   get ':slug_event/lessons/:lesson_id/quiz', to: "quiz#show", as: :quiz
   post ':slug_event/lessons/:lesson_id/quiz/submit', to: "quiz#submit", as: :quiz_submit
   get ':slug_event/lessons/:lesson_id/quiz/result', to: "quiz#result", as: :quiz_result
+
+  get ':slug_event', to: "events#index", as: :event
 end
