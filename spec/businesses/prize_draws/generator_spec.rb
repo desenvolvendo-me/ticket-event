@@ -7,17 +7,28 @@ RSpec.describe PrizeDraws::Generator do
       create(:student, name: FFaker::Name.name)
     end
   end
-  let(:winner) { described_class.call(event) }
+  let(:prize_draw) { described_class.call(event) }
 
-  before do
-    students.each do |student|
-      create(:ticket, student: student, event: event)
+  context 'when students achieve the required score' do
+    it "the draw is carried out successfully" do
+
+      students.each do |student|
+        create(:ticket, student: student, event: event, student_score: rand(70..100))
+      end
+
+      expect(event.tickets).to include(prize_draw.ticket)
+      expect(prize_draw.ticket.student_score).to be >= 70
     end
   end
 
-  context 'when the draw is executed' do
-    it "ensures winner is registered for the event" do
-      expect(event.tickets).to include(winner.ticket)
+  context 'when students have not yet reached the minimum score' do
+    it "prize draw is not created" do
+
+      students.each do |student|
+        create(:ticket, student: student, event: event)
+      end
+
+      expect(prize_draw.ticket).to eq(nil)
     end
   end
 end
