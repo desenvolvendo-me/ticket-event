@@ -12,7 +12,7 @@ module PrizeDraws
     private
 
     def draw_ticket
-      @drawn_ticket = @event.tickets.sample
+      @drawn_ticket = @event.tickets.where("student_score >= ?", 70).sample
     end
 
     def create_prize_draw
