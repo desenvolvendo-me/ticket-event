@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      prize_draw:
+        one: "Sorteio"
+        other: "Sorteios"
+    attributes:
+      prize_draw:
+        event: "Evento"
+        ticket: "Ingresso"
+        student: "Estudante"
+        date: "Data"
