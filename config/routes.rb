@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   root to: "welcome#index"
   get 'welcome/index'
 
+  namespace :manager do
+    get 'home', to: "home#index", as: :home
+  end
+
   scope module: :external do
     get ':slug_event/ticket', to: "tickets#search", as: :search_ticket
     post 'ticket/form', to: "tickets#form", as: :form_ticket
