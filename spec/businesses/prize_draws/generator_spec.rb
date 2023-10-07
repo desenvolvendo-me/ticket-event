@@ -36,7 +36,7 @@ RSpec.describe PrizeDraws::Generator do
         create(:ticket, student: student, event: event)
       end
 
-      expect(prize_draw.ticket).to eq(nil)
+      expect(prize_draw).to eq(nil)
     end
   end
 end
