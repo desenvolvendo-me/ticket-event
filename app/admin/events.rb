@@ -100,4 +100,14 @@ ActiveAdmin.register Event do
 
     redirect_to action: :index, notice: t("active_admin.notice.event.select_certificate_template")
   end
+
+  action_item :run_prize_draw, only: :show do
+    link_to t("active_admin.event.actions.run_prize_draw"), run_prize_draw_admin_event_path(resource), method: :post
+  end
+
+  member_action :run_prize_draw, method: :post do
+    PrizeDraws::Generator.call(resource)
+
+    redirect_to action: :show, notice: t("active_admin.event.notices.prize_draw_executed_successfully")
+  end
 end
