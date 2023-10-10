@@ -35,7 +35,7 @@ class External::QuizController < ExternalController
   end
 
   def handle_quiz_result
-    if  @ticket.student_score >= 70
+    if  @ticket.student_answers["Quiz#{@lesson.quiz.id.to_s}"]["percentage_hits"] >= 70
       flash[:notice] = I18n.t('controller.quiz.result.success')
     else
       flash[:alert] = I18n.t('controller.quiz.result.failure')
