@@ -1,4 +1,4 @@
-class CertificatesController < ExternalController
+class External::CertificatesController < ExternalController
   before_action :get_certificate, only: %i[certificate form]
 
   def certificate

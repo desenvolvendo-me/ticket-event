@@ -1,4 +1,4 @@
-class CheckinsController < ExternalController
+class External::CheckinsController < ExternalController
 
   before_action :get_ticket, :only => [:checked, :form]
 

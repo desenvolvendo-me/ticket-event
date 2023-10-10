@@ -1,4 +1,4 @@
-class QuizController < ExternalController
+class External::QuizController < ExternalController
   before_action :load_lesson, only: %i[show submit result]
   before_action :load_ticket, only: %i[submit result]
 
