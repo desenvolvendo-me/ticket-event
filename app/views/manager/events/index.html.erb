@@ -1,4 +1,17 @@
 <div>
-  <h1 class="font-bold text-4xl">Manager::Events#index</h1>
-  <p>Find me in app/views/manager/events/index.html.erb</p>
+  <h1 class="font-bold text-4xl">All Events Page</h1>
 </div>
+
+<% @info_events.each do |event| %>
+  <div>
+  <p> Name: <%= event.name %> </p>
+
+  <p> Description: <%= event.description %> </p>
+
+  <p> Date: <%= event.date %> </p>
+
+  <p> Launch: <%= event.launch %> </p>
+
+    <%= button_to "Edit", event_path(event) %>
+  </div>
+<% end %>
