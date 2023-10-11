@@ -20,4 +20,8 @@ class Quiz < ApplicationRecord
   belongs_to :lesson
   has_many :quiz_questions, dependent: :destroy
   accepts_nested_attributes_for :quiz_questions, allow_destroy: true
+  MINIMUM_PERCENTAGE = 70
+  def self.percentage_success?(ticket, lesson)
+    ticket.student_answers["Quiz#{lesson.quiz.id.to_s}"]["percentage_hits"] >= MINIMUM_PERCENTAGE
+  end
 end
