@@ -16,7 +16,7 @@
       <td>
         <%= link_to t('views.manager.lesson.show'), manager_lesson_path(lesson) %>
         <%= link_to t('views.manager.lesson.edit'), edit_manager_lesson_path(lesson) %>
-        <%= button_to t('views.manager.lesson.delete'), manager_lesson_path(lesson), method: :delete, data: { confirm: 'Tem certeza que deseja excluir esta aula?' } %>
+        <%= button_to t('views.manager.lesson.delete'), manager_lesson_path(lesson), method: :delete, data: { confirm: t('views.manager.lesson.index.delete_confirm') } %>
       </td>
     </tr>
   <% end %>
