@@ -1,0 +1,36 @@
+<%= form_with(model: @lesson, url: @lesson.persisted? ? manager_lesson_path(@lesson) : manager_lessons_path, local: true, html: { multipart: true }) do |form| %>
+  <div class="field">
+    <%= form.label :event_id, 'Evento' %>
+    <%= form.select :event_id, @event_options %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :launch_datetime %>
+    <%= form.datetime_local_field :launch_datetime %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thumbnail, 'Thumbnail' %>
+    <%= form.file_field :thumbnail %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Salvar' %>
+  </div>
+<% end %>
+
