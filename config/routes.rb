@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :manager do
     get 'home', to: "home#index", as: :home
+    resources :events
   end
 
   scope module: :external do
