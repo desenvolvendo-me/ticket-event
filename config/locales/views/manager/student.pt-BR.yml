@@ -1,0 +1,13 @@
+pt-BR:
+  views:
+    manager:
+      student:
+        new:
+          title: "Novo Estudante"
+          placeholders:
+            name: "Nome"
+            email: "nome@gmail.com"
+            phone: "Número de telefone"
+            social_profile: "Perfil de rede social"
+            social_type: "Tipo de rede social"
+            save: "Salvar"
