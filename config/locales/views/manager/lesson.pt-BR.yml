@@ -1,0 +1,19 @@
+pt-BR:
+  views:
+    manager:
+      lesson:
+        index:
+          title: "Lista de aulas"
+          title_name: "Título"
+          event: "Evento"
+          actions: "Ações"
+        new:
+          title: "Nova aula"
+        edit:
+          title: "Editar aula"
+        show: "Mostrar"
+        edit: "Editar"
+        delete: "Apagar"
+        new: "Nova aula"
+        back: "Voltar para aulas"
+        save: "Salvar"

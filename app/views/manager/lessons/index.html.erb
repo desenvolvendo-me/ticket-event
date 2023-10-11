@@ -1,4 +1,4 @@
-<h1>Lista de Aulas</h1>
+<h1><%= I18n.t('views.manager.lesson.index.title') %></h1>
 
 <table>
   <thead>
@@ -14,13 +14,13 @@
       <td><%= lesson.title %></td>
       <td><%= lesson.event.name %></td>
       <td>
-        <%= link_to 'Ver', manager_lesson_path(lesson) %>
-        <%= link_to 'Editar', edit_manager_lesson_path(lesson) %>
-        <%= button_to 'Excluir', manager_lesson_path(lesson), method: :delete, data: { confirm: 'Tem certeza que deseja excluir esta aula?' } %>
+        <%= link_to t('views.manager.lesson.show'), manager_lesson_path(lesson) %>
+        <%= link_to t('views.manager.lesson.edit'), edit_manager_lesson_path(lesson) %>
+        <%= button_to t('views.manager.lesson.delete'), manager_lesson_path(lesson), method: :delete, data: { confirm: 'Tem certeza que deseja excluir esta aula?' } %>
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Nova Aula', new_manager_lesson_path %>
+<%= link_to t('views.manager.lesson.new'), new_manager_lesson_path %>
