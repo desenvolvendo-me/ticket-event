@@ -1,4 +1,18 @@
 <div>
-  <h1 class="font-bold text-4xl">Manager::Events#show</h1>
-  <p>Find me in app/views/manager/events/show.html.erb</p>
+  <h1 class="font-bold text-4xl">Show page Event</h1>
+</div>
+
+<div>
+  <% dom_id @info_event %>
+  <p> Name: <%= @info_event.name %> </p>
+
+  <p> Description: <%= @info_event.description %> </p>
+
+  <p> Date: <%= @info_event.date %> </p>
+
+  <p> Launch: <%= @info_event.launch %> </p>
+
+  <%= link_to "Edit", edit_manager_event_path(@info_event) %>
+  <%= link_to "Delete", manager_event_path(@info_event) %>
+  <%= link_to "Home", manager_events_path %>
 </div>
