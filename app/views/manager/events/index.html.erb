@@ -12,6 +12,7 @@
 
   <p> Launch: <%= event.launch %> </p>
 
-    <%= button_to "Edit", event_path(event) %>
+    <%= link_to "Show", manager_event_path(event) %>
+    <%= link_to "New", new_manager_event_path(event) %>
   </div>
 <% end %>
