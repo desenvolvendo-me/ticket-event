@@ -7,6 +7,7 @@ pt-BR:
           title_name: "Título"
           event: "Evento"
           actions: "Ações"
+          delete_confirm: "Tem certeza que deseja excluir esta aula?"
         new:
           title: "Nova aula"
         edit:
