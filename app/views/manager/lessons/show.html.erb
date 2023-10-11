@@ -1,12 +1,12 @@
 <h1><%= @lesson.title %></h1>
 
-<p><strong>Título:</strong> <%= @lesson.title %></p>
-<p><strong>Descrição:</strong> <%= @lesson.description %></p>
-<p><strong>Data de Lançamento:</strong> <%= @lesson.launch_datetime %></p>
-<p><strong>Link:</strong> <%= link_to @lesson.link, @lesson.link, target: "_blank", class: "link-class" %></p>
-<p><strong>Evento:</strong> <%= @lesson.event.name %></p>
+<p><strong><%= t('activerecord.attributes.lesson.title') %>:</strong> <%= @lesson.title %></p>
+<p><strong><%= t('activerecord.attributes.lesson.description') %>:</strong> <%= @lesson.description %></p>
+<p><strong><%= t('activerecord.attributes.lesson.launch_datetime') %>:</strong> <%= @lesson.launch_datetime %></p>
+<p><strong><%= t('activerecord.attributes.lesson.link') %>:</strong> <%= link_to @lesson.link, @lesson.link, target: "_blank", class: "link-class" %></p>
+<p><strong><%= t('activerecord.attributes.lesson.event') %>:</strong> <%= @lesson.event.name %></p>
 <p><strong>Thumbnail:</strong></p>
 <%= image_tag @lesson.thumbnail if @lesson.thumbnail.attached? %>
 
-<%= link_to 'Editar', edit_manager_lesson_path(@lesson) %> |
-<%= link_to 'Voltar', manager_lessons_path %>
+<%= link_to t('views.manager.lesson.edit'), edit_manager_lesson_path(@lesson) %> |
+<%= link_to t('views.manager.lesson.back'), manager_lessons_path %>

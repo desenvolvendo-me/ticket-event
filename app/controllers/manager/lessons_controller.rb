@@ -1,4 +1,3 @@
-# app/controllers/manager/lessons_controller.rb
 class Manager::LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :set_event_options, only: [:new, :create, :edit, :update]
@@ -14,7 +13,7 @@ class Manager::LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
 
     if @lesson.save
-      redirect_to manager_lesson_path(@lesson), notice: 'Aula criada com sucesso.'
+      redirect_to manager_lesson_path(@lesson)
     else
       render 'new'
     end
@@ -25,7 +24,7 @@ class Manager::LessonsController < ApplicationController
 
   def update
     if @lesson.update(lesson_params)
-      redirect_to manager_lesson_path(@lesson), notice: 'Aula atualizada com sucesso.'
+      redirect_to manager_lesson_path(@lesson)
     else
       render 'edit'
     end
@@ -36,7 +35,7 @@ class Manager::LessonsController < ApplicationController
 
   def destroy
     @lesson.destroy
-    redirect_to manager_lessons_path, notice: 'Aula excluída com sucesso.'
+    redirect_to manager_lessons_path
   end
 
   private
