@@ -1,5 +1,6 @@
 class Manager::EventsController < ApplicationController
   def index
+    @info_events = Event.all
   end
 
   def new
@@ -16,4 +17,9 @@ class Manager::EventsController < ApplicationController
 
   def destroy
   end
+
+  private
+    def get_event
+      @info_event = Event.find_by(slug: params[:id])
+    end
 end
