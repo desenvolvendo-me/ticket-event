@@ -1,0 +1,30 @@
+<div>
+  <h1 class="font-bold text-4xl">New event Page</h1>
+</div>
+
+<%= form_with model: @event, url: manager_events_url do |form| %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_local_field :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :launch %>
+    <%= form.number_field :launch %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
