@@ -25,6 +25,7 @@ FactoryBot.define do
     title { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
     link { 'https://www.youtube.com/watch?v=your-video-id' }
+    launch_datetime { Time.now + 5.hours }
     event
   end
 end
