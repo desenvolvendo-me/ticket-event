@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class External::EventsController < ApplicationController
   before_action :get_event
   before_action :authenticate_user!, except: [:index ]
 

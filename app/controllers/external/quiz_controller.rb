@@ -1,4 +1,4 @@
-class QuizController < ExternalController
+class External::QuizController < ExternalController
   before_action :load_lesson, only: %i[show submit result]
   before_action :load_ticket, only: %i[submit result]
 
@@ -15,7 +15,12 @@ class QuizController < ExternalController
     @correct_responses = params[:correct_responses]
     @incorrect_responses = params[:incorrect_responses]
     load_quiz_data
-    handle_quiz_result
+    @quiz_result = Quiz::percentage_success?(@ticket, @lesson)
+    if @quiz_result
+      flash[:notice] = I18n.t('controller.quiz.result.success')
+    else
+      flash[:alert] = I18n.t('controller.quiz.result.failure')
+    end
   end
 
   private
@@ -32,13 +37,5 @@ class QuizController < ExternalController
   def load_quiz_data
     @quiz = @lesson.quiz
     @quiz_questions = @quiz.quiz_questions
-  end
-
-  def handle_quiz_result
-    if  @ticket.student_score >= 70
-      flash[:notice] = I18n.t('controller.quiz.result.success')
-    else
-      flash[:alert] = I18n.t('controller.quiz.result.failure')
-    end
   end
 end
