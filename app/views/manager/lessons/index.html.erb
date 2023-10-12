@@ -1,0 +1,26 @@
+<h1><%= I18n.t('views.manager.lesson.index.title') %></h1>
+
+<table>
+  <thead>
+  <tr>
+    <th><%= t('activerecord.attributes.lesson.title') %></th>
+    <th><%= t('activerecord.attributes.lesson.event') %></th>
+    <th><%= t('views.manager.lesson.index.actions') %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @lessons.each do |lesson| %>
+    <tr>
+      <td><%= lesson.title %></td>
+      <td><%= lesson.event.name %></td>
+      <td>
+        <%= link_to t('views.manager.lesson.show'), manager_lesson_path(lesson) %>
+        <%= link_to t('views.manager.lesson.edit'), edit_manager_lesson_path(lesson) %>
+        <%= button_to t('views.manager.lesson.delete'), manager_lesson_path(lesson), method: :delete, data: { confirm: t('views.manager.lesson.index.delete_confirm') } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('views.manager.lesson.new'), new_manager_lesson_path %>

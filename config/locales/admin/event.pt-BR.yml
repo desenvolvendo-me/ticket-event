@@ -2,3 +2,7 @@ pt-BR:
   active_admin:
     event:
       alert_index: 'Possui menos de 3 aulas'
+      actions:
+        run_prize_draw: "Realizar Sorteio"
+      notices:
+        prize_draw_executed_successfully: "Sorteio executado com sucesso"

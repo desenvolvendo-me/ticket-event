@@ -1,4 +1,4 @@
-class LessonsController < ExternalController
+class External::LessonsController < ExternalController
   before_action :set_event, only: [:index]
   before_action :get_ticket, only: %i[ form ]
   def index

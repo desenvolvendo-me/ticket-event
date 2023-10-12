@@ -1,4 +1,4 @@
-class TicketsController < ExternalController
+class External::TicketsController < ExternalController
 
   before_action :get_ticket, :only => [:ticket, :form, :update]
 
