@@ -1,5 +1,9 @@
 module Manager
   class StudentsController < ApplicationController
+
+    def index
+      @students = Student.all
+    end
     def new
       @student = Student.new
     end
@@ -9,7 +13,7 @@ module Manager
 
       return render :new unless @student.save
 
-      redirect_to new_manager_student_path, notice: 'Student was successfully created.'
+      redirect_to manager_students_path, notice: 'Student was successfully created.'
     end
 
     private
