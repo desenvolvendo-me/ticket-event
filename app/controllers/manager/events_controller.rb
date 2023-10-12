@@ -23,7 +23,7 @@ class Manager::EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
-      redirect_to manager_event_url
+      redirect_to manager_event_path(@event)
     else
       render :edit
     end
