@@ -2,7 +2,7 @@
   <p style="color: green"><%= notice %></p>
 
   <div class="max-w-lg mx-auto">
-    <h1 class="text-4xl font-semibold text-gray-900 mb-4 text-center">Students</h1>
+    <h1 class="text-4xl font-semibold text-gray-900 mb-4 text-center"><%= t("views.manager.student.index.title") %></h1>
   </div>
 
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -10,25 +10,25 @@
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
           <th scope="col" class="px-6 py-3">
-            Id
+            <%= t("views.manager.student.index.columns.id") %>
           </th>
           <th scope="col" class="px-6 py-3">
-            Name
+            <%= t("views.manager.student.index.columns.name") %>
           </th>
           <th scope="col" class="px-6 py-3">
-            Email
+            <%= t("views.manager.student.index.columns.email") %>
           </th>
           <th scope="col" class="px-6 py-3">
-            Phone
+            <%= t("views.manager.student.index.columns.phone") %>
           </th>
           <th scope="col" class="px-6 py-3">
-            Profile Social
+            <%= t("views.manager.student.index.columns.profile_social") %>
           </th>
           <th scope="col" class="px-6 py-3">
-            Type Social
+            <%= t("views.manager.student.index.columns.type_social") %>
           </th>
           <th scope="col" class="px-6 py-3">
-            <span class="sr-only">Show</span>
+            #
           </th>
         </tr>
       </thead>
@@ -54,7 +54,7 @@
               <%= student.type_social %>
             </td>
             <td class="px-6 py-4">
-              <%= link_to "Show", "#", class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+              <%= link_to t('views.manager.student.links.show'), "#", class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
             </td>
           </tr>
         <% end %>
@@ -63,6 +63,6 @@
   </div>
 
   <div class="mt-6">
-    <%= link_to "New Student", new_manager_student_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+    <%= link_to t('views.manager.student.links.new'), new_manager_student_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
   </div>
 </div>

@@ -11,3 +11,16 @@ pt-BR:
             social_profile: "Perfil de rede social"
             social_type: "Tipo de rede social"
             save: "Salvar"
+        index:
+          title: "Estudantes"
+          columns:
+            id: "Id"
+            name: "Nome"
+            email: "Email"
+            phone: "Telefone"
+            profile_social: "Perfil rede social"
+            type_social: "Tipo de rede social"
+        links:
+          new: "Novo Estudante"
+          show: "Ver"
+          back: "Voltar"
