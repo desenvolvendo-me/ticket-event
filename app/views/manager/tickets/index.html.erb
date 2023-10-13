@@ -1,0 +1,23 @@
+<h1> All Tickets </h1>
+
+<table>
+  <thead>
+  <tr>
+    <th> ID </th>
+    <th> Event </th>
+    <th> Student </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td> <%= ticket.id %> </td>
+      <td> <%= ticket.event.name %> </td>
+      <td> <%= ticket.student.name %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New ticket", new_manager_ticket_path %>
