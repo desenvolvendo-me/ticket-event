@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'home', to: "home#index", as: :home
     resources :events
     resources :lessons
+    resources :tickets
   end
 
   scope module: :external do
