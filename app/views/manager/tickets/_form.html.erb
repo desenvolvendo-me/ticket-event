@@ -1,0 +1,11 @@
+<%= form_with model: @ticket, url: manager_tickets_path(@ticket) do |form| %>
+
+  <div>
+    <%= form.label :event_id %>
+    <%= form.select :event_id, @event_options %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
