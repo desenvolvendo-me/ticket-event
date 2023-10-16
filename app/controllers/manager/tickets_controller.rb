@@ -1,13 +1,20 @@
 class Manager::TicketsController < ApplicationController
-  before_action :set_event_options, only: [:create, :new]
-  before_action :set_ticket, only: [:create, :new]
+  before_action :set_event_options, only: [:create, :select_student_csv]
+  before_action :set_ticket, only: [:create, :select_student_csv]
 
   def index
     @tickets = Ticket.all
   end
 
-  def new
+  def select_student_csv
     @ticket = Ticket.new
+  end
+
+  def import_student_csv
+    event = Event.find(params[:ticket][:event_id])
+    Tickets::Builders.call({ event: event, csv_path: params["ticket"]["file"] })
+
+    redirect_to :action => :index, :notice => t("active_admin.notice.ticket.select_student_csv")
   end
 
   def create

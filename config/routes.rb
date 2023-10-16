@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :events
     resources :lessons
     resources :tickets
+
+    get 'select_student_csv', to: "tickets#select_student_csv", as: :tickets_select_student_csv
+    post 'import_student_csv', to: "tickets#import_student_csv", as: :tickets_import_student_csv
   end
 
   scope module: :external do
