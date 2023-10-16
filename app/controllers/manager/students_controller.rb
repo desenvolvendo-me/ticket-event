@@ -1,6 +1,6 @@
 module Manager
   class StudentsController < ApplicationController
-    before_action :set_student, only: %i[show edit update]
+    before_action :set_student, only: %i[show edit update destroy]
 
     def index
       @students = Student.all
@@ -19,13 +19,19 @@ module Manager
 
       return render :new unless @student.save
 
-      redirect_to manager_students_path, notice: 'Student was successfully created.'
+      redirect_to manager_students_url, notice: "Student was successfully created."
     end
 
     def update
       return render :edit, status: :unprocessable_entity unless @student.update(student_params)
 
-      redirect_to manager_student_path(@student), notice: "Student was successfully updated."
+      redirect_to manager_student_url(@student), notice: "Student was successfully updated."
+    end
+
+    def destroy
+      @student.destroy
+
+      redirect_to manager_students_url, notice: "Student was successfully destroyed."
     end
 
     private

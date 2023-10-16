@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   namespace :manager do
     get 'home', to: "home#index", as: :home
-    resources :students, only: %i[index new create show edit update]
+    resources :students
   end
 
   scope module: :external do
