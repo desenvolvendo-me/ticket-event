@@ -6,5 +6,4 @@ RSpec.describe Ticket, type: :model do
   it { should have_one(:prize_draw)}
   it { should have_one_attached(:svg)}
   it { should have_one_attached(:png)}
-  it { should have_one_attached(:png)}
 end
