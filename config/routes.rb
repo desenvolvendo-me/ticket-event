@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     get 'home', to: "home#index", as: :home
     resources :events
     resources :lessons
-    resources :tickets
 
+    resources :tickets, only: [:index, :show]
     get 'select_student_csv', to: "tickets#select_student_csv", as: :tickets_select_student_csv
     post 'import_student_csv', to: "tickets#import_student_csv", as: :tickets_import_student_csv
   end
