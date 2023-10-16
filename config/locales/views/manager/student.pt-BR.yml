@@ -1,4 +1,12 @@
 pt-BR:
+  activerecord:
+    attributes:
+      student:
+        name: "Nome"
+        email: "Email"
+        phone: "Telefone"
+        profile_social: "Perfil de rede social"
+        type_social: "Tipo de rede social"
   views:
     manager:
       student:
@@ -20,6 +28,13 @@ pt-BR:
             phone: "Telefone"
             profile_social: "Perfil rede social"
             type_social: "Tipo de rede social"
+        show:
+          name: "Nome"
+          email: "Email"
+          phone: "Telefone"
+          profile_social: "Perfil rede social"
+          type_social: "Tipo de rede social"
+
         links:
           new: "Novo Estudante"
           show: "Ver"
