@@ -1,9 +1,13 @@
 module Manager
   class StudentsController < ApplicationController
+    before_action :set_student, only: %i[show]
 
     def index
       @students = Student.all
     end
+
+    def show; end
+
     def new
       @student = Student.new
     end
@@ -17,6 +21,10 @@ module Manager
     end
 
     private
+
+    def set_student
+      @student = Student.find(params[:id])
+    end
 
     def student_params
       params.require(:student).permit(:email, :name, :phone, :profile_social, :type_social)
