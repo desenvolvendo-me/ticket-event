@@ -54,7 +54,7 @@
               <%= student.type_social %>
             </td>
             <td class="px-6 py-4">
-              <%= link_to t('views.manager.student.links.show'), "#", class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+              <%= link_to t('views.manager.student.links.show'), manager_student_path(student), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
             </td>
           </tr>
         <% end %>
