@@ -1,0 +1,15 @@
+<%= form_with(model: @ticket, url: manager_tickets_import_student_csv_path, method: :post, local: true, html: { multipart: true }) do |form| %>
+  <div>
+    <%= form.label :event_id, "Event" %>
+    <%= form.select :event_id, @event_options %>
+  </div>
+
+  <div>
+    <%= form.label :file, "File" %>
+    <%= form.file_field :file %>
+  </div>
+
+  <div class="action">
+    <%= form.submit %>
+  </div>
+<% end %>
