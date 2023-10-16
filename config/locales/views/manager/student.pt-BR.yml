@@ -34,8 +34,10 @@ pt-BR:
           phone: "Telefone"
           profile_social: "Perfil rede social"
           type_social: "Tipo de rede social"
-
+        edit:
+          title: "Editar Estudante"
         links:
           new: "Novo Estudante"
           show: "Ver"
           back: "Voltar"
+          edit: "Editar"
