@@ -23,17 +23,17 @@ class Manager::TicketsController < ApplicationController
   private
 
   def set_ticket
-  # @ticket = Ticket.joins(:event, :student)
-  #           .where(events: { slug: params["slug_event"] }, students: { phone: params["phone"] }).take
+    @ticket = Ticket.joins(:event, :student)
+                    .where(events: { slug: params["slug_event"] }, students: { phone: params["phone"] }).take
 
-    @ticket = Ticket.find_by(params[:id])
+    #@ticket = Ticket.find_by(params[:id])
   end
 
   def ticket_params
-    params.require(:ticket).permit(:event_id, :student_id)
+    params.require(:ticket).permit(:event_id, :student_id, :svg, :png)
   end
 
   def set_event_options
-    @event_options = Event.all.map { |e| [e.id, e.name] }
+    @event_options = Event.all.map { |e| [e.name, e.id] }
   end
 end
