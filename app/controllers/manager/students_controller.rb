@@ -19,19 +19,19 @@ module Manager
 
       return render :new unless @student.save
 
-      redirect_to manager_students_url, notice: "Student was successfully created."
+      redirect_to manager_students_url, notice: t("controllers.manager.students.notices.student_created")
     end
 
     def update
       return render :edit, status: :unprocessable_entity unless @student.update(student_params)
 
-      redirect_to manager_student_url(@student), notice: "Student was successfully updated."
+      redirect_to manager_student_url(@student), notice: t("controllers.manager.students.notices.student_updated")
     end
 
     def destroy
       @student.destroy
 
-      redirect_to manager_students_url, notice: "Student was successfully destroyed."
+      redirect_to manager_students_url, notice: t("controllers.manager.students.notices.student_destroyed")
     end
 
     private

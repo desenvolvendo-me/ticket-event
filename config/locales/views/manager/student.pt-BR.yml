@@ -42,3 +42,10 @@ pt-BR:
           back: "Voltar"
           edit: "Editar"
           destroy: "Deletar"
+  controllers:
+    manager:
+      students:
+        notices:
+          student_created: "Estudante criado com sucesso."
+          student_updated: "Estudante atualizado com sucesso."
+          student_destroyed: "Estudante deletado com sucesso."
