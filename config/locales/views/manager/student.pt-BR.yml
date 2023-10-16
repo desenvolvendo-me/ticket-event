@@ -41,3 +41,4 @@ pt-BR:
           show: "Ver"
           back: "Voltar"
           edit: "Editar"
+          destroy: "Deletar"
