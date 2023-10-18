@@ -1,8 +1,12 @@
 class Manager::TicketsController < ApplicationController
-  before_action :set_event_options, only: [:select_student_csv]
+  before_action :set_event_options, only: [:select_student_csv, :show]
 
   def index
     @tickets = Ticket.all
+  end
+
+  def show
+    @ticket = Ticket.find(params[:id])
   end
 
   def select_student_csv
@@ -13,8 +17,7 @@ class Manager::TicketsController < ApplicationController
     event = Event.find(ticket_params[:event_id])
     Tickets::Builders.call({ event: event, csv_path: ticket_params["file"] })
 
-    flash[:notice] = t("active_admin.notice.ticket.select_student_csv")
-    redirect_to :action => :index
+    redirect_to action: :index
   end
 
   private
