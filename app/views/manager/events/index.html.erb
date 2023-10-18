@@ -1,0 +1,18 @@
+<div>
+  <h1 class="font-bold text-4xl">All Events Page</h1>
+</div>
+
+<% @events.each do |event| %>
+  <div>
+  <p> Name: <%= event.name %> </p>
+
+  <p> Description: <%= event.description %> </p>
+
+  <p> Date: <%= event.date %> </p>
+
+  <p> Launch: <%= event.launch %> </p>
+
+    <%= link_to "Show", manager_event_path(event) %>
+    <%= link_to "New", new_manager_event_path %>
+  </div>
+<% end %>
