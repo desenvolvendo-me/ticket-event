@@ -1,0 +1,41 @@
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+  <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="p-6 bg-white border-b border-gray-200">
+      <h2 class="text-2xl font-semi-bold mb-4">Detalhes do Ticket</h2>
+      <table class="min-w-full">
+        <tr>
+          <th class="text-left pr-4">ID:</th>
+          <td><%= dom_id @ticket %></td>
+        </tr>
+        <tr>
+          <th class="text-left pr-4">Evento:</th>
+          <td><%= @ticket.event.name %></td>
+        </tr>
+        <tr>
+          <th class="text-left pr-4">Estudante:</th>
+          <td><%= @ticket.student.name %></td>
+        </tr>
+        <tr>
+          <th class="text-left pr-4">Email enviado:</th>
+          <td><%= @ticket.send_email_at %></td>
+        </tr>
+        <tr>
+          <th class="text-left pr-4">Checkin:</th>
+          <td><%= @ticket.checkin %></td>
+        </tr>
+        <tr>
+          <th class="text-left pr-4">Ticket:</th>
+          <td><%= if @ticket.png.attached?
+                    link_to image_tag(@ticket.png, size: "50x25"), @ticket.png, target: "_blank"
+                  end %>
+          </td>
+        </tr>
+        <tr>
+          <th class="text-left pr-4">
+            <a href="<%= manager_tickets_path %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded">Voltar</a>
+          </th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
