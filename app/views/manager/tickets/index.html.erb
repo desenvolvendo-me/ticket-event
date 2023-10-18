@@ -1,0 +1,39 @@
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+<div class="text-right">
+  <a href="<%= manager_tickets_select_student_csv_path %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded"><%= t('views.manager.ticket.index.generate_ticket') %></a>
+</div>
+  <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="p-6 bg-white border-b border-gray-200">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead>
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('views.manager.ticket.index.event') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('views.manager.ticket.index.student') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('views.manager.ticket.index.send_email') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Checkin</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ticket</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+        <% @tickets.each do |ticket| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-nowrap"><%= ticket.id %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= ticket.event.name %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= ticket.student.name %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= ticket.send_email_at %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= ticket.checkin %></td>
+            <td class="px-6 py-4 whitespace-nowrap"><%= if ticket.png.attached?
+                                                         link_to image_tag(ticket.png, size: "50x25"), ticket.png, target: "_blank"
+                                                        end %>
+            </td>
+            <td class="px-6 py-6 whitespace-nowrap">
+              <a href="<%= manager_ticket_path(ticket) %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded"><%= t('views.manager.ticket.index.visualize') %></a>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
