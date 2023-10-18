@@ -1,0 +1,19 @@
+pt-BR:
+  views:
+    manager:
+      ticket:
+        index:
+          event: "Evento"
+          student: "Estudante"
+          send_email: "Email enviado em"
+          visualize: "Visualizar"
+          generate_ticket: "Gerar ingresso"
+        select_student_csv:
+          event: "Evento"
+          file: "Arquivo"
+          send: "Enviar"
+        show:
+          event: "Evento"
+          student: "Estudante"
+          send_email: "Email enviado em"
+          back: "Voltar"

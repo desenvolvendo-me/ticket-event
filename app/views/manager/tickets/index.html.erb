@@ -1,6 +1,6 @@
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
 <div class="text-right">
-  <a href="<%= manager_tickets_select_student_csv_path %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded">Gerar Ingresso</a>
+  <a href="<%= manager_tickets_select_student_csv_path %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded"><%= t('views.manager.ticket.index.generate_ticket') %></a>
 </div>
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 bg-white border-b border-gray-200">
@@ -8,9 +8,9 @@
         <thead>
         <tr>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Send email</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('views.manager.ticket.index.event') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('views.manager.ticket.index.student') %></th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"><%= t('views.manager.ticket.index.send_email') %></th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Checkin</th>
           <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ticket</th>
         </tr>
@@ -28,7 +28,7 @@
                                                         end %>
             </td>
             <td class="px-6 py-6 whitespace-nowrap">
-              <a href="<%= manager_ticket_path(ticket) %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded">Visualizar</a>
+              <a href="<%= manager_ticket_path(ticket) %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded"><%= t('views.manager.ticket.index.visualize') %></a>
             </td>
           </tr>
         <% end %>
