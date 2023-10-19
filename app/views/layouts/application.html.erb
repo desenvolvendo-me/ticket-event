@@ -200,9 +200,11 @@
         </div>
       </div>
     </aside>
+    <div class="absolute inset-y-0 flex justify-center w-screen md:pl-72 md:pr-8">
+      <%= yield %>
+    </div>
   <% else %>
     <%= render "layouts/top_menu" %>
-    <%= yield %>
   <% end %>
 </div>
 </body>
