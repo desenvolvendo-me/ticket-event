@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id          :bigint           not null, primary key
+#  active      :boolean          default(TRUE)
+#  date        :datetime
+#  description :string
+#  launch      :integer
+#  name        :string
+#  slug        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+# Indexes
+#
+#  index_events_on_slug  (slug) UNIQUE
+#
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
