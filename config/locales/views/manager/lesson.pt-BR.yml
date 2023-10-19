@@ -3,14 +3,19 @@ pt-BR:
     manager:
       lesson:
         index:
-          title: "Lista de aulas"
+          search: "Pesquisar"
           title_name: "Título"
           event: "Evento"
           actions: "Ações"
-          delete_confirm: "Tem certeza que deseja excluir esta aula?"
-        new:
+          list:
+            showing: "Mostrando"
+            of: "de"
+            previous: "Anterior"
+            next: "Próxima"
+        delete_confirm: "Tem certeza que deseja excluir esta aula?"
+        view_new:
           title: "Nova aula"
-        edit:
+        view_edit:
           title: "Editar aula"
         show: "Mostrar"
         edit: "Editar"
