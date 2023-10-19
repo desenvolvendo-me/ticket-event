@@ -10,7 +10,9 @@ class Manager::LessonsController < ApplicationController
   end
 
   def create
-    @lesson = Lesson.new(lesson_params)
+    event_id = params[:lesson][:event_id]
+    event = Event.find(event_id)
+    @lesson = event.lessons.build(lesson_params)
 
     if @lesson.save
       redirect_to manager_lesson_path(@lesson)
