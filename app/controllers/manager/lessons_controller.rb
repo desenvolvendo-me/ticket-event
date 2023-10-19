@@ -3,7 +3,7 @@ class Manager::LessonsController < ApplicationController
   before_action :set_event_options, only: [:new, :create, :edit, :update]
 
   def index
-    @lessons = Lesson.all
+    @lessons = Lesson.all.order(created_at: :asc)
   end
   def new
     @lesson = Lesson.new
