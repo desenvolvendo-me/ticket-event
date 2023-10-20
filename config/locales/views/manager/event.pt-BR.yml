@@ -1,0 +1,19 @@
+pt-BR:
+  views:
+    manager:
+      event:
+        back: "Voltar"
+        new: "Novo"
+        show: "Mostrar"
+        edit: "Editar"
+        save: "Salvar"
+        delete: "Deletar"
+        delete_confirm: "Tem certeza que deseja excluir este evento?"
+        index:
+          search: "Pesquisar"
+          list:
+            showing: "Mostrando"
+            of: "de"
+            previous: "Anterior"
+            next: "Próxima"
+          actions: "Ações"

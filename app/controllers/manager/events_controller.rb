@@ -1,7 +1,7 @@
 class Manager::EventsController < ApplicationController
   before_action :get_event, only: %i[ show new create edit update destroy ]
   def index
-    @events = Event.all
+    @events = Event.all.order(created_at: :asc)
   end
 
   def new
