@@ -10,6 +10,7 @@ pt-BR:
         title: "Título"
         description: "Descrição"
         launch_datetime: "Data de lançamento"
+        thumbnail: "Thumbnail"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
         event_id: "Evento"
