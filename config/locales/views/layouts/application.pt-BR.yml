@@ -1,0 +1,7 @@
+pt-BR:
+  views:
+    layouts:
+      application:
+        aside:
+          overview: "Visão geral"
+          lessons: "Aulas"
