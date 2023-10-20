@@ -16,7 +16,7 @@
 
   <% @quiz_questions.each do |quiz_question| %>
     <div class="mb-6">
-      <% if @correct_responses != nil && @correct_responses["#{quiz_question.id}"] %>
+      <% if @student_answers["correct_responses"]["#{quiz_question.id}"] %>
         <p class="text-green-500"><%= I18n.t('views.external.quiz.result.nice_answer') %></p>
         <p class="text-lg font-semibold"><%= quiz_question.description %></p>
         <p class="text-green-500"><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
@@ -29,6 +29,6 @@
     </div>
   <% end %>
   <% if @quiz_result %>
-    <%= link_to I18n.t('views.lesson.result.link_to_return_lessons'), lessons_index_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= link_to I18n.t('views.external.lesson.result.link_to_return_lessons'), lessons_index_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   <% end %>
 </div>
