@@ -37,12 +37,8 @@ module Quizzes
         incorrect_responses: incorrect_responses,
         percentage_hits: total_hits.to_i
       }
-      @ticket.student_score = @ticket.student_answers.values.select { |data| data["percentage_hits"] }.sum { |data| data["percentage_hits"] }.to_f / @ticket.student_answers.values.select { |data| data["percentage_hits"] }.length
+      @ticket.student_score = @ticket.student_answers.values.select { |data| data[:percentage_hits] }.map { |data| data[:percentage_hits] }.sum.to_f / @ticket.student_answers.values.select { |data| data[:percentage_hits] }.length
       @ticket.save
-      {
-        correct_responses: correct_responses,
-        incorrect_responses: incorrect_responses
-      }
     end
   end
 end

@@ -7,14 +7,13 @@ class External::QuizController < ExternalController
   end
 
   def submit
-    results = Quizzes::QuizResultCalculator.new(@lesson, params[:responses], @ticket).calculate
-    redirect_to quiz_result_path(results)
+    Quizzes::QuizResultCalculator.new(@lesson, params[:responses], @ticket).calculate
+    redirect_to quiz_result_path
   end
 
   def result
-    @correct_responses = params[:correct_responses]
-    @incorrect_responses = params[:incorrect_responses]
     load_quiz_data
+    @student_answers = @ticket.student_answers["Quiz#{@lesson.quiz.id.to_s}"]
     @quiz_result = Quiz::percentage_success?(@ticket, @lesson)
     if @quiz_result
       flash[:notice] = I18n.t('controller.quiz.result.success')

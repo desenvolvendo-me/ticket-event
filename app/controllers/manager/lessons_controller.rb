@@ -3,14 +3,16 @@ class Manager::LessonsController < ApplicationController
   before_action :set_event_options, only: [:new, :create, :edit, :update]
 
   def index
-    @lessons = Lesson.all
+    @lessons = Lesson.all.order(created_at: :asc)
   end
   def new
     @lesson = Lesson.new
   end
 
   def create
-    @lesson = Lesson.new(lesson_params)
+    event_id = params[:lesson][:event_id]
+    event = Event.find(event_id)
+    @lesson = event.lessons.build(lesson_params)
 
     if @lesson.save
       redirect_to manager_lesson_path(@lesson)
