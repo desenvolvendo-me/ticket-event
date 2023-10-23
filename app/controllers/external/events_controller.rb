@@ -7,6 +7,6 @@ class External::EventsController < ExternalController
   private
 
   def get_event
-    @event_day = Event.find_by(params[:launch_and_name])
+    @event = Event.find_by(params[:launch_and_name])
   end
 end
