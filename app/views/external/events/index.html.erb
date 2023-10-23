@@ -5,17 +5,24 @@
         <div class="w-full px-4 lg:w-1/2 xl:w-6/12" >
           <div class="mb-12 max-w-[570px] lg:mb-0" >
             <h2 class="text-dark mb-6 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px]" >
-              <%= @event_day.name %>
+              <%= @event.name %>
             </h2>
             <p>
-              <%= @event_day.description %>
+              <%= @event.description %>
             </p>
           </div>
         </div>
         <div class="w-full px-4 lg:w-1/2 xl:w-5/12" >
           <div class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12" >
             <div class="mb-6">
-              <%= I18n.localize(@event_day.date, format: :long) %>
+              <%= I18n.localize(@event.date, format: :long) %>
+            </div>
+            <div class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <% if @event.date <= DateTime.now %>
+                <%= link_to("Acessar Aulas", lessons_index_path) %>
+              <% else %>
+                <%= link_to("Acessar Ingresso", search_ticket_path) %>
+              <% end %>
             </div>
             <div>
               <span class="absolute -right-10 top-[90px] z-[-1]">
@@ -814,7 +821,4 @@
       </div>
     </div>
   </section>
-  <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-    <%= link_to("Aulas", lessons_index_path) %>
-  </div>
 </div>
