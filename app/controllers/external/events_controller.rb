@@ -1,8 +1,9 @@
 class External::EventsController < ExternalController
   before_action :get_event
-  before_action :authenticate_user!, except: [:index ]
 
-  def index; end
+  def index
+    @event_checker = AvailabilityChecker.event_available?(@event)
+  end
 
   private
 
