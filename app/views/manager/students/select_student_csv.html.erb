@@ -1,15 +1,15 @@
 <%= form_with(model: @student, url: manager_students_import_student_csv_path, method: :post, local: true, html: { multipart: true }) do |form| %>
   <div  class="mb-4">
-    <%= form.label :event_id, "EVENTO", class: "block text-gray-600 font-bold" %>
+    <%= form.label :event_id, t("views.manager.student.select_student_csv.event"), class: "block text-gray-600 font-bold" %>
     <%= form.select :event_id, @event_options, class: "w-full px-3 py-2 leading-tight text-gray-700 border rounded-lg shadow-sm focus:outline-none focus:shadow-outline" %>
   </div>
 
   <div class="mb-4">
-    <%= form.label :file, "AQUIVO", class: "block text-gray-600 font-bold" %>
+    <%= form.label :file, t("views.manager.student.select_student_csv.file"), class: "block text-gray-600 font-bold" %>
     <%= form.file_field :file, class: "w-auto px-3 py-2 leading-tight text-gray-700 border rounded-lg shadow-sm focus:outline-none focus:shadow-outline" %>
   </div>
 
   <div class="text-left">
-    <%= form.submit "ENVIAR", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= form.submit t("views.manager.student.select_student_csv.submit"), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>

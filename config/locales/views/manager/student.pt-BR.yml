@@ -21,6 +21,7 @@ pt-BR:
             save: "Salvar"
         index:
           title: "Estudantes"
+          register_students: "Cadastrar Estudantes"
           columns:
             id: "Id"
             name: "Nome"
@@ -36,6 +37,10 @@ pt-BR:
           type_social: "Tipo de rede social"
         edit:
           title: "Editar Estudante"
+        select_student_csv:
+          event: "Evento"
+          file: "Arquivo"
+          submit: "Enviar"
         links:
           new: "Novo Estudante"
           show: "Ver"
@@ -49,3 +54,4 @@ pt-BR:
           student_created: "Estudante criado com sucesso."
           student_updated: "Estudante atualizado com sucesso."
           student_destroyed: "Estudante deletado com sucesso."
+          registered_students: "Estudantes cadastrados com sucesso."
