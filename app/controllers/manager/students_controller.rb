@@ -43,7 +43,7 @@ module Manager
       event = Event.find(student_params[:event_id])
       Students::CsvStudentRegister.call(event: event, csv_path: student_params[:file])
 
-      redirect_to manager_students_url, notice: "Estudantes cadastrados com sucesso!"
+      redirect_to manager_students_url, notice: t("controllers.manager.students.notices.registered_students")
     end
 
     private
