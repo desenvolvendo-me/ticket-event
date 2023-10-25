@@ -61,4 +61,32 @@ RSpec.describe "Manager::Students", type: :request do
       expect(response).to redirect_to(manager_students_path)
     end
   end
+
+  describe 'GET /manager/select_student_csv' do
+    it 'should returns a successful response' do
+      get manager_students_select_student_csv_path
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'POST /manager/import_student_csv' do
+    let(:csv_data) do
+      CSV.read("spec/support/leads_export.csv", headers: true).first
+    end
+
+    let(:last_student_created) { Student.last }
+
+    it 'should generate ticket and redirects to the index' do
+      event = create(:event)
+      expect {
+        post manager_students_import_student_csv_path, params: { student: { event_id: event.id, file: "spec/support/leads_export.csv" } }
+      }.to change(Student, :count).by(1)
+
+      expect(last_student_created.email).to eq(csv_data["email"])
+      expect(last_student_created.phone).to eq(csv_data["phone"])
+      expect(last_student_created.name).to eq(csv_data["fullname"])
+
+      expect(response).to redirect_to(action: :index)
+    end
+  end
 end
