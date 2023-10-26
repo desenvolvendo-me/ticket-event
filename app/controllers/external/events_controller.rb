@@ -2,7 +2,8 @@ class External::EventsController < ExternalController
   before_action :get_event
 
   def index
-    @event_checker = AvailabilityChecker.event_available?(@event)
+    result = Access::Checker.new(@event)
+    @event_checker = result.call
   end
 
   private
