@@ -24,7 +24,7 @@
           <%= lesson.title %>
           <span class="description text-sm block py-2 border-gray-400 mb-2"><%= lesson.description %></span>
         </div>
-        <% if lesson.launch_datetime > Time.zone.now %>
+        <% if @lessons_checker[index] %>
           <div class="flexflex-1 launch-datetime text-sm font-bold text-gray-600">
             <%= I18n.t('views.external.lesson.index.launch_at') %>: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
           </div>

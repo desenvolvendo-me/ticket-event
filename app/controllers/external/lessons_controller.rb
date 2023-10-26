@@ -5,7 +5,8 @@ class External::LessonsController < ExternalController
     @lessons = @event.lessons
     @lessons_checker = []
     @lessons.each_with_index do |lesson, index|
-      @lessons_checker[index] = AvailabilityChecker.lesson_available?(lesson)
+      result = Access::Checker.new(lesson)
+      @lessons_checker[index] = result.call
     end
     @video_embedder = Lessons::Embedder
 
