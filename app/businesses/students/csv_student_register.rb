@@ -1,8 +1,7 @@
 module Students
   class CsvStudentRegister < BusinessApplication
 
-    def initialize(event:, csv_path:)
-      @event = event
+    def initialize(csv_path:)
       @csv_path = csv_path
     end
 
@@ -22,7 +21,9 @@ module Students
       Student.create(
         email: row["email"],
         phone: row["phone"],
-        name: row["fullname"]
+        name: row["fullname"],
+        profile_social: row["profile_social"],
+        type_social: row["type_social"]
       )
     end
   end
