@@ -1,0 +1,5 @@
+pt-BR:
+  businesses:
+    access:
+      checker:
+        argument_error: "Tipo de recurso inválido"
