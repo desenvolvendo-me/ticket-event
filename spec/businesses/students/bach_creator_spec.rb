@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe Students::CsvStudentRegister do
+RSpec.describe Students::BatchCreator do
   let(:csv_path) { "spec/support/leads_export.csv" }
   let!(:csv_data) { CSV.read(csv_path, headers: true).first }
 
   subject(:csv_student_register) do
-    Students::CsvStudentRegister.call(csv_path: csv_path)
+    Students::BatchCreator.call(csv_path: csv_path)
   end
 
   describe "#call" do
