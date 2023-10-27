@@ -1,5 +1,5 @@
 ActiveAdmin.register Event do
-  permit_params :name, :launch, :description, :date, :active, :template, :certificate_template
+  permit_params :name, :launch, :description, :date, :active, :template, :certificate_template, :community_link
 
   index do
     id_column
@@ -61,6 +61,7 @@ ActiveAdmin.register Event do
       f.input :description
       f.input :date
       f.input :active
+      f.input :community_link
       f.input :template, as: :file
       f.input :certificate_template, as: :file
     end
