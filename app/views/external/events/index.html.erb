@@ -21,7 +21,7 @@
               <% if @event.date <= DateTime.now %>
                 <%= link_to("Acessar Aulas", lessons_index_path) %>
               <% else %>
-                <%= link_to("Acessar Ingresso", search_ticket_path) %>
+                <%= link_to "Acessar Ingresso", search_ticket_path(@event.slug) %>
               <% end %>
             </div>
             <div>
