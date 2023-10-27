@@ -1,6 +1,8 @@
 class External::LessonsController < ExternalController
-  before_action :set_event, only: [:index]
+  before_action :set_event, only: %i[ index show ]
   before_action :get_ticket, only: %i[ form ]
+  before_action :get_lesson, only: [ :show ]
+  before_action :get_video_embedder, only: %i[ index show ]
   def index
     @lessons = @event.lessons
     @lessons_checker = []
@@ -10,8 +12,9 @@ class External::LessonsController < ExternalController
     @video_embedder = Lessons::Embedder
   end
 
-  def search
-  end
+  def show;  end
+
+  def search;  end
 
   def form
     if @ticket.save
@@ -40,5 +43,13 @@ class External::LessonsController < ExternalController
 
   def store_student_phone
     session[:student_phone] = params["phone"]
+  end
+
+  def get_lesson
+    @lesson = Lesson.find(params[:lesson_id])
+  end
+
+  def get_video_embedder
+    @video_embedder = Lessons::Embedder
   end
 end
