@@ -5,6 +5,11 @@ class External::LessonsController < ExternalController
   before_action :get_video_embedder, only: %i[ index show ]
   def index
     @lessons = @event.lessons
+    @lessons_checker = []
+    @lessons.each_with_index do |lesson, index|
+      @lessons_checker[index] = Access::Checker.call(lesson)
+    end
+    @video_embedder = Lessons::Embedder
   end
 
   def show;  end

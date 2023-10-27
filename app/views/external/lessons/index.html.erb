@@ -12,9 +12,9 @@
 
 <h1 class="text-center text-4xl mt-10"><%= I18n.t('views.external.lesson.index.title') %></h1>
 <div class="holder mx-auto w-10/12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-  <% @lessons.each do |lesson| %>
-    <div class="each mb-10 m-1 shadow-lg border-gray-800 bg-gray-100 relative flex flex-col rounded-t-lg overflow-hidden">
-      <% if lesson.launch_datetime > Time.zone.now %>
+  <% @lessons.each_with_index do |lesson, index| %>
+    <div class="each mb-10 m-1 shadow-lg border-gray-800 bg-gray-100 relative flex flex-col">
+      <% if @lessons_checker[index] %>
         <%= image_tag lesson.thumbnail, class: 'max-w-200px' if lesson.thumbnail.attached? %>
       <% else %>
         <iframe class="w-full flex-1" src="<%= Lessons::Embedder.embed_url(lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -24,7 +24,7 @@
           <%= lesson.title %>
           <span class="description text-sm block py-2 border-gray-400 mb-2"><%= lesson.description %></span>
         </div>
-        <% if lesson.launch_datetime > Time.zone.now %>
+        <% if @lessons_checker[index] %>
           <div class="flexflex-1 launch-datetime text-sm font-bold text-gray-600">
             <%= I18n.t('views.external.lesson.index.launch_at') %>: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
           </div>
