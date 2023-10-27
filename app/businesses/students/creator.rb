@@ -1,21 +1,15 @@
 module Students
-  class CsvStudentRegister < BusinessApplication
+  class Creator < BusinessApplication
 
-    def initialize(csv_path:)
-      @csv_path = csv_path
+    def initialize(row)
+      @row = row
     end
 
     def call
-      process_csv
+      create_student(@row)
     end
 
     private
-
-    def process_csv
-      CSV.foreach(@csv_path, headers: true) do |row|
-        create_student(row)
-      end
-    end
 
     def create_student(row)
       Student.create(

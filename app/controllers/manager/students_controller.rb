@@ -39,7 +39,7 @@ module Manager
     end
 
     def import_student_csv
-      Students::CsvStudentRegister.call(csv_path: student_params[:file])
+      Students::BatchCreator.call(csv_path: student_params[:file])
 
       redirect_to manager_students_url, notice: t("controllers.manager.students.notices.registered_students")
     end
