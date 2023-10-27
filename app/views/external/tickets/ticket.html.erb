@@ -14,6 +14,11 @@
             </svg>
             <span><%= link_to "DOWNLOAD", rails_blob_path(@ticket.png, disposition: "attachment") %></span>
           </button>
+          <div class="flex w-1/2 justify-center">
+            <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+              <span><%= link_to "EDITAR FOTO", edit_event_ticket_path(@ticket.event.slug, @ticket.student.phone) %></span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
