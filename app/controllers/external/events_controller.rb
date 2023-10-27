@@ -2,8 +2,7 @@ class External::EventsController < ExternalController
   before_action :get_event
 
   def index
-    result = Access::Checker.new(@event)
-    @event_checker = result.call
+    @event_checker =Access::Checker.call(@event)
   end
 
   private
