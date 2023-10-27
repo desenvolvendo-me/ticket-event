@@ -32,6 +32,7 @@ ActiveAdmin.register Event do
       row :description
       row :date
       row :active
+      row :community_link
       row :slug do |event|
         link_to event.slug, search_ticket_path(event), target: "_blank"
       end
