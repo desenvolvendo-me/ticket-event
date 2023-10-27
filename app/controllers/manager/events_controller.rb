@@ -41,6 +41,6 @@ class Manager::EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:name, :description, :date, :launch)
+      params.require(:event).permit(:name, :description, :date, :launch, :community_link)
     end
 end
