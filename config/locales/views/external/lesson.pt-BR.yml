@@ -8,8 +8,10 @@ pt-BR:
           quiz_link: 'Link do questionário'
           flash:
             new: "Nova"
-        show:
-          submit: "Enviar respostas"
+          go_lesson: "Ir para aula"
+        view_show:
+          quiz_access: "Acessar questionário"
+          community_access: "Acessar a comunidade"
         search:
           welcome: "Seja Bem Vindo!"
           quiz_access: "Acesso ao questionário"
