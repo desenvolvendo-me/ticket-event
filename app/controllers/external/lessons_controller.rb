@@ -5,11 +5,9 @@ class External::LessonsController < ExternalController
     @lessons = @event.lessons
     @lessons_checker = []
     @lessons.each_with_index do |lesson, index|
-      result = Access::Checker.new(lesson)
-      @lessons_checker[index] = result.call
+      @lessons_checker[index] = Access::Checker.call(lesson)
     end
     @video_embedder = Lessons::Embedder
-
   end
 
   def search
