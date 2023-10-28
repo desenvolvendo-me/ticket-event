@@ -121,4 +121,7 @@ if Rails.env.development?
 
   # PrizeDraw
   PrizeDraws::Generator.call(Event.first)
+
+  # Student registration from a CSV
+  Students::BatchCreator.call(csv_path: Rails.root.join('spec/support', "leads_export.csv"))
 end
