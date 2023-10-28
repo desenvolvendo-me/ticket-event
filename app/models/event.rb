@@ -2,15 +2,18 @@
 #
 # Table name: events
 #
-#  id          :bigint           not null, primary key
-#  active      :boolean          default(TRUE)
-#  date        :datetime
-#  description :string
-#  launch      :integer
-#  name        :string
-#  slug        :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :bigint           not null, primary key
+#  active         :boolean          default(TRUE)
+#  community_link :string
+#  date           :datetime
+#  description    :string
+#  launch         :integer
+#  name           :string
+#  purchase_date  :datetime
+#  purchase_link  :string
+#  slug           :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #
