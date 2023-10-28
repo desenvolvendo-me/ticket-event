@@ -66,7 +66,7 @@ ActiveAdmin.register Event do
       f.input :active
       f.input :community_link
       f.input :purchase_link
-      f.input :purchase_date, as: :date_picker, allow_blank: true
+      f.input :purchase_date, as: :datetime_picker, allow_blank: true
       f.input :template, as: :file
       f.input :certificate_template, as: :file
     end
