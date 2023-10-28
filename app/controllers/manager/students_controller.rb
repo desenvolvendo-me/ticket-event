@@ -34,6 +34,16 @@ module Manager
       redirect_to manager_students_url, notice: t("controllers.manager.students.notices.student_destroyed")
     end
 
+    def select_student_csv
+      @student = Student.new
+    end
+
+    def import_student_csv
+      Students::BatchCreator.call(csv_path: student_params[:file])
+
+      redirect_to manager_students_url, notice: t("controllers.manager.students.notices.registered_students")
+    end
+
     private
 
     def set_student
@@ -41,7 +51,7 @@ module Manager
     end
 
     def student_params
-      params.require(:student).permit(:email, :name, :phone, :profile_social, :type_social)
+      params.require(:student).permit(:email, :name, :phone, :profile_social, :type_social, :file)
     end
   end
 end
