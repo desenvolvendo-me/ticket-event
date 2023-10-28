@@ -1,7 +1,7 @@
 <div class="w-full mt-8">
 
   <div class="max-w-lg mx-auto">
-    <h1 class="text-4xl font-semibold text-gray-900 mb-4 text-center"><%= "Cadastrar Estudantes" %></h1>
+    <h1 class="text-4xl font-semibold text-gray-900 mb-4 text-center"><%= t("views.manager.student.select_student_csv.register_students") %></h1>
   </div>
 
   <%= form_with(model: @student, url: manager_students_import_student_csv_path, method: :post, local: true, html: { multipart: true }) do |form| %>

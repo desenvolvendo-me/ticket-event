@@ -39,6 +39,7 @@ pt-BR:
           title: "Editar Estudante"
         select_student_csv:
           event: "Evento"
+          register_students: "Cadastrar Estudantes"
           file: "Arquivo"
           submit: "Enviar"
           csv_file_with_a_list_of_students: "Um arquivo CSV que contenha um lista de estudantes"
