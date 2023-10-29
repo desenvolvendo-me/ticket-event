@@ -12,7 +12,10 @@ class External::LessonsController < ExternalController
     @video_embedder = Lessons::Embedder
   end
 
-  def show;  end
+  def show
+    @purchase = Access::Checker.call(@event, :purchase_date)
+    @lesson_checker = Access::Checker.call(@lesson)
+  end
 
   def search;  end
 

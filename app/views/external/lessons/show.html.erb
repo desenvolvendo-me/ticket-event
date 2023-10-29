@@ -2,10 +2,10 @@
   <div class="max-w-screen-lg flex flex-col mx-2 sm:mx-5 md:mx-20 lg:py-16">
     <card class="flex flex-col rounded-t-3xl overflow-hidden shadow-xl">
       <div class="flex-2 lg:mt-0 lg:col-span-5 lg:flex">
-        <% if @lesson.launch_datetime > Time.zone.now %>
-          <%= image_tag @lesson.thumbnail, class: 'max-w-200px' if @lesson.thumbnail.attached? %>
-        <% else %>
+        <% if @lesson_checker %>
           <iframe class="w-full" src="<%= Lessons::Embedder.embed_url(@lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <% else %>
+          <%= image_tag @lesson.thumbnail, class: 'max-w-200px' if @lesson.thumbnail.attached? %>
         <% end %>
       </div>
       <div class="mr-auto place-self-center lg:col-span-7 items-center px-4 py-2 flex-1">
@@ -19,8 +19,8 @@
         <% end %>
       </div>
     </card>
-    <%= link_to @event.community_link, target: "_blank", class: "inline-flex items-center justify-center px-5 py-3 mt-8 mx-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900" do %>
-      <%= I18n.t('views.external.lesson.view_show.community_access') %>
+    <%= link_to @purchase[:link], target: "_blank", class: "inline-flex items-center justify-center px-5 py-3 mt-8 mx-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900" do %>
+      <%= @purchase[:i18n] %>
     <% end %>
   </div>
 </section>
