@@ -15,9 +15,9 @@
   <% @lessons.each_with_index do |lesson, index| %>
     <div class="each mb-10 m-1 shadow-lg border-gray-800 bg-gray-100 relative flex flex-col">
       <% if @lessons_checker[index] %>
-        <%= image_tag lesson.thumbnail, class: 'max-w-200px' if lesson.thumbnail.attached? %>
-      <% else %>
         <iframe class="w-full flex-1" src="<%= Lessons::Embedder.embed_url(lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <% else %>
+        <%= image_tag lesson.thumbnail, class: 'max-w-200px' if lesson.thumbnail.attached? %>
       <% end %>
       <div class="desc p-3 text-gray-800 flex flex-col w-full">
         <div class="flex flex-col flex-3 w-full">
