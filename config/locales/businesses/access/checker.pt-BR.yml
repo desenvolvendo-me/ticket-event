@@ -2,4 +2,5 @@ pt-BR:
   businesses:
     access:
       checker:
-        argument_error: "Tipo de recurso inválido"
+        argument_error: "Tipo de parâmetro data inválido"
+        resource_error: "Tipo de recurso inválido"
