@@ -1,7 +1,8 @@
 module Access
   class Checker < BusinessApplication
-    def initialize(resource)
+    def initialize(resource, field = :field)
       @resource = resource
+      @field = field
     end
 
     def call
@@ -14,19 +15,28 @@ module Access
       if @resource.is_a?(Lesson)
         lesson_available?
       elsif @resource.is_a?(Event)
-        event_available?
+        if @field == :purchase_date
+          purchase_available? ? { link: @resource.purchase_link, i18n: I18n.t('views.external.lesson.view_show.purchase_link') } : { link: @resource.community_link, i18n: I18n.t('views.external.lesson.view_show.community_access') }
+        elsif @field == :date
+          event_available?
+        else
+          raise ArgumentError, I18n.t('businesses.access.checker.argument_error')
+        end
       else
-        raise ArgumentError, I18n.t('businesses.access.checker.argument_error')
+        raise ArgumentError, I18n.t('businesses.access.checker.resource_error')
       end
     end
 
     def lesson_available?
       # TODO: Refatorar para que retorne de forma mais inteligente, sendo assim retornará um hash com 2 opções, ou o link de acesso ou a data de lançamento da aula dependendo da condicional. Ex: "Acessar Ingresso", search_ticket_path
-      @resource.launch_datetime > Time.zone.now
+      @resource.launch_datetime <= Time.zone.now
     end
 
     def event_available?
       @resource.date > Time.zone.now
+    end
+    def purchase_available?
+      @resource.purchase_date <= Time.zone.now
     end
   end
 end
