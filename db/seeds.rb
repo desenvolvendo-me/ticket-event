@@ -5,7 +5,7 @@ if Rails.env.development?
   template_ticket = TemplateTicket.create(name: 'Preto e Branco', description: "Ingresso na vertical com as cores preto e branco que permite alterar DATA_EVENTO, NOME, FOTO e NUMERO", version: "1")
   template_ticket.svg.attach(io: File.open(Rails.root.join('spec/support', 'ticket-2.svg')), filename: 'ticket-2.svg')
 
-  event = Event.create(name: 'Bootcamp Imersão 1ª Vaga', launch: 1, description: "Aprenda a conquistar sua 1ª vaga na programação mesmo sem nenhuma experiência", date: (Date.today + 20.hours + 30.minutes) + 21.days, community_link: 'https://discord.gg/Tq3KQZTd')
+  event = Event.create(name: 'Bootcamp Imersão 1ª Vaga', launch: 1, description: "Aprenda a conquistar sua 1ª vaga na programação mesmo sem nenhuma experiência", date: (Date.today + 20.hours + 30.minutes) + 21.days, community_link: 'https://discord.gg/Tq3KQZTd', purchase_link: 'https://pagar.me/blog/checkout-de-pagamento/', purchase_date: Time.zone.now + 5.hours)
   event.template.attach(io: File.open(Rails.root.join('spec/support', 'ticket.svg')), filename: 'ticket.svg')
   event.certificate_template.attach(io: File.open(Rails.root.join('spec/support', 'certificate_template.svg')), filename: 'certificate_template.svg')
 
