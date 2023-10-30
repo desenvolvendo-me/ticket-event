@@ -1,26 +1,39 @@
 <section class="bg-white dark:bg-gray-900 flex flex-col items-center">
-  <div class="max-w-screen-lg flex flex-col mx-2 sm:mx-5 md:mx-20 lg:py-16">
-    <card class="flex flex-col rounded-t-3xl overflow-hidden shadow-xl">
-      <div class="flex-2 lg:mt-0 lg:col-span-5 lg:flex">
-        <% if @lesson_checker %>
-          <iframe class="w-full" src="<%= Lessons::Embedder.embed_url(@lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <% else %>
-          <%= image_tag @lesson.thumbnail, class: 'max-w-200px' if @lesson.thumbnail.attached? %>
-        <% end %>
-      </div>
-      <div class="mr-auto place-self-center lg:col-span-7 items-center px-4 py-2 flex-1">
-        <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white"><%= @lesson.title %></h1>
-        <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"><%= @lesson.description %></p>
-        <%= link_to lesson_validate_path(@event, @lesson), class: "inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800" do %>
-          <%= I18n.t('views.external.lesson.view_show.quiz_access') %>
-          <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-          </svg>
-        <% end %>
-      </div>
-    </card>
-    <%= link_to @purchase[:link], target: "_blank", class: "inline-flex items-center justify-center px-5 py-3 mt-8 mx-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900" do %>
-      <%= @purchase[:i18n] %>
-    <% end %>
+  <div class="flex flex-wrap justify-center">
+    <div class="max-w-screen-lg flex flex-col mx-2 sm:mx-5 md:mx-20 lg:py-16">
+      <card class="flex flex-col rounded-t-3xl overflow-hidden shadow-xl">
+        <div class="flex-2 lg:mt-0 lg:col-span-5 lg:flex">
+          <% if @lesson_checker %>
+            <iframe class="w-full" src="<%= Lessons::Embedder.embed_url(@lesson.link) %>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <% else %>
+            <%= image_tag @lesson.thumbnail, class: 'max-w-200px' if @lesson.thumbnail.attached? %>
+          <% end %>
+        </div>
+        <div class="mr-auto place-self-center lg:col-span-7 items-center px-4 py-2 flex-1">
+          <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white"><%= @lesson.title %></h1>
+          <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"><%= @lesson.description %></p>
+          <%= link_to lesson_validate_path(@event, @lesson), class: "inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800" do %>
+            <%= I18n.t('views.external.lesson.view_show.quiz_access') %>
+            <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          <% end %>
+        </div>
+      </card>
+      <%= link_to @purchase[:link], target: "_blank", class: "inline-flex items-center justify-center px-5 py-3 mt-8 mx-5 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900" do %>
+        <%= @purchase[:i18n] %>
+      <% end %>
+    </div>
+    <div class="flex flex-col justify-center py-10 space-y-6">
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=http://127.0.0.1:3000/1-bootcamp-imersao-1-vaga/ticket/61991707479" class="bg-indigo-500 hover:bg-indigo-700 text-white px-4 py-2 rounded-full">
+        <%= t('views.external.lesson.view_show.share_links.linkedin') %>
+      </a>
+      <a href="https://mail.google.com/mail/?view=cm&amp;to=http://127.0.0.1:3000/1-bootcamp-imersao-1-vaga/ticket/61991707479" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-full">
+        <%= t('views.external.lesson.view_show.share_links.gmail') %>
+      </a>
+      <a href="whatsapp://send?text=http://127.0.0.1:3000/1-bootcamp-imersao-1-vaga/ticket/61991707479" class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded-full">
+        <%= t('views.external.lesson.view_show.share_links.whatsapp') %>
+      </a>
+    </div>
   </div>
 </section>
