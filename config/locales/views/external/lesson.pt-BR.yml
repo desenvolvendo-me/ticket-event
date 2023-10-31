@@ -15,7 +15,7 @@ pt-BR:
           purchase_link: "Clique aqui para comprar!"
           share_links:
             linkedin: "Compartilhar no linkedIn"
-            gmail: "Compartilhar por Gmail"
+            email: "Compartilhar por E-mail"
             whatsapp: "Compartilhar no whatsapp"
         search:
           welcome: "Seja Bem Vindo!"
