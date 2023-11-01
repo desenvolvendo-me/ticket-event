@@ -3,6 +3,7 @@ class External::EventsController < ExternalController
 
   def index
     @event_checker = Access::Checker.call(@event, :date)
+    @purchase_checker = Access::Checker.call(@event, :purchase_date)
   end
 
   private
