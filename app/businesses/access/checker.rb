@@ -15,7 +15,7 @@ module Access
         lesson_available?
       elsif @resource.is_a?(Event)
         if @field == :purchase_date
-          purchase_available? ? { link: @resource.purchase_link, i18n: I18n.t('views.external.lesson.view_show.purchase_link') } : { link: @resource.community_link, i18n: I18n.t('views.external.lesson.view_show.community_access') }
+          purchase_available?
         elsif @field == :date
           event_available?
         else
@@ -30,13 +30,7 @@ module Access
       @resource.launch_datetime <= Time.zone.now
     end
     def event_available?
-      if @resource.date > Time.zone.now
-
-        elsif @resource.date <= Time.zone.now && @resource.purchase_date >= Time.zone.now
-
-      else @resource.purchase_date > Time.zone.now
-
-      end
+      @resource.date > Time.zone.now
     end
     def purchase_available?
       @resource.purchase_date <= Time.zone.now
