@@ -20,7 +20,7 @@
             <div class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
               <% if @event_checker %>
                 <%= link_to("Acessar Ingresso", search_ticket_path(@event.slug)) %>
-              <% else %>
+              <% elsif link_to("Acessar Compra", @event.purchase_link) %>
                 <%= link_to("Acessar Aulas", lessons_index_path) %>
               <% end %>
             </div>
@@ -41,5 +41,9 @@
     <a href="whatsapp://send?text=<%= event_path(@event.slug) %>" class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded-full">
       Compartilhar no WhatsApp
     </a>
+
+    <div class="bg-red-500 hover:bg-red-700 text-white px-4 py-2 rounded-full">
+      <%= link_to("Comprar Curso", @event.purchase_link) %>
+    </div>
   </div>
 </div>
