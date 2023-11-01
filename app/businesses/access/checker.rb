@@ -4,7 +4,6 @@ module Access
       @resource = resource
       @field = field
     end
-
     def call
       available?
     end
@@ -26,14 +25,18 @@ module Access
         raise ArgumentError, I18n.t('businesses.access.checker.resource_error')
       end
     end
-
     def lesson_available?
       # TODO: Refatorar para que retorne de forma mais inteligente, sendo assim retornará um hash com 2 opções, ou o link de acesso ou a data de lançamento da aula dependendo da condicional. Ex: "Acessar Ingresso", search_ticket_path
       @resource.launch_datetime <= Time.zone.now
     end
-
     def event_available?
-      @resource.date > Time.zone.now
+      if @resource.date > Time.zone.now
+
+        elsif @resource.date <= Time.zone.now && @resource.purchase_date >= Time.zone.now
+
+      else @resource.purchase_date > Time.zone.now
+
+      end
     end
     def purchase_available?
       @resource.purchase_date <= Time.zone.now
