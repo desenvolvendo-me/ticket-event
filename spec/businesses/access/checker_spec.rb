@@ -27,25 +27,18 @@ RSpec.describe Access::Checker do
         event = create(:event, date: Time.zone.now - 1.hour)
         checker = Access::Checker.call(event, :date)
         expect(checker).to be false
-      end
+        end
 
-      it 'returns a hash when the @event.purchase_date is available' do
-        # Dado
+      it 'returns true if the event.purchase is not available' do
         event = create(:event, purchase_date: Time.zone.now - 1.hour)
-        # Quando
-        result = Access::Checker.call(event, :purchase_date)
-        # Então
-        expect(result[:link]).to eq(event.purchase_link)
-        expect(result[:i18n]).to eq(I18n.t('views.external.lesson.view_show.purchase_link'))
-      end
-      it 'returns other hash when the @event.purchase_date is not available' do
-        # Dado
+        purchase_checker = Access::Checker.call(event, :purchase_date)
+        expect(purchase_checker).to be true
+        end
+
+      it 'returns false if the event.purchase is not available' do
         event = create(:event, purchase_date: Time.zone.now + 1.hour)
-        # Quando
-        result = Access::Checker.call(event, :purchase_date)
-        # Então
-        expect(result[:link]).to eq(event.community_link)
-        expect(result[:i18n]).to eq(I18n.t('views.external.lesson.view_show.community_access'))
+        purchase_checker = Access::Checker.call(event, :purchase_date)
+        expect(purchase_checker).to be false
       end
     end
 
