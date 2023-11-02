@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     resources :students
     get 'select_student_csv_for_students', to: "students#select_student_csv", as: :students_select_student_csv
     post 'import_student_csv_for_students', to: "students#import_student_csv", as: :students_import_student_csv
+    get 'select_event', to: 'students#select_event', as: :students_select_event
+    post 'create_certificate', to: 'students#create_certificate', as: :students_create_certificate
 
     resources :tickets, only: [:index, :show]
     get 'select_student_csv', to: "tickets#select_student_csv", as: :tickets_select_student_csv
