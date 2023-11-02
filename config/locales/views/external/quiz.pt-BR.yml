@@ -1,0 +1,10 @@
+pt-BR:
+  views:
+    external:
+      quiz:
+        result:
+          nice_answer: "Você acertou esta pergunta!"
+          wrong_answer: "Você errou esta pergunta."
+          another_answer: "A resposta correta era:"
+        show:
+          submit: "Enviar respostas"

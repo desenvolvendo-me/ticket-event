@@ -1,0 +1,59 @@
+pt-BR:
+  activerecord:
+    attributes:
+      student:
+        name: "Nome"
+        email: "Email"
+        phone: "Telefone"
+        profile_social: "Perfil de rede social"
+        type_social: "Tipo de rede social"
+  views:
+    manager:
+      student:
+        new:
+          title: "Novo Estudante"
+          placeholders:
+            name: "Nome"
+            email: "nome@gmail.com"
+            phone: "Número de telefone"
+            social_profile: "Perfil de rede social"
+            social_type: "Tipo de rede social"
+            save: "Salvar"
+        index:
+          title: "Estudantes"
+          register_students: "Cadastrar Estudantes"
+          columns:
+            id: "Id"
+            name: "Nome"
+            email: "Email"
+            phone: "Telefone"
+            profile_social: "Perfil rede social"
+            type_social: "Tipo de rede social"
+        show:
+          name: "Nome"
+          email: "Email"
+          phone: "Telefone"
+          profile_social: "Perfil rede social"
+          type_social: "Tipo de rede social"
+        edit:
+          title: "Editar Estudante"
+        select_student_csv:
+          event: "Evento"
+          register_students: "Cadastrar Estudantes"
+          file: "Arquivo"
+          submit: "Enviar"
+          csv_file_with_a_list_of_students: "Um arquivo CSV que contenha um lista de estudantes"
+        links:
+          new: "Novo Estudante"
+          show: "Ver"
+          back: "Voltar"
+          edit: "Editar"
+          destroy: "Deletar"
+  controllers:
+    manager:
+      students:
+        notices:
+          student_created: "Estudante criado com sucesso."
+          student_updated: "Estudante atualizado com sucesso."
+          student_destroyed: "Estudante deletado com sucesso."
+          registered_students: "Estudantes cadastrados com sucesso."

@@ -1,0 +1,20 @@
+build:
+  docker:
+    web: Dockerfile
+  config:
+    BUNDLE_INSTALL_ARGS: --jobs 10 --retry=3
+    RAILS_ENV: production
+    RAILS_LOG_LEVEL: "debug"
+    RAILS_LOG_TO_S: "true"
+    RAILS_SERVE_STATIC_FILES: "true"
+    INSTALL_DEPENDENCIES: curl openssh-server python
+
+run:
+  db:
+    command:
+      - bundle exec rails db:migrate
+    image: web
+  web:
+    command:
+      - bundle exec puma -C config/puma.rb
+    image: web

@@ -1,0 +1,19 @@
+<div class="w-full mt-4">
+  <p style="color: green"><%= notice %></p>
+
+  <div class="max-w-md mx-auto">
+    <%= render "manager/students/student", student: @student %>
+  </div>
+
+  <div class="mt-6 max-w-md mx-auto">
+    <%= link_to link_to t('views.manager.student.links.edit'), edit_manager_student_path(@student), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  %>
+  </div>
+
+  <div class="mt-6 max-w-md mx-auto">
+    <%= link_to t('views.manager.student.links.back'), manager_students_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  %>
+  </div>
+
+  <div class="mt-6 max-w-md mx-auto">
+    <%= button_to t('views.manager.student.links.destroy'), manager_student_path(@student), method: :delete, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  %>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<section class="bg-white dark:bg-gray-900 relative shadow-md sm:rounded-lg">
+  <div class="px-4 mx-auto max-w-2xl pb-8">
+    <%= form_with(model: @lesson, url: @lesson.persisted? ? manager_lesson_path(@lesson) : manager_lessons_path, local: true, html: { multipart: true }) do |form| %>
+      <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+
+        <div class="field">
+          <%= form.label :event_id, t('activerecord.attributes.lesson.event') %>
+          <%= form.collection_select(:event_id, @event_options, :second, :first, { include_blank: 'Select an event' }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500") %>
+        </div>
+        <div class="field">
+          <%= form.label :link, t('activerecord.attributes.lesson.link'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.text_field :link, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: "Your link here" %>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t('activerecord.attributes.lesson.title') %></label>
+          <%= form.text_field :title, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: "Type product name", required: true %>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t('activerecord.attributes.lesson.description') %></label>
+          <%= form.text_area :description, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: "Your description here" %>
+        </div>
+        <div class="field">
+          <%= form.label :launch_datetime, t('activerecord.attributes.lesson.launch_datetime'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.datetime_local_field :launch_datetime, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+        </div>
+        <div class="field">
+          <%= form.label :thumbnail, t('activerecord.attributes.lesson.thumbnail') %>
+          <%= form.file_field :thumbnail, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+        </div>
+
+      </div>
+      <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+        <%= t('views.manager.lesson.save') %>
+      </button>
+    <% end %>
+  </div>
+</section>

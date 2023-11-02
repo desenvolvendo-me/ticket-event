@@ -1,0 +1,25 @@
+pt-BR:
+  views:
+    manager:
+      lesson:
+        index:
+          search: "Pesquisar"
+          title_name: "Título"
+          event: "Evento"
+          actions: "Ações"
+          list:
+            showing: "Mostrando"
+            of: "de"
+            previous: "Anterior"
+            next: "Próxima"
+        delete_confirm: "Tem certeza que deseja excluir esta aula?"
+        view_new:
+          title: "Nova aula"
+        view_edit:
+          title: "Editar aula"
+        show: "Mostrar"
+        edit: "Editar"
+        delete: "Apagar"
+        new: "Nova aula"
+        back: "Voltar para aulas"
+        save: "Salvar"

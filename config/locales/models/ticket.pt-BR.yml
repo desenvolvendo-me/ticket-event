@@ -1,0 +1,26 @@
+pt-BR:
+  activerecord:
+    models:
+      ticket:
+        one: "Ingresso"
+        other: "Ingressos"
+      template_ticket:
+        one: "Estilo de Ingresso"
+        other: "Estilos de Ingressos"
+    attributes:
+      ticket:
+        send_email_at: "Email Enviado Em"
+        event: "Evento"
+        student: "Estudante"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
+        event_id: "Evento"
+        file: "Arquivo"
+      template_ticket:
+        name: "Nome"
+        description: "Descrição"
+        version: "Versão"
+        svg: "Template"
+        created_at: "Criado Em"
+        updated_at: "Atualizado Em"
+

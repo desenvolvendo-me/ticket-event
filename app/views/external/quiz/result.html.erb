@@ -1,0 +1,34 @@
+<% if notice.present? %>
+  <div class="text-center bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+    <%= notice.html_safe %>
+  </div>
+<% elsif alert.present? %>
+  <div class="text-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <h1><%= I18n.t('views.external.lesson.result.show_result') %>: <%= @ticket.student_score %> %</h1>
+    <%= alert.html_safe %>
+    <%= link_to I18n.t('views.external.lesson.result.link_to_quiz_again'), quiz_path(@lesson.event.slug, @lesson), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>
+
+<div class="max-w-md mx-auto mt-6 p-4 bg-white rounded-lg shadow-lg">
+  <h1><%= @lesson.title %></h1>
+  <h2><%= @quiz.title %></h2>
+
+  <% @quiz_questions.each do |quiz_question| %>
+    <div class="mb-6">
+      <% if @student_answers["correct_responses"]["#{quiz_question.id}"] %>
+        <p class="text-green-500"><%= I18n.t('views.external.quiz.result.nice_answer') %></p>
+        <p class="text-lg font-semibold"><%= quiz_question.description %></p>
+        <p class="text-green-500"><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
+      <% else %>
+        <p class="text-red-500"><%= I18n.t('views.external.quiz.result.wrong_answer') %></p>
+        <p class="text-lg font-semibold"><%= quiz_question.description %></p>
+        <p class="text-red-500"><%= I18n.t('views.external.quiz.result.another_answer') %><%= quiz_question["answer#{quiz_question.correct_answer}"] %></p>
+      <% end %>
+
+    </div>
+  <% end %>
+  <% if @quiz_result %>
+    <%= link_to I18n.t('views.external.lesson.result.link_to_return_lessons'), lessons_index_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <% end %>
+</div>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ticket Event</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_importmap_tags %>
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="h-screen">
+
+  <%= render "layouts/top_menu" %>
+  <%= yield %>
+
+</div>
+
+
+<script>
+    let icon1 = document.getElementById("icon1");
+    let menu1 = document.getElementById("menu1");
+    const showMenu1 = (flag) => {
+        if (flag) {
+            icon1.classList.toggle("rotate-180");
+            menu1.classList.toggle("hidden");
+        }
+    };
+
+    let Main = document.getElementById("Main");
+    let open = document.getElementById("open");
+    let close = document.getElementById("close");
+
+    const showNav = (flag) => {
+        if (flag) {
+            Main.classList.toggle("-translate-x-full");
+            Main.classList.toggle("translate-x-0");
+            open.classList.toggle("hidden");
+            close.classList.toggle("hidden");
+        }
+    };
+</script>
+
+</body>
+</html>

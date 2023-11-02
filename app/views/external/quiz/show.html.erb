@@ -1,0 +1,28 @@
+<% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+
+<%= form_with(url: quiz_submit_path, method: :post, class: "max-w-md mx-auto mt-6 p-4 bg-white rounded-lg shadow-lg") do |form| %>
+  <%= @lesson.title %>
+  <br>
+  <%= @quiz.title %>
+
+  <% @quiz_questions.each do |quiz_question| %>
+
+    <div class="mb-6">
+      <p class="text-lg font-semibold"><%= quiz_question.description %></p>
+
+      <% QuizQuestion.answers.keys.each do |answer| %>
+        <label class="inline-flex items-center mt-2">
+          <%= form.radio_button "responses[#{quiz_question.id}]", QuizQuestion.answers[answer], class: "form-radio h-5 w-5 text-blue-600" %>
+          <span class="ml-2"><%= quiz_question[answer] %></span>
+        </label>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= form.submit I18n.t('views.external.quiz.show.submit'), class: "bg-blue-500 text-white font-semibold py-2 px-4 rounded" %>
+<% end %>
