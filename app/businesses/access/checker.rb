@@ -1,8 +1,8 @@
 module Access
   class Checker < BusinessApplication
-    def initialize(resource, field = :field)
+    def initialize(resource, launch = :launch)
       @resource = resource
-      @field = field
+      @launch = launch
     end
     def call
       available?
@@ -14,9 +14,9 @@ module Access
       if @resource.is_a?(Lesson)
         lesson_available?
       elsif @resource.is_a?(Event)
-        if @field == :purchase_date
+        if @launch == :purchase_date
           purchase_available?
-        elsif @field == :date
+        elsif @launch == :date
           event_available?
         else
           raise ArgumentError, I18n.t('businesses.access.checker.argument_error')
