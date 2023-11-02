@@ -19,25 +19,25 @@ RSpec.describe Access::Checker do
     context 'when the resource is an Event' do
       it 'returns true if the event is available' do
         event = create(:event, date: Time.zone.now + 1.hour)
-        checker = Access::Checker.call(event, :date)
+        checker = Access::Checker.call(event, :available)
         expect(checker).to be true
       end
 
       it 'returns false if the event is not available' do
         event = create(:event, date: Time.zone.now - 1.hour)
-        checker = Access::Checker.call(event, :date)
+        checker = Access::Checker.call(event, :available)
         expect(checker).to be false
         end
 
       it 'returns true if the event.purchase is not available' do
         event = create(:event, purchase_date: Time.zone.now - 1.hour)
-        purchase_checker = Access::Checker.call(event, :purchase_date)
+        purchase_checker = Access::Checker.call(event, :purchase)
         expect(purchase_checker).to be true
         end
 
       it 'returns false if the event.purchase is not available' do
         event = create(:event, purchase_date: Time.zone.now + 1.hour)
-        purchase_checker = Access::Checker.call(event, :purchase_date)
+        purchase_checker = Access::Checker.call(event, :purchase)
         expect(purchase_checker).to be false
       end
     end
@@ -47,7 +47,7 @@ RSpec.describe Access::Checker do
         it 'raises an ArgumentError' do
           resource = double('anyEventNeitherLesson')
 
-          expect { Access::Checker.call(resource, :date) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.resource_error'))
+          expect { Access::Checker.call(resource, :available) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.resource_error'))
         end
       end
 
@@ -55,7 +55,7 @@ RSpec.describe Access::Checker do
         it 'raises an ArgumentError' do
           event = create(:event)
           # without parameter :date or purchase_date will raise an error
-          expect { Access::Checker.call(event) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.argument_error'))
+          expect { Access::Checker.call(event, :not_exist) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.argument_error'))
         end
       end
     end
