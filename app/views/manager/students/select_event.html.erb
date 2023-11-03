@@ -3,7 +3,7 @@
     <div class="attributes_table source" id="attributes_table_source_1">
       <table>
         <tbody>
-        <%= form_for :certificate, url: { action: "create_certificate", student_id: @student_id }, html: { :multipart => true } do |f| %>
+        <%= form_for :certificate, url: { action: "create_certificate"}, html: { :multipart => true } do |f| %>
           <tr class="row row-key">
             <th><%= f.label :event_id, t("active_admin.views.students.event") %></th>
             <td><%= f.select :event_id, options_for_select(Event.all.collect { |event| [event.name, event.id] }), prompt: t("active_admin.views.students.select_event") %></td>
