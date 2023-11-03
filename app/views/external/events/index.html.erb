@@ -1,3 +1,10 @@
+<div class="h-auto max-w-lg mx-auto">
+  <% if @event.image.attached? %>
+    <%= image_tag(@event.image_as_config.image) %>
+  <% else %>
+    <%= image_tag('pattern_image.jpg') %>
+  <% end %>
+</div>
 <div class="flex flex-col-2 items-center justify-center" >
   <section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]" >
     <div class="container mx-auto" >
