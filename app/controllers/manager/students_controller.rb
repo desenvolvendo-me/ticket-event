@@ -49,6 +49,13 @@ module Manager
     end
 
     def create_certificate
+      event = Event.find(params[:certificate][:event_id])
+      student = Student.find(params[:id])
+      certificate = Certificate.create(student_id: student.id, event_id: event.id)
+      Certificates::Builder.call(certificate: certificate)
+
+      redirect_to action: :index, notice: t("active_admin.notice.student.certificate_generated_successfully")
+      # TODO: Once Manager::Certificate resources are implemented, change redirect to the Certificate index instead Students
     end
 
     private
