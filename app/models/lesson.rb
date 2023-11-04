@@ -22,7 +22,7 @@
 #
 class Lesson < ApplicationRecord
   belongs_to :event
-  validates :link, :title, :description, presence: true
+  validates_presence_of :link, :title, :description
   has_one :quiz, dependent: :destroy
   has_one_attached :thumbnail
 
@@ -33,6 +33,7 @@ class Lesson < ApplicationRecord
 
     if valid.present?
       errors.add(:event, valid)
+      throw :error
     end
   end
 end
