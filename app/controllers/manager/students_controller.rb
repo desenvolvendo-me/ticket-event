@@ -44,9 +44,7 @@ module Manager
       redirect_to manager_students_url, notice: t("controllers.manager.students.notices.registered_students")
     end
 
-    def select_event
-      @student_id = params[:id]
-    end
+    def select_event; end
 
     def create_certificate
       event = Event.find(params[:certificate][:event_id])
