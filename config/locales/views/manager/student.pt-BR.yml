@@ -35,6 +35,7 @@ pt-BR:
           phone: "Telefone"
           profile_social: "Perfil rede social"
           type_social: "Tipo de rede social"
+          generate_certificate: "Gerar Certificado"
         edit:
           title: "Editar Estudante"
         select_student_csv:
@@ -43,6 +44,10 @@ pt-BR:
           file: "Arquivo"
           submit: "Enviar"
           csv_file_with_a_list_of_students: "Um arquivo CSV que contenha um lista de estudantes"
+        select_event:
+          generate_certificate: "Gerar Certificado"
+          student: "Estudante"
+          submit: "Gerar"
         links:
           new: "Novo Estudante"
           show: "Ver"

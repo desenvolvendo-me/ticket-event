@@ -1,11 +1,11 @@
 <div class="w-full mt-8">
   <div class="max-w-lg mx-auto">
-    <h1 class="text-4xl font-semibold text-gray-900 mb-4 text-center">Gerar Certificado</h1>
+    <h1 class="text-4xl font-semibold text-gray-900 mb-4 text-center"><%= t("views.manager.student.select_event.generate_certificate") %></h1>
   </div>
 
   <div class="max-w-lg mx-auto">
     <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-      Estudante
+      <%= t("views.manager.student.select_event.student") %>
     </p>
     <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
       <%= @student.name %>
@@ -22,7 +22,7 @@
       %>
     </div>
     <div class="text-left max-w-lg mx-auto mt-6">
-      <%= f.submit "Enviar", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= f.submit t("views.manager.student.select_event.submit"), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
     </div>
   <% end %>
 </div>
