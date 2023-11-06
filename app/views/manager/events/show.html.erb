@@ -1,9 +1,14 @@
 <section class="h-screen bg-white py-10 mb-10 dark:bg-gray-900">
   <div class="bg-white shadow-xl mx-auto max-w-xl rounded-md">
     <div class="p-3 fa-align-center">
-      <h2 class="mb-2 text-xl text-center font-semibold leading-none text-gray-900 md:text-2xl dark:text-white"><% @event.name %></h2>
-      <p class="mb-4 text-l text-center font-normal leading-none text-gray-900 md:text-2xl dark:text-white"><% @event.description %></p>
       <dl class="flex flex-col items-center justify-center space-x-6">
+        <div>
+          <% if @event.image.attached? %>
+            <%= image_tag(@event.image_medium.image) %>
+          <% else %>
+            <%= image_tag('pattern_image.jpg') %>
+          <% end %>
+        </div>
         <div class="flex flex-col items-center">
           <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"><%= t('activerecord.attributes.event.name') %></dt>
           <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"><%= @event.name %></dd>
