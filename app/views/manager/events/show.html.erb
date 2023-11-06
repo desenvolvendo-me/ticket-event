@@ -4,7 +4,7 @@
       <dl class="flex flex-col items-center justify-center space-x-6">
         <div>
           <% if @event.image.attached? %>
-            <%= image_tag(@event.image_as_config.image) %>
+            <%= image_tag(@event.image_medium.image) %>
           <% else %>
             <%= image_tag('pattern_image.jpg') %>
           <% end %>
