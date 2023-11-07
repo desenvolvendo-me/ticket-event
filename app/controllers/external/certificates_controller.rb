@@ -3,7 +3,9 @@ class External::CertificatesController < ExternalController
 
   def certificate; end
 
-  def share; end
+  def share
+    render "certificate"
+  end
 
   def search
     @slug_event = params[:slug_event]

@@ -9,6 +9,25 @@
       </div>
     </div>
   </div>
-  <%= render "certificate_image" %>
+  <div class="flex items-center justify-center space-x-6">
+    <div>
+      <%= render "certificate_image" %>
+    </div>
+    <% if current_page?(action: 'share') %>
+      <div class="flex flex-col justify-center space-y-6">
+        <a href="https://www.linkedin.com/sharing/share-offsite/?url=<%= event_certificate_url(@certificate.event.slug, @certificate.student.phone) %>" class="bg-indigo-500 hover:bg-indigo-700 text-white px-4 py-2 rounded-full">
+          Compartilhar no LinkedIn
+        </a>
+        <!-- TODO: Update Gmail share link -->
+        <a href="https://mail.google.com" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-full">
+          Compartilhar por Gmail
+        </a>
+        <!-- TODO: Update WhatsApp share link -->
+        <a href="https://api.whatsapp.com" class="bg-green-500 hover:bg-green-700 text-white px-4 py-2 rounded-full">
+          Compartilhar no WhatsApp
+        </a>
+      </div>
+    <% end %>
+  </div>
 </div>
 
