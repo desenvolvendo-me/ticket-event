@@ -4,7 +4,7 @@
     <h1 class="text-4xl font-semibold text-gray-900 mb-4 text-center"><%= t("views.manager.student.select_student_csv.register_students") %></h1>
   </div>
 
-  <%= form_with(model: @student, url: manager_students_import_student_csv_path, method: :post, local: true, html: { multipart: true }) do |form| %>
+  <%= form_with(model: @student, url: import_student_csv_manager_students_path, method: :post, local: true, html: { multipart: true }) do |form| %>
     <div class="max-w-lg mx-auto mt-4">
       <%= form.label :file, t("views.manager.student.select_student_csv.file"), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
       <%= form.file_field :file, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>

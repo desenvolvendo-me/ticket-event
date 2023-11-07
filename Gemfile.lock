@@ -206,6 +206,9 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (1.2.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -376,6 +379,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.12.1)
+    ruby-vips (2.2.0)
+      ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
     ruby_http_client (3.5.5)
@@ -504,6 +509,7 @@ DEPENDENCIES
   friendly_id (~> 5.4.0)
   groupdate
   httparty
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   letter_opener_web

@@ -1,0 +1,8 @@
+pt-BR:
+  views:
+    certificates:
+      share:
+        see_my_certificate: "Veja meu certificado:"
+        share_on_linkedin: "Compartilhar no LinkedIn"
+        share_through_gmail: "Compartilhar por Gmail"
+        share_on_whatsapp: "Compartilhar no WhatsApp"
