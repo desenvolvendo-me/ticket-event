@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     put ':slug_event/ticket/:phone/update', to: "tickets#update", as: :update_event_ticket
 
     get ':slug_event/certificate/:phone', to: "certificates#certificate", as: :event_certificate
+    get ':slug_event/certificate/:phone/share', to: "certificates#share", as: :event_certificate_share
     get ':slug_event/certificate', to: "certificates#search", as: :search_certificate
     post 'certificate/form', to: "certificates#form", as: :form_certificate
 
