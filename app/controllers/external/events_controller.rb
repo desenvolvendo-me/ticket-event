@@ -2,8 +2,8 @@ class External::EventsController < ExternalController
   before_action :get_event
 
   def index
-    @event_checker = Access::Checker.call(@event, :date)
-    @purchase_checker = Access::Checker.call(@event, :purchase_date)
+    @event_checker = Access::Checker.call(@event, :available)
+    @purchase_checker = Access::Checker.call(@event, :purchase)
   end
 
   private

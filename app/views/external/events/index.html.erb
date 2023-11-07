@@ -18,7 +18,7 @@
               <%= I18n.localize(@event.date, format: :long) %>
             </div>
             <div class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              <% if @purchase_checker %>
+              <% if @purchase_checker[:access] %>
                 <%= link_to(I18n.t('views.external.event.index.access_purchase'), @event.purchase_link) %>
               <% elsif @event_checker %>
                 <%= link_to(I18n.t('views.external.event.index.access_ticket'), search_ticket_path(@event.slug)) %>
