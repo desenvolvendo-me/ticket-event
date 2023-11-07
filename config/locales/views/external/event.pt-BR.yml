@@ -1,0 +1,8 @@
+pt-BR:
+  views:
+    external:
+      event:
+        index:
+          access_purchase: "Acessar compra"
+          access_ticket: "Acessar ticket"
+          access_lessons: "Acessar aulas"
