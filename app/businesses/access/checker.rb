@@ -12,15 +12,16 @@ module Access
     private
 
     def available?
-      raise ArgumentError, I18n.t('businesses.access.checker.resource_error') unless [Lesson, Event].include? @resource
-      raise ArgumentError, I18n.t('businesses.access.checker.argument_error') unless [:launch, :purchase, :available].include? @check_type
+      raise ArgumentError, I18n.t('businesses.access.checker.resource_error') unless [Lesson, Event]
+      raise ArgumentError, I18n.t('businesses.access.checker.argument_error') unless [:purchase_date, :date]
 
-      if @resource.is_a?(Lesson)
+      case @resource
+      when Lesson
         lesson_available?
-      elsif @resource.is_a?(Event)
-        if @check_type == :purchase
+      when Event
+        if @check_type == :purchase_date
           purchase_available?
-        elsif @check_type == :available
+        elsif @check_type == :date
           event_available?
         end
       end
@@ -36,7 +37,7 @@ module Access
     end
 
     def purchase_available?
-      @resource.purchase_date <= Time.zone.now
+      @resource.purchase_date < Time.zone.now
     end
   end
 end
