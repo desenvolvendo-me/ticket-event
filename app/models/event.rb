@@ -31,6 +31,20 @@ class Event < ApplicationRecord
 
   has_one_attached :template
   has_one_attached :certificate_template
+  has_one_attached :image
+
+  def image_large
+    return unless image.content_type.in?(%w[image/jpeg image/png])
+    image.variant(resize_to_limit: [1600,900]).processed
+  end
+  def image_medium
+    return unless image.content_type.in?(%w[image/jpeg image/png])
+    image.variant(resize_to_limit: [940,348]).processed
+  end
+  def image_small
+    return unless image.content_type.in?(%w[image/jpeg image/png])
+    image.variant(resize_to_limit: [600,600]).processed
+  end
 
   scope :active, -> { where(active: true) }
 
