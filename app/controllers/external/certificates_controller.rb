@@ -4,6 +4,7 @@ class External::CertificatesController < ExternalController
   def certificate; end
 
   def share
+    @share_url = event_certificate_url(@certificate.event.slug, @certificate.student.phone)
     render "certificate"
   end
 
