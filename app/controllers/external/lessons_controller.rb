@@ -13,7 +13,7 @@ class External::LessonsController < ExternalController
   end
 
   def show
-    @purchase = Access::Checker.call(@event, :purchase_date)
+    @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
   end
 

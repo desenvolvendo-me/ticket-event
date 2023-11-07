@@ -12,23 +12,25 @@ module Access
     private
 
     def available?
-      raise ArgumentError, I18n.t('businesses.access.checker.resource_error') unless [Lesson, Event]
-      raise ArgumentError, I18n.t('businesses.access.checker.argument_error') unless [:purchase_date, :date]
+      raise ArgumentError, I18n.t('businesses.access.checker.resource_error') unless [Lesson, Event].include?(@resource.class)
+      raise ArgumentError, I18n.t('businesses.access.checker.argument_error') unless [:purchase, :available, :launch].include?(@check_type)
+      if @resource.class == Event && ![:purchase, :available].include?(@check_type)
+        raise ArgumentError, I18n.t('businesses.access.checker.argument_error')
+      end
 
       case @resource
       when Lesson
         lesson_available?
       when Event
-        if @check_type == :purchase_date
-          purchase_available?
-        elsif @check_type == :date
+        if @check_type == :purchase
+          purchase_available? ? { link: @resource.purchase_link, i18n: I18n.t('views.external.lesson.view_show.purchase_link'), access: true } : { link: @resource.community_link, i18n: I18n.t('views.external.lesson.view_show.community_access'), access: false }
+        elsif @check_type == :available
           event_available?
         end
       end
     end
 
     def lesson_available?
-      # TODO: Refatorar para que retorne de forma mais inteligente, sendo assim retornará um hash com 2 opções, ou o link de acesso ou a data de lançamento da aula dependendo da condicional. Ex: "Acessar Ingresso", search_ticket_path
       @resource.launch_datetime <= Time.zone.now
     end
 
