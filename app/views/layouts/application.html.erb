@@ -138,6 +138,7 @@
                 <span class="ml-3">Help</span>
               </a>
             </li>
+            <%= button_to "logout", destroy_user_session_path, method: :delete  %>
           </ul>
         </div>
         <div class="sticky bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20 border-r border-gray-200 dark:border-gray-700">
