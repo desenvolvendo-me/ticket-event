@@ -1,7 +1,8 @@
 if Rails.env.development?
   AdminUser.create!(email: 'admin@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
   User.create!(email: 'marcodotcastro@gmail.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
-  ManagerUser.create!(email: 'infoprodutor@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
+  infoprodutor = ManagerUser.create!(email: 'infoprodutor@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
+  infoprodutor2 = ManagerUser.create!(email: 'produtor2@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
   StudentUser.create!(email: 'student@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
 
   template_ticket = TemplateTicket.create(name: 'Preto e Branco', description: "Ingresso na vertical com as cores preto e branco que permite alterar DATA_EVENTO, NOME, FOTO e NUMERO", version: "1")
@@ -34,31 +35,36 @@ if Rails.env.development?
                 description: 'for Pro episodes and more!',
                 launch_datetime: Time.zone.now,
                 thumbnail: thumbnail,
-                event: event)
+                event: event,
+                manager_user_id: infoprodutor.id)
   lesson_railscasts = Lesson.create(link: 'https://youtu.be/_XUdbOFrDRQ?si=XO90bMeEXed_JoZF',
                 title: 'Ruby on Rails - Railscasts #284 Active Admin',
                 description: 'Active Admin allows you to quickly build an admin interface with just a few commands.',
                 launch_datetime: Time.zone.now,
                 thumbnail: thumbnail,
-                event: event)
+                event: event,
+                manager_user_id: infoprodutor.id)
   lesson_rails_fullcourse = Lesson.create(link: 'https://youtu.be/fmyvWz5TUWg?si=hVjWIKZShmZBPrRs',
                 title: 'Learn Ruby on Rails - Full Course',
                 description: 'Learn Ruby on Rails in this full course for beginners. Ruby on Rails is a server-side web application framework used for creating full stack web apps.',
                 launch_datetime: Time.zone.now + 3.hours,
                 thumbnail: thumbnail,
-                event: event)
+                event: event,
+                manager_user_id: infoprodutor.id)
   lesson_openvagas = Lesson.create(link: 'https://youtu.be/dWVo2Ma6ZpU?si=uZsta-amoNZIaaKi',
                 title: 'Open Vagas - Aula 1 - Criando um sistema de vagas no Ruby on Rails',
                 description: 'Este é o primeiro vídeo da serie criando um sistema de vagas.',
                 launch_datetime: Time.zone.now + 5.hours,
                 thumbnail: thumbnail,
-                event: event)
+                event: event,
+                manager_user_id: infoprodutor.id)
   lesson_comecando_ruby = Lesson.create(link: 'https://www.youtube.com/live/3qgcPXnmbA8?si=UF-k8re3bAAGsvfF',
                 title: 'Começando com o Ruby on Rails',
                 description: 'Talk sobre como iniciar no mundo Ruby on Rails',
                 launch_datetime: Time.zone.now + 72.hours,
                 thumbnail: thumbnail,
-                event: event)
+                event: event,
+                manager_user_id: infoprodutor2.id)
   # Create quizzes
   quiz1 = Quiz.create(title: 'Quiz da aula sobre o active admin', lesson: lesson_rails_admin)
   quiz2 = Quiz.create(title: 'Quiz do episodio de railscasts', lesson: lesson_railscasts)
