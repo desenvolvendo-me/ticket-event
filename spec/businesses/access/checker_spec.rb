@@ -4,13 +4,15 @@ RSpec.describe Access::Checker do
   describe '#call' do
     context 'when the resource is a Lesson' do
       it 'returns false if the lesson is not available' do
-        lesson = create(:lesson, launch_datetime: Time.zone.now + 1.hour)
+        manager = create(:manager_user)
+        lesson = create(:lesson, launch_datetime: Time.zone.now + 1.hour, manager_user: manager)
         checker = Access::Checker.call(lesson)
         expect(checker).to be false
       end
 
       it 'returns true if the lesson is available' do
-        lesson = create(:lesson, launch_datetime: Time.zone.now - 1.hour)
+        manager = create(:manager_user)
+        lesson = create(:lesson, launch_datetime: Time.zone.now - 1.hour, manager_user: manager)
         checker = Access::Checker.call(lesson)
         expect(checker).to be true
       end

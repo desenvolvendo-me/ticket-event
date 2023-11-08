@@ -1,4 +1,4 @@
-class Manager::LessonsController < ApplicationController
+class Manager::LessonsController < ManagerController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :set_event_options, only: [:new, :create, :edit, :update]
 
