@@ -79,6 +79,9 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_tenant (0.6.1)
+      rails (>= 5.2)
+      request_store (>= 1.0.5)
     addressable (2.8.5)
       public_suffix (>= 2.0.2, < 6.0)
     annotate (3.2.0)
@@ -348,6 +351,8 @@ GEM
       parser (~> 3.2.0)
       rainbow (>= 2.0, < 4.0)
     regexp_parser (2.8.2)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -490,6 +495,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin (~> 2.14)
   activeadmin_sidekiq_stats
+  acts_as_tenant
   annotate
   aws-sdk-s3
   better_errors
