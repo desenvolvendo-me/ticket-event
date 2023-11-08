@@ -11,6 +11,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  event_id        :bigint           not null
+#  manager_user_id :integer
 #
 # Indexes
 #
@@ -21,6 +22,8 @@
 #  fk_rails_...  (event_id => events.id)
 #
 class Lesson < ApplicationRecord
+  acts_as_tenant(:manager_user)
+  validates_uniqueness_to_tenant :title
   belongs_to :event
   validates :link, :title, :description, presence: true
   has_one :quiz, dependent: :destroy
