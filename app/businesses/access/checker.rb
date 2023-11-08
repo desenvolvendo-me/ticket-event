@@ -23,7 +23,11 @@ module Access
         lesson_available?
       when Event
         if @check_type == :purchase
-          purchase_available? ? { link: @resource.purchase_link, i18n: I18n.t('views.external.lesson.view_show.purchase_link'), access: true } : { link: @resource.community_link, i18n: I18n.t('views.external.lesson.view_show.community_access'), access: false }
+          if purchase_available?
+            { link: @resource.purchase_link, i18n: I18n.t('views.external.lesson.view_show.purchase_link'), access: true }
+          else
+            { link: @resource.community_link, i18n: I18n.t('views.external.lesson.view_show.community_access'), access: false }
+          end
         elsif @check_type == :available
           event_available?
         end
