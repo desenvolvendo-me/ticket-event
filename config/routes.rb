@@ -12,7 +12,12 @@ Rails.application.routes.draw do
   namespace :manager do
     get 'home', to: "home#index", as: :home
 
-    resources :events
+    resources :events do
+      member do
+        post :run_prize_draw
+      end
+    end
+
     resources :lessons
 
     resources :students do

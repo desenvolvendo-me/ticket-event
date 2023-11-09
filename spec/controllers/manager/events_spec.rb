@@ -46,9 +46,10 @@ RSpec.describe Manager::EventsController, type: :controller do
   end
 
   describe 'PATCH /update' do
+    let!(:event) { create(:event) }
+
     it 'update event with new name' do
-      event = create(:event)
-      patch :update, params: { id: event.id, event: { name: 'bootcamp other test!'} }
+      patch :update, params: { id: event.slug, event: { name: 'bootcamp other test!'} }
       event.reload
       expect(event.name).to eq('bootcamp other test!')
       expect(response).to redirect_to manager_event_path(event)
@@ -56,14 +57,25 @@ RSpec.describe Manager::EventsController, type: :controller do
   end
 
   describe 'DELETE /destroy' do
+    let!(:event) { create(:event) }
+
     it 'should destroy a event' do
-      event = create(:event)
       expect {
-        delete :destroy, params: { id: event.id }
+        delete :destroy, params: { id: event.slug }
       }.to change(Event, :count).by(-1)
 
       expect(response).to redirect_to(manager_events_path)
     end
+  end
 
+  describe "POST /run_prize_draw" do
+    let!(:event) { create(:event) }
+    let!(:student) { create(:student) }
+    let!(:ticket) { create(:ticket, student: student, event: event, student_score: 70) }
+
+    it "generates prize draw" do
+      expect { post :run_prize_draw, params: { id: event.slug } }
+        .to change(PrizeDraw, :count).by(1)
+    end
   end
 end
