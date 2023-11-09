@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 require 'dotenv'
 Dotenv.load
-
+Dotenv::Railtie.load
 module TicketEvent
   class Application < Rails::Application
     # Config default time to Brasília for lesson launch_time
