@@ -35,6 +35,7 @@ gem "escompress", "~> 0.3.0"
 gem 'sendgrid-ruby'
 
 gem "dotenv"
+gem "dotenv-rails"
 gem "aws-sdk-s3", require: false
 gem 'image_processing', '~> 1.2'
 gem 'ffaker'
