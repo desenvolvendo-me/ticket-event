@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :manager_users
+  devise_for :manager_users, controllers: {
+    registrations: 'manager_users/registrations',
+    sessions: 'manager_users/sessions',
+    omniauth_callbacks: 'manager_users/omniauth_callbacks'
+  }
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   devise_for :admin_users, ActiveAdmin::Devise.config

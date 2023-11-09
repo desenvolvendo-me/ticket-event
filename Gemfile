@@ -15,6 +15,9 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 #Admin
 gem 'devise'
+gem 'omniauth', '~> 2.1', '>= 2.1.1'
+gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
+gem 'omniauth-rails_csrf_protection', '~> 1.0', '>= 1.0.1'
 gem 'activeadmin', '~> 2.14'
 gem 'activeadmin_sidekiq_stats'
 gem "chartkick", '~> 2.2.0'
