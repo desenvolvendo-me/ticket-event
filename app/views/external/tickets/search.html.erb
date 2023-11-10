@@ -38,8 +38,11 @@
               <div class="mb-6">
                 <%= form.text_field :phone, placeholder: "Seu telefone", class: "text-body-color border-[f0f0f0] focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none" %>
               </div>
-              <div>
+              <div class="mb-6">
                 <%= form.submit "Pegar", class: "bg-primary border-primary w-full rounded border p-3 transition hover:bg-opacity-90" %>
+              </div>
+              <div class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <%= link_to "Login", new_student_user_session_path %>
               </div>
             <% end %>
             <div>
@@ -840,7 +843,4 @@
     </div>
   </section>
   <!-- ====== Contact Section End -->
-
-
-  </section>
 </div>
