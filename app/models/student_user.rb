@@ -17,6 +17,8 @@
 #  index_student_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class StudentUser < ApplicationRecord
+  has_many :students, dependent: :destroy
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
