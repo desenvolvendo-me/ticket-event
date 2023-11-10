@@ -11,15 +11,17 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  event_id        :bigint           not null
-#  manager_user_id :integer
+#  manager_user_id :bigint           not null
 #
 # Indexes
 #
-#  index_lessons_on_event_id  (event_id)
+#  index_lessons_on_event_id         (event_id)
+#  index_lessons_on_manager_user_id  (manager_user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (event_id => events.id)
+#  fk_rails_...  (manager_user_id => manager_users.id)
 #
 require 'rails_helper'
 
