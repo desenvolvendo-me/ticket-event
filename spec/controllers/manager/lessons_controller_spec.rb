@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Manager::LessonsController, type: :controller do
   describe "GET #index" do
@@ -26,7 +27,9 @@ RSpec.describe Manager::LessonsController, type: :controller do
 
   describe "GET #show" do
     it "returns a successful response" do
-      lesson = create(:lesson)
+      manager_user = create(:manager_user)
+      sign_in manager_user
+      lesson = create(:lesson, manager_user_id: manager_user.id)
       get :show, params: { id: lesson.id }
       expect(response).to be_successful
     end
@@ -34,7 +37,9 @@ RSpec.describe Manager::LessonsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a successful response" do
-      lesson = create(:lesson)
+      manager_user = create(:manager_user)
+      sign_in manager_user
+      lesson = create(:lesson, manager_user_id: manager_user.id)
       get :edit, params: { id: lesson.id }
       expect(response).to be_successful
     end
@@ -42,7 +47,9 @@ RSpec.describe Manager::LessonsController, type: :controller do
 
   describe "PATCH #update" do
     it "updates a lesson with a new title" do
-      lesson = create(:lesson)
+      manager_user = create(:manager_user)
+      sign_in manager_user
+      lesson = create(:lesson, manager_user_id: manager_user.id)
       patch :update, params: { id: lesson.id, lesson: { title: "Updated Title" } }
       lesson.reload
       expect(lesson.title).to eq("Updated Title")
@@ -52,7 +59,9 @@ RSpec.describe Manager::LessonsController, type: :controller do
 
   describe "DELETE #destroy" do
     it "destroys a lesson" do
-      lesson = create(:lesson)
+      manager_user = create(:manager_user)
+      sign_in manager_user
+      lesson = create(:lesson, manager_user_id: manager_user.id)
       expect {
         delete :destroy, params: { id: lesson.id }
       }.to change(Lesson, :count).by(-1)
