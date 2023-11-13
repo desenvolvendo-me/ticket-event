@@ -1,15 +1,3 @@
-<% flash.each do |type, msg| %>
-  <div class="bg-indigo-900 text-center py-4 lg:px-4">
-    <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-      <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
-      <span class="font-semibold mr-2 text-left flex-auto"><%= msg %></span>
-      <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-        <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
-      </svg>
-    </div>
-  </div>
-<% end %>
-
 <div class="flex flex-col items-center justify-center">
   <!-- ====== Contact Section Start -->
   <section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]">
@@ -20,9 +8,7 @@
           <span class="text-primary mb-4 block text-base font-semibold">
             Seja Bem Vindo!
           </span>
-            <h2
-              class="text-dark mb-6 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px]"
-            >
+            <h2 class="text-dark mb-6 text-[32px] font-bold uppercase sm:text-[40px] lg:text-[36px] xl:text-[40px]">
               Pegue seu ingresso!
             </h2>
             <p class="text-body-color mb-9 text-base leading-relaxed">
@@ -32,6 +18,9 @@
           </div>
         </div>
         <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
+          <% if student_user_signed_in? %>
+            <%= link_to "Pegar ingresso", event_ticket_path(params["slug_event"], phone: params["phone"]) %>
+          <% else %>
           <div class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
             <%= form_with url: form_ticket_path, method: :post do |form| %>
               <%= hidden_field_tag 'slug_event', params["slug_event"] %>
@@ -41,10 +30,11 @@
               <div class="mb-6">
                 <%= form.submit "Pegar", class: "bg-primary border-primary w-full rounded border p-3 transition hover:bg-opacity-90" %>
               </div>
-              <div class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                <%= link_to "Login", new_student_user_session_path %>
-              </div>
             <% end %>
+            <div class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <%= link_to "Login", new_student_user_session_path %>
+            </div>
+          <% end %>
             <div>
               <span class="absolute -right-10 top-[90px] z-[-1]">
               <svg
