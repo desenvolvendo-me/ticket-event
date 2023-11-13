@@ -3,8 +3,11 @@
 # Table name: manager_users
 #
 #  id                     :bigint           not null, primary key
+#  avatar_url             :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
+#  full_name              :string
+#  login                  :string
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
