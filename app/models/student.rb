@@ -14,7 +14,6 @@
 class Student < ApplicationRecord
   has_many :tickets
   has_many :certificates, dependent: :destroy
-  belongs_to :student_user
 
   has_one_attached :avatar
 
