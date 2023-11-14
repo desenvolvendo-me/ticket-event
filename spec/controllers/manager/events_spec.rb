@@ -64,6 +64,7 @@ RSpec.describe Manager::EventsController, type: :controller do
 
       expect(response).to redirect_to(manager_events_path)
     end
+  end
 
   describe "POST /run_prize_draw" do
     let!(:event) { create(:event) }
