@@ -36,6 +36,7 @@ gem "aws-sdk-s3", require: false
 gem 'image_processing', '~> 1.2'
 gem 'ffaker'
 gem 'faker'
+gem 'acts_as_tenant'
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0'

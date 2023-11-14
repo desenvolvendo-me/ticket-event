@@ -6,7 +6,8 @@ RSpec.describe Lessons::Validator do
   describe '#call' do
     context 'when the event has less than 5 lessons' do
       it 'does not add an error to the lesson' do
-        lesson = create(:lesson, event: event)
+        manager = create(:manager_user)
+        lesson = create(:lesson, event: event, manager_user: manager)
 
         validator = Lessons::Validator.new(lesson)
         validator.call
@@ -17,7 +18,8 @@ RSpec.describe Lessons::Validator do
 
     context 'when the event has 5 lessons' do
       it 'adds an error when create a sixth lesson' do
-        lessons = create_list(:lesson, 6, event: event)
+        manager = create(:manager_user)
+        lessons = create_list(:lesson, 6, event: event, manager_user: manager)
 
         Lessons::Validator.new(lessons.last).call
 
