@@ -7,7 +7,7 @@
   <div class="field">
     <%= f.label :password, I18n.t('views.manager_users.passwords.edit.new_password') %><br />
     <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+      <em>(<%= @minimum_password_length %> <%= t 'views.manager_users.registrations.edit.min_characters' %>)</em><br />
     <% end %>
     <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
   </div>
