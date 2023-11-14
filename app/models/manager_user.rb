@@ -3,7 +3,7 @@
 # Table name: manager_users
 #
 #  id                     :bigint           not null, primary key
-#  avatar_url             :string
+#  avatar                 :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  full_name              :string
