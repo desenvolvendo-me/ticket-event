@@ -46,6 +46,7 @@
     <%= f.file_field :avatar, autofocus: true, autocomplete: "avatar" %>
   </div>
 
+  <%= image_tag resource.avatar if resource.avatar.present? %>
   <div class="actions">
     <%= f.submit t('views.manager_users.registrations.edit.update') %>
   </div>
