@@ -1,0 +1,7 @@
+<p><%= t 'views.manager_users.mailer.hello' %> <%= @email %>!</p>
+
+<% if @resource.try(:unconfirmed_email?) %>
+  <p><%= t 'views.manager_users.mailer.email_changed.contact_is' %> <%= @resource.unconfirmed_email %>.</p>
+<% else %>
+  <p><%= t 'views.manager_users.mailer.email_changed.contact_has' %> <%= @resource.email %>.</p>
+<% end %>
