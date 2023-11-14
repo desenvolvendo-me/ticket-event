@@ -1,0 +1,25 @@
+<h2><%= t 'views.manager_users.passwords.edit.title' %></h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "manager_users/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :password, I18n.t('views.manager_users.passwords.edit.new_password') %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> <%= t 'views.manager_users.registrations.edit.min_characters' %>)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, I18n.t('views.manager_users.passwords.edit.confirm_new_password') %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit I18n.t('views.manager_users.passwords.edit.confirm_new_password') %>
+  </div>
+<% end %>
+
+<%= render "manager_users/shared/links" %>

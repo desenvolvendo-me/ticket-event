@@ -1,0 +1,57 @@
+pt-BR:
+  views:
+    manager_users:
+      confirmations:
+        new:
+          title: "Reenviar instruções de confirmação"
+      mailer:
+        hello: "Olá"
+        confirmation_instructions:
+          welcome: "Bem vindo"
+          you_can_confirm: "Você pode confirmar sua conta através do link abaixo"
+          confirm_link: "Confirmar minha conta"
+        email_changed:
+          contact_is: "Nós estamos entrando em contato com você para informar que o seu e-mail está sendo alterado para"
+          contact_has: "Nós estamos entrando em contato com você para informar que o seu e-mail foi alterado para"
+        password_change: "Nós estamos entrando em contato para informar que sua senha foi alterada."
+        reset_password:
+          someone_requested: "Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo."
+          ignore: "Se você não solicitou essa alteração, por favor ignore este email."
+          password_wont_change: "Sua senha não será alterada até que você acesse o link acima e crie uma nova."
+        unlock_instructions:
+          account_block: "Sua conta foi bloqueada devido a um número excessivo de tentativas de login malsucedidas."
+          account_unlock: "Clique no link abaixo para desbloquear sua conta"
+          unlock_link: "Desbloquear minha conta"
+      passwords:
+        edit:
+          title: "Mudança de senha"
+          new_password: "Nova senha"
+          confirm_new_password: "Confirmação de senha"
+          change_password: "Alterar senha"
+        new:
+          title: "Esqueceu a sua senha?"
+          instructions: "Envie-me instruções de redefinição de senha"
+      registrations:
+        edit:
+          title: "Editar"
+          password: "Deixe em branco se não quiser alterar"
+          min_characters: "caracteres no mínimo"
+          current_password: "precisamos da sua senha atual para confirmar suas alterações"
+          update: "Atualizar"
+          cancel: "Cancelar minha conta"
+          unhappy?: "Não está feliz?"
+          sure?: "Tem certeza?"
+          back: "Voltar"
+        new:
+          sign_up: "Cadastrar-se"
+      sessions:
+        new:
+          log_in: "Entrar"
+      shared:
+        links:
+          confirmation_instruction: "Não recebeu instruções de confirmação?"
+          unlock_instruction: "Não recebeu instruções de desbloqueio?"
+          sign_in_with: "Entrar com"
+      unlock:
+        new:
+          title: "Reenviar instruções de desbloqueio"
