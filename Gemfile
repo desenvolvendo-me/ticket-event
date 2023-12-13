@@ -30,6 +30,8 @@ gem 'foreman'
 gem 'mini_magick'
 gem "escompress", "~> 0.3.0"
 gem 'sendgrid-ruby'
+gem 'omniauth-google-oauth2', '~> 1.1', '>= 1.1.1'
+gem 'omniauth-rails_csrf_protection', '~> 1.0', '>= 1.0.1'
 
 gem "dotenv"
 gem "aws-sdk-s3", require: false

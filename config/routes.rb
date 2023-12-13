@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :student_users
+  devise_for :student_users, controllers: { omniauth_callbacks: 'external/student_users/omniauth_callbacks' }
   devise_for :manager_users
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

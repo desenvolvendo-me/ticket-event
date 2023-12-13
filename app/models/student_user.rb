@@ -19,5 +19,19 @@
 class StudentUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
+
+  def self.from_omniauth(access_token)
+    data = access_token.info
+    student_user = StudentUser.where(email: data['email']).first
+
+    unless student_user
+        student_user = StudentUser.create(
+           email: data['email'],
+           password: Devise.friendly_token[0,20]
+        )
+    end
+    student_user
+  end
 end
