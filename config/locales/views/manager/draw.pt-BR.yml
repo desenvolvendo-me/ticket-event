@@ -1,0 +1,23 @@
+pt-BR:
+  views:
+    manager:
+      prize_draw:
+        back: "Voltar"
+        new: "Novo"
+        show: "Mostrar"
+        edit: "Editar"
+        save: "Salvar"
+        delete: "Deletar"
+        run_prize_draw: "Realizar sorteio"
+        delete_confirm: "Tem certeza que deseja excluir este evento?"
+        index:
+          name: nome
+          search: "Pesquisar"
+          list:
+            showing: "Mostrando"
+            of: "de"
+            previous: "Anterior"
+            next: "Próxima"
+          actions: "Ações"
+        form:
+          prize: "Prêmio"
