@@ -10,3 +10,5 @@ pt-BR:
         ticket: "Ingresso"
         student: "Estudante"
         date: "Data"
+        name: "Nome"
+        prize: "Prêmio"
