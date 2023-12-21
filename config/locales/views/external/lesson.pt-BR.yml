@@ -8,6 +8,7 @@ pt-BR:
           quiz_link: 'Link do questionário'
           flash:
             new: "Nova"
+            alert: "Alerta"
           go_lesson: "Ir para aula"
         view_show:
           quiz_access: "Acessar questionário"
