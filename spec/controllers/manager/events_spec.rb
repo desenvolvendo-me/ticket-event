@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Manager::EventsController, type: :controller do
+  let!(:manager_user) { create(:manager_user) }
+
+  before(:each) do
+    sign_in manager_user
+  end
+
   describe 'GET /index' do
     it 'returns a successful response' do
       get :index
