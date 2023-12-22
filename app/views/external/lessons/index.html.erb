@@ -1,28 +1,8 @@
-<<<<<<< HEAD
-<% if student_user_signed_in? %>
-  <% flash.each do |type, msg| %>
-    <div class="bg-indigo-900 text-center py-4 lg:px-4">
-      <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-        <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"><%= I18n.t('views.external.lesson.index.flash.new') %></span>
-        <span class="font-semibold mr-2 text-left flex-auto"><%= msg %></span>
-        <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
-        </svg>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <div class="bg-indigo-900 text-center py-4 lg:px-4">
-    <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-      <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"><%= I18n.t('views.external.lesson.index.flash.alert') %></span>
-      <span class="font-semibold mr-2 text-left flex-auto"><%= flash[:notice] = I18n.t('devise.sessions.not_signed_in') %></span>
-=======
 <% flash.each do |type, msg| %>
   <div class="bg-indigo-900 text-center py-4 lg:px-4">
     <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
       <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3"><%= I18n.t('views.external.lesson.index.flash.new') %></span>
       <span class="font-semibold mr-2 text-left flex-auto"><%= msg %></span>
->>>>>>> 449264c86fe81c891969aa3de20a360a9f46841a
       <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
       </svg>
@@ -46,18 +26,10 @@
         </div>
         <% if @lessons_checker[index] %>
           <div class="flexflex-1 launch-datetime text-sm font-bold text-gray-600">
-<<<<<<< HEAD
-            <%= I18n.t('views.external.lesson.index.launch_at') %>
-            : <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
-          </div>
-        <% else %>
-          <%= link_to I18n.t('views.external.lesson.index.quiz_link'), lesson_validate_path(@event, lesson) %>
-=======
             <%= I18n.t('views.external.lesson.index.launch_at') %>: <%= lesson.launch_datetime.strftime('%d/%m/%Y %H:%M') %>
           </div>
         <% else %>
           <%= link_to I18n.t('views.external.lesson.index.quiz_link'), lesson_validate_path(@event,lesson)  %>
->>>>>>> 449264c86fe81c891969aa3de20a360a9f46841a
         <% end %>
         <%= link_to lesson_path(@event.slug, lesson), class: "inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900" do %>
           <%= I18n.t('views.external.lesson.index.go_lesson') %>
@@ -68,9 +40,5 @@
       </div>
     </div>
 
-<<<<<<< HEAD
   <% end %>
-=======
-<% end %>
->>>>>>> 449264c86fe81c891969aa3de20a360a9f46841a
 </div>
