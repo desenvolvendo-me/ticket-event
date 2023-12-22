@@ -8,7 +8,7 @@ pt-BR:
           quiz_link: 'Link do questionário'
           flash:
             new: "Nova"
-            notice: "Você não está autenticado! Faça login para aproveitar todos os recursos da plataforma."
+            notice: "Você não está autenticado! Faça login para aproveitar todos os recursos da plataforma!"
           go_lesson: "Ir para aula"
         view_show:
           quiz_access: "Acessar questionário"
