@@ -55,6 +55,7 @@ pt-BR:
       unlock:
         new:
           title: "Reenviar instruções de desbloqueio"
+<<<<<<< HEAD
     student_users:
       confirmations:
         new:
@@ -110,3 +111,5 @@ pt-BR:
       unlock:
         new:
           title: "Reenviar instruções de desbloqueio"
+=======
+>>>>>>> 449264c86fe81c891969aa3de20a360a9f46841a

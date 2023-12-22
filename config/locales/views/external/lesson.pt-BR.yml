@@ -8,12 +8,18 @@ pt-BR:
           quiz_link: 'Link do questionário'
           flash:
             new: "Nova"
+<<<<<<< HEAD
             notice: "Você não está autenticado! Faça login para aproveitar todos os recursos da plataforma!"
+=======
+>>>>>>> 449264c86fe81c891969aa3de20a360a9f46841a
           go_lesson: "Ir para aula"
         view_show:
           quiz_access: "Acessar questionário"
           community_access: "Acessar a comunidade"
+<<<<<<< HEAD
           end_class: "Finalizar a aula."
+=======
+>>>>>>> 449264c86fe81c891969aa3de20a360a9f46841a
           purchase_link: "Clique aqui para comprar!"
         search:
           welcome: "Seja Bem Vindo!"
