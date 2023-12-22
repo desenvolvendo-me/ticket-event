@@ -1,6 +1,5 @@
 if Rails.env.development?
   AdminUser.create!(email: 'admin@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
-  User.create!(email: 'marcodotcastro@gmail.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
   ManagerUser.create!(email: 'infoprodutor@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc', login: "PhilipeX", full_name: "Philipe Rodrigues")
   StudentUser.create!(email: 'student@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
 
