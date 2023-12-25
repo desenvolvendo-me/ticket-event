@@ -1,5 +1,5 @@
 class External::TicketsController < ExternalController
-
+  before_action :authenticate_student_user!, except: %i[search form ticket]
   before_action :get_ticket, :only => [:ticket, :form, :update]
 
   def ticket
@@ -29,6 +29,8 @@ class External::TicketsController < ExternalController
 
     redirect_to event_ticket_path(params["slug_event"], params["phone"])
   end
+
+  private
 
   def get_ticket
     @ticket = Ticket.joins(:event, :student)
