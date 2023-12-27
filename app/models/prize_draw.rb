@@ -6,7 +6,6 @@
 #  date          :datetime
 #  name          :string
 #  prize         :string
-#  prize_draw    :string
 #  winner_ticket :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -15,7 +14,6 @@
 #
 # Indexes
 #
-#  index_prize_draws_on_event_id   (event_id)
 #  index_prize_draws_on_ticket_id  (ticket_id)
 #
 # Foreign Keys
@@ -23,7 +21,9 @@
 #  fk_rails_...  (ticket_id => tickets.id)
 #
 class PrizeDraw < ApplicationRecord
-  belongs_to :ticket
+  has_one :ticket, dependent: :destroy
   belongs_to :event
+  accepts_nested_attributes_for :ticket
 
+  validates :name, :date, :prize, presence: :true
 end

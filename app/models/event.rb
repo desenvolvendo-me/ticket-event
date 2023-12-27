@@ -26,7 +26,7 @@ class Event < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :certificates, dependent: :destroy
   has_many :lessons, dependent: :destroy
-  has_one :prize_draw
+  has_one :prize_draw, dependent: :destroy
 
   validates :name, :launch, presence: true
 
