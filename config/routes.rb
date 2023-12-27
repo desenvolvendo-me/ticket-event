@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
   devise_for :student_users
   devise_for :manager_users
+
+
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
@@ -10,14 +13,15 @@ Rails.application.routes.draw do
   root to: "welcome#index"
   get 'welcome/index'
 
+
   namespace :manager do
     get 'home', to: "home#index", as: :home
 
     resources :events do
-      member do
-        post :run_prize_draw
-      end
+      resources :prize_draws
     end
+
+
 
     resources :lessons
 
