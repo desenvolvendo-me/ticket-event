@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @prize_draw %>
+
+<div>
+  <%= link_to "Edit this account", edit_manager_event_prize_draw_path(@prize_draw.event_id, @prize_draw)%>
+  <%= link_to "Back to accounts", manager_event_path %>
+
+  <%= button_to "Destroy this account", manager_event_prize_draws_path, method: :delete %>
+</div>
