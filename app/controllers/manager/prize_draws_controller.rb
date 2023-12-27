@@ -1,5 +1,5 @@
 class Manager::PrizeDrawsController < ApplicationController
-  before_action :set_prize_draw, only: %i[ show edit update destroy run_prize_draw]
+  before_action :set_prize_draw, only: %i[ show edit update destroy]
   before_action :set_event
 
   def index
@@ -55,10 +55,10 @@ class Manager::PrizeDrawsController < ApplicationController
 
 
   def set_prize_draw
-    @prize_draw = @event.prize_draw.find(params[:id])
+    @prize_draw = PrizeDraw.find(params[:id])
   end
 
   def prize_draw_params
-    params.require(:prize_draw).permit(:name, :date, :prize)
+    params.require(:prize_draw).permit(:name, :date, :prize, :event_id)
   end
 end
