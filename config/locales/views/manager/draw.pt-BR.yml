@@ -13,7 +13,6 @@ pt-BR:
         index:
           name: nome
           search: "Pesquisar"
-          not_draw: 'Nenhum sorteio foi criado para este evento.'
           list:
             showing: "Mostrando"
             of: "de"
