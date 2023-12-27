@@ -11,7 +11,7 @@ pt-BR:
         run_prize_draw: "Realizar sorteio"
         delete_confirm: "Tem certeza que deseja excluir este evento?"
         index:
-          name: "nome"
+          name: nome
           search: "Pesquisar"
           not_draw: "Não existe sorteios criados para este evento."
           list:
