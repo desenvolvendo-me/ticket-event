@@ -1,25 +1,25 @@
 class Manager::PrizeDrawsController < ApplicationController
-  before_action :set_prize_draw, only: %i[ show edit update destroy]
+  before_action :set_prize_draw, only: %i[ index show new edit create update destroy]
   before_action :set_event
 
   def index
-    @event = Event.find(params[:event_id])
-    @prize_draws = @event.prize_draw
+    @prize_draws = PrizeDraw.all
   end
 
-  def show; end
+  def show
+    @prize_draws = PrizeDraw.find_by(id: params[:id])
+  end
 
   def new
-    @event =  Event.find(params[:event_id])
-    @prize_draw = @event.prize_draw
+    @prize_draw = PrizeDraw.new
 
   end
 
   def create
-    @prize_draw = PrizeDraw.new(prize_draw_params)
+    @prize_draw = @event.create_prize_draw(prize_draw_params)
 
     if @prize_draw.save
-      redirect_to manager_event_prize_draws_path(event_id: @event, id: @prize_draw), notice: 'OK'
+      redirect_to manager_event_prize_draws_path(event_id: @event, id: @prize_draw)
     else
       render :new
     end
@@ -30,7 +30,7 @@ class Manager::PrizeDrawsController < ApplicationController
 
   def update
     if @prize_draw.update(prize_draw_params)
-      redirect_to manager_event_prize_draws_path(@prize_draw)
+      redirect_to manager_event_prize_draw_path(@prize_draw)
     else
       render :edit
     end
@@ -42,20 +42,16 @@ class Manager::PrizeDrawsController < ApplicationController
     end
   end
 
-  # def run_prize_draw
-  #   generator = PrizeDraws::Generator.new(@event)
-  #   winner_ticket = generator.call
-  # end
-
   private
 
   def set_event
-    @event = Event.find(params[:event_id])
+    @event = Event.find_by(id: params[:event_id])
+
   end
 
 
   def set_prize_draw
-    @prize_draw = PrizeDraw.find(params[:id])
+    @prize_draw = PrizeDraw.find_by(id: params[:id])
   end
 
   def prize_draw_params
