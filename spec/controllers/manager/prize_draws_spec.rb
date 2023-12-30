@@ -22,7 +22,7 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
 
     describe "POST /create" do
       let(:prize_draw_params) do
-        { name: 'Bootcamp', date: DateTime.now, prize: 'Mouse', event_id: event.id}
+        { name: 'Bootcamp', date: DateTime.now, prize: 'Mouse', event_id: event.id }
       end
 
       it 'with valid params' do
@@ -33,7 +33,6 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
     end
 
     context "GET /show" do
-      let(:prize_draw) { PrizeDraw.create(name: 'Bootcamp', date: DateTime.now, prize: 'Mouse', event: event) }
       it 'returns a successful response' do
         get :show, params: { event_id: event.id, id: prize_draw.id}
         expect(response).to be_successful
