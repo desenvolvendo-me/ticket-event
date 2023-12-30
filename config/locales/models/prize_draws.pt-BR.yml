@@ -12,3 +12,5 @@ pt-BR:
         date: "Data"
         name: "Nome"
         prize: "Prêmio"
+        prizedraw: "Nome do Sorteio"
+        action: "Ações"

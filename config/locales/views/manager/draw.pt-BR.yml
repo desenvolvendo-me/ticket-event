@@ -14,11 +14,19 @@ pt-BR:
           name: "Nome"
           search: "Pesquisar"
           not_draw: "Não existe sorteios criados para este evento."
+          name_prize_draw: "Nome do Sorteio"
+          prize_draw: "Sorteio"
           list:
             showing: "Mostrando"
             of: "de"
             previous: "Anterior"
             next: "Próxima"
-          actions: "Ações"
-        form:
-          prize: "Prêmio"
+            actions: "Ações"
+            form:
+              prize: "Prêmio"
+            routes:
+              manager_event_prize_draws_path: "Rota Show"
+
+
+
+
