@@ -27,12 +27,12 @@
         <ul class="py-1 text-sm flex flex-col items-center text-gray-700 dark:text-gray-200" aria-labelledby="lessons-dropdown-button-<%= prize_draw.id %>">
           <li class="hover:bg-gray-100">
             <%= link_to(manager_event_prize_draw_url(prize_draw.event, prize_draw), class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white") do %>
-              <%= t('views.manager.prize_draw.show') %>
+              <%= t 'views.manager.prize_draw.show' %>
             <% end %>
           </li>
           <li class="hover:bg-gray-100">
             <%= link_to(edit_manager_event_prize_draw_url(prize_draw.event, prize_draw), class: "block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white") do %>
-              <%= t('views.manager.prize_draw.edit') %>
+              <%= t 'views.manager.prize_draw.edit' %>
             <% end %>
           </li>
         </ul>
