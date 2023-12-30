@@ -27,6 +27,7 @@ class Event < ApplicationRecord
   has_many :certificates, dependent: :destroy
   has_many :lessons, dependent: :destroy
   has_one :prize_draw, dependent: :destroy
+  accepts_nested_attributes_for :prize_draw
 
   validates :name, :launch, presence: true
 
