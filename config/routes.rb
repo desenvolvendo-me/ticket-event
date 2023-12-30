@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get 'home', to: "home#index", as: :home
 
     resources :events do
-      resources :prize_draws
+      resources :prize_draws, only: %w[index new create show edit update destroy]
     end
 
 
