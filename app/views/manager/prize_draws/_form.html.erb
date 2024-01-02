@@ -1,6 +1,6 @@
 <section class="bg-white dark:bg-gray-900 relative shadow-md sm:rounded-lg">
   <div class="px-4 mx-auto max-w-2xl pb-8">
-    <%= form_with(model: [@event,@prize_draw], url: @prize_draw.persisted? ? manager_event_prize_draw_path(@prize_draw) : manager_event_prize_draws_url, local: true) do |form| %>
+    <%= form_with(model: [@event,@prize_draw], url: @prize_draw.persisted? ? manager_event_prize_draw_path(@event, @prize_draw) : manager_event_prize_draws_url, local: true) do |form| %>
 
         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
 

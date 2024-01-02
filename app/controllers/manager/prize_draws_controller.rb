@@ -17,7 +17,8 @@ class Manager::PrizeDrawsController < ApplicationController
   def create
     @prize_draw = @event.create_prize_draw(prize_draw_params)
     render :new unless @prize_draw.save
-      redirect_to manager_event_prize_draws_path(event_id: @event, id: @prize_draw)
+
+    redirect_to manager_event_prize_draws_path(event_id: @event, id: @prize_draw)
   end
 
 
@@ -25,7 +26,7 @@ class Manager::PrizeDrawsController < ApplicationController
 
   def update
     render :edit unless @prize_draw.update(prize_draw_params)
-    redirect_to manager_event_prize_draw_path(@prize_draw)
+    redirect_to manager_event_prize_draw_path(@event, @prize_draw)
   end
 
   def destroy
@@ -36,7 +37,7 @@ class Manager::PrizeDrawsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find_by(id: params[:event_id])
+    @event = Event.find(params[:event_id])
   end
 
   def set_prize_draw
