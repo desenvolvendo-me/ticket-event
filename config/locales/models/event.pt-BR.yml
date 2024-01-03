@@ -22,4 +22,5 @@ pt-BR:
         purchase_date: "Data que a compra ficará disponível"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
+        duration: "Duração do evento"
 
