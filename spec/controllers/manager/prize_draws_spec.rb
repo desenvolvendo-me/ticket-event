@@ -3,6 +3,12 @@ require 'rails_helper'
 RSpec.describe Manager::PrizeDrawsController, type: :controller do
 
   describe 'Test controller' do
+    let!(:manager_user) { create(:manager_user) }
+
+    before(:each) do
+      sign_in manager_user
+    end
+
     let(:event) { create(:event) }
     let(:prize_draw) { PrizeDraw.create(name: 'Bootcamp', date: DateTime.now, prize: 'Mouse', event: event) }
 
