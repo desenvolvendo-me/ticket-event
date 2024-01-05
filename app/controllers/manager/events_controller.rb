@@ -9,7 +9,9 @@ class Manager::EventsController < ApplicationController
     @event = Event.new
   end
 
-  def show; end
+  def show
+    @event = Event.includes(:prize_draw).find(params[:id])
+  end
 
   def edit; end
 
@@ -34,12 +36,6 @@ class Manager::EventsController < ApplicationController
     if @event.destroy
       redirect_to manager_events_path
     end
-  end
-
-  def run_prize_draw
-    PrizeDraws::Generator.call(@event)
-
-    # TODO: Once Manager::PrizeDraw are implemented, add redirect to the PrizeDraw created or index
   end
 
   private

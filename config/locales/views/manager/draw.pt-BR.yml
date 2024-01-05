@@ -1,20 +1,32 @@
 pt-BR:
   views:
     manager:
-      event:
+      prize_draw:
         back: "Voltar"
         new: "Novo"
         show: "Mostrar"
         edit: "Editar"
         save: "Salvar"
         delete: "Deletar"
-        prize_draw: "Sorteio"
+        run_prize_draw: "Realizar sorteio"
         delete_confirm: "Tem certeza que deseja excluir este evento?"
         index:
+          name: "Nome"
           search: "Pesquisar"
+          not_draw: "Não existe sorteios criados para este evento."
+          name_prize_draw: "Nome do Sorteio"
+          prize_draw: "Sorteio"
           list:
             showing: "Mostrando"
             of: "de"
             previous: "Anterior"
             next: "Próxima"
-          actions: "Ações"
+            actions: "Ações"
+            form:
+              prize: "Prêmio"
+            routes:
+              manager_event_prize_draws_path: "Rota Show"
+
+
+
+

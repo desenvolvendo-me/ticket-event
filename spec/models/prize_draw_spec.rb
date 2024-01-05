@@ -11,8 +11,11 @@
 #  updated_at    :datetime         not null
 #  event_id      :bigint           not null
 #
-class PrizeDraw < ApplicationRecord
-  belongs_to :event
+require 'rails_helper'
 
-  validates :name, :date, :prize, presence: :true
+RSpec.describe PrizeDraw, type: :model do
+  it { should belong_to(:event)}
+  it { should validate_presence_of(:name)}
+  it { should validate_presence_of(:date)}
+  it { should validate_presence_of(:prize)}
 end
