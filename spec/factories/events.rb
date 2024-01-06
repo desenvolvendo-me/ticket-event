@@ -27,5 +27,6 @@ FactoryBot.define do
     date { (Date.today + 20.hours + 30.minutes) + 21.days }
     template { Rack::Test::UploadedFile.new('spec/support/ticket.svg', 'image/svg') }
     certificate_template { Rack::Test::UploadedFile.new('spec/support/certificate_template.svg', 'image/svg+xml') }
+    slug { FFaker::Internet.slug }
   end
 end

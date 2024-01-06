@@ -1,6 +1,6 @@
 module Manager
   class StudentsController < ApplicationController
-    before_action :set_student, only: %i[show edit update destroy]
+    before_action :set_student, only: %i[show edit update destroy select_event]
 
     def index
       @students = Student.all
@@ -42,6 +42,18 @@ module Manager
       Students::BatchCreator.call(csv_path: student_params[:file])
 
       redirect_to manager_students_url, notice: t("controllers.manager.students.notices.registered_students")
+    end
+
+    def select_event; end
+
+    def create_certificate
+      event = Event.find(params[:certificate][:event_id])
+      student = Student.find(params[:id])
+      certificate = Certificate.create(student_id: student.id, event_id: event.id)
+      Certificates::Builder.call(certificate: certificate)
+
+      redirect_to manager_students_url, notice: t("active_admin.notice.student.certificate_generated_successfully")
+      # TODO: Once Manager::Certificate resources are implemented, change redirect to the Certificate index instead Students
     end
 
     private

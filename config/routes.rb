@@ -1,22 +1,37 @@
 Rails.application.routes.draw do
+  devise_for :student_users
+  devise_for :manager_users
+
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users
   root to: "welcome#index"
   get 'welcome/index'
 
   namespace :manager do
     get 'home', to: "home#index", as: :home
 
-    resources :events
+    resources :events do
+      member do
+        post :run_prize_draw
+      end
+    end
+
     resources :lessons
 
-    resources :students
-    get 'select_student_csv_for_students', to: "students#select_student_csv", as: :students_select_student_csv
-    post 'import_student_csv_for_students', to: "students#import_student_csv", as: :students_import_student_csv
+    resources :students do
+      collection do
+        get :select_student_csv
+        post :import_student_csv
+      end
+
+      member do
+        get :select_event
+        post :create_certificate
+      end
+    end
 
     resources :tickets, only: [:index, :show]
     get 'select_student_csv', to: "tickets#select_student_csv", as: :tickets_select_student_csv
@@ -31,6 +46,7 @@ Rails.application.routes.draw do
     put ':slug_event/ticket/:phone/update', to: "tickets#update", as: :update_event_ticket
 
     get ':slug_event/certificate/:phone', to: "certificates#certificate", as: :event_certificate
+    get ':slug_event/certificate/:phone/share', to: "certificates#share", as: :event_certificate_share
     get ':slug_event/certificate', to: "certificates#search", as: :search_certificate
     post 'certificate/form', to: "certificates#form", as: :form_certificate
 

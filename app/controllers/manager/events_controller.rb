@@ -1,5 +1,6 @@
 class Manager::EventsController < ApplicationController
-  before_action :get_event, only: %i[ show new create edit update destroy ]
+  before_action :get_event, only: %i[ show new create edit update destroy run_prize_draw]
+
   def index
     @events = Event.all.order(created_at: :asc)
   end
@@ -35,12 +36,19 @@ class Manager::EventsController < ApplicationController
     end
   end
 
-  private
-    def get_event
-      @event = Event.find_by(slug: params[:id])
-    end
+  def run_prize_draw
+    PrizeDraws::Generator.call(@event)
 
-    def event_params
-      params.require(:event).permit(:name, :description, :date, :launch, :community_link, :purchase_link, :purchase_date)
-    end
+    # TODO: Once Manager::PrizeDraw are implemented, add redirect to the PrizeDraw created or index
+  end
+
+  private
+
+  def get_event
+    @event = Event.find_by(slug: params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :description, :date, :launch, :community_link, :purchase_link, :purchase_date, :image)
+  end
 end

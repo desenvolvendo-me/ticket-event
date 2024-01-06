@@ -1,6 +1,7 @@
 if Rails.env.development?
   AdminUser.create!(email: 'admin@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
-  User.create!(email: 'marcodotcastro@gmail.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
+  ManagerUser.create!(email: 'infoprodutor@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc', login: "PhilipeX", full_name: "Philipe Rodrigues")
+  StudentUser.create!(email: 'student@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
 
   template_ticket = TemplateTicket.create(name: 'Preto e Branco', description: "Ingresso na vertical com as cores preto e branco que permite alterar DATA_EVENTO, NOME, FOTO e NUMERO", version: "1")
   template_ticket.svg.attach(io: File.open(Rails.root.join('spec/support', 'ticket-2.svg')), filename: 'ticket-2.svg')

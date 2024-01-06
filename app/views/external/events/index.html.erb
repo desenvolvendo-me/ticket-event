@@ -1,3 +1,10 @@
+<div class="h-auto max-w-lg mx-auto">
+  <% if @event.image.attached? %>
+    <%= image_tag(@event.image_large.image) %>
+  <% else %>
+    <%= image_tag('pattern_image.jpg') %>
+  <% end %>
+</div>
 <div class="flex flex-col-2 items-center justify-center" >
   <section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px]" >
     <div class="container mx-auto" >
@@ -18,10 +25,12 @@
               <%= I18n.localize(@event.date, format: :long) %>
             </div>
             <div class="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              <% if @event_checker %>
-                <%= link_to("Acessar Ingresso", search_ticket_path(@event.slug)) %>
-              <% else %>
-                <%= link_to("Acessar Aulas", lessons_index_path) %>
+              <% if @purchase_checker[:access] %>
+                <%= link_to(I18n.t('views.external.event.index.access_purchase'), @event.purchase_link) %>
+              <% elsif @event_checker %>
+                <%= link_to(I18n.t('views.external.event.index.access_ticket'), search_ticket_path(@event.slug)) %>
+               <% else %>
+                <%= link_to(I18n.t('views.external.event.index.access_lessons'), lessons_index_path) %>
               <% end %>
             </div>
           </div>
