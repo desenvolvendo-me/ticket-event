@@ -1,24 +1,38 @@
-require "rails_helper"
+
+
+require 'rails_helper'
 
 RSpec.describe PrizeDraws::Generator do
-  let(:event) {create(:event)}
-  let!(:prize_draw) { create(:prize_draw, event: event)}
+  let(:event) { create(:event) }
+  let(:prize_draw) { create(:prize_draw, event: event) }
 
-  context "The class is valid" do
-    it 'its valid 'do
-      expect(defined?(PrizeDraws::Generator)).to eq('constant')
+  context '#call' do
+    it 'draws a ticket and creates a winner ticket' do
+      student = create(:student)
+      eligible_ticket = create(:ticket, event: event, student: student, student_score: 80)
+
+      allow(prize_draw.tickets).to receive(:where).and_return([eligible_ticket])
+      allow(prize_draw.tickets).to receive(:sample).and_return(eligible_ticket)
+
+      generator = PrizeDraws::Generator.new(event, prize_draw)
+      drawn_ticket = generator.call
+
+      expect(drawn_ticket).to eq(eligible_ticket)
+      expect(WinnerTicket.count).to eq(1)
+      expect(WinnerTicket.first.prize_draw).to eq(prize_draw)
+      expect(WinnerTicket.first.ticket).to eq(eligible_ticket)
+      expect(WinnerTicket.first.winner).to eq(student.name)
     end
-  end
 
-  context 'when no student achieves the required score' do
-    it 'returns nil' do
-      students = create_list(:student, 5)
+    it 'does not create a winner ticket if no eligible ticket is drawn' do
+      allow(prize_draw.tickets).to receive(:where).and_return([])
+      allow(prize_draw.tickets).to receive(:sample).and_return(nil)
 
-      students.each do |student|
-        create(:ticket, student: student, event: event, student_score: rand(0..69))
-      end
-      prize_draw_result = described_class.new(event, prize_draw).call
-      expect(prize_draw_result).to be_nil
+      generator = PrizeDraws::Generator.new(event, prize_draw)
+      drawn_ticket = generator.call
+
+      expect(drawn_ticket).to be_nil
+      expect(WinnerTicket.count).to eq(0)
     end
   end
 end
