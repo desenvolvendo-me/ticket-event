@@ -3,13 +3,14 @@ module PrizeDraws
 
     PASSING_SCORE = 70
 
-    def initialize(event)
+    def initialize(event, prize_draw)
       @event = event
+      @prize_draw = prize_draw
     end
 
     def call
       draw_ticket
-      create_prize_draw if @drawn_ticket
+      @drawn_ticket if prize_draw_in_progress?
     end
 
     private
@@ -17,9 +18,8 @@ module PrizeDraws
     def draw_ticket
       @drawn_ticket = @event.tickets.where("student_score >= ?", PASSING_SCORE).sample
     end
-
-    def create_prize_draw
-      PrizeDraw.create(ticket: @drawn_ticket)
+    def prize_draw_in_progress?
+      @prize_draw.present?
     end
   end
 end
