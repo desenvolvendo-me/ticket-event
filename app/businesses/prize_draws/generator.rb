@@ -1,6 +1,5 @@
 module PrizeDraws
   class Generator < BusinessApplication
-
     PASSING_SCORE = 70
 
     def initialize(event, prize_draw)
@@ -10,16 +9,19 @@ module PrizeDraws
 
     def call
       draw_ticket
-      @drawn_ticket if prize_draw_in_progress?
     end
 
     private
 
     def draw_ticket
-      @drawn_ticket = @event.tickets.where("student_score >= ?", PASSING_SCORE).sample
-    end
-    def prize_draw_in_progress?
-      @prize_draw.present?
+      eligible_tickets = @prize_draw.tickets.where("student_score >= ?", PASSING_SCORE)
+      drawn_ticket = eligible_tickets.sample
+
+      if drawn_ticket.present?
+        WinnerTicket.create(prize_draw: @prize_draw, ticket: drawn_ticket, winner: drawn_ticket.student.name)
+      end
+
+      drawn_ticket
     end
   end
 end
