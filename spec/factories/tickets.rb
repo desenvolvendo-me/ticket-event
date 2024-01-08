@@ -28,6 +28,5 @@ FactoryBot.define do
     event
     student
     student_score { rand(0..100) }
-    association :prize_draw, factory: :prize_draw
   end
 end
