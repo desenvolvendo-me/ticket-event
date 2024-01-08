@@ -6,6 +6,7 @@
 #  date       :datetime
 #  name       :string
 #  prize      :string
+#  winner     :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  event_id   :bigint           not null
