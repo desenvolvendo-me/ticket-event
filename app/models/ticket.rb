@@ -26,9 +26,8 @@
 class Ticket < ApplicationRecord
   belongs_to :event
   belongs_to :student, dependent: :destroy
-  belongs_to :prize_draw
+  belongs_to :prize_draw, optional: true
 
-  belongs_to :prize_draw
   has_one_attached :svg
   has_one_attached :png
 
