@@ -1,5 +1,5 @@
 class Manager::PrizeDrawsController < ApplicationController
-  before_action :set_prize_draw, only: %i[ index show new edit create update destroy]
+  before_action :set_prize_draw, only: %i[ index show new edit create update destroy prize_draw_winner]
   before_action :set_event
 
   def index
@@ -32,6 +32,14 @@ class Manager::PrizeDrawsController < ApplicationController
   def destroy
      @prize_draw.destroy
      redirect_to manager_event_prize_draws_path
+  end
+
+  def prize_draw_winner
+    PrizeDraws::Generator.call(@event)
+  end
+
+  def winner_prize_draw
+
   end
 
   private
