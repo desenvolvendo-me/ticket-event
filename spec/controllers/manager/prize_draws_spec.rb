@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Manager::PrizeDrawsController, type: :controller do
+  let!(:manager_user) { create(:manager_user) }
+
+  before(:each) do
+    sign_in manager_user
+  end
 
   describe 'Test controller' do
     let(:event) { create(:event) }
@@ -64,6 +69,15 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
         delete :destroy, params: { event_id: event.id, id: prize_draw.id }
 
         expect { prize_draw.reload }.to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+    context "POST /prize_draw_winner" do
+      let!(:student) { create(:student) }
+      let!(:ticket) { create(:ticket, student: student, event: event,prize_draw: prize_draw, student_score: 70) }
+
+      it "generates prize draw" do
+        expect { post :run_prize_draw, params: { id: event.slug } }
+          .to change(PrizeDraw, :count).by(1)
       end
     end
   end
