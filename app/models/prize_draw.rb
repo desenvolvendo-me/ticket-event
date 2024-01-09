@@ -22,7 +22,7 @@
 #
 class PrizeDraw < ApplicationRecord
   belongs_to :event
-  has_many :tickets, dependent: :destroy
+  has_many :tickets
   has_one :winner_ticket, dependent: :destroy
 
   validates :name, :date, :prize, presence: :true
