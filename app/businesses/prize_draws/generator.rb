@@ -19,8 +19,9 @@ module PrizeDraws
 
       if drawn_ticket.present?
         WinnerTicket.create(prize_draw: @prize_draw, ticket: drawn_ticket, winner: drawn_ticket.student.name)
+      else
+        nil
       end
-      drawn_ticket
     end
   end
 end
