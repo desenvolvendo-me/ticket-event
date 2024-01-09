@@ -1,5 +1,3 @@
-
-
 require 'rails_helper'
 
 RSpec.describe PrizeDraws::Generator do
@@ -14,8 +12,7 @@ RSpec.describe PrizeDraws::Generator do
       allow(prize_draw.tickets).to receive(:where).and_return([eligible_ticket])
       allow(prize_draw.tickets).to receive(:sample).and_return(eligible_ticket)
 
-      generator = PrizeDraws::Generator.new(event, prize_draw)
-      drawn_ticket = generator.call
+      drawn_ticket = PrizeDraws::Generator.call(event, prize_draw)
 
       expect(drawn_ticket).to eq(eligible_ticket)
       expect(WinnerTicket.count).to eq(1)
@@ -28,8 +25,7 @@ RSpec.describe PrizeDraws::Generator do
       allow(prize_draw.tickets).to receive(:where).and_return([])
       allow(prize_draw.tickets).to receive(:sample).and_return(nil)
 
-      generator = PrizeDraws::Generator.new(event, prize_draw)
-      drawn_ticket = generator.call
+      drawn_ticket = PrizeDraws::Generator.call(event, prize_draw)
 
       expect(drawn_ticket).to be_nil
       expect(WinnerTicket.count).to eq(0)
