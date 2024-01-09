@@ -22,8 +22,21 @@
   </div>
 
   <%= f.fields_for :student do |student_fields| %>
-    <%= student_fields.label :phone %>
-    <%= student_fields.text_field :phone %>
+
+    <div class="field">
+      <%= student_fields.label :type_social %><br />
+      <%= student_fields.text_field :type_social %>
+    </div>
+
+    <div class="field">
+      <%= student_fields.label :profile_social %><br />
+      <%= student_fields.text_field :profile_social %>
+    </div>
+
+    <div class="field">
+      <%= student_fields.label :phone %><br />
+      <%= student_fields.text_field :phone %>
+    </div>
   <% end %>
 
   <div class="actions">
