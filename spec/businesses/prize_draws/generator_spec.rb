@@ -7,14 +7,14 @@ RSpec.describe PrizeDraws::Generator do
   context '#call' do
     it 'draws a ticket and creates a winner ticket' do
       student = create(:student)
-      eligible_ticket = create(:ticket, event: event, student: student, student_score: 80)
+      eligible_ticket = create(:ticket, event: event, student: student, student_score: 70)
 
       allow(prize_draw.tickets).to receive(:where).and_return([eligible_ticket])
       allow(prize_draw.tickets).to receive(:sample).and_return(eligible_ticket)
 
-      drawn_ticket = PrizeDraws::Generator.call(event, prize_draw)
+      drawn_winner_ticket = PrizeDraws::Generator.call(event, prize_draw)
 
-      expect(drawn_ticket).to eq(eligible_ticket)
+      expect(drawn_winner_ticket).to be_a(WinnerTicket)
       expect(WinnerTicket.count).to eq(1)
       expect(WinnerTicket.first.prize_draw).to eq(prize_draw)
       expect(WinnerTicket.first.ticket).to eq(eligible_ticket)
