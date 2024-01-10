@@ -40,7 +40,7 @@ class Manager::PrizeDrawsController < ApplicationController
 
 
     if winner.present?
-      redirect_to prize_draw_winner_manager_event_prize_draw_path(prize_draw.event, prize_draw)
+      redirect_to prize_draw_winner_manager_event_prize_draw_path(prize_draw.event, prize_draw), notice: 'Vencedor encontrado!'
     else
       redirect_to manager_event_prize_draws_path
     end

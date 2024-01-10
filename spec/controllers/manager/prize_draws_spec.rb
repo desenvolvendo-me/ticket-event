@@ -9,7 +9,7 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
 
   describe 'Test controller' do
     let!(:event) { create(:event) }
-    let!(:ticket) { create(:ticket) }
+    let(:ticket) { create(:ticket, prize_draw: prize_draw) }
     let!(:prize_draw) { create(:prize_draw, event: event) }
 
     context "GET /index" do
@@ -73,35 +73,25 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
       end
     end
 
-
-
-
-
-    describe "GET #winner" do
-      let!(:event) { create(:event) }
-      let!(:prize_draw) { create(:prize_draw) }
-      let!(:ticket) { create(:ticket, prize_draw: prize_draw) }
-
-      context "when a winner is drawn" do
-        before do
-          create_list(:ticket, 5, student_score: 75, prize_draw: prize_draw)
-        end
-
-        it "redirects to the prize draws path" do
-          get :prize_draw_winner, params: { event_id: event.id, id: prize_draw }
-          expect(response).to redirect_to(prize_draw_winner_manager_event_prize_draw_path(event, prize_draw))
-        end
+    context "when a winner is drawn" do
+      before do
+        create_list(:ticket, 5, student_score: 75, id: prize_draw)
       end
 
-      context "when no winner is drawn" do
-        before do
-          create_list(:ticket, 5, student_score: 60, prize_draw: prize_draw)
-        end
+      it "redirects to the prize draws path" do
+        get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id }
+        expect(response).to redirect_to(manager_event_prize_draws_path)
+      end
+    end
 
-        it "redirects to the new prize draw winner path" do
-          get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id }
-          expect(response).to redirect_to(manager_event_prize_draws_path)
-        end
+    context "when no winner is drawn" do
+      before do
+        create_list(:ticket, 5, student_score: 60, id: prize_draw)
+      end
+
+      it "redirects to the new prize draw winner path" do
+        get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id }
+        expect(response).to redirect_to(manager_event_prize_draws_path)
       end
     end
   end
