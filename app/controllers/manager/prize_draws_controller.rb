@@ -1,5 +1,5 @@
 class Manager::PrizeDrawsController < ApplicationController
-  before_action :set_prize_draw, only: %i[ index show new edit create update destroy prize_draw_winner_show]
+  before_action :set_prize_draw, only: %i[ index show new edit create update destroy prize_draw_winner]
   before_action :set_event
 
   def index
@@ -38,10 +38,11 @@ class Manager::PrizeDrawsController < ApplicationController
     generator = PrizeDraws::Generator.new( @event, @prize_draw )
     winner = generator.call
 
+
     if winner.present?
-      redirect_to manager_event_prize_draw_prize_draw_winner_path
+      redirect_to manager_event_prize_draws_path
     else
-      redirect_to manager_event_prize_draws_path(@event,@prize_draw)
+      redirect_to prize_draw_winner_manager_event_prize_draw_path(event_id: @event, id: @prize_draw)
     end
   end
 
