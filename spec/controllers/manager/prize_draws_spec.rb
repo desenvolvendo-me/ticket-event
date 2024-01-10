@@ -88,8 +88,8 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
         end
 
         it "redirects to the prize draws path" do
-          get :prize_draw_winner, params: { event, prize_draw }
-          expect(response).to redirect_to(manager_event_prize_draws_path)
+          get :prize_draw_winner, params: { event_id: event.id, id: prize_draw }
+          expect(response).to redirect_to(prize_draw_winner_manager_event_prize_draw_path(event, prize_draw))
         end
       end
 
