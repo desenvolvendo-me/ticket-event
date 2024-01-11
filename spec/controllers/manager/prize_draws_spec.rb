@@ -8,9 +8,9 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
   end
 
   describe 'Test controller' do
-    let!(:event) { create(:event) }
+    let(:event) { create(:event) }
     let(:ticket) { create(:ticket, prize_draw: prize_draw) }
-    let!(:prize_draw) { create(:prize_draw, event: event) }
+    let(:prize_draw) { create(:prize_draw, event: event) }
 
     context "GET /index" do
       it "return response successful" do
@@ -73,23 +73,17 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
       end
     end
 
-    context "when a winner is drawn" do
-      before do
-        create_list(:ticket, 5, student_score: 75, id: prize_draw)
-      end
+    context 'GET #prize_draw_winner' do
+      it 'redirects to winner path when there is a winner' do
+        allow(PrizeDraws::Generator).to receive(:new).and_return(double(call: true))
 
-      it "redirects to the prize draws path" do
         get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id }
-        expect(response).to redirect_to(manager_event_prize_draws_path)
-      end
-    end
-
-    context "when no winner is drawn" do
-      before do
-        create_list(:ticket, 5, student_score: 60, id: prize_draw)
+        expect(response).to redirect_to(prize_draw_winner_manager_event_prize_draw_path(event, prize_draw))
       end
 
-      it "redirects to the new prize draw winner path" do
+      it 'redirects to another path when there is no winner' do
+        allow(PrizeDraws::Generator).to receive(:new).and_return(double(call: false))
+
         get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id }
         expect(response).to redirect_to(manager_event_prize_draws_path)
       end
