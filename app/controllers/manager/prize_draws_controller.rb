@@ -35,12 +35,9 @@ class Manager::PrizeDrawsController < ApplicationController
   end
 
   def prize_draw_winner
-    generator = PrizeDraws::Generator.new( @event, @prize_draw )
-    winner = generator.call
-
-
+    winner = PrizeDraws::Generator.new(@event, @prize_draw).call
     if winner.present?
-      redirect_to prize_draw_winner_manager_event_prize_draw_path(prize_draw.event, prize_draw), notice: 'Vencedor encontrado!'
+      redirect_to prize_draw_winner_manager_event_prize_draw_path(@event, @prize_draw)
     else
       redirect_to manager_event_prize_draws_path
     end
