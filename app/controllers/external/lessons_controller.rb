@@ -3,6 +3,7 @@ class External::LessonsController < ExternalController
   before_action :get_ticket, only: %i[ form ]
   before_action :get_lesson, only: [ :show ]
   before_action :get_video_embedder, only: %i[ index show ]
+  before_action :get_student_user
   def index
     @lessons = @event.lessons
     @lessons_checker = []
@@ -54,5 +55,10 @@ class External::LessonsController < ExternalController
 
   def get_video_embedder
     @video_embedder = Lessons::Embedder
+  end
+
+  def get_student_user
+    @student_user = current_student_user
+    @student_data = current_student_user.student if current_student_user.student
   end
 end
