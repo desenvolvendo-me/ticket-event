@@ -26,6 +26,8 @@ pt-BR:
               prize: "Prêmio"
             routes:
               manager_event_prize_draws_path: "Rota Show"
+        draw:
+          winner_draw: "Vencedor do sorteio"
 
 
 
