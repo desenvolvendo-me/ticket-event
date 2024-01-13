@@ -53,6 +53,10 @@ class External::LessonsController < ExternalController
     @lesson = Lesson.find(params[:lesson_id])
   end
 
+  def end_class
+
+  end
+
   def get_video_embedder
     @video_embedder = Lessons::Embedder
   end

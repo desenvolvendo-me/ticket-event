@@ -19,7 +19,7 @@
             </svg>
           <% end %>
 
-          <%= link_to lesson_validate_path(@event, @lesson), class: "inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800" do %>
+          <%= link_to '#', class: "inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800", id: 'endClass', data: { event_id: @event.id, lesson_id: @lesson.id, student_id: current_student_user.student.id, slug_event: @event.slug } do %>
             <%= I18n.t('views.external.lesson.view_show.end_class') %> &nbsp;
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
@@ -43,3 +43,5 @@
     <% end %>
   </div>
 </section>
+
+<%= javascript_include_tag 'end_class' %>
