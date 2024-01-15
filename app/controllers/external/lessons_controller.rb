@@ -29,6 +29,32 @@ class External::LessonsController < ExternalController
     end
   end
 
+  def conclude_lesson
+    slug_event = params[:slug_event]
+    event_id = params[:event_id]
+    lesson_id = params[:lesson_id]
+    student_id = params[:student_id]
+
+    puts slug_event
+    puts event_id
+    puts lesson_id
+    puts student_id
+
+    lesson_status = StudentEventLessonStatus.new(
+      event_id: event_id,
+      student_id: student_id,
+      lesson_id: lesson_id,
+      is_finished: true
+    )
+
+    if lesson_status.save
+      render json: { message: 'Dados gravados com sucesso!' }
+    else
+      render json: { error: 'Erro ao gravar os dados no banco de dados'}
+    end
+
+  end
+
   private
 
   def set_event
@@ -53,9 +79,7 @@ class External::LessonsController < ExternalController
     @lesson = Lesson.find(params[:lesson_id])
   end
 
-  def end_class
 
-  end
 
   def get_video_embedder
     @video_embedder = Lessons::Embedder
@@ -63,6 +87,6 @@ class External::LessonsController < ExternalController
 
   def get_student_user
     @student_user = current_student_user
-    @student_data = current_student_user.student if current_student_user.student
+    #@student_data = current_student_user.student if current_student_user.student
   end
 end

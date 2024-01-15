@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     post 'checkin/form', to: "checkins#form", as: :form_checkin
     get ':slug_event/checked/:phone', to: "checkins#checked", as: :checked_checkin
 
-    patch ':slug_event/lessons/:lesson_id', to: "lessons#end_class", as: :end_class
+    post ':slug_event/lessons/:lesson_id', to: "lessons#conclude_lesson", as: :conclude_lesson
     get ':slug_event/lessons', to: "lessons#index", as: :lessons_index
     get ':slug_event/lessons/:lesson_id', to: "lessons#show", as: :lesson
     get ':slug_event/lessons/:lesson_id/search', to: "lessons#search", as: :lesson_validate
