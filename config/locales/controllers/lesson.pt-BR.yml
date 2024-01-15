@@ -1,4 +1,6 @@
 pt-BR:
   lesson:
+    access:
+      lock: "Você não pode acessar uma aula já finalizada! Solicite o acesso"
     form:
       unable_record: "O número não foi cadastrado nesse evento!"
