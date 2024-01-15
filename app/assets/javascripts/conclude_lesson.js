@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', function(){
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
             xhr.onload = function (){
                 if(xhr.status === 200) {
-                    alert("Aula finalizada com sucesso!")
+                    alert("Aula finalizada com sucesso!");
+                    window.location.reload();
                 } else {
                     console.error("Erro ao gravar dados no servidor.");
                 }

@@ -4,6 +4,7 @@ class External::LessonsController < ExternalController
   before_action :get_lesson, only: [ :show ]
   before_action :get_video_embedder, only: %i[ index show ]
   before_action :get_student_user
+  before_action :lesson_is_conclude?
   def index
     @lessons = @event.lessons
     @lessons_checker = []
@@ -16,6 +17,8 @@ class External::LessonsController < ExternalController
   def show
     @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
+    @lesson_status = lesson_is_conclude?
+    @next_lesson = get_next_lesson
   end
 
   def search;  end
@@ -35,11 +38,6 @@ class External::LessonsController < ExternalController
     lesson_id = params[:lesson_id]
     student_id = params[:student_id]
 
-    puts slug_event
-    puts event_id
-    puts lesson_id
-    puts student_id
-
     lesson_status = StudentEventLessonStatus.new(
       event_id: event_id,
       student_id: student_id,
@@ -53,6 +51,22 @@ class External::LessonsController < ExternalController
       render json: { error: 'Erro ao gravar os dados no banco de dados'}
     end
 
+  end
+
+  def lesson_is_conclude?
+    if get_student_user
+      @lesson_status = StudentEventLessonStatus.exists?(
+        event_id: set_event,
+        student_id: @student_user.student.id,
+        lesson_id: @lesson,
+        is_finished: true)
+
+      if @lesson_status
+        return true
+      else
+        return false
+      end
+    end
   end
 
   private
@@ -79,7 +93,14 @@ class External::LessonsController < ExternalController
     @lesson = Lesson.find(params[:lesson_id])
   end
 
-
+  def get_next_lesson
+    @last_lesson = Lesson.order(id: :desc).first
+    if @lesson.id == @last_lesson.id
+      @next_lesson = @last_lesson
+    else
+      @next_lesson = Lesson.find_by(id: (@lesson.id + 1))
+    end
+  end
 
   def get_video_embedder
     @video_embedder = Lessons::Embedder
@@ -87,6 +108,5 @@ class External::LessonsController < ExternalController
 
   def get_student_user
     @student_user = current_student_user
-    #@student_data = current_student_user.student if current_student_user.student
   end
 end
