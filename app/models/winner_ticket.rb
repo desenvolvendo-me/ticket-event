@@ -20,6 +20,6 @@
 #  fk_rails_...  (ticket_id => tickets.id)
 #
 class WinnerTicket < ApplicationRecord
-  belongs_to :prize_draw, dependent: :destroy
+  belongs_to :prize_draw
   belongs_to :ticket
 end
