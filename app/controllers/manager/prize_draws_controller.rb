@@ -35,12 +35,16 @@ class Manager::PrizeDrawsController < ApplicationController
   end
 
   def prize_draw_winner
-    winner = PrizeDraws::Generator.new(@event, @prize_draw).call
-    if winner.present?
-      redirect_to prize_draw_winner_manager_event_prize_draw_path(@event, @prize_draw)
+    @prize_draw = PrizeDraw.find(params[:id])
+    @ticket = PrizeDraws::Generator.new(@event, @prize_draw).call
+
+    if @ticket.present?
+      @prize_draw.update(winner: @ticket.student.name)
+      render :prize_draw_winner
     else
       redirect_to manager_event_prize_draws_path
     end
+
   end
 
   private
