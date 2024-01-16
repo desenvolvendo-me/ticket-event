@@ -14,3 +14,7 @@ pt-BR:
         prize: "Prêmio"
         prizedraw: "Nome do Sorteio"
         action: "Ações"
+        winner: "Vencedor do Sorteio"
+        number_ticket: "Número do Ingresso"
+        student: "Ganhador"
+        lose: "Nenhum ganhador sorteado"
