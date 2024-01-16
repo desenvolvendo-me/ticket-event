@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :events do
       resources :prize_draws do
         member do
-          get :prize_draw_winner
+          get 'prize_draw_winner'
         end
       end
     end
