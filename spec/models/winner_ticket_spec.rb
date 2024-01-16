@@ -22,5 +22,6 @@
 require 'rails_helper'
 
 RSpec.describe WinnerTicket, type: :model do
-
+  it { should belong_to(:prize_draw)}
+  it { should belong_to(:ticket)}
 end
