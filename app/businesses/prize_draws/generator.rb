@@ -15,15 +15,11 @@ module PrizeDraws
 
     def draw_ticket
       drawn_ticket = @event.tickets.where("student_score >= ?", PASSING_SCORE).sample
-
-
-
       if drawn_ticket.present?
-        WinnerTicket.create(prize_draw: @prize_draw, ticket: drawn_ticket, winner: drawn_ticket.student.name)
+        drawn_ticket
       else
         nil
       end
-       drawn_ticket
     end
   end
 end
