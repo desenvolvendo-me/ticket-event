@@ -39,12 +39,11 @@ class Manager::PrizeDrawsController < ApplicationController
     @ticket = PrizeDraws::Generator.new(@event, @prize_draw).call
 
     if @ticket.present?
-      @prize_draw.update(winner: @ticket.student.name)
+      @prize_draw.update(winner: @ticket.student.name, ticket_email: @ticket.student.email, number_ticket: @ticket.number)
       render :prize_draw_winner
     else
       redirect_to manager_event_prize_draws_path
     end
-
   end
 
   private
@@ -58,6 +57,6 @@ class Manager::PrizeDrawsController < ApplicationController
   end
 
   def prize_draw_params
-    params.require(:prize_draw).permit(:name, :date, :prize, :event_id, :winner)
+    params.require(:prize_draw).permit(:name, :date, :prize, :event_id, :winner, :ticket_email)
   end
 end
