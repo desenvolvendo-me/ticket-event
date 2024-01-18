@@ -2,15 +2,17 @@
 #
 # Table name: prize_draws
 #
-#  id         :bigint           not null, primary key
-#  date       :datetime
-#  name       :string
-#  prize      :string
-#  winner     :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  event_id   :bigint           not null
-#  ticket_id  :bigint
+#  id            :bigint           not null, primary key
+#  date          :datetime
+#  name          :string
+#  number_ticket :string
+#  prize         :string
+#  ticket_email  :string
+#  winner        :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  event_id      :bigint           not null
+#  ticket_id     :bigint
 #
 # Indexes
 #
