@@ -1,5 +1,13 @@
-<h1>WinnerDrawToTicket#winner_draw</h1>
-
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+<h1>Olá <%= @prize_draw.winner %>,</h1>
+<h2>Parabéns, você ganhou o sorteio <%= @prize_draw.name %>!</h2>
 <p>
-  <%= @greeting %>, find me in app/views/winner_draw_to_ticket_mailer/winner_draw.html.erb
+  Você acaba de ganhar o sorteio <%= @prize_draw.name %>
+  com o seu número do ticket <%= @prize_draw.number_ticket %>.<br>
 </p>
+</body>
+</html>
