@@ -38,7 +38,7 @@ class Manager::PrizeDrawsController < ApplicationController
     @prize_draw = PrizeDraw.find(params[:id])
     @ticket = PrizeDraws::Generator.new(@event, @prize_draw).call
 
-    if @ticket.present? && @prize_draw.winner.present?
+    if @ticket.present? && @prize_draw.present?
       @prize_draw.update(winner: @ticket.student.name, ticket_email: @ticket.student.email, number_ticket: @ticket.number)
       WinnerDrawToTicketMailer.with(prize_draw: PrizeDraw.last).send_winner_draw.deliver_now
       render :prize_draw_winner
