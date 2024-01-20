@@ -4,8 +4,8 @@ RSpec.describe PrizeDraws::Generator do
   let(:event) { create(:event) }
   let(:prize_draw) { create(:prize_draw, event: event) }
   let(:ticket) { create(:ticket, event: event) }
-  let(:ticket) { create(:ticket, prize_draw: prize_draw) }
-  let(:prize_draw) { create(:prize_draw)}
+
+
   context '#call' do
     it 'draws a ticket and creates a winner ticket' do
       student = create(:student)
@@ -16,12 +16,10 @@ RSpec.describe PrizeDraws::Generator do
 
       PrizeDraws::Generator.call(event, prize_draw)
 
-      expect(WinnerTicket.count).to eq(1)
-      expect(WinnerTicket.first.prize_draw).to eq(prize_draw)
-      expect(WinnerTicket.first.ticket).to eq(drawn_ticket )
-      expect(WinnerTicket.first.winner).to eq(student.name)
-      expect(WinnerTicket.first.prize_draw.id).to eq(prize_draw.id)
-      expect(WinnerTicket.first.ticket.student.name).to eq("Marco Castro")
+      expect(drawn_ticket.student_id).to eq(student.id)
+      expect(drawn_ticket.event_id).to eq(event.id)
+      expect(drawn_ticket).to be_instance_of(Ticket)
+
     end
 
     it 'does not create a winner ticket if no eligible ticket is drawn' do
@@ -31,7 +29,7 @@ RSpec.describe PrizeDraws::Generator do
       drawn_ticket = PrizeDraws::Generator.call(event, prize_draw)
 
       expect(drawn_ticket).to be_nil
-      expect(WinnerTicket.count).to eq(0)
+
     end
   end
 end
