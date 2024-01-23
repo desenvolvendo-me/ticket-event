@@ -23,3 +23,4 @@ module PrizeDraws
     end
   end
 end
+# WinnerDrawToTicketMailer.with(prize_draw: PrizeDraw.last).send_winner_draw.deliver_now
