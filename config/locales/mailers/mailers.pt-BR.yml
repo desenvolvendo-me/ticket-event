@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+        mailers:
+          messages:
+            winner: "Parabéns, #{@ticket.student.name} você ganhou o sorteio!"
+
+
