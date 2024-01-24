@@ -1,0 +1,5 @@
+pt-BR:
+  mailers:
+    mailer:
+      subject: "Parabéns, %{student_name}! Você ganhou o sorteio!"
+
