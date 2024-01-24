@@ -80,14 +80,14 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
       it 'redirects to winner path when there is a winner' do
         allow(PrizeDraws::Generator).to receive(:new).with(event, prize_draw).and_return(double(call: ticket))
 
-        get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id }
+        get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id, ticket_id: ticket.id }
         expect(response).to have_http_status(:success)
       end
 
       it 'redirects to another path when there is no winner' do
         allow(PrizeDraws::Generator).to receive(:new).and_return(double(call: false))
 
-        get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id }
+        get :prize_draw_winner, params: { event_id: event.id, id: prize_draw.id, ticket_id: ticket.id }
         expect(response).to redirect_to(manager_event_prize_draws_path)
       end
     end

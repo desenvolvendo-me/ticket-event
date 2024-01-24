@@ -39,10 +39,9 @@ module Manager
     def prize_draw_winner
       @prize_draw = PrizeDraw.find(params[:id])
       @ticket = Ticket.find(params[:id])
-      @ticket = PrizeDraws::Generator.new(@event, @prize_draw).call
+      @prize_draw= PrizeDraws::Generator.new(@event, @prize_draw).call
 
-      if @ticket.present? && @prize_draw.present?
-        @prize_draw.update(ticket_id: @ticket)
+      if @prize_draw.present?
         render :prize_draw_winner
       else
         redirect_to manager_event_prize_draws_path
