@@ -2,10 +2,10 @@
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th scope="col" class="px-4 py-3"><%= t('activerecord.attributes.prize_draw.prizedraw') %></th>
-      <th scope="col" class="px-4 py-3"><%= t('activerecord.attributes.prize_draw.date') %></th>
-      <th scope="col" class="px-4 py-3"><%= t('activerecord.attributes.prize_draw.event') %></th>
-      <th scope="col" class="px-4 py-3"><span><%= t('activerecord.attributes.prize_draw.action') %></span></th>
+      <th scope="col" class="px-4 py-3"><%= t '.prize_draw_name' %></th>
+      <th scope="col" class="px-4 py-3"><%= t('.date') %></th>
+      <th scope="col" class="px-4 py-3"><%= t('.event') %></th>
+      <th scope="col" class="px-4 py-3"><span><%= t('.actions') %></span></th>
     </tr>
     </thead>
     <tbody>
@@ -27,18 +27,18 @@
         <ul class="py-1 text-sm flex flex-col items-center text-gray-700 dark:text-gray-200" aria-labelledby="lessons-dropdown-button-<%= prize_draw.id %>">
           <li class="hover:bg-gray-100">
             <%= link_to(manager_event_prize_draw_url(prize_draw.event, prize_draw), class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white") do %>
-              <%= t 'views.manager.prize_draw.show' %>
+              <%= t '.button_show' %>
             <% end %>
           </li>
           <li class="hover:bg-gray-100">
             <%= link_to(edit_manager_event_prize_draw_url(prize_draw.event, prize_draw), class: "block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white") do %>
-              <%= t 'views.manager.prize_draw.edit' %>
+              <%= t '.button_edit' %>
             <% end %>
           </li>
         </ul>
         <div class="self-center hover:bg-gray-100">
           <%= link_to(manager_event_prize_draw_url(prize_draw.event, prize_draw), data: { turbo_method: :delete, turbo_confirm: t('views.manager.event.delete_confirm') }, class: "block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white") do %>
-            <%= t('views.manager.prize_draw.delete') %>
+            <%= t('.button_delete') %>
           <% end %>
         </div>
       </div>

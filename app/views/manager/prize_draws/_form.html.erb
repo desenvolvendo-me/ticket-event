@@ -5,22 +5,22 @@
         <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
 
           <div class="field">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t('activerecord.attributes.prize_draw.name') %></label>
-            <%= form.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: "Your name here", required: true %>
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t '.name' %></label>
+            <%= form.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: t('.placeholders.name'), required: true %>
           </div>
 
           <div class="sm:col-span-2">
-            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t('activerecord.attributes.prize_draw.date') %></label>
-            <%= form.datetime_local_field :date, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: "Your date here" %>
+            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t '.date' %></label>
+            <%= form.datetime_local_field :date, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: t('.placeholders.date') %>
           </div>
           <div class="sm:col-span-2">
-            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t('activerecord.attributes.prize_draw.prize') %></label>
-            <%= form.text_field :prize, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: "What is prize" %>
+            <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><%= t '.prize' %></label>
+            <%= form.text_field :prize, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500", placeholder: t('.placeholders.prize') %>
           </div>
 
         </div>
         <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-          <%= t('views.manager.event.save') %>
+          <%= t '.save' %>
         </button>
       <% end %>
     </div>
