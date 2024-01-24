@@ -13,7 +13,7 @@ if Rails.env.development?
   Tickets::Builders.call(event: event, csv_path: Rails.root.join('spec/support', "leads_export.csv"))
 
   # Checkin
-  Ticket.first.update(checkin: true)
+  # Ticket.first.update(checkin: true)
 
   # Create Certificate and attach file
   certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
@@ -121,8 +121,26 @@ if Rails.env.development?
   )
 
   # PrizeDraw
-  PrizeDraws::Generator.call(Event.first)
+  PrizeDraws::Generator.call(Event.first, PrizeDraw.first)
 
   # Student registration from a CSV
   Students::BatchCreator.call(csv_path: Rails.root.join('spec/support', "leads_export.csv"))
+
+  event = Event.first
+  prize_draw = PrizeDraw.create(name: 'Teste', date: '2022-02-22', prize: 'Teste', event_id: event.id)
+
+
+  # Seed tickets
+  Ticket.create!(
+    event_id: event.id,
+    student_id: 1,
+    created_at: Time.now,
+    updated_at: Time.now,
+    send_email_at: Time.now + 1.day,
+    number: "T123456",
+    checkin: false,
+    student_score: 85,
+    student_answers: { question1: "answer1", question2: "answer2" },
+    prize_draw_id: prize_draw.id
+  )
 end

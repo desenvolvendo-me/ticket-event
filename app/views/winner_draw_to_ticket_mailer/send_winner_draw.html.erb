@@ -1,0 +1,14 @@
+<html lang="pt-BR">
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <title> </title>
+  </head>
+    <body>
+    <h1>Olá <%= @ticket.student.name%>,</h1>
+    <h2>Parabéns, você ganhou o sorteio <%= @prize_draw.name %>!</h2>
+    <p>
+      Você acaba de ganhar o sorteio <%= @prize_draw.name %>
+      com o seu número do ticket <%= @ticket.number%>.<br>
+    </p>
+  </body>
+</html>
