@@ -1,7 +1,11 @@
 class AddColumnPrizeToPrizeDraws < ActiveRecord::Migration[7.0]
   def change
-    add_column :prize_draws, :prize, :string
-    add_column :prize_draws, :name, :string
-    add_column :prize_draws, :date, :datetime
+    create_table :prize_draws do |t|
+      t.string :name
+      t.string :prize
+      t.datetime :date
+
+      t.timestamps
+    end
   end
 end
