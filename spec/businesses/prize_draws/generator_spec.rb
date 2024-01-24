@@ -25,6 +25,7 @@ RSpec.describe PrizeDraws::Generator do
       expect(drawn_ticket.event_id).to eq(event.id)
       expect(drawn_ticket).to be_instance_of(Ticket)
 
+
     end
 
     it 'does not create a winner ticket if no eligible ticket is drawn' do
