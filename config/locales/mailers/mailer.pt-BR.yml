@@ -1,5 +1,4 @@
 pt-BR:
-  mailers:
-    mailer:
-      subject: "Parabéns, %{student_name}! Você ganhou o sorteio!"
-
+  winner_draw_to_ticket_mailer:
+    send_winner_draw:
+      subject: "Parabéns, %{name} você ganhou o sorteio!"
