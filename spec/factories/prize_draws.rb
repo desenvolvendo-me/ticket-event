@@ -19,10 +19,11 @@
 #
 #  fk_rails_...  (ticket_id => tickets.id)
 #
-class PrizeDraw < ApplicationRecord
-  belongs_to :event
-  has_many :ticket
-
-
-  validates :name, :date, :prize, presence: :true
+FactoryBot.define do
+  factory :prize_draw do
+    name { 'Bootcamp' }
+    date { DateTime.now }
+    prize { 'Mouse' }
+    association :event, factory: :event
+  end
 end
