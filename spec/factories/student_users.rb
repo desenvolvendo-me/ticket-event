@@ -10,17 +10,11 @@
 #  reset_password_token   :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  student_id             :bigint
 #
 # Indexes
 #
 #  index_student_users_on_email                 (email) UNIQUE
 #  index_student_users_on_reset_password_token  (reset_password_token) UNIQUE
-#  index_student_users_on_student_id            (student_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (student_id => students.id)
 #
 FactoryBot.define do
   factory :student_user do
