@@ -1,5 +1,4 @@
 class External::LessonsController < ExternalController
-  before_action :verify_access_lesson, only: %i[index show]
   before_action :set_event, only: %i[ index show ]
   before_action :get_ticket, only: %i[ form ]
   before_action :get_lesson, only: [ :show ]
@@ -20,7 +19,6 @@ class External::LessonsController < ExternalController
   end
 
   def show
-    @access_lesson = verify_access_lesson
     @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
     @lesson_status = lesson_is_conclude?
@@ -121,6 +119,7 @@ end
   def get_student_user
     @student_user = current_student_user
   end
+<<<<<<< HEAD
 
   def verify_access_lesson
     if get_student_user
@@ -131,3 +130,6 @@ end
   end
 end
 >>>>>>> parent of 92e3119 (chore(revert): start a new devlopment about to commit from 5/01/24)
+=======
+end
+>>>>>>> parent of 70d54dc (feat(lesson): restricting completed class times)
