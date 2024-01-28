@@ -26,5 +26,11 @@ class StudentUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
+<<<<<<< HEAD
   has_one :student
+=======
+
+  has_one :student
+  accepts_nested_attributes_for :student
+>>>>>>> parent of 92e3119 (chore(revert): start a new devlopment about to commit from 5/01/24)
 end

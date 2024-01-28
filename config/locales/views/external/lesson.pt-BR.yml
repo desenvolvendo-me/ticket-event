@@ -14,6 +14,9 @@ pt-BR:
           quiz_access: "Acessar questionário"
           community_access: "Acessar a comunidade"
           purchase_link: "Clique aqui para comprar!"
+          end_class: "Finalizar aula"
+          warning_login: "Você precisa estar logado para responder o questionário e finalizar as aulas!"
+          next_class: "Próxima aula"
         search:
           welcome: "Seja Bem Vindo!"
           quiz_access: "Acesso ao questionário"

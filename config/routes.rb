@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :student_users
+  devise_for :student_users, controllers: { registrations: 'registrations' }
   devise_for :manager_users
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     post 'checkin/form', to: "checkins#form", as: :form_checkin
     get ':slug_event/checked/:phone', to: "checkins#checked", as: :checked_checkin
 
+    post ':slug_event/lessons/:lesson_id', to: "lessons#conclude_lesson", as: :conclude_lesson
     get ':slug_event/lessons', to: "lessons#index", as: :lessons_index
     get ':slug_event/lessons/:lesson_id', to: "lessons#show", as: :lesson
     get ':slug_event/lessons/:lesson_id/search', to: "lessons#search", as: :lesson_validate
