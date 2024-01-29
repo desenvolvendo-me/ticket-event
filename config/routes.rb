@@ -64,5 +64,12 @@ Rails.application.routes.draw do
     get ':slug_event/lessons/:lesson_id/quiz/result', to: "quiz#result", as: :quiz_result
 
     get ':slug_event', to: "events#index", as: :event
+
+
+    get '/verify/:verification_link', to: 'certificates#verify', as: :verify_certificate
+
+
+
+
   end
 end
