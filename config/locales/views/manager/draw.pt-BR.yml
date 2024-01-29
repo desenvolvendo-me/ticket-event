@@ -18,7 +18,7 @@ pt-BR:
           prize: 'Qual é o prêmio'
 
       index:
-        name: "Nome"
+        draw: "Sorteio"
         search: "Pesquisar"
         not_draw: "Não existe sorteios criados para este evento."
         name_prize_draw: "Nome do Sorteio"
