@@ -17,6 +17,7 @@ class External::LessonsController < ExternalController
   def show
     @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
+    check_lesson
   end
 
   def search;  end
@@ -46,6 +47,19 @@ class External::LessonsController < ExternalController
 
       StudentLesson.insert_all(lessons_and_student)
     end
+  end
+
+  def check_lesson
+    @status_lesson = StudentLesson.where(student_id: @student_data, lesson_id: @lesson).pluck(:status)
+
+    if @status_lesson[0] == "progress"
+      return @status_lesson == "progress"
+    elsif @status_lesson[0] == "finished"
+      return @status_lesson == "finished"
+    else
+      return @status_lesson[0] == "not started"
+    end
+
   end
 
   private
