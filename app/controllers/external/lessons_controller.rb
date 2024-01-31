@@ -3,7 +3,7 @@ class External::LessonsController < ExternalController
   before_action :get_ticket, only: %i[ form ]
   before_action :get_lesson, only: [ :show ]
   before_action :get_video_embedder, only: %i[ index show ]
-  before_action :get_student
+  before_action :authenticate_student_user!, only: :get_student
   def index
     @lessons = @event.lessons
     @lessons_checker = []
@@ -18,6 +18,7 @@ class External::LessonsController < ExternalController
     @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
     check_lesson
+    get_student
   end
 
   def search;  end
@@ -42,7 +43,7 @@ class External::LessonsController < ExternalController
     unless @result_exists
       lessons_and_student = @ids_lessons.map.with_index do |lesson_id, index|
         status = index == 0 ? 'progress' : 'not started'
-        { student_id: @student_data.id, lesson_id: lesson_id, status: status}
+        { student_id: @student_data, lesson_id: lesson_id, status: status}
       end
 
       StudentLesson.insert_all(lessons_and_student)
@@ -61,6 +62,20 @@ class External::LessonsController < ExternalController
     end
 
   end
+
+  def terminate_lesson
+    # Finalizar a aula atual
+    @student_lesson = StudentLesson.find_by(student_id: params[:student_id], lesson_id: params[:lesson_id])
+
+    if @student_lesson
+      redirect_to lesson_path(params[:slug_event])
+    else
+      puts "O SQL não deu certo"
+    end
+
+    # Permitir acesso a próxima aula
+  end
+
 
   private
 
@@ -91,7 +106,9 @@ class External::LessonsController < ExternalController
   end
 
   def get_student
-    @student = current_student_user
-    @student_data = @student.student
+    if student_user_signed_in?
+      @student = current_student_user
+      @student_data = @student.student
+    end
   end
 end
