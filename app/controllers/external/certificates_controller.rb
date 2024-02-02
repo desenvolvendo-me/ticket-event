@@ -24,7 +24,7 @@ class External::CertificatesController < ExternalController
     if @certificate
       render :verify
     else
-      render :not_found
+      render :not_found, status: :not_found
     end
   end
 
