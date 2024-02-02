@@ -54,7 +54,6 @@ Projeto desenvolvido durante o período da Mentoria oferecida pela [Desenvolvend
 
 </div>
 
-
 ---
 
 ## 🎨 Layout
@@ -90,37 +89,44 @@ Antes de começar, você vai precisar ter instalado em sua máquina as seguintes
 $ git clone git@github.com:desenvolvendo-me/ticket-event.git
 ```
 ##### ➡️   Gere o Banco de Dados Local e também rode as migracões da aplicação
-
-
+```bash
+$ rails db:create
+```
 <div align="justify">
 	
-#####    ⚠️   Algumas implementações estão em desenvolvimento e para funcionamento da aplicação  precisam ser desabilitadas, como esta migração:      [20231225224251_add_column_prize_to_prize_draws.rb]()
+#####    ⚠️  Este comando irá criar o banco de dados local conforme configurado no arquivo config/database.yml do seu projeto. Certifique-se de que suas configurações no arquivo [database.yml]() estejam corretas para o ambiente de desenvolvimento. 
 
+##### ➡️   Gere as migracões da aplicação
+```bash
+$ rails db:migrate
+```
+#####    ⚠️ Isso aplicará todas as migrações pendentes ao seu banco de dados local, garantindo que a estrutura do banco de dados esteja atualizada de acordo com suas migrações.
 
-</div>
-
-<p align="center">
-    <img alt="NextLevelWeek" title="#NextLevelWeek" src="https://github.com/AngeloSouza1/tmp/blob/main/prize.png" width="500px">
-</p>
 
 ##### ➡️  Iniciando a Aplicação com o framework Tailwind
 ```bash
 $ foreman start -f Procfile.dev
 ```
 ##### ➡️ 👁️‍🗨️ Caso o comando acima, não funcione, seguir o procedimento abaixo:
-```bash.
+```bash
 # --- execuções do arquivo Dockerfile ---
 
  rm -rf node_modules && npm install
-
+```
+ ```bash
  npm install esbuild
+```
 
+```bash
  bundle exec rake assets:precompile
+```
 
+```bash
  bundle exec rake assets:clean
+```
 
+```bash
  bundle exec rails tailwindcss:build 
-
 ```
 ##### ⚠️  Persistindo algum erro, seguir os procedimentos abaixo:
 
