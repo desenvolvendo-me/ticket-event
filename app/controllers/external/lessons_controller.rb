@@ -11,7 +11,6 @@ class External::LessonsController < ExternalController
       @lessons_checker[index] = Access::Checker.call(lesson)
     end
     @video_embedder = Lessons::Embedder
-    first_time_class
   end
 
   def show
@@ -19,6 +18,7 @@ class External::LessonsController < ExternalController
     @lesson_checker = Access::Checker.call(@lesson)
     check_lesson
     get_student
+    first_time_class
   end
 
   def search;  end
