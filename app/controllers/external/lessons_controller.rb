@@ -22,6 +22,8 @@ class External::LessonsController < ExternalController
     get_student
     check_lesson
     first_time_class
+    get_next_lesson
+    get_previous_lesson
   end
 
   def search;  end
@@ -117,6 +119,28 @@ class External::LessonsController < ExternalController
     if student_user_signed_in?
       @student = current_student_user
       return @student_data = @student.student
+    end
+  end
+
+  def get_next_lesson
+    @next_lesson = StudentLesson.where(lesson_id: (@lesson.id.to_i + 1)).exists?
+    if @next_lesson
+      return @next_lesson = StudentLesson.find_by(lesson_id: (@lesson.id.to_i + 1))
+    else
+      @next_lesson = @lesson
+    end
+  end
+
+  def get_previous_lesson
+    previous_lesson_id = @lesson.id.to_i - 1
+    previous_lesson_id = 1 if previous_lesson_id <= 0
+
+    @previous_lesson = StudentLesson.find_by(student_id: @student_data.id, lesson_id: previous_lesson_id)
+
+    if @previous_lesson
+      return @previous_lesson
+    else
+      return @lesson
     end
   end
 end

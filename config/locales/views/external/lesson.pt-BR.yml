@@ -16,6 +16,7 @@ pt-BR:
           purchase_link: "Clique aqui para comprar!"
           terminate_lesson: "Finalizar aula!"
           next_lesson: "Próxima aula!"
+          previous_lesson: "Aula anterior!"
         search:
           welcome: "Seja Bem Vindo!"
           quiz_access: "Acesso ao questionário"
