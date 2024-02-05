@@ -11,13 +11,16 @@ class External::LessonsController < ExternalController
       @lessons_checker[index] = Access::Checker.call(lesson)
     end
     @video_embedder = Lessons::Embedder
+    get_student
+    check_lesson
+    first_time_class
   end
 
   def show
     @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
-    check_lesson
     get_student
+    check_lesson
     first_time_class
   end
 
@@ -33,21 +36,20 @@ class External::LessonsController < ExternalController
   end
 
   def first_time_class
-    # Obter todas as aulas de um evento
-    @ids_lessons = Lesson.where(event_id: @event).pluck(:id)
-
-    # Consultar para ver se há associações
-    @result_exists = StudentLesson.where(student_id: @student_data, lesson_id: @ids_lessons).exists?
-
-    # Popular a tabela com o id do estudante e com todas as aulas, aula 1 recebe progress
-    unless @result_exists
-      lessons_and_student = @ids_lessons.map.with_index do |lesson_id, index|
+    unless student_has_watched
+      lessons_and_student = @lesson_ids.map.with_index do |lesson_id, index|
         status = index == 0 ? 'progress' : 'not started'
-        { student_id: @student_data, lesson_id: lesson_id, status: status}
+        { student_id: @student_data.id, lesson_id: lesson_id, status: status}
       end
 
       StudentLesson.insert_all(lessons_and_student)
+      redirect_back(fallback_location: lessons_index_path)
     end
+  end
+
+  def student_has_watched
+    @lesson_ids = Lesson.where(event_id: @event).pluck(:id)
+    return @student_watched = StudentLesson.where(student_id: @student_data, lesson_id: @lesson_ids).exists?
   end
 
   def check_lesson
@@ -64,16 +66,22 @@ class External::LessonsController < ExternalController
   end
 
   def terminate_lesson
-    # Finalizar a aula atual
-    @student_lesson = StudentLesson.find_by(student_id: params[:student_id], lesson_id: params[:lesson_id])
-
+    @student_lesson = StudentLesson.find_by(student_id: get_student, lesson_id: params[:lesson_id])
     if @student_lesson
-      redirect_to lesson_path(params[:slug_event])
+      @student_lesson.update(status: "finished")
+      @new_lesson = StudentLesson.where(student_id: get_student, lesson_id: (params[:lesson_id].to_i + 1)).exists?
+      if @new_lesson
+        @new_lesson = StudentLesson.find_by(student_id: get_student, lesson_id: (params[:lesson_id].to_i + 1))
+        @new_lesson.update(status: "progress")
+        #redirect_to lesson_path(params[:slug_event], params[:lesson_id])
+        #redirect_back(fallback_location: lesson_path(params[:slug_event], params[:lesson_id]))
+        #redirect_to request.referrer
+      end
     else
       puts "O SQL não deu certo"
     end
-
-    # Permitir acesso a próxima aula
+    #head :ok
+    redirect_to lesson_url(params[:slug_event], params[:lesson_id])
   end
 
 
@@ -108,7 +116,7 @@ class External::LessonsController < ExternalController
   def get_student
     if student_user_signed_in?
       @student = current_student_user
-      @student_data = @student.student
+      return @student_data = @student.student
     end
   end
 end
