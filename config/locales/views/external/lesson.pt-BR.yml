@@ -14,6 +14,8 @@ pt-BR:
           quiz_access: "Acessar questionário"
           community_access: "Acessar a comunidade"
           purchase_link: "Clique aqui para comprar!"
+          finished_lesson: "Aula já finalizada"
+          not_available_lesson: "Aula não disponível"
           terminate_lesson: "Finalizar aula!"
           next_lesson: "Próxima aula!"
           previous_lesson: "Aula anterior!"
