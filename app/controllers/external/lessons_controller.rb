@@ -19,6 +19,8 @@ class External::LessonsController < ExternalController
   def show
     @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
+    @is_first_lesson = is_first_lesson?(@lesson)
+    @is_last_lesson = is_last_lesson?(@lesson)
     get_student
     check_lesson
     first_time_class
@@ -38,20 +40,24 @@ class External::LessonsController < ExternalController
   end
 
   def first_time_class
-    unless student_has_watched
-      lessons_and_student = @lesson_ids.map.with_index do |lesson_id, index|
-        status = index == 0 ? 'progress' : 'not started'
-        { student_id: @student_data.id, lesson_id: lesson_id, status: status}
-      end
+    if get_student
+      unless student_has_watched
+        lessons_and_student = @lesson_ids.map.with_index do |lesson_id, index|
+          status = index == 0 ? 'progress' : 'not started'
+          { student_id: @student_data.id, lesson_id: lesson_id, status: status}
+        end
 
-      StudentLesson.insert_all(lessons_and_student)
-      redirect_back(fallback_location: lessons_index_path)
+        StudentLesson.insert_all(lessons_and_student)
+        redirect_back(fallback_location: lessons_index_path)
+      end
     end
   end
 
   def student_has_watched
-    @lesson_ids = Lesson.where(event_id: @event).pluck(:id)
-    return @student_watched = StudentLesson.where(student_id: @student_data, lesson_id: @lesson_ids).exists?
+    if get_student
+      @lesson_ids = Lesson.where(event_id: @event).pluck(:id)
+      return @student_watched = StudentLesson.where(student_id: @student_data, lesson_id: @lesson_ids).exists?
+    end
   end
 
   def check_lesson
@@ -75,14 +81,8 @@ class External::LessonsController < ExternalController
       if @new_lesson
         @new_lesson = StudentLesson.find_by(student_id: get_student, lesson_id: (params[:lesson_id].to_i + 1))
         @new_lesson.update(status: "progress")
-        #redirect_to lesson_path(params[:slug_event], params[:lesson_id])
-        #redirect_back(fallback_location: lesson_path(params[:slug_event], params[:lesson_id]))
-        #redirect_to request.referrer
       end
-    else
-      puts "O SQL não deu certo"
     end
-    #head :ok
     redirect_to lesson_url(params[:slug_event], params[:lesson_id])
   end
 
@@ -123,24 +123,30 @@ class External::LessonsController < ExternalController
   end
 
   def get_next_lesson
-    @next_lesson = StudentLesson.where(lesson_id: (@lesson.id.to_i + 1)).exists?
+    @next_lesson = Lesson.find_by(id: (@lesson.id + 1), event_id: @event.id)
+
     if @next_lesson
-      return @next_lesson = StudentLesson.find_by(lesson_id: (@lesson.id.to_i + 1))
+      return @next_lesson = Lesson.find_by(id: (@lesson.id + 1), event_id: @event.id)
     else
       @next_lesson = @lesson
     end
   end
 
   def get_previous_lesson
-    previous_lesson_id = @lesson.id.to_i - 1
-    previous_lesson_id = 1 if previous_lesson_id <= 0
-
-    @previous_lesson = StudentLesson.find_by(student_id: @student_data.id, lesson_id: previous_lesson_id)
+    @previous_lesson = Lesson.find_by(id: (@lesson.id - 1), event_id: @event.id)
 
     if @previous_lesson
       return @previous_lesson
     else
-      return @lesson
+      @previous_lesson = @event.lessons.first
     end
+  end
+
+  def is_first_lesson?(lesson)
+    lesson.id == lesson.event.lessons.first.id
+  end
+
+  def is_last_lesson?(lesson)
+    lesson.id == lesson.event.lessons.last.id
   end
 end

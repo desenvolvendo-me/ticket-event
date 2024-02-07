@@ -17,6 +17,7 @@ pt-BR:
           terminate_lesson: "Finalizar aula!"
           next_lesson: "Próxima aula!"
           previous_lesson: "Aula anterior!"
+          lesson_access: "Acessar lições!"
         search:
           welcome: "Seja Bem Vindo!"
           quiz_access: "Acesso ao questionário"
