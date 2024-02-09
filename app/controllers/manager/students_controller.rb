@@ -19,19 +19,19 @@ module Manager
 
       return render :new unless @student.save
 
-      redirect_to manager_students_url, notice: t("controllers.manager.students.notices.student_created")
+      redirect_to manager_students_url, notice: t('controllers.manager.students.notices.student_created')
     end
 
     def update
       return render :edit, status: :unprocessable_entity unless @student.update(student_params)
 
-      redirect_to manager_student_url(@student), notice: t("controllers.manager.students.notices.student_updated")
+      redirect_to manager_student_url(@student), notice: t('controllers.manager.students.notices.student_updated')
     end
 
     def destroy
       @student.destroy
 
-      redirect_to manager_students_url, notice: t("controllers.manager.students.notices.student_destroyed")
+      redirect_to manager_students_url, notice: t('controllers.manager.students.notices.student_destroyed')
     end
 
     def select_student_csv
@@ -39,9 +39,9 @@ module Manager
     end
 
     def import_student_csv
-      Students::BatchCreator.call(csv_path: student_params[:file])
+      Students::BatchCreator.call(csv_path: student_params[:file].path)
 
-      redirect_to manager_students_url, notice: t("controllers.manager.students.notices.registered_students")
+      redirect_to manager_students_url, notice: t('controllers.manager.students.notices.registered_students')
     end
 
     def select_event; end
@@ -52,7 +52,7 @@ module Manager
       certificate = Certificate.create(student_id: student.id, event_id: event.id)
       Certificates::Builder.call(certificate: certificate)
 
-      redirect_to manager_students_url, notice: t("active_admin.notice.student.certificate_generated_successfully")
+      redirect_to manager_students_url, notice: t('active_admin.notice.student.certificate_generated_successfully')
       # TODO: Once Manager::Certificate resources are implemented, change redirect to the Certificate index instead Students
     end
 

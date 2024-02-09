@@ -15,8 +15,8 @@ class Student < ApplicationRecord
   has_many :tickets
   has_many :certificates, dependent: :destroy
 
+  validates :name, :email, :phone, :profile_social, :type_social, presence: true
   has_one_attached :avatar
 
   TYPE_SOCIAL = %w[github aleatória]
-
 end
