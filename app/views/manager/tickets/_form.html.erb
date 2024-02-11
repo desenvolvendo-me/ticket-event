@@ -1,0 +1,19 @@
+<section class="bg-white dark:bg-gray-900 relative shadow-md sm:rounded-lg">
+  <div class="px-4 mx-auto max-w-2xl pb-8">
+    <%= form_with(model: @ticket, url: @ticket.persisted? ? manager_ticket_path(@ticket) : manager_tickets_path, local: true, html: { multipart: true }) do |form| %>
+      <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+        <div class="field">
+          <%= form.label :event_id, t('activerecord.attributes.ticket.event') %>
+          <%= form.select :event_id, Event.all.map { |e| [e.name, e.id] }, { include_blank: 'Select an event' }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+        </div>
+        <div class="field">
+          <%= form.label :student_id, t('activerecord.attributes.ticket.student') %>
+          <%= form.select :student_id, Student.all.map { |s| [s.name + ' (' + s.email + ')', s.id] }, { include_blank: 'Select a student' }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+        </div>
+      </div>
+      <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+        <%= t('views.manager.ticket.view_new.save') %>
+      </button>
+    <% end %>
+  </div>
+</section>
