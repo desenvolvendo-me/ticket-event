@@ -27,5 +27,6 @@ FactoryBot.define do
     phone { "61988887777" }
     type_social { "github"}
     profile_social { "@marcodotcastro"}
+    student_user { association :student_user }
   end
 end

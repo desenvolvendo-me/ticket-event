@@ -119,6 +119,8 @@ class External::LessonsController < ExternalController
     if student_user_signed_in?
       @student = current_student_user
       return @student_data = @student.student
+    else
+      return nil
     end
   end
 
