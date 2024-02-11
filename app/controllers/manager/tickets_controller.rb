@@ -1,4 +1,5 @@
 class Manager::TicketsController < ApplicationController
+  before_action :set_ticket, only: %i[ show ]
   before_action :set_event_options, only: [:select_student_csv, :show]
 
   def index
@@ -7,6 +8,20 @@ class Manager::TicketsController < ApplicationController
 
   def show
     @ticket = Ticket.find(params[:id])
+  end
+
+  def new
+    @ticket = Ticket.new
+  end
+
+  def create
+    @ticket = Ticket.new(ticket_params_individually)
+
+    if @ticket.save
+      redirect_to @ticket, notice: 'Ticket created success!'
+    else
+      render :new
+    end
   end
 
   def select_student_csv
@@ -24,6 +39,15 @@ class Manager::TicketsController < ApplicationController
 
   def ticket_params
     params.require(:ticket).permit(:event_id, :file)
+  end
+
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
+
+  def ticket_params_individually
+    params.require(:ticket).permit(:event_id, :student_id, :send_email_at, :number, :checkin,
+                                   :student_score, :student_answers, :prize_draw_id)
   end
 
   def set_event_options
