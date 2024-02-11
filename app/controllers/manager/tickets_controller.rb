@@ -46,8 +46,8 @@ class Manager::TicketsController < ApplicationController
   end
 
   def ticket_params_individually
-    params.require(:ticket).permit(:event_id, :student_id, :send_email_at, :number, :checkin,
-                                   :student_score, :student_answers, :prize_draw_id)
+    params.require(:ticket).permit(:event_id, :student_id, :send_email_at, :number,
+                                   :checkin, :student_score, :student_answers)
   end
 
   def set_event_options
