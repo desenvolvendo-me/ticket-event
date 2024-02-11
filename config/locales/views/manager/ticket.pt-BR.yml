@@ -21,3 +21,7 @@ pt-BR:
           student: "Estudante"
           send_email: "Email enviado em"
           back: "Voltar"
+        view_new:
+          title: "Novo ingresso"
+          save: "Salvar"
+        back: "Voltar para ingressos"
