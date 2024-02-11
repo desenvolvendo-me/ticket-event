@@ -3,7 +3,7 @@
     <h1 class="p-4 text-center md:text-left max-w-2xl text-2xl font-bold text-gray-900 dark:text-white">
       <%= t('views.manager.ticket.view_new.title') %>
     </h1>
-    <%= render 'form'%>
+    <%= render 'form', ticket: @ticket %>
     <%= link_to t('views.manager.ticket.back'),
       manager_tickets_path,
       class: "my-4 ml-3 text-primary-700 inline-flex items-center bg-white
