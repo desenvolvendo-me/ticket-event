@@ -8,6 +8,10 @@ pt-BR:
           send_email: "Email enviado em"
           visualize: "Visualizar"
           generate_ticket: "Gerar ingresso"
+          new: "Novo Ingresso"
+          show: "Mostrar"
+          edit: "Editar"
+          delete: "Excluir"
         select_student_csv:
           event: "Evento"
           file: "Arquivo"
