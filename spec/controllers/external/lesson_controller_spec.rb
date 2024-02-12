@@ -23,4 +23,37 @@ RSpec.describe External::LessonsController, type: :controller do
       expect(controller.send(:get_student)).to be_nil
     end
   end
+
+  describe '#get_next_lesson' do
+    context 'when there is a next lesson' do
+      it 'sets @next_lesson to the next lesson' do
+        lesson = FactoryBot.create(:lesson)
+        event = FactoryBot.create(:event)
+        controller.instance_variable_set(:@lesson, lesson)
+        controller.instance_variable_set(:@event, event)
+
+        next_lesson = FactoryBot.create(:lesson, id: lesson.id + 1, event: event)
+        allow(Lesson).to receive(:find_by).and_return(next_lesson)
+
+        controller.send(:get_next_lesson)
+
+        expect(controller.instance_variable_get(:@next_lesson)).to eq(next_lesson)
+      end
+    end
+
+    context 'when there is no next lesson' do
+      it 'sets @next_lesson to the current lesson' do
+        lesson = FactoryBot.create(:lesson)
+        event = FactoryBot.create(:event)
+        controller.instance_variable_set(:@lesson, lesson)
+        controller.instance_variable_set(:@event, event)
+
+        allow(Lesson).to receive(:find_by).and_return(nil)
+
+        controller.send(:get_next_lesson)
+
+        expect(controller.instance_variable_get(:@next_lesson)).to eq(lesson)
+      end
+    end
+  end
 end
