@@ -3,7 +3,7 @@ module Manager
     before_action :set_student, only: %i[show edit update destroy select_event]
 
     def index
-      @students = Student.all
+      @students = Student.all.all
     end
 
     def show; end
@@ -16,10 +16,14 @@ module Manager
 
     def create
       @student = Student.new(student_params)
-
-      return render :new unless @student.save
-
-      redirect_to manager_students_url, notice: t('controllers.manager.students.notices.student_created')
+      unless @student.save
+        render :new
+        return
+      end
+      notice_message = t('controllers.manager.students.notices.student_created')
+      redirect_to manager_students_url, notice: notice_message
+      #return render :new unless @student.save
+      #redirect_to manager_students_url, notice: t('controllers.manager.students.notices.student_created')
     end
 
     def update
@@ -30,8 +34,9 @@ module Manager
 
     def destroy
       @student.destroy
-
-      redirect_to manager_students_url, notice: t('controllers.manager.students.notices.student_destroyed')
+      notice_message = t('controllers.manager.students.notices.student_destroyed')
+      redirect_to manager_students_url, notice: notice_message
+      #redirect_to manager_students_url, notice: t('controllers.manager.students.notices.student_destroyed')
     end
 
     def select_student_csv
@@ -41,7 +46,9 @@ module Manager
     def import_student_csv
       Students::BatchCreator.call(csv_path: student_params[:file].path)
 
-      redirect_to manager_students_url, notice: t('controllers.manager.students.notices.registered_students')
+      notice_message = t('controllers.manager.students.notices.registered_students')
+      redirect_to manager_students_url, notice: notice_message
+      #redirect_to manager_students_url, notice: t('controllers.manager.students.notices.registered_students')
     end
 
     def select_event; end
@@ -49,8 +56,11 @@ module Manager
     def create_certificate
       event = Event.find(params[:certificate][:event_id])
       student = Student.find(params[:id])
-      certificate = Certificate.create(student_id: student.id, event_id: event.id)
-      Certificates::Builder.call(certificate: certificate)
+      
+      certificate_data = {student_id: student.id, event_id: event.id}
+      Certificates::CratetionWorker.perform_async(certificate_data)
+      #certificate = Certificate.create(student_id: student.id, event_id: event.id)
+      #Certificates::Builder.call(certificate: certificate)
 
       redirect_to manager_students_url, notice: t('active_admin.notice.student.certificate_generated_successfully')
       # TODO: Once Manager::Certificate resources are implemented, change redirect to the Certificate index instead Students

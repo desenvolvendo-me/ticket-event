@@ -16,12 +16,12 @@ if Rails.env.development?
   # Ticket.first.update(checkin: true)
 
   # Create Certificate and attach file
-  certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
-  Certificates::Builder.call(certificate: certificate)
+  #certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
+  #Certificates::Builder.call(certificate: certificate)
 
   # Certificate Template
-  certificate_template = CertificateTemplate.create(name: "Template 01", description: "Certificado tamanho 297 x 210 mm com moldura azul", version: "1")
-  certificate_template.svg.attach(io: File.open(Rails.root.join('spec/support', 'certificate_template.svg')), filename: 'certificate_template.svg')
+  #certificate_template = CertificateTemplate.create(name: "Template 01", description: "Certificado tamanho 297 x 210 mm com moldura azul", version: "1")
+  #certificate_template.svg.attach(io: File.open(Rails.root.join('spec/support', 'certificate_template.svg')), filename: 'certificate_template.svg')
 
   # Load thumbnail
   thumbnail_path = Rails.root.join('app', 'assets', 'images', 'video-play-new.jpg')
@@ -124,7 +124,11 @@ if Rails.env.development?
   PrizeDraws::Generator.call(Event.first, PrizeDraw.first)
 
   # Student registration from a CSV
-  Students::BatchCreator.call(csv_path: Rails.root.join('spec/support', "leads_export.csv"))
+  #Students::BatchCreator.call(csv_path: Rails.root.join('spec/support', "leads_export.csv"))
+  Student.create(
+    name: "Osiris", email: "osiris@teste.com", phone: "1111111111",type_social:"@teste" ,profile_social: "@teste1" 
+  )
+
 
   event = Event.first
   prize_draw = PrizeDraw.create(name: 'Teste', date: '2022-02-22', prize: 'Teste', event_id: event.id)
