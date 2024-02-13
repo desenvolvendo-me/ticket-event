@@ -23,5 +23,6 @@ FactoryBot.define do
   factory :student_lesson do
     student { association :student }
     lesson { association :lesson }
+    status { "progress" }
   end
 end

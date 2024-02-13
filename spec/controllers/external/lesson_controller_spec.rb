@@ -138,4 +138,40 @@ RSpec.describe External::LessonsController, type: :controller do
       end
     end
   end
+
+  describe '#student_has_watched' do
+    let(:student_user) { FactoryBot.create(:student_user) }
+    let(:student) { FactoryBot.create(:student, student_user: student_user) }
+    let(:event) { FactoryBot.create(:event) }
+    let(:lesson) { FactoryBot.create(:lesson, event: event) }
+    let!(:student_lesson) { FactoryBot.create(:student_lesson, student: student, lesson: lesson) }
+
+    context 'when student is signed in' do
+      before do
+        sign_in student_user
+      end
+
+      it 'returns true if the student has watched the lesson' do
+        student_lesson = FactoryBot.create(:student_lesson, student: student, lesson: lesson)
+        student_lesson.reload
+        result = StudentLesson.exists?(student_id: student.id, lesson_id: lesson.id)
+        expect(result).to be true
+      end
+
+      it 'returns false if the student has not watched the lesson' do
+        new_lesson = FactoryBot.create(:lesson, event: event)
+        expect(controller.student_has_watched).to be_falsey
+      end
+    end
+
+    context 'when student is not signed in' do
+      before do
+        allow(controller).to receive(:get_student).and_return(nil)
+      end
+
+      it 'returns nil if the student is not signed in' do
+        expect(controller.student_has_watched).to be_nil
+      end
+    end
+  end
 end
