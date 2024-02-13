@@ -56,4 +56,40 @@ RSpec.describe External::LessonsController, type: :controller do
       end
     end
   end
+
+  describe '#get_previous_lesson' do
+    context 'when tere is a previous lesson' do
+      it 'sets @previous_lesson to the previous lesson' do
+        lesson = FactoryBot.create(:lesson)
+        event = FactoryBot.create(:event)
+        controller.instance_variable_set(:@lesson, lesson)
+        controller.instance_variable_set(:@event, event)
+
+        previous_lesson = FactoryBot.create(:lesson, id: lesson.id - 1, event: event)
+        allow(Lesson).to receive(:find_by).and_return(previous_lesson)
+
+        controller.send(:get_previous_lesson)
+
+        expect(controller.instance_variable_get(:@previous_lesson)).to eq(previous_lesson)
+      end
+    end
+
+    context 'when there is no previous lesson' do
+      it 'sets @previous_lesson to the first lesson of the event' do
+        lesson = FactoryBot.create(:lesson)
+        event = FactoryBot.create(:event)
+        controller.instance_variable_set(:@lesson, lesson)
+        controller.instance_variable_set(:@event, event)
+
+        allow(Lesson).to receive(:find_by).and_return(nil)
+
+        first_lesson = FactoryBot.create(:lesson, event: event)
+        allow(event).to receive_message_chain(:lessons, :first).and_return(first_lesson)
+
+        controller.send(:get_previous_lesson)
+
+        expect(controller.instance_variable_get(:@previous_lesson)).to eq(first_lesson)
+      end
+    end
+  end
 end
