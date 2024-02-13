@@ -113,4 +113,29 @@ RSpec.describe External::LessonsController, type: :controller do
       end
     end
   end
+
+  describe '#is_last_lesson?' do
+    context 'when the lesson is the first lesson of the event' do
+      it 'returns true' do
+        event = FactoryBot.create(:event)
+        first_lesson = FactoryBot.create(:lesson, event: event)
+        last_lesson = FactoryBot.create(:lesson, event: event)
+
+        expect(controller.send(:is_last_lesson?, last_lesson)).to be_truthy
+      end
+    end
+
+    context 'when the lesson is not the last lesson of the event' do
+      it 'returns false' do
+        event = FactoryBot.create(:event)
+        first_lesson = FactoryBot.create(:lesson, event: event)
+        second_lesson = FactoryBot.create(:lesson, event: event)
+        last_lesson = FactoryBot.create(:lesson, event: event)
+
+        expect(controller.send(:is_last_lesson?, first_lesson)).to be_falsey
+        expect(controller.send(:is_last_lesson?, second_lesson)).to be_falsey
+        expect(controller.send(:is_last_lesson?, last_lesson)).to be_truthy
+      end
+    end
+  end
 end
