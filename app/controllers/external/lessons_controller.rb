@@ -14,6 +14,7 @@ class External::LessonsController < ExternalController
     get_student
     check_lesson
     first_time_class
+    puts @status_lesson
   end
 
   def show
@@ -26,6 +27,7 @@ class External::LessonsController < ExternalController
     first_time_class
     get_next_lesson
     get_previous_lesson
+    puts @status_lesson
   end
 
   def search;  end
@@ -64,11 +66,11 @@ class External::LessonsController < ExternalController
     @status_lesson = StudentLesson.where(student_id: @student_data, lesson_id: @lesson).pluck(:status)
 
     if @status_lesson[0] == "progress"
-      return @status_lesson == "progress"
+      return @status_lesson = "progress"
     elsif @status_lesson[0] == "finished"
-      return @status_lesson == "finished"
+      return @status_lesson = "finished"
     else
-      return @status_lesson[0] == "not started"
+      return @status_lesson[0] = "not started"
     end
 
   end
