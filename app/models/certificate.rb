@@ -31,4 +31,8 @@ class Certificate < ApplicationRecord
     self.verification_link = SecureRandom.hex
   end
 
+  def absolute_url
+    Rails.application.routes.url_helpers.verify_certificate_url(verification_link, host: 'localhost:3000')
+  end
+
 end
