@@ -13,8 +13,7 @@ class External::LessonsController < ExternalController
     @video_embedder = Lessons::Embedder
     get_student
     check_lesson
-    first_time_class
-    puts @status_lesson
+    first_time_class(@event)
   end
 
   def show
@@ -24,10 +23,9 @@ class External::LessonsController < ExternalController
     @is_last_lesson = is_last_lesson?(@lesson)
     get_student
     check_lesson
-    first_time_class
+    first_time_class(@event)
     get_next_lesson
     get_previous_lesson
-    puts @status_lesson
   end
 
   def search;  end
@@ -41,7 +39,7 @@ class External::LessonsController < ExternalController
     end
   end
 
-  def first_time_class
+  def first_time_class(event)
     if get_student
       unless student_has_watched
         lessons_and_student = @lesson_ids.map.with_index do |lesson_id, index|
@@ -50,7 +48,7 @@ class External::LessonsController < ExternalController
         end
 
         StudentLesson.insert_all(lessons_and_student)
-        redirect_back(fallback_location: lessons_index_path)
+        redirect_back(fallback_location: lessons_index_path(event.slug))
       end
     end
   end
