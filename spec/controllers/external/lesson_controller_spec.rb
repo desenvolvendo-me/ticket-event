@@ -174,4 +174,43 @@ RSpec.describe External::LessonsController, type: :controller do
       end
     end
   end
+
+  describe '#check_lesson' do
+    let(:student) { FactoryBot.create(:student) }
+    let(:lesson) { FactoryBot.create(:lesson) }
+
+    context 'when the lesson status is "progress"' do
+      before do
+        student_lessons_stub = double('student_lessons_stub', pluck: ['progress'])
+        allow(StudentLesson).to receive(:where).and_return(student_lessons_stub)
+      end
+
+      it 'returns "progress"' do
+        expect(controller.check_lesson).to eq('progress')
+      end
+    end
+
+    context 'when the lesson status is "not started"' do
+      before do
+        student_lessons_stub = double('student_lessons_stub', pluck: ['not started'])
+        allow(StudentLesson).to receive(:where).and_return(student_lessons_stub)
+      end
+
+      it 'returns "not started"' do
+        expect(controller.check_lesson).to eq('not started')
+      end
+    end
+
+    context 'when the lesson status is "finished"' do
+      before do
+        student_lessons_stub = double('student_lessons_stub', pluck: ['finished'])
+        allow(StudentLesson).to receive(:where).and_return(student_lessons_stub)
+      end
+
+      it 'returns "finished"' do
+        expect(controller.check_lesson).to eq('finished')
+      end
+    end
+  end
+
 end
