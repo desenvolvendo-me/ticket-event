@@ -11,18 +11,23 @@ RSpec.describe External::LessonsController, type: :controller do
       allow(controller).to receive(:get_student)
     end
 
-    it 'assigns the student data when student is signed in' do
-      sign_in student_user
-      controller.send(:get_student)
-      expect(assigns(:student_data)).to eq(student_user.student)
-      expect(controller.instance_variable_get(:@student_data)).to eq(student_user.student)
+    context 'when student is signed in' do
+      it 'assigns the student data' do
+        sign_in student_user
+        controller.send(:get_student)
+        expect(assigns(:student_data)).to eq(student_user.student)
+        expect(controller.instance_variable_get(:@student_data)).to eq(student_user.student)
+      end
     end
 
-    it 'does not assign student data when student is not signed in' do
-      allow(controller).to receive(:current_student_user).and_return(nil)
-      expect(controller.send(:get_student)).to be_nil
+    context 'when student is not signed in' do
+      it 'does not assign student data' do
+        allow(controller).to receive(:current_student_user).and_return(nil)
+        expect(controller.send(:get_student)).to be_nil
+      end
     end
   end
+
 
   describe '#get_next_lesson' do
     context 'when there is a next lesson' do
@@ -214,27 +219,62 @@ RSpec.describe External::LessonsController, type: :controller do
   end
 
   describe '#first_time_class' do
-    it 'inserts student lessons and redirects to the root if student has not watched any lesson' do
-      event = FactoryBot.create(:event)
+    context 'when the student has not watched any lesson before' do
+      it 'inserts student lessons and redirects to the root' do
+        event = FactoryBot.create(:event)
 
-      student = create(:student)
-      lesson1 = FactoryBot.create(:lesson, event: event)
-      lesson2 = FactoryBot.create(:lesson, event: event)
-      lesson3 = FactoryBot.create(:lesson, event: event)
+        student = create(:student)
+        lesson1 = FactoryBot.create(:lesson, event: event)
+        lesson2 = FactoryBot.create(:lesson, event: event)
+        lesson3 = FactoryBot.create(:lesson, event: event)
 
-      allow(subject).to receive(:get_student).and_return(true)
-      allow(subject).to receive(:student_has_watched).and_return(false)
-      allow(subject).to receive(:redirect_back)
+        allow(subject).to receive(:get_student).and_return(true)
+        allow(subject).to receive(:student_has_watched).and_return(false)
+        allow(subject).to receive(:redirect_back)
 
-      subject.instance_variable_set(:@student_data, student)
+        subject.instance_variable_set(:@student_data, student)
 
-      subject.instance_variable_set(:@lesson_ids, [lesson1.id, lesson2.id, lesson3.id]) if subject.instance_variable_get(:@lesson_ids).nil?
+        subject.instance_variable_set(:@lesson_ids, [lesson1.id, lesson2.id, lesson3.id]) if subject.instance_variable_get(:@lesson_ids).nil?
 
-      expect(subject).to receive(:redirect_back).with(fallback_location: lessons_index_path(slug_event: event.slug))
+        expect(subject).to receive(:redirect_back).with(fallback_location: lessons_index_path(slug_event: event.slug))
 
-      subject.first_time_class(event)
+        subject.first_time_class(event)
+      end
     end
   end
 
 
+  describe 'PATCH #terminate_lesson' do
+    let(:event) { FactoryBot.create(:event) }
+    let(:student) { FactoryBot.create(:student) }
+    let(:lesson) { FactoryBot.create(:lesson) }
+
+    before do
+      allow(controller).to receive(:get_student).and_return(student)
+      allow(controller).to receive(:params).and_return({ lesson_id: lesson.id, slug_event: event.slug })
+    end
+
+    context 'when current lesson is in progress' do
+      it 'marks the current lesson as finished and updates the status of the next lesson if it exists' do
+        student_lesson = create(:student_lesson, student: student, lesson: lesson, status: 'progress')
+        student_lesson.update(status: "finished")
+        next_lesson = create(:lesson)
+        student_lesson2 = create(:student_lesson, student: student, lesson: next_lesson, status: 'progress')
+
+        patch :terminate_lesson, params: {slug_event: event.slug, lesson_id: lesson.id}
+
+        student_lesson.reload
+        next_lesson.reload
+        student_lesson2.reload
+
+        expect(student_lesson.status).to eq('finished')
+        expect(student_lesson2.status).to eq('progress')
+      end
+
+      it 'redirects to the lesson URL' do
+        expect(patch :terminate_lesson, params: {slug_event: event.slug, lesson_id: lesson.id}).to redirect_to(lesson_url(event.slug, lesson.id))
+      end
+    end
+
+  end
 end
