@@ -217,22 +217,19 @@ RSpec.describe External::LessonsController, type: :controller do
     it 'inserts student lessons and redirects to the root if student has not watched any lesson' do
       event = FactoryBot.create(:event)
 
-      student = create(:student) # Criar um estudante previamente
-      lesson1 = create(:lesson)
-      lesson2 = create(:lesson)
-      lesson3 = create(:lesson)
+      student = create(:student)
+      lesson1 = FactoryBot.create(:lesson, event: event)
+      lesson2 = FactoryBot.create(:lesson, event: event)
+      lesson3 = FactoryBot.create(:lesson, event: event)
 
       allow(subject).to receive(:get_student).and_return(true)
       allow(subject).to receive(:student_has_watched).and_return(false)
       allow(subject).to receive(:redirect_back)
 
-      # Atribuir o estudante criado a @student_data
       subject.instance_variable_set(:@student_data, student)
 
-      # Atribui valores a @lesson_ids apenas se for nil
-      subject.instance_variable_set(:@lesson_ids, [1, 2, 3]) if subject.instance_variable_get(:@lesson_ids).nil?
+      subject.instance_variable_set(:@lesson_ids, [lesson1.id, lesson2.id, lesson3.id]) if subject.instance_variable_get(:@lesson_ids).nil?
 
-      # Redirecionamento para a raiz do aplicativo
       expect(subject).to receive(:redirect_back).with(fallback_location: lessons_index_path(slug_event: event.slug))
 
       subject.first_time_class(event)
