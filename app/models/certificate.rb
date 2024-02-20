@@ -32,7 +32,7 @@ class Certificate < ApplicationRecord
   end
 
   def absolute_url
-    Rails.application.routes.url_helpers.verify_certificate_url(verification_link, host: 'localhost:3000')
+    Rails.application.routes.url_helpers.verify_certificate_url(verification_link, host: ENV['BASE_URL'])
   end
 
 end

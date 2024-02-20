@@ -10,3 +10,8 @@ foreman start -f Procfile.dev
 ACTION_MAILER_HOST=seudominio.com
 ACTION_MAILER_PORT=80
 ```
+
+#### URL base
+```
+BASE_URL=http://localhost:3000
+```

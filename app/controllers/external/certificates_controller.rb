@@ -30,7 +30,6 @@ class External::CertificatesController < ExternalController
   end
 
 
-
   private
 
   def get_certificate
