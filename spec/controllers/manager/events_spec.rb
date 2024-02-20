@@ -73,15 +73,4 @@ RSpec.describe Manager::EventsController, type: :controller do
       expect(response).to redirect_to(manager_events_path)
     end
   end
-
-  describe "POST /run_prize_draw" do
-    let!(:event) { create(:event) }
-    let!(:student) { create(:student) }
-    let!(:ticket) { create(:ticket, student: student, event: event, student_score: 70) }
-
-    it "generates prize draw" do
-      expect { post :run_prize_draw, params: { id: event.slug } }
-        .to change(PrizeDraw, :count).by(1)
-    end
-  end
 end

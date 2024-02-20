@@ -8,7 +8,7 @@ pt-BR:
         edit: "Editar"
         save: "Salvar"
         delete: "Deletar"
-        run_prize_draw: "Realizar sorteio"
+        prize_draw: "Sorteio"
         delete_confirm: "Tem certeza que deseja excluir este evento?"
         index:
           search: "Pesquisar"

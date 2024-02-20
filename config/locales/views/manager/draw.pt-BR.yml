@@ -1,0 +1,63 @@
+pt-BR:
+  manager:
+    prize_draws:
+      form:
+        back: "Voltar"
+        name: "Nome"
+        show: "Mostrar"
+        edit: "Editar"
+        save: "Salvar"
+        delete: "Deletar"
+        run_prize_draw: "Realizar sorteio"
+        delete_confirm: "Tem certeza que deseja excluir este evento?"
+        date: "Data"
+        prize: "Prêmio"
+        placeholders:
+          name: 'Seu nome aqui'
+          date: 'Sua data aqui'
+          prize: 'Qual é o prêmio'
+
+      index:
+        draw: "Sorteio"
+        search: "Pesquisar"
+        not_draw: "Não existe sorteios criados para este evento."
+        name_prize_draw: "Nome do Sorteio"
+        prize_draw: "Sorteio"
+        showing: "Mostrando"
+        of: "de"
+        previous: "Anterior"
+        next: "Próxima"
+        new: "Novo"
+
+      prize_draw:
+        event: "Evento"
+        prize_draw_name: "Nome do Sorteio"
+        date: "Data"
+        actions: "Ações"
+        button_show: "Mostrar"
+        button_edit: "Editar"
+        button_delete: "Deletar"
+        you_are_sure: "Tem certeza?"
+      edit:
+        back: "Voltar"
+        edit: "Editar sorteio"
+
+      show:
+        run_prize_draw: "Gerar sorteio"
+        event: "Evento"
+        draw: "Sorteio"
+        date: "Data"
+        prize: "Prêmio"
+        button_delete: "Excluir"
+        button_edit: "Editar"
+        button_back: "Voltar"
+        button_run_draw: "Gerar Sorteio"
+
+      new:
+        back: "Voltar"
+        new: "Novo"
+
+#
+
+
+
