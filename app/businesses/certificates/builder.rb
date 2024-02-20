@@ -24,7 +24,8 @@ module Certificates
         "NOME" => first_and_last_name(@student),
         "DT_INI" => event_start_date,
         "DT_FIM" => event_end_date,
-        "DT_EMI" => issuance_date
+        "DT_EMI" => issuance_date,
+        "VERIFICATION_LINK" => @certificate.absolute_url
       }
 
       replace_text_in_svg_content(replacements)
