@@ -10,7 +10,7 @@ class Manager::EventsController < ApplicationController
   end
 
   def show
-    @event = Event.includes(:prize_draw).find(params[:id])
+    @event = Event.includes(:prize_draw).friendly.find(params[:id])
   end
 
   def edit; end
