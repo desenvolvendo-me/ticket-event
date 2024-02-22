@@ -126,10 +126,6 @@ if Rails.env.development?
   # Student registration from a CSV
   Students::BatchCreator.call(csv_path: Rails.root.join('spec/support', "leads_export.csv"))
 
-  event = Event.first
-  prize_draw = PrizeDraw.create(name: 'Teste', date: '2022-02-22', prize: 'Teste', event_id: event.id)
-
-
   # Seed tickets
   Ticket.create!(
     event_id: event.id,
@@ -140,7 +136,10 @@ if Rails.env.development?
     number: "T123456",
     checkin: false,
     student_score: 85,
-    student_answers: { question1: "answer1", question2: "answer2" },
-    prize_draw_id: prize_draw.id
+    student_answers: { question1: "answer1", question2: "answer2" }
   )
+
+  event = Event.first
+  ticket = Ticket.first
+  prize_draw = PrizeDraw.create(event_id: event.id, ticket_id: ticket.id)
 end
