@@ -59,7 +59,7 @@ module Manager
     end
 
     def prize_draw_params
-      params.require(:prize_draw).permit(:name, :date, :prize, :event_id, :ticket_id)
+      params.require(:prize_draw).permit(:event_id, :ticket_id)
     end
   end
 end
