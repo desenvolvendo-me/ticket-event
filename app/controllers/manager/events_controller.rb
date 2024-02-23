@@ -1,8 +1,35 @@
+# manager/events_controller.rb
 class Manager::EventsController < ApplicationController
   before_action :get_event, only: %i[ show new create edit update destroy]
 
   def index
     @events = Event.all.order(created_at: :asc)
+  end
+
+  def search_events
+    @search_query = params[:query]
+    @search_by = params[:search_by] || 'name' # Se nenhum critério for selecionado, o padrão é 'name'
+
+    # Use um hash para mapear os critérios de pesquisa aos campos correspondentes no modelo Event
+    search_fields = {
+      'name' => 'name',
+      'launch' => 'launch',
+      'description' => 'description',
+      'date' => 'date'
+    }
+
+    # Verifique se o critério de pesquisa selecionado é um dos campos permitidos
+    search_field = search_fields[@search_by]
+    unless search_field
+      flash[:error] = "Invalid search criteria"
+      redirect_to manager_events_path and return
+    end
+
+    # Use o critério de pesquisa selecionado para consultar o banco de dados
+    @events = Event.where("#{search_field} LIKE ?", "%#{@search_query}%")
+
+    # Aqui você pode ajustar a consulta conforme necessário, dependendo dos campos que deseja pesquisar
+    render 'index'
   end
 
   def new
