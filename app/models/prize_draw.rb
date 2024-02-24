@@ -23,8 +23,6 @@
 #
 class PrizeDraw < ApplicationRecord
   belongs_to :event
-  has_many :ticket
+  belongs_to :ticket
 
-
-  validates :name, :date, :prize, presence: :true
 end
