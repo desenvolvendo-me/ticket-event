@@ -23,9 +23,11 @@ class Manager::EventsController < ApplicationController
       redirect_to manager_events_path and return
     end
 
-    if search_field == 'launch' || search_field == 'date'
-      formatted_query = "%#{@search_query}%"
-
+    if search_field == 'launch' # Se o campo de pesquisa for 'launch'
+      # Converta o query para inteiro
+      @events = Event.where("#{search_field} = ?", @search_query.to_i)
+    elsif
+      search_field == 'date'
       # Convertendo a data de entrada para o formato de data esperado pelo PostgreSQL
       input_date = Date.strptime(@search_query, "%d/%m/%Y")
 
