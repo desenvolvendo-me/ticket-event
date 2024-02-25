@@ -8,9 +8,8 @@ class Manager::EventsController < ApplicationController
 
   def search_events
     @search_query = params[:query]
-    @search_by = params[:search_by] || 'name' # Se nenhum critério for selecionado, o padrão é 'name'
+    @search_by = params[:search_by] || 'name'
 
-    # Use um hash para mapear os critérios de pesquisa aos campos correspondentes no modelo Event
     search_fields = {
       'name' => 'name',
       'launch' => 'launch',
@@ -18,17 +17,29 @@ class Manager::EventsController < ApplicationController
       'date' => 'date'
     }
 
-    # Verifique se o critério de pesquisa selecionado é um dos campos permitidos
     search_field = search_fields[@search_by]
     unless search_field
       flash[:error] = "Invalid search criteria"
       redirect_to manager_events_path and return
     end
 
-    # Use o critério de pesquisa selecionado para consultar o banco de dados
-    @events = Event.where("#{search_field} LIKE ?", "%#{@search_query}%")
+    if search_field == 'launch' || search_field == 'date'
+      formatted_query = "%#{@search_query}%"
 
-    # Aqui você pode ajustar a consulta conforme necessário, dependendo dos campos que deseja pesquisar
+      # Convertendo a data de entrada para o formato de data esperado pelo PostgreSQL
+      input_date = Date.strptime(@search_query, "%d/%m/%Y")
+
+      # Calculando o intervalo de 24 horas para a data de pesquisa
+      start_of_day = input_date.beginning_of_day
+      end_of_day = input_date.end_of_day
+
+      # Comparando se a data está dentro do intervalo de 24 horas
+      @events = Event.where("#{search_field}::timestamp >= ? AND #{search_field}::timestamp <= ?", start_of_day, end_of_day)
+    else
+      formatted_query = "%#{@search_query}%"
+      @events = Event.where("#{search_field} LIKE ?", formatted_query)
+    end
+
     render 'index'
   end
 
