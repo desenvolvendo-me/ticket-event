@@ -23,23 +23,18 @@ class Manager::EventsController < ApplicationController
       redirect_to manager_events_path and return
     end
 
-    if search_field == 'launch' # Se o campo de pesquisa for 'launch'
-      # Converta o query para inteiro
+    if search_field == 'launch'
       @events = Event.where("#{search_field} = ?", @search_query.to_i)
     elsif
       search_field == 'date'
-      # Convertendo a data de entrada para o formato de data esperado pelo PostgreSQL
       input_date = Date.strptime(@search_query, "%d/%m/%Y")
 
-      # Calculando o intervalo de 24 horas para a data de pesquisa
       start_of_day = input_date.beginning_of_day
       end_of_day = input_date.end_of_day
 
-      # Comparando se a data está dentro do intervalo de 24 horas
       @events = Event.where("#{search_field}::timestamp >= ? AND #{search_field}::timestamp <= ?", start_of_day, end_of_day)
     else
-      formatted_query = "%#{@search_query}%"
-      @events = Event.where("#{search_field} LIKE ?", formatted_query)
+      @events = Event.where("#{search_field} LIKE ?", "%#{@search_query}%")
     end
 
     render 'index'
