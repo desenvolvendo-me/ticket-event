@@ -12,6 +12,8 @@ pt-BR:
         delete_confirm: "Tem certeza que deseja excluir este evento?"
         index:
           search: "Pesquisar"
+          select_field: "Selecione o campo"
+          enter_the_term: "Digite o termo"
           list:
             showing: "Mostrando"
             of: "de"
