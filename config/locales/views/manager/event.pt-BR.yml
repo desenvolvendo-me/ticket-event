@@ -1,4 +1,10 @@
 pt-BR:
+  manager:
+    events:
+      event:
+        hours: "horas"
+      show:
+        hours: "horas"
   views:
     manager:
       event:
@@ -18,6 +24,5 @@ pt-BR:
             previous: "Anterior"
             next: "Próxima"
           actions: "Ações"
-        view_show:
-          hours: "Horas"
+
 
