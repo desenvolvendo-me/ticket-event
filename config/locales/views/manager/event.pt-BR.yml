@@ -5,6 +5,8 @@ pt-BR:
         hours: "horas"
       show:
         hours: "horas"
+      form:
+        description: "Descrição"
   views:
     manager:
       event:
