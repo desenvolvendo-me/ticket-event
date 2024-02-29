@@ -22,6 +22,4 @@
 class StudentLesson < ApplicationRecord
   belongs_to :student
   belongs_to :lesson
-
-  attr_accessor :status
 end
