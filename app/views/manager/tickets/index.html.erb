@@ -44,13 +44,13 @@
                 <% end %>
               </li>
               <li class="hover:bg-gray-100">
-                <%= link_to("#", class: "block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white") do %>
+                <%= link_to(edit_manager_ticket_path(ticket), class: "block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white") do %>
                   <%= t('views.manager.ticket.index.edit') %>
                 <% end %>
               </li>
             </ul>
             <div class="self-center hover:bg-gray-100">
-              <%= link_to("#", data: { turbo_method: :delete, turbo_confirm: t('views.manager.ticket.index.delete_confirm') }, class: "block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white") do %>
+              <%= link_to(manager_ticket_path(ticket), data: { turbo_method: :delete, turbo_confirm: t('views.manager.ticket.index.delete_confirm') }, class: "block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white") do %>
                 <%= t('views.manager.ticket.index.delete') %>
               <% end %>
             </div>
