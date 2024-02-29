@@ -22,6 +22,8 @@
 #
 class Lesson < ApplicationRecord
   belongs_to :event
+  has_many :student_lesson, dependent: :destroy
+
   validates :link, :title, :description, presence: true
   has_one :quiz, dependent: :destroy
   has_one_attached :thumbnail
