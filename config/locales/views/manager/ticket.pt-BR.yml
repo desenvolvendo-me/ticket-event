@@ -12,6 +12,7 @@ pt-BR:
           show: "Mostrar"
           edit: "Editar"
           delete: "Excluir"
+          delete_confirm: "Tem certeza que deseja excluir este ingresso?"
         select_student_csv:
           event: "Evento"
           file: "Arquivo"
