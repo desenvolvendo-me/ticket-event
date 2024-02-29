@@ -37,4 +37,8 @@ class Lesson < ApplicationRecord
       errors.add(:event, valid)
     end
   end
+
+  def is_lesson_finished
+    student_lesson.present? && student_lesson.last.status == "finished"
+  end
 end
