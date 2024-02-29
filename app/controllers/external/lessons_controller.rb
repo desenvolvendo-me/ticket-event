@@ -4,6 +4,8 @@ class External::LessonsController < ExternalController
   before_action :get_lesson, only: [ :show ]
   before_action :get_video_embedder, only: %i[ index show ]
   before_action :authenticate_student_user!, only: :get_student
+
+  helper_method :is_lesson_finished
   def index
     @lessons = @event.lessons
     @lessons_checker = []
@@ -75,18 +77,23 @@ class External::LessonsController < ExternalController
   end
 
   def terminate_lesson
-    @student_lesson = StudentLesson.find_by(student_id: get_student, lesson_id: params[:lesson_id])
-    if @student_lesson
-      @student_lesson.update(status: "finished")
-      @new_lesson = StudentLesson.where(student_id: get_student, lesson_id: (params[:lesson_id].to_i + 1)).exists?
-      if @new_lesson
-        @new_lesson = StudentLesson.find_by(student_id: get_student, lesson_id: (params[:lesson_id].to_i + 1))
-        @new_lesson.update(status: "progress")
+    student = current_student_user
+    if student
+      @student_lesson = StudentLesson.find_or_initialize_by(student_id: student.id, lesson_id: params[:lesson_id])
+
+      if @student_lesson.new_record?
+        @now = Time.now
+        @student_lesson.status = "finished"
+        @student_lesson.created_at = @now
+        @student_lesson.updated_at = @now
+        @student_lesson.save
+      else
+        @student_lesson.update(status: "finished", updated_at: Time.now)
       end
     end
+
     redirect_to lesson_url(params[:slug_event], params[:lesson_id])
   end
-
 
   private
 
