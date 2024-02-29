@@ -1,5 +1,5 @@
 class Manager::TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[ show edit update ]
+  before_action :set_ticket, only: %i[ show edit update destroy ]
   before_action :set_event_options, only: [:select_student_csv, :show]
 
   def index
@@ -22,7 +22,6 @@ class Manager::TicketsController < ApplicationController
 
     if @ticket.save
       redirect_to manager_ticket_url(@ticket)
-      #redirect_to @ticket, notice: 'Ticket created success!'
     else
       render :new
     end
@@ -33,6 +32,12 @@ class Manager::TicketsController < ApplicationController
       redirect_to manager_ticket_url(@ticket)
     else
       render :edit
+    end
+  end
+
+  def destroy
+    if @ticket.destroy
+      redirect_to manager_tickets_path
     end
   end
 
