@@ -24,4 +24,6 @@ pt-BR:
         view_new:
           title: "Novo ingresso"
           save: "Salvar"
+        view_edit:
+          title: "Editar ingresso"
         back: "Voltar para ingressos"
