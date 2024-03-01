@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   devise_for :student_users
   devise_for :manager_users
 
-
-
    mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   devise_for :admin_users, ActiveAdmin::Devise.config
