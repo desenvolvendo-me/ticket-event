@@ -1,23 +1,19 @@
 class Manager::TicketsController < ApplicationController
   before_action :set_event_options, only: [:select_student_csv, :show]
+  before_action :set_ticket, only: [:send_email, :show]
 
   def send_email
-    ticket = Ticket.find(params[:id])
-    student = ticket.student
+    student = @ticket.student
     StudentMailer.welcome_email(student).deliver_now
-    redirect_to manager_ticket_path(ticket), notice: 'E-mail enviado com sucesso!'
-    if @ticket.respond_to?(:checkin) && @ticket.checkin
-      @ticket.update(send_email_at: Time.current)
-  end    
+    @ticket.update(send_email_at: Time.current)
+    redirect_to manager_ticket_path(@ticket), notice: 'E-mail enviado com sucesso!'
   end
-
 
   def index
     @tickets = Ticket.all
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
   end
 
   def select_student_csv
@@ -40,8 +36,8 @@ class Manager::TicketsController < ApplicationController
   def set_event_options
     @event_options = Event.all.map { |e| [e.name, e.id] }
   end
-end
 
- def set_ticket
+  def set_ticket
     @ticket = Ticket.find(params[:id])
   end
+end
