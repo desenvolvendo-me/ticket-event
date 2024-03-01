@@ -52,5 +52,15 @@ RSpec.describe Lessons::LessonService do
         expect(lesson.is_lesson_finished).to eq(false)
       end
     end
+
+    context 'when at least one student lesson is finished' do
+      before do
+        create(:student_lesson, lesson: lesson, status: 'finished')
+      end
+
+      it 'returns true' do
+        expect(lesson.is_lesson_finished).to eq(true)
+      end
+    end
   end
 end
