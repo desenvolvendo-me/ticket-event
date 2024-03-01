@@ -22,7 +22,7 @@
 #
 class Lesson < ApplicationRecord
   belongs_to :event
-  has_many :student_lesson, dependent: :destroy
+  has_many :student_lessons, dependent: :destroy
 
   validates :link, :title, :description, presence: true
   has_one :quiz, dependent: :destroy
@@ -39,6 +39,6 @@ class Lesson < ApplicationRecord
   end
 
   def is_lesson_finished
-    student_lesson.present? && student_lesson.last.status == "finished"
+    student_lessons.present? && student_lessons.last.status == "finished"
   end
 end
