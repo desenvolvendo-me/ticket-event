@@ -30,4 +30,9 @@ RSpec.describe Ticket, type: :model do
   it { should belong_to(:student)}
   it { should have_one_attached(:svg)}
   it { should have_one_attached(:png)}
+
+  it '# create a valid ticket' do
+    ticket = create(:ticket)
+    expect(ticket).to be_valid
+  end
 end
