@@ -39,6 +39,6 @@ class Lesson < ApplicationRecord
   end
 
   def is_lesson_finished
-    student_lessons.present? && student_lessons.last.status == "finished"
+    Lessons::LessonService.is_lesson_finished?(self)
   end
 end
