@@ -78,22 +78,11 @@ class External::LessonsController < ExternalController
 
   def terminate_lesson
     student_user = current_student_user
-    student = Student.find_by(email: student_user.email)
-    if student
-      @student_lesson = StudentLesson.find_or_initialize_by(student_id: student.id, lesson_id: params[:lesson_id])
+    lesson_id = params[:lesson_id]
 
-      if @student_lesson.new_record?
-        @now = Time.now
-        @student_lesson.status = "finished"
-        @student_lesson.created_at = @now
-        @student_lesson.updated_at = @now
-        @student_lesson.save
-      else
-        @student_lesson.update(status: "finished", updated_at: Time.now)
-      end
-    end
+    Lessons::Terminator.terminate_lesson(student_user, lesson_id)
 
-    redirect_to lesson_url(params[:slug_event], params[:lesson_id])
+    redirect_to lesson_url(params[:slug_event], lesson_id)
   end
 
   private
