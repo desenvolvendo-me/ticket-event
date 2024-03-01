@@ -37,8 +37,12 @@ module Certificates
     end
 
     def first_and_last_name(student)
-      array = student.name.split
-      "#{array.first} #{array.last}"
+      if student && student.name
+        array = student.name.split
+        "#{array.first} #{array.last}"
+      else
+        "No name"
+      end
     end
 
     def event_start_date
