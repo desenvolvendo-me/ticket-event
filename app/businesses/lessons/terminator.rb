@@ -1,6 +1,8 @@
 module Lessons
   class Terminator
     def self.terminate_lesson(student_user, lesson_id)
+      return if student_user.nil? || lesson_id.nil?
+
       student = Student.find_by(email: student_user.email)
       return unless student
 
