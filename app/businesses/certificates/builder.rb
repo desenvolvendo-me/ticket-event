@@ -41,7 +41,7 @@ module Certificates
         array = student.name.split
         "#{array.first} #{array.last}"
       else
-        "No name"
+        I18n.t('businesses.certificates.no_name')
       end
     end
 
