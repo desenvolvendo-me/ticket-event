@@ -1,5 +1,5 @@
 module Lessons
-  class Terminator
+  class LessonService
     def self.terminate_lesson(student_user, lesson_id)
       return if student_user.nil? || lesson_id.nil?
 
@@ -17,6 +17,10 @@ module Lessons
 
       student_lesson.save
       student_lesson
+    end
+
+    def self.is_lesson_finished?(lesson)
+      lesson.student_lessons.present? && lesson.student_lessons.last.status == "finished"
     end
   end
 end
