@@ -14,6 +14,15 @@ RSpec.describe Lessons::Terminator do
           expect(student_lesson.status).to eq('finished')
         end
       end
+
+      context 'when student lesson already exists' do
+        let!(:student_lesson) { create(:student_lesson, student: student, lesson: lesson) }
+
+        it 'updates the lesson status' do
+          student_lesson = described_class.terminate_lesson(student_user, lesson.id)
+          expect(student_lesson.status).to eq('finished')
+        end
+      end
     end
   end
 end
