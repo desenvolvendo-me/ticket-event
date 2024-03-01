@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Lessons::Terminator do
+RSpec.describe Lessons::LessonService do
   describe '.terminate_lesson' do
     let(:student_user) { create(:student, email: 'student@example.com') }
     let(:lesson) { create(:lesson) }
@@ -37,6 +37,19 @@ RSpec.describe Lessons::Terminator do
       it 'does not terminate the lesson' do
         student_lesson = described_class.terminate_lesson(nil, lesson.id)
         expect(student_lesson).to be_nil
+      end
+    end
+  end
+  describe '#is_lesson_finished' do
+    let(:lesson) { create(:lesson) }
+
+    context 'when student lesson status not is finished' do
+      before do
+        create(:student_lesson, lesson: lesson, status: 'not started')
+      end
+
+      it 'returns false' do
+        expect(lesson.is_lesson_finished).to eq(false)
       end
     end
   end
