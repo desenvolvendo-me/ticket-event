@@ -54,7 +54,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.include Devise::Test::ControllerHelpers
+  # essa configuração é para rails < 5
+  # config.include Devise::Test::ControllerHelpers
+
+  config.include Devise::Test::IntegrationHelpers, type: :feature
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
