@@ -21,5 +21,15 @@ class StudentUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
-  has_one :student
+  has_one :student, dependent: :destroy
+
+  after_create :create_associated_student_if_not_exists
+
+  private
+
+  def create_associated_student_if_not_exists
+    unless Student.exists?(email: email)
+      Student.create(email: email, student_user_id: id)
+    end
+  end
 end
