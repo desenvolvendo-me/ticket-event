@@ -31,12 +31,19 @@
           </td>
         </tr>
         <tr>
-          <th class="text-left pr-4">
-            <a href="<%= manager_tickets_path %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              <%= t('views.manager.ticket.show.back') %>
-            </a>
-          </th>
-        </tr>
+            
+<tr>
+  <th class="text-left pr-4">
+    <% if @ticket.checkin %>
+      <%= form_with(url: send_email_manager_ticket_path(@ticket), method: :post, class: "inline-block mr-4") do |form| %>
+        <%= form.submit 'Enviar E-mail', class: 'bg-green-500 text-white font-bold py-2 px-4 rounded' %>
+      <% end %>
+    <% end %>
+    <a href="<%= manager_tickets_path %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block">
+      <%= t('views.manager.ticket.show.back') %>
+    </a>
+  </th>
+</tr>
       </table>
     </div>
   </div>
