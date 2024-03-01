@@ -28,8 +28,6 @@ class StudentUser < ApplicationRecord
   private
 
   def create_associated_student_if_not_exists
-    unless Student.exists?(email: email)
-      Student.create(email: email, student_user_id: id)
-    end
+    Students::StudentUserService.create_associated_student(self)
   end
 end
