@@ -24,5 +24,13 @@ RSpec.describe Lessons::Terminator do
         end
       end
     end
+
+    context 'when student does not exist' do
+      it 'does not terminate the lesson' do
+        student_lesson = described_class.terminate_lesson(nil, lesson.id)
+        expect(student_lesson).to be_nil
+      end
+    end
+
   end
 end
