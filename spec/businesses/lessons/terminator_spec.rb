@@ -23,6 +23,14 @@ RSpec.describe Lessons::Terminator do
           expect(student_lesson.status).to eq('finished')
         end
       end
+
+      context 'when lesson id is nil' do
+        let!(:student_lesson) { create(:student_lesson, student: student, lesson: lesson) }
+        it 'does not terminate the lesson' do
+          student_lesson = described_class.terminate_lesson(student_lesson, nil)
+          expect(student_lesson).to be_nil
+        end
+      end
     end
 
     context 'when student does not exist' do
@@ -31,6 +39,5 @@ RSpec.describe Lessons::Terminator do
         expect(student_lesson).to be_nil
       end
     end
-
   end
 end
