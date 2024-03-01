@@ -77,7 +77,8 @@ class External::LessonsController < ExternalController
   end
 
   def terminate_lesson
-    student = current_student_user
+    student_user = current_student_user
+    student = Student.find_by(email: student_user.email)
     if student
       @student_lesson = StudentLesson.find_or_initialize_by(student_id: student.id, lesson_id: params[:lesson_id])
 
