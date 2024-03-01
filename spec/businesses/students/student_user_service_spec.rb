@@ -10,6 +10,11 @@ RSpec.describe Students::StudentUserService, type: :service do
           described_class.create_associated_student(student_user)
         }.to change(Student, :count).by(1)
       end
+
+      it 'associates the student with the correct student user' do
+        described_class.create_associated_student(student_user)
+        expect(student_user.student).to be_present
+      end
     end
   end
 end
