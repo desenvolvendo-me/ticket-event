@@ -71,17 +71,17 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
  
 
-   # Configuração do Gmail para envio de e-mails via SMTP
-   config.action_mailer.delivery_method = :smtp
-   config.action_mailer.smtp_settings = {
-     address:              'smtp.gmail.com',
-     port:                 587,
-     domain:               'gmail.com',
-     user_name:            ENV['USER_EMAIL'],
-     password:             ENV['USER_PASS'],
-     authentication:       'plain',
-     enable_starttls_auto: true
-   }
+  #  # Configuração do Gmail para envio de e-mails via SMTP
+  #  config.action_mailer.delivery_method = :smtp
+  #  config.action_mailer.smtp_settings = {
+  #    address:              'smtp.gmail.com',
+  #    port:                 587,
+  #    domain:               'gmail.com',
+  #    user_name:            ENV['USER_EMAIL'],
+  #    password:             ENV['USER_PASS'],
+  #    authentication:       'plain',
+  #    enable_starttls_auto: true
+  #  }
  
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
