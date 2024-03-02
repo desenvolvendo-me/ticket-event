@@ -3,29 +3,17 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
 
 
-    # Configuração do Gmail para envio de e-mails via SMTP
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
-      port:                 587,
-      domain:               'gmail.com',
-      user_name:            ENV['USER_EMAIL'],
-      password:             ENV['USER_PASS'],
-      authentication:       'plain',
-      enable_starttls_auto: true
-    }
- 
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address: 'smtp.sendgrid.net',
-  #   port: 587,
-  #   domain: 'desenvolvendo.me',
-  #   user_name: 'apikey',
-  #   password: ENV['SENDGRID_API_KEY'],
-  #   authentication: 'plain',
-  #   enable_starttls_auto: true
-  # }
- 
+    # # Configuração do Gmail para envio de e-mails via SMTP
+    # config.action_mailer.delivery_method = :smtp
+    # config.action_mailer.smtp_settings = {
+    #   address:              'smtp.gmail.com',
+    #   port:                 587,
+    #   domain:               'gmail.com',
+    #   user_name:            ENV['USER_EMAIL'],
+    #   password:             ENV['USER_PASS'],
+    #   authentication:       'plain',
+    #   enable_starttls_auto: true
+    # }
  
   # Settings specified here will take precedence over those in config/application.rb.
   # In the development environment your application's code is reloaded any time
@@ -57,8 +45,8 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :  letter_opener_web
+ # config.action_mailer.delivery_method = :smtp
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
