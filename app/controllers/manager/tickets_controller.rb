@@ -5,7 +5,7 @@ class Manager::TicketsController < ApplicationController
   def send_email
     student = @ticket.student
     StudentMailer.welcome_email(student).deliver_now
-    @ticket.send_email_at.strftime("%d-%m-%Y %H:%M:%S")
+    @ticket.update(send_email_at: Time.current.strftime("%d-%m-%Y %H:%M:%S"))
     redirect_to manager_ticket_path(@ticket), notice: 'E-mail enviado com sucesso!'
   end
 
