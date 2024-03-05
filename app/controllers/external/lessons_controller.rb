@@ -80,7 +80,7 @@ class External::LessonsController < ExternalController
     student_user = current_student_user
     lesson_id = params[:lesson_id]
 
-    Lessons::LessonService.terminate_lesson(student_user, lesson_id)
+    Lessons::Terminator.call(student_user, lesson_id)
 
     redirect_to lesson_url(params[:slug_event], lesson_id)
   end
