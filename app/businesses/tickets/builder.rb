@@ -18,11 +18,11 @@ module Tickets
       generate_png_from_svg
       attach_svg_and_png_to_ticket
       remove_svg_and_png
+      send_email
     end
 
     private
-
-    def create_student
+   def create_student
       @student = @ticket.student
     end
 
@@ -146,5 +146,10 @@ module Tickets
       FileUtils.rm_f(@svg_path)
       FileUtils.rm_f(@png_round_path)
     end
+    def send_email
+      StudentMailer.welcome_email(student).deliver_now
+      @ticket.update(send_email_at: Time.current.strftime("%d-%m-%Y %H:%M:%S"))
+    end
+
   end
 end

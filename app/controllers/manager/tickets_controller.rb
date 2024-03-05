@@ -2,12 +2,6 @@ class Manager::TicketsController < ApplicationController
   before_action :set_event_options, only: [:select_student_csv, :show]
   before_action :set_ticket, only: [:send_email, :show]
 
-  def send_email
-    student = @ticket.student
-    StudentMailer.welcome_email(student).deliver_now
-    @ticket.update(send_email_at: Time.current.strftime("%d-%m-%Y %H:%M:%S"))
-    redirect_to manager_ticket_path(@ticket), notice: 'E-mail enviado com sucesso!'
-  end
 
   def index
     @tickets = Ticket.all
