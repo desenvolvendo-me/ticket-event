@@ -28,6 +28,6 @@ class StudentUser < ApplicationRecord
   private
 
   def create_associated_student_if_not_exists
-    Students::StudentUserService.create_associated_student(self)
+    StudentUsers::AssociateStudent.call(self)
   end
 end
