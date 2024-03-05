@@ -39,6 +39,6 @@ class Lesson < ApplicationRecord
   end
 
   def is_lesson_finished
-    Lessons::LessonService.is_lesson_finished?(self)
+    Lessons::CheckerFinished.call(self)
   end
 end
