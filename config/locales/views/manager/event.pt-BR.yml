@@ -12,6 +12,7 @@ pt-BR:
         delete_confirm: "Tem certeza que deseja excluir este evento?"
         index:
           search: "Pesquisar"
+          enter_name_description: "Nome ou descrição"
           select_field: "Selecione o campo"
           enter_the_term: "Digite o termo"
           list:
