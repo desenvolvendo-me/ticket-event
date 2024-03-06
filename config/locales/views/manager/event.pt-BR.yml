@@ -3,28 +3,51 @@ pt-BR:
     events:
       event:
         hours: "horas"
-      show:
-        hours: "horas"
-      form:
-        description: "Descrição"
-  views:
-    manager:
-      event:
-        back: "Voltar"
-        new: "Novo"
         show: "Mostrar"
         edit: "Editar"
-        save: "Salvar"
+        delete: "Deletar"
+        delete_confirm: "Tem certeza que deseja excluir este evento?"
+      show:
+        hours: "horas"
+        description: "Descrição"
+        name: "Nome"
+        back: "Voltar"
+        edit: "Editar"
         delete: "Deletar"
         run_prize_draw: "Realizar sorteio"
         delete_confirm: "Tem certeza que deseja excluir este evento?"
-        index:
-          search: "Pesquisar"
-          list:
-            showing: "Mostrando"
-            of: "de"
-            previous: "Anterior"
-            next: "Próxima"
-          actions: "Ações"
-
-
+        duration: "Duração do evento"
+        date: "Data do Evento"
+        launch: "Lançamento"
+        community_link: "Link para comunidade"
+        purchase_link: "Link para compra"
+        purchase_date: "Data que a compra ficará disponível"
+      form:
+        description: "Descrição"
+        name: "Nome"
+        save: "Salvar"
+        duration: "Duração do evento"
+        date: "Data do Evento"
+        launch: "Lançamento"
+        community_link: "Link para comunidade"
+        purchase_link: "Link para compra"
+        purchase_date: "Data que a compra ficará disponível"
+      index:
+        description: "Descrição"
+        name: "Nome"
+        new: "Novo"
+        search: "Pesquisar"
+        showing: "Mostrando"
+        of: "de"
+        previous: "Anterior"
+        next: "Próxima"
+        actions: "Ações"
+        duration: "Duração do evento"
+        date: "Data do Evento"
+        launch: "Lançamento"
+      edit:
+        back: "Voltar"
+        edit: "Editar"
+      new:
+        back: "Voltar"
+        new: "Novo"

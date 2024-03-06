@@ -6,21 +6,15 @@ pt-BR:
         other: "Eventos"
     attributes:
       event:
-        name: "Nome"
         checked: "CheckIns"
-        launch: "Lançamento"
         active: "Ativo"
-        description: "Descrição"
-        date: "Data do Evento"
         slug: "Descrição da Url"
         lessons_alert: "Alerta de aulas"
         template: "Formato do Ingresso"
         certificate_template: "Formato do Certificado"
         template_ticket_id: "Formato do Ingresso"
-        community_link: "Link para comunidade"
         purchase_link: "Link para compra"
-        purchase_date: "Data que a compra ficará disponível"
         created_at: "Criado Em"
         updated_at: "Atualizado Em"
-        duration: "Duração do evento"
+
 

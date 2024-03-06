@@ -17,18 +17,18 @@
   <ul class="py-1 text-sm flex flex-col items-center text-gray-700 dark:text-gray-200" aria-labelledby="lessons-dropdown-button-<%= event.id %>">
     <li class="hover:bg-gray-100">
       <%= link_to(manager_event_path(event), class: "block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white") do %>
-        <%= t('views.manager.event.show') %>
+        <%= t('.show') %>
       <% end %>
     </li>
     <li class="hover:bg-gray-100">
       <%= link_to(edit_manager_event_path(event), class: "block py-2 px-4 dark:hover:bg-gray-600 dark:hover:text-white") do %>
-        <%= t('views.manager.event.edit') %>
+        <%= t('.edit') %>
       <% end %>
     </li>
   </ul>
   <div class="self-center hover:bg-gray-100">
-    <%= link_to(manager_event_path(event), data: { turbo_method: :delete, turbo_confirm: t('views.manager.event.delete_confirm') }, class: "block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white") do %>
-      <%= t('views.manager.event.delete') %>
+    <%= link_to(manager_event_path(event), data: { turbo_method: :delete, turbo_confirm: t('.delete_confirm') }, class: "block py-2 px-4 text-sm text-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white") do %>
+      <%= t('.delete') %>
     <% end %>
   </div>
 </div>
