@@ -1,9 +1,9 @@
 <div class="py-3 flex flex-col items-center">
   <div class="flex flex-col items-start">
-    <h1 class="p-4 text-center md:text-left max-w-2xl text-2xl font-bold text-gray-900 dark:text-white"><%= t('views.manager.ticket.view_edit.title') %></h1>
+    <h1 class="p-4 text-center md:text-left max-w-2xl text-2xl font-bold text-gray-900 dark:text-white"><%= t('.title') %></h1>
 
     <%= render 'form'%>
 
-    <%= link_to t('views.manager.ticket.back'), manager_tickets_path, class: "my-4 ml-3 text-primary-700 inline-flex items-center bg-white hover:bg-primary-700 hover:text-white hover:border-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-primary-300" %>
+    <%= link_to t('.back'), manager_tickets_path, class: "my-4 ml-3 text-primary-700 inline-flex items-center bg-white hover:bg-primary-700 hover:text-white hover:border-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-primary-300" %>
   </div>
 </div>

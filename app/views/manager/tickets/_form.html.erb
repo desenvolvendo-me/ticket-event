@@ -3,38 +3,38 @@
     <%= form_with(model: @ticket, url: @ticket.persisted? ? manager_ticket_path(@ticket) : manager_tickets_path, local: true, html: { multipart: true }) do |form| %>
       <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div class="field">
-          <%= form.label :event_id, t('activerecord.attributes.ticket.event') %>
-          <%= form.select :event_id, Event.all.map { |e| [e.name, e.id] }, { include_blank: 'Select an event' }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+          <%= form.label :event_id, t('.event') %>
+          <%= form.select :event_id, Event.all.map { |e| [e.name, e.id] }, { include_blank: t('.select_event') }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
         </div>
         <div class="field">
-          <%= form.label :student_id, t('activerecord.attributes.ticket.student') %>
+          <%= form.label :student_id, t('.student') %>
           <%= form.select :student_id, Student.all.map { |s| [ s.email, s.id ] }, { include_blank: 'Select a student' }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
         </div>
       </div>
       <p> &nbsp; </p>
       <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div class="field">
-          <%= form.label :student_score, t('activerecord.attributes.ticket.student_score'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :student_score, t('.student_score'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
           <%= form.number_field :student_score, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
         </div>
         <div class="field">
-          <%= form.label :number, t('activerecord.attributes.ticket.number'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :number, t('.number'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
           <%= form.text_field :number, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
         </div>
       </div>
       <p> &nbsp; </p>
       <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div class="field">
-          <%= form.label :student_answers, t('activerecord.attributes.ticket.student_answers'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :student_answers, t('.student_answers'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
           <%= form.text_area :student_answers, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
         </div>
         <div class="field">
-          <%= form.label :checkin, t('activerecord.attributes.ticket.checkin'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= form.label :checkin, t('.checkin'), class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
           <%= form.check_box :checkin, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
         </div>
       </div>
       <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-        <%= t('views.manager.ticket.view_new.save') %>
+        <%= t('.save') %>
       </button>
     <% end %>
   </div>

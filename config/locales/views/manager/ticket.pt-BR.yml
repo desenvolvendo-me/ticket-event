@@ -1,30 +1,40 @@
 pt-BR:
-  views:
-    manager:
-      ticket:
-        index:
-          event: "Evento"
-          student: "Estudante"
-          send_email: "Email enviado em"
-          visualize: "Visualizar"
-          generate_ticket: "Gerar ingresso"
-          new: "Novo Ingresso"
-          show: "Mostrar"
-          edit: "Editar"
-          delete: "Excluir"
-          delete_confirm: "Tem certeza que deseja excluir este ingresso?"
-        select_student_csv:
-          event: "Evento"
-          file: "Arquivo"
-          send: "Enviar"
-        show:
-          event: "Evento"
-          student: "Estudante"
-          send_email: "Email enviado em"
-          back: "Voltar"
-        view_new:
-          title: "Novo ingresso"
-          save: "Salvar"
-        view_edit:
-          title: "Editar ingresso"
-        back: "Voltar para ingressos"
+  manager:
+    tickets:
+      index:
+        event: "Evento"
+        student: "Estudante"
+        send_email: "Email enviado em"
+        visualize: "Visualizar"
+        generate_ticket: "Gerar ingresso"
+        new: "Novo Ingresso"
+        show: "Mostrar"
+        edit: "Editar"
+        delete: "Excluir"
+        delete_confirm: "Tem certeza que deseja excluir este ingresso?"
+      select_student_csv:
+        event: "Evento"
+        file: "Arquivo"
+        send: "Enviar"
+      show:
+        event: "Evento"
+        student: "Estudante"
+        send_email: "Email enviado em"
+        back: "Voltar"
+      new:
+        title: "Novo ingresso"
+        save: "Salvar"
+        back: "Voltar"
+      edit:
+        title: "Editar ingresso"
+        back: "Voltar"
+      form:
+        checkin: "Checkin"
+        event: "Evento"
+        save: "Salvar"
+        number: "Número"
+        student: "Estudante"
+        select_event: "Selecionar um evento"
+        student_score: "Pontuação do estudante"
+        student_answers: "Respostas do estudante"
+      back: "Voltar para ingressos"
