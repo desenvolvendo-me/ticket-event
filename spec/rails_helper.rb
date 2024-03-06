@@ -54,8 +54,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  # essa configuração é para rails < 5
-  # config.include Devise::Test::ControllerHelpers
+  RSpec.configure do |config|
+    config.include Devise::Test::ControllerHelpers, type: :controller
+  end
 
   config.include Devise::Test::IntegrationHelpers, type: :feature
 
