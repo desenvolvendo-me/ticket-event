@@ -147,7 +147,7 @@ module Tickets
       FileUtils.rm_f(@png_round_path)
     end
     def send_email
-      StudentMailer.welcome_email(student).deliver_now
+      StudentMailer.welcome_email(@student).deliver_now
       @ticket.update(send_email_at: Time.current.strftime("%d-%m-%Y %H:%M:%S"))
     end
 
