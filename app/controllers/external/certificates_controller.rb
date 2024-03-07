@@ -18,6 +18,18 @@ class External::CertificatesController < ExternalController
     redirect_to search_certificate_path(params["slug_event"]), notice: t('notice.certificate_does_not_exist')
   end
 
+  def verify
+    @certificate = Certificate.find_by(verification_link: params[:verification_link])
+
+    if @certificate
+      @absolute_url = request.original_url
+      render :verify
+    else
+      render :not_found, status: :not_found
+    end
+  end
+
+
   private
 
   def get_certificate

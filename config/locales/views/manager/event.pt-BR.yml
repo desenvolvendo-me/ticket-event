@@ -14,7 +14,7 @@ pt-BR:
         back: "Voltar"
         edit: "Editar"
         delete: "Deletar"
-        run_prize_draw: "Realizar sorteio"
+        prize_draw: "Sorteio"
         delete_confirm: "Tem certeza que deseja excluir este evento?"
         duration: "Duração do evento"
         date: "Data do Evento"

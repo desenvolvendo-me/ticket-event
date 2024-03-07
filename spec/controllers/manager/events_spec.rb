@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Manager::EventsController, type: :controller do
+  let!(:manager_user) { create(:manager_user) }
+
+  before(:each) do
+    sign_in manager_user
+  end
+
   describe 'GET /index' do
     it 'returns a successful response' do
       get :index
@@ -65,17 +71,6 @@ RSpec.describe Manager::EventsController, type: :controller do
       }.to change(Event, :count).by(-1)
 
       expect(response).to redirect_to(manager_events_path)
-    end
-  end
-
-  describe "POST /run_prize_draw" do
-    let!(:event) { create(:event) }
-    let!(:student) { create(:student) }
-    let!(:ticket) { create(:ticket, student: student, event: event, student_score: 70) }
-
-    it "generates prize draw" do
-      expect { post :run_prize_draw, params: { id: event.slug } }
-        .to change(PrizeDraw, :count).by(1)
     end
   end
 end

@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Manager::TicketsController, type: :controller do
+  let!(:manager_user) { create(:manager_user) }
+
+  before(:each) do
+    sign_in manager_user
+  end
+
   describe 'GET /index' do
     it 'should returns a successful response' do
       get :index

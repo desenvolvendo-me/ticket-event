@@ -27,7 +27,8 @@ module Certificates
         "DT_INI" => event_start_date,
         "DT_FIM" => event_end_date,
         "DT_EMI" => issuance_date,
-        "DURATION" => event_duration
+        "DURATION" => event_duration,
+        "VERIFICATION_LINK" => @certificate.absolute_url
       }
 
       replace_text_in_svg_content(replacements)
@@ -54,9 +55,6 @@ module Certificates
 
     def issuance_date
       I18n.l(@certificate.created_at.to_date, format: :default)
-    end
-    def event_duration
-      @event.duration.to_s
     end
 
     def replace_text_in_svg_content(replacements)

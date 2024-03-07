@@ -1,6 +1,5 @@
 if Rails.env.development?
   AdminUser.create!(email: 'admin@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
-  User.create!(email: 'marcodotcastro@gmail.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
   ManagerUser.create!(email: 'infoprodutor@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc', login: "PhilipeX", full_name: "Philipe Rodrigues")
   StudentUser.create!(email: 'student@ticketevent.com', password: 'abc12345abc', password_confirmation: 'abc12345abc')
 
@@ -14,7 +13,7 @@ if Rails.env.development?
   Tickets::Builders.call(event: event, csv_path: Rails.root.join('spec/support', "leads_export.csv"))
 
   # Checkin
-  Ticket.first.update(checkin: true)
+  # Ticket.first.update(checkin: true)
 
   # Create Certificate and attach file
   certificate = Certificate.create(student_id: Student.first.id, event_id: Event.first.id)
@@ -122,8 +121,25 @@ if Rails.env.development?
   )
 
   # PrizeDraw
-  PrizeDraws::Generator.call(Event.first)
+  PrizeDraws::Generator.call(Event.first, PrizeDraw.first)
 
   # Student registration from a CSV
   Students::BatchCreator.call(csv_path: Rails.root.join('spec/support', "leads_export.csv"))
+
+  # Seed tickets
+  Ticket.create!(
+    event_id: event.id,
+    student_id: 1,
+    created_at: Time.now,
+    updated_at: Time.now,
+    send_email_at: Time.now + 1.day,
+    number: "T123456",
+    checkin: false,
+    student_score: 85,
+    student_answers: { question1: "answer1", question2: "answer2" }
+  )
+
+  event = Event.first
+  ticket = Ticket.first
+  prize_draw = PrizeDraw.create(event_id: event.id, ticket_id: ticket.id)
 end

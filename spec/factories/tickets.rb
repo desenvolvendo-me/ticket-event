@@ -27,5 +27,6 @@ FactoryBot.define do
   factory :ticket do
     event
     student
+    student_score { rand(0..100) }
   end
 end
