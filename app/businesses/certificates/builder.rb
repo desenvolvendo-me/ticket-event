@@ -57,6 +57,10 @@ module Certificates
       I18n.l(@certificate.created_at.to_date, format: :default)
     end
 
+    def event_duration
+      @event.duration.to_s
+    end
+
     def replace_text_in_svg_content(replacements)
       @svg_content.css("//text").each do |text_element|
         text_element.content = gsub_text_nodes(text_element.content, replacements)
