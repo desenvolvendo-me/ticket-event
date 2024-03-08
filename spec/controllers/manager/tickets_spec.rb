@@ -40,4 +40,40 @@ RSpec.describe Manager::TicketsController, type: :controller do
     end
   end
 
+  describe "POST #create" do
+    context 'with valid parameters' do
+      let(:event) { create(:event) }
+      let(:student) { create(:student) }
+      let(:valid_ticket_params) do
+        {
+          event_id: event.id,
+          student_id: student.id,
+          send_email_at: Date.today,
+          checkin: false,
+          student_answers: { 'question1' => 'answer1', 'question2' => 'answer2' }
+        }
+      end
+
+      it 'creates a new ticket' do
+        expect {
+          post :create, params: { ticket: valid_ticket_params }
+        }.to change(Ticket, :count).by(1)
+      end
+    end
+
+    context 'with invalid parameters' do
+      let(:invalid_ticket_params) { { event_id: nil, student_id: nil } }
+
+      it 'does not create a new ticket' do
+        expect {
+          post :create, params: { ticket: invalid_ticket_params }
+        }.not_to change(Ticket, :count)
+      end
+
+      it 'renders the new template' do
+        post :create, params: { ticket: invalid_ticket_params }
+        expect(response).to render_template(:new)
+      end
+    end
+  end
 end
