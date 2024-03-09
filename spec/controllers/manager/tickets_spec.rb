@@ -76,4 +76,51 @@ RSpec.describe Manager::TicketsController, type: :controller do
       end
     end
   end
+
+  describe 'PUT #update' do
+    let!(:ticket) { create(:ticket) }
+
+    context 'with valid parameters' do
+      let(:new_event) { create(:event) }
+
+      it 'updates the ticket' do
+        put :update, params: { id: ticket.id, ticket: { event_id: new_event.id } }
+        ticket.reload
+        expect(ticket.event_id).to eq(new_event.id)
+      end
+
+      it 'redirects to the updated ticket' do
+        put :update, params: { id: ticket.id, ticket: { event_id: new_event.id } }
+        expect(response).to redirect_to(manager_ticket_path)
+      end
+    end
+
+    context 'with invalid parameters' do
+      it 'does not update the ticket' do
+        put :update, params: { id: ticket.id, ticket: { event_id: nil } }
+        ticket.reload
+        expect(ticket.event_id).not_to be_nil
+      end
+
+      it 'renders the edit template' do
+        put :update, params: { id: ticket.id, ticket: { event_id: nil } }
+        expect(response).to render_template(:edit)
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let!(:ticket) { create(:ticket) }
+
+    it 'destroys the ticket' do
+      expect {
+        delete :destroy, params: { id: ticket.id }
+      }.to change(Ticket, :count).by(-1)
+    end
+
+    it 'redirects to tickets index' do
+      delete :destroy, params: { id: ticket.id }
+      expect(response).to redirect_to(manager_tickets_path)
+    end
+  end
 end
