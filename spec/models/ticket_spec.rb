@@ -31,8 +31,32 @@ RSpec.describe Ticket, type: :model do
   it { should have_one_attached(:svg)}
   it { should have_one_attached(:png)}
 
-  it '# create a valid ticket' do
-    ticket = create(:ticket)
-    expect(ticket).to be_valid
+  describe 'create' do
+    it '# create a valid ticket' do
+      ticket = create(:ticket)
+      expect(ticket).to be_valid
+    end
+  end
+
+  describe 'update' do
+    it "# updates a ticket - checkin field" do
+      ticket = create(:ticket)
+      ticket.update(checkin: true)
+      expect(ticket.checkin).to eq(true)
+    end
+
+    it "# updates a ticket - student_score field" do
+      ticket = create(:ticket)
+      ticket.update(student_score: 1234)
+      expect(ticket.student_score).to eq(1234)
+    end
+  end
+
+  describe 'destroy' do
+    it 'destroys a ticket' do
+      ticket = create(:ticket)
+      ticket.destroy
+      expect(Ticket.count).to eq(0)
+    end
   end
 end
