@@ -37,6 +37,12 @@ gem 'image_processing', '~> 1.2'
 gem 'ffaker'
 gem 'faker'
 
+gem "net-http"
+gem "net-smtp"
+gem "net-imap"
+gem "uri", "0.10.0"
+gem 'faraday-retry'
+
 group :development, :test do
   gem 'rspec-rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 5.0'
@@ -66,5 +72,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'rspec-benchmark'
+  gem 'rails-controller-testing'
 end
 

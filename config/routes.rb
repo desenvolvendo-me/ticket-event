@@ -39,7 +39,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tickets, only: [:index, :show]
+    resources :tickets
+
     get 'select_student_csv', to: "tickets#select_student_csv", as: :tickets_select_student_csv
     post 'import_student_csv', to: "tickets#import_student_csv", as: :tickets_import_student_csv
   end
@@ -70,5 +71,12 @@ Rails.application.routes.draw do
     get ':slug_event/lessons/:lesson_id/quiz/result', to: "quiz#result", as: :quiz_result
 
     get ':slug_event', to: "events#index", as: :event
+
+
+    get '/verify/:verification_link', to: 'certificates#verify', as: :verify_certificate
+
+
+
+
   end
 end

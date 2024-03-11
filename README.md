@@ -100,6 +100,14 @@ $ rails db:create
 ```bash
 $ rails db:migrate
 ```
+
+#### URLs
+```
+ACTION_MAILER_HOST=seudominio.com
+ACTION_MAILER_PORT=80
+BASE_URL=http://localhost:3000
+```
+
 #####    ⚠️ Isso aplicará todas as migrações pendentes ao seu banco de dados local, garantindo que a estrutura do banco de dados esteja atualizada de acordo com suas migrações.
 
 
@@ -148,13 +156,3 @@ $  bundle exec rails s
 
 As seguintes ferramentas foram usadas na construção do projeto:
 -   **Ruby - Versão: 2.7.5**
-
-
-
-
-
-
-
-
-
-

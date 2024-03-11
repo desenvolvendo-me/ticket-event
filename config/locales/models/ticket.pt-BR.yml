@@ -16,6 +16,10 @@ pt-BR:
         updated_at: "Atualizado Em"
         event_id: "Evento"
         file: "Arquivo"
+        number: "Número"
+        student_score: "Pontuação do estudante"
+        checkin: "Checkin"
+        student_answers: "Respostas do estudante"
       template_ticket:
         name: "Nome"
         description: "Descrição"

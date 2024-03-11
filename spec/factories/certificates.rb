@@ -2,11 +2,12 @@
 #
 # Table name: certificates
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  event_id   :bigint           not null
-#  student_id :bigint           not null
+#  id                :bigint           not null, primary key
+#  verification_link :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  event_id          :bigint           not null
+#  student_id        :bigint           not null
 #
 # Indexes
 #
@@ -22,5 +23,9 @@ FactoryBot.define do
   factory :certificate do
     student { create(:student) }
     event { create(:event) }
+
+    after(:build) do |certificate|
+      certificate.verification_link ||= SecureRandom.hex
+    end
   end
 end
