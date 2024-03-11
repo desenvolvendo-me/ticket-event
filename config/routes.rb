@@ -17,8 +17,6 @@ Rails.application.routes.draw do
   namespace :manager do
     get 'home', to: "home#index", as: :home
 
-    get 'events/search_events', to: 'events#search_events', as: 'search_events'
-
     resources :events do
       resources :prize_draws do
         member do
