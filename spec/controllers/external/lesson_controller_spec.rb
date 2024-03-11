@@ -276,5 +276,21 @@ RSpec.describe External::LessonsController, type: :controller do
       end
     end
 
+
+    describe '#get_lesson' do
+      let(:lesson) { create(:lesson) }
+      let(:params) { { lesson_id: lesson.id } }
+
+      before do
+        @controller = External::LessonsController.new
+        allow(@controller).to receive(:params).and_return(params)
+      end
+
+      it 'assigns @lesson' do
+        expect {
+          @controller.send(:get_lesson)
+        }.to change { assigns(:lesson) }.from(nil).to(lesson)
+      end
+    end
   end
 end
