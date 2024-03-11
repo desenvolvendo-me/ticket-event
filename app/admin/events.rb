@@ -1,5 +1,5 @@
 ActiveAdmin.register Event do
-  permit_params :name, :launch, :description, :date, :active, :template, :certificate_template, :community_link, :purchase_link, :purchase_date
+  permit_params :name, :launch, :description, :date, :active, :template, :certificate_template, :community_link, :purchase_link, :purchase_date, :duration
 
   index do
     id_column
@@ -10,6 +10,7 @@ ActiveAdmin.register Event do
     column :launch
     column :description
     column :date
+    column :duration
     column :active
     column :slug do |event|
       link_to event.slug, search_ticket_path(event), target: "_blank"
@@ -31,6 +32,7 @@ ActiveAdmin.register Event do
       row :launch
       row :description
       row :date
+      row :duration
       row :active
       row :community_link
       row :purchase_link
@@ -63,6 +65,7 @@ ActiveAdmin.register Event do
       f.input :launch
       f.input :description
       f.input :date
+      f.input :duration
       f.input :active
       f.input :community_link
       f.input :purchase_link
