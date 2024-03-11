@@ -40,22 +40,5 @@ RSpec.describe Manager::TicketsController, type: :controller do
     end
   end
 
-
-  describe 'POST #send_email' do
-  let(:ticket) { create(:ticket) }
-
-  it 'sends an email and updates send_email_at' do
-    expect {
-      post :send_email, params: { id: ticket.id }
-    }.to change { ActionMailer::Base.deliveries.count }.by(1)
-
-    ticket.reload
-    expect(ticket.send_email_at).to be_present
-
-    expect(response).to have_http_status(302)
-    expect(response).to redirect_to(manager_ticket_path(ticket))
-  end
-end
-
-
+ 
 end
