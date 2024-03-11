@@ -1,10 +1,11 @@
+# manager/events_controller.rb
 class Manager::EventsController < ApplicationController
   before_action :get_event, only: %i[ show new create edit update destroy]
 
   def index
-    @events = Event.all.order(created_at: :asc)
+    @q = Event.ransack(params[:q])
+    @events = @q.result(distinct: true).order(created_at: :asc)
   end
-
   def new
     @event = Event.new
   end
