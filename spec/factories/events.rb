@@ -2,19 +2,25 @@
 #
 # Table name: events
 #
-#  id             :bigint           not null, primary key
-#  active         :boolean          default(TRUE)
-#  community_link :string
-#  date           :datetime
-#  description    :string
-#  duration       :integer
-#  launch         :integer
-#  name           :string
-#  purchase_date  :datetime
-#  purchase_link  :string
-#  slug           :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id                                    :bigint           not null, primary key
+#  active                                :boolean          default(TRUE)
+#  community_link                        :string
+#  date                                  :datetime
+#  description                           :string
+#  duration                              :integer
+#  is_visible_after_time                 :boolean          default(FALSE)
+#  is_visible_during_event               :boolean          default(FALSE)
+#  is_visible_to_registered_participants :boolean          default(FALSE)
+#  launch                                :integer
+#  name                                  :string
+#  purchase_date                         :datetime
+#  purchase_link                         :string
+#  slug                                  :string
+#  visible_after_time                    :time
+#  visible_during_event_end              :datetime
+#  visible_during_event_start            :datetime
+#  created_at                            :datetime         not null
+#  updated_at                            :datetime         not null
 #
 # Indexes
 #
