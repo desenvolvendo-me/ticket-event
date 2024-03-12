@@ -15,6 +15,7 @@ RSpec.describe External::LessonsController, type: :controller do
       it 'assigns the student data' do
         sign_in student_user
         controller.send(:get_student)
+        # TODO: Variável de instancia (student_data) retornando null ??
         expect(assigns(:student_data)).to eq(student_user.student)
         expect(controller.instance_variable_get(:@student_data)).to eq(student_user.student)
       end
