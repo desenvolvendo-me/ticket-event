@@ -1,0 +1,32 @@
+module Events
+  class Validator
+    attr_reader :errors
+
+    def initialize(event)
+      @event = event
+      @errors = []
+    end
+
+    def call
+      validate_duration_format
+      validate_visibility_fields
+      @errors
+    end
+
+    private
+
+    def validate_duration_format
+      unless @event.duration.is_a?(Integer) && @event.duration.positive?
+        @errors << { duration: :invalid }
+      end
+    end
+
+    def validate_visibility_fields
+      if @event.is_visible_after_time?
+        if @event.visible_after_time.blank?
+          @errors << { visible_after_time: :blank }
+        end
+      end
+    end
+  end
+end
