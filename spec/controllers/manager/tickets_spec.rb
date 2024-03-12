@@ -39,6 +39,4 @@ RSpec.describe Manager::TicketsController, type: :controller do
       expect(response).to redirect_to(action: :index)
     end
   end
-
-
 end
