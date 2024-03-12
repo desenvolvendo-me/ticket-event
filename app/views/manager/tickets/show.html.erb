@@ -8,15 +8,15 @@
           <td><%= dom_id @ticket %></td>
         </tr>
         <tr>
-          <th class="text-left pr-4"><%= t('.event') %></th>
+          <th class="text-left pr-4"><%= t('views.manager.ticket.show.event') %></th>
           <td><%= @ticket.event.name %></td>
         </tr>
         <tr>
-          <th class="text-left pr-4"><%= t('.student') %></th>
+          <th class="text-left pr-4"><%= t('views.manager.ticket.show.student') %></th>
           <td><%= @ticket.student.name %></td>
         </tr>
         <tr>
-          <th class="text-left pr-4"><%= t('.send_email') %></th>
+          <th class="text-left pr-4"><%= t('views.manager.ticket.show.send_email') %></th>
           <td><%= @ticket.send_email_at %></td>
         </tr>
         <tr>
@@ -32,9 +32,8 @@
         </tr>
         <tr>
           <th class="text-left pr-4">
-            <p>&nbsp;</p>
             <a href="<%= manager_tickets_path %>" class="bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              <%= t('.back') %>
+              <%= t('views.manager.ticket.show.back') %>
             </a>
           </th>
         </tr>
