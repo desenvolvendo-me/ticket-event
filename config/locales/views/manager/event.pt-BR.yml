@@ -42,6 +42,9 @@ pt-BR:
         community_link: "Link para comunidade"
         purchase_link: "Link para compra"
         purchase_date: "Data que a compra ficará disponível"
+        visible_to_registered_participants: "Exibir aula por participante registrado"
+        visible_after_time: "Exibir aula depois de"
+        visible_during_event: "Exibir aula durante o evento"
       index:
         description: "Descrição"
         name: "Nome"
