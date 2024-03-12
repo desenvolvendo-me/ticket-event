@@ -38,17 +38,12 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :prize_draw
 
   validates :name, :launch, presence: true
-  validate :valid_duration_format
 
   has_one_attached :template
   has_one_attached :certificate_template
   has_one_attached :image
 
-  before_save :validate_visibility_fields
-
-  def valid_duration_format
-    errors.add(:duration, :invalid) unless duration.is_a?(Integer) && duration.positive?
-  end
+  before_save :validate_event
 
   def image_large
     return unless image.content_type.in?(%w[image/jpeg image/png])
@@ -73,10 +68,14 @@ class Event < ApplicationRecord
 
   private
 
-  def validate_visibility_fields
-    if is_visible_after_time? && visible_after_time.blank?
-      errors.add(:visible_after_time, "can't be blank when 'Visible After Time' is selected")
-    end
-    errors.empty?
+  def validate_event
+    errors = Events::Validator.new(self).call
+
+    add_errors(errors) unless errors.blank?
+  end
+
+  def add_errors(errors)
+    errors.each { |error| self.errors.add(error.keys.first, error.values.first) }
+    throw(:abort)
   end
 end
