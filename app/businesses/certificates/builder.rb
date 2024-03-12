@@ -27,8 +27,9 @@ module Certificates
         "DT_INI" => event_start_date,
         "DT_FIM" => event_end_date,
         "DT_EMI" => issuance_date,
-        "DURATION" => event_duration,
-        "VERIFICATION_LINK" => @certificate.absolute_url
+        # TODO: remove to seed
+        # "DURATION" => event_duration,
+        # "VERIFICATION_LINK" => @certificate.absolute_url
       }
 
       replace_text_in_svg_content(replacements)
