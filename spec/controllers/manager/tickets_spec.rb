@@ -40,5 +40,5 @@ RSpec.describe Manager::TicketsController, type: :controller do
     end
   end
 
- 
+
 end
