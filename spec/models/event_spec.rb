@@ -69,5 +69,11 @@ RSpec.describe Event, type: :model do
       event.update(is_visible_during_event: false)
       expect(event.visible_during_event?).to eq(true) # Visibility rule doesn't apply
     end
+
+    it "should return true for visible_during_event? when is_visible_during_event is true with specific date and during" do
+      event.update(date: Time.now, duration: 2) # Assuming event starts now and lasts for 2 hours
+      event.update(is_visible_during_event: true)
+      expect(event.visible_during_event?).to eq(true)
+    end
   end
 end
