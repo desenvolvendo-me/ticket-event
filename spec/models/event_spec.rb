@@ -101,8 +101,8 @@ RSpec.describe Event, type: :model do
   end
 
   describe "#visible_now?" do
-    it "returns true if is_visible_during_event? is true" do
-      event = Event.new(is_visible_during_event: true)
+    it "returns true if is_visible_during_event? is false" do
+      event = Event.new(is_visible_during_event: true, date: Time.now, duration: 24 )
       expect(event.visible_now?).to eq(true)
     end
 
