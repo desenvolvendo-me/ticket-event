@@ -70,6 +70,14 @@ class Event < ApplicationRecord
     Events::HappeningNow.new(self).call
   end
 
+  def visible_after_time?
+    is_visible_after_time && (Time.now >= visible_after_time)
+  end
+
+  def visible_now?
+    is_visible_during_event? || visible_after_time?
+  end
+
   private
 
   def validate_event
