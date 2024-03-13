@@ -74,7 +74,10 @@ class Event < ApplicationRecord
     unless is_visible_after_time
       true
     else
-      Time.now >= visible_after_time
+      current_time = Time.now
+      current_hour = current_time.hour * 3600 + current_time.min * 60 + current_time.sec
+      visible_hour = visible_after_time.hour * 3600 + visible_after_time.min * 60 + visible_after_time.sec
+      current_hour >= visible_hour
     end
   end
 
