@@ -7,7 +7,11 @@ module Events
     end
 
     def call
-      @event.is_visible_during_event && happening_now?
+      unless @event.is_visible_during_event
+        true
+      else
+        happening_now?
+      end
     end
 
     private
