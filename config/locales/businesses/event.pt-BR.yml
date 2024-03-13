@@ -1,0 +1,6 @@
+pt-BR:
+  businesses:
+    event:
+      validator:
+        duration: 'Obrigatório informar a duração do evento'
+        after_time: 'Obrigatório informar a hora'
