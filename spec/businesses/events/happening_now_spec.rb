@@ -15,5 +15,13 @@ RSpec.describe Events::HappeningNow, type: :business_application do
         expect(described_class.new(event).call).to eq(false)
       end
     end
+
+    context "when is_visible_during_event is false" do
+      let(:event) { create(:event, is_visible_during_event: false) }
+
+      it "returns true" do
+        expect(described_class.new(event).call).to eq(true)
+      end
+    end
   end
 end
