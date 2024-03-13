@@ -75,7 +75,7 @@ class Event < ApplicationRecord
   end
 
   def visible_now?
-    is_visible_during_event? || visible_after_time?
+    visible_during_event? && visible_after_time?
   end
 
   private
