@@ -93,5 +93,10 @@ RSpec.describe Event, type: :model do
       event = Event.new(is_visible_after_time: false)
       expect(event.visible_after_time?).to eq(true)
     end
+
+    it "returns false if current time is before visible_after_time" do
+      event = Event.new(is_visible_after_time: true, visible_after_time: Time.now + 1.hour)
+      expect(event.visible_after_time?).to eq(false)
+    end
   end
 end
