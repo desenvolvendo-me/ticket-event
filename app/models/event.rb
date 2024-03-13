@@ -71,14 +71,7 @@ class Event < ApplicationRecord
   end
 
   def visible_after_time?
-    unless is_visible_after_time
-      true
-    else
-      current_time = Time.now
-      current_hour = current_time.hour * 3600 + current_time.min * 60 + current_time.sec
-      visible_hour = visible_after_time.hour * 3600 + visible_after_time.min * 60 + visible_after_time.sec
-      current_hour >= visible_hour
-    end
+    Events::VisibleAfterTime.new(self).call
   end
 
   def visible_now?
