@@ -71,7 +71,11 @@ class Event < ApplicationRecord
   end
 
   def visible_after_time?
-    is_visible_after_time && (Time.now >= visible_after_time)
+    unless is_visible_after_time
+      true
+    else
+      Time.now >= visible_after_time
+    end
   end
 
   def visible_now?
