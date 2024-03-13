@@ -64,5 +64,10 @@ RSpec.describe Event, type: :model do
       expect(event.visible_after_time).to be_nil
       expect(event.is_visible_during_event).to eq(true)
     end
+
+    it "should return true for visible_during_event? when is_visible_during_event is false" do
+      event.update(is_visible_during_event: false)
+      expect(event.visible_during_event?).to eq(true) # Visibility rule doesn't apply
+    end
   end
 end
