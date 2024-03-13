@@ -22,6 +22,8 @@
 #
 class Lesson < ApplicationRecord
   belongs_to :event
+  has_many :student_lessons, dependent: :destroy
+
   validates :link, :title, :description, presence: true
   has_one :quiz, dependent: :destroy
   has_one_attached :thumbnail
@@ -34,5 +36,9 @@ class Lesson < ApplicationRecord
     if valid.present?
       errors.add(:event, valid)
     end
+  end
+
+  def is_lesson_finished
+    Lessons::CheckerFinished.call(self)
   end
 end

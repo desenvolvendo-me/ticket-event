@@ -29,4 +29,6 @@ RSpec.describe Lesson, type: :model do
   it { should validate_presence_of(:description) }
   it { should have_one(:quiz).dependent(:destroy) }
   it { should have_one_attached(:thumbnail) }
+
+  it { should have_many(:student_lessons).dependent(:destroy) }
 end
