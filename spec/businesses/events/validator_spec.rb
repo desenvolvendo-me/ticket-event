@@ -28,6 +28,10 @@ RSpec.describe Events::Validator do
       it "does not add an error message for duration" do
         expect(subject.errors).not_to include({ duration: "Invalid duration format" })
       end
+
+      it "adds an error message for visible_after_time" do
+        expect(subject.errors).to include({ visible_after_time: "Obrigatório informar a hora" })
+      end
     end
   end
 end
