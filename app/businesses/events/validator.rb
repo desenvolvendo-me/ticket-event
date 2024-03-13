@@ -1,5 +1,5 @@
 module Events
-  class Validator
+  class Validator < BusinessApplication
     attr_reader :errors
 
     def initialize(event)
