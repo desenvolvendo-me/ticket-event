@@ -7,6 +7,7 @@
 #  community_link :string
 #  date           :datetime
 #  description    :string
+#  duration       :integer
 #  launch         :integer
 #  name           :string
 #  purchase_date  :datetime
@@ -24,8 +25,10 @@ FactoryBot.define do
     name { "Bootcamp Imersão 1ª Vaga" }
     launch { rand(1..100) }
     description { "Aprenda a conquistar sua 1ª vaga na programação mesmo sem nenhuma experiência" }
+    duration { 3 }
     date { (Date.today + 20.hours + 30.minutes) + 21.days }
     template { Rack::Test::UploadedFile.new('spec/support/ticket.svg', 'image/svg') }
     certificate_template { Rack::Test::UploadedFile.new('spec/support/certificate_template.svg', 'image/svg+xml') }
+    slug { FFaker::Internet.slug }
   end
 end

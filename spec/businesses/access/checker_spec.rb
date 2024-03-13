@@ -19,33 +19,44 @@ RSpec.describe Access::Checker do
     context 'when the resource is an Event' do
       it 'returns true if the event is available' do
         event = create(:event, date: Time.zone.now + 1.hour)
-        checker = Access::Checker.call(event, :date)
+        checker = Access::Checker.call(event, :available)
         expect(checker).to be true
       end
 
       it 'returns false if the event is not available' do
         event = create(:event, date: Time.zone.now - 1.hour)
-        checker = Access::Checker.call(event, :date)
+        checker = Access::Checker.call(event, :available)
         expect(checker).to be false
+        end
+
+      it 'returns true if the event.purchase is not available' do
+        event = create(:event, purchase_date: Time.zone.now - 1.hour)
+        purchase_checker = Access::Checker.call(event, :purchase)
+        expect(purchase_checker[:access]).to be true
+        end
+
+      it 'returns false if the event.purchase is not available' do
+        event = create(:event, purchase_date: Time.zone.now + 1.hour)
+        purchase_checker = Access::Checker.call(event, :purchase)
+        expect(purchase_checker[:access]).to be false
       end
 
-      it 'returns a hash when the @event.purchase_date is available' do
-        # Dado
+      it 'returns the purchase_link when the purchase is available' do
         event = create(:event, purchase_date: Time.zone.now - 1.hour)
-        # Quando
-        result = Access::Checker.call(event, :purchase_date)
-        # Então
-        expect(result[:link]).to eq(event.purchase_link)
-        expect(result[:i18n]).to eq(I18n.t('views.external.lesson.view_show.purchase_link'))
+        link = event.purchase_link
+        translation = I18n.t('views.external.lesson.view_show.purchase_link')
+        purchase = Access::Checker.call(event, :purchase)
+        expect(purchase[:link]).to eq(link)
+        expect(purchase[:i18n]).to eq(translation)
       end
-      it 'returns other hash when the @event.purchase_date is not available' do
-        # Dado
-        event = create(:event, purchase_date: Time.zone.now + 1.hour)
-        # Quando
-        result = Access::Checker.call(event, :purchase_date)
-        # Então
-        expect(result[:link]).to eq(event.community_link)
-        expect(result[:i18n]).to eq(I18n.t('views.external.lesson.view_show.community_access'))
+
+      it 'returns the community_link when the purchase is NOT available' do
+        event = create(:event, purchase_date: Time.zone.now + 3.hours)
+        link = event.community_link
+        translation = I18n.t('views.external.lesson.view_show.community_access')
+        purchase = Access::Checker.call(event, :purchase)
+        expect(purchase[:link]).to eq(link)
+        expect(purchase[:i18n]).to eq(translation)
       end
     end
 
@@ -54,15 +65,23 @@ RSpec.describe Access::Checker do
         it 'raises an ArgumentError' do
           resource = double('anyEventNeitherLesson')
 
-          expect { Access::Checker.call(resource, :date) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.resource_error'))
+          expect { Access::Checker.call(resource, :available) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.resource_error'))
         end
       end
 
-      context 'when resource is valid but date argument is invalid' do
-        it 'raises an ArgumentError' do
+      context 'when resource is valid' do
+        it 'raises an ArgumentError when second argument is invalid' do
           event = create(:event)
-          # without parameter :date or purchase_date will raise an error
+          # without parameter :available or :purchase will raise an error
+          expect { Access::Checker.call(event, :parametro_invalido) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.argument_error'))
+        end
+        it 'raises an ArgumentError when second argument is not declared' do
+          event = create(:event)
           expect { Access::Checker.call(event) }.to raise_error(ArgumentError, I18n.t('businesses.access.checker.argument_error'))
+        end
+        it 'does not raises an ArgumentError when second argument is not declared and first argument is LESSON' do
+          lesson = create(:lesson)
+          expect { Access::Checker.call(lesson) }.to_not raise_error(ArgumentError, I18n.t('businesses.access.checker.argument_error'))
         end
       end
     end

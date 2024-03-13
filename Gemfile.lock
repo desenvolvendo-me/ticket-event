@@ -176,6 +176,8 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    faraday-retry (2.2.0)
+      faraday (~> 2.0)
     ffaker (2.21.0)
     ffi (1.16.3)
     flay (2.13.1)
@@ -206,6 +208,9 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (1.2.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -264,6 +269,8 @@ GEM
     minitest (5.20.0)
     msgpack (1.7.2)
     multi_xml (0.6.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.1)
       date
       net-protocol
@@ -314,6 +321,10 @@ GEM
       activesupport (= 7.0.8)
       bundler (>= 1.15.0)
       railties (= 7.0.8)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.2.0)
       activesupport (>= 5.0.0)
       minitest
@@ -376,6 +387,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.12.1)
+    ruby-vips (2.2.0)
+      ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     ruby_dep (1.5.0)
     ruby_http_client (3.5.5)
@@ -453,6 +466,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.10.0)
     virtus (2.0.0)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -499,16 +513,21 @@ DEPENDENCIES
   escompress (~> 0.3.0)
   factory_bot_rails
   faker
+  faraday-retry
   ffaker
   foreman
   friendly_id (~> 5.4.0)
   groupdate
   httparty
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   letter_opener_web
   listen (>= 3.0.5, < 3.2)
   mini_magick
+  net-http
+  net-imap
+  net-smtp
   nokogiri
   octokit (~> 5.0)
   pg (~> 1.1)
@@ -516,6 +535,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler
   rails (~> 7.0.4, >= 7.0.4.2)
+  rails-controller-testing
   rails_layout
   rspec-benchmark
   rspec-rails (~> 4.0)
@@ -532,6 +552,7 @@ DEPENDENCIES
   tailwindcss-rails
   turbo-rails
   tzinfo-data
+  uri (= 0.10.0)
   watir
   web-console (>= 3.3.0)
   webdrivers
@@ -540,4 +561,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.4.20
+   2.4.22

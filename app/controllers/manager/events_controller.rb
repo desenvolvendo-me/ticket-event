@@ -1,14 +1,18 @@
+# manager/events_controller.rb
 class Manager::EventsController < ApplicationController
-  before_action :get_event, only: %i[ show new create edit update destroy ]
-  def index
-    @events = Event.all.order(created_at: :asc)
-  end
+  before_action :get_event, only: %i[ show new create edit update destroy]
 
+  def index
+    @q = Event.ransack(params[:q])
+    @events = @q.result(distinct: true).order(created_at: :asc)
+  end
   def new
     @event = Event.new
   end
 
-  def show; end
+  def show
+    @event = Event.includes(:prize_draw).friendly.find(params[:id])
+  end
 
   def edit; end
 
@@ -36,11 +40,12 @@ class Manager::EventsController < ApplicationController
   end
 
   private
-    def get_event
-      @event = Event.find_by(slug: params[:id])
-    end
 
-    def event_params
-      params.require(:event).permit(:name, :description, :date, :launch, :community_link, :purchase_link, :purchase_date)
-    end
+  def get_event
+    @event = Event.find_by(slug: params[:id])
+  end
+
+  def event_params
+    params.require(:event).permit(:name, :description, :date, :launch, :community_link, :purchase_link, :purchase_date, :image, :duration)
+  end
 end

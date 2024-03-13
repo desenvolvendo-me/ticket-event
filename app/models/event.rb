@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: events
@@ -7,6 +8,7 @@
 #  community_link :string
 #  date           :datetime
 #  description    :string
+#  duration       :integer
 #  launch         :integer
 #  name           :string
 #  purchase_date  :datetime
@@ -26,11 +28,32 @@ class Event < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :certificates, dependent: :destroy
   has_many :lessons, dependent: :destroy
+  has_one :prize_draw, dependent: :destroy
+  accepts_nested_attributes_for :prize_draw
 
-  validates :name, :launch, presence: true
+  validates :name, :launch, :duration, presence: true
+  validate :valid_duration_format
 
   has_one_attached :template
   has_one_attached :certificate_template
+  has_one_attached :image
+
+  def valid_duration_format
+    errors.add(:duration, :invalid) unless duration.is_a?(Integer) && duration.positive?
+  end
+
+  def image_large
+    return unless image.content_type.in?(%w[image/jpeg image/png])
+    image.variant(resize_to_limit: [1600,900]).processed
+  end
+  def image_medium
+    return unless image.content_type.in?(%w[image/jpeg image/png])
+    image.variant(resize_to_limit: [940,348]).processed
+  end
+  def image_small
+    return unless image.content_type.in?(%w[image/jpeg image/png])
+    image.variant(resize_to_limit: [600,600]).processed
+  end
 
   scope :active, -> { where(active: true) }
 
