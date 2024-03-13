@@ -66,6 +66,10 @@ class Event < ApplicationRecord
     "#{launch}-#{name}"
   end
 
+  def visible_during_event?
+    self.is_visible_during_event && happening_now?
+  end
+
   private
 
   def validate_event
@@ -77,5 +81,13 @@ class Event < ApplicationRecord
   def add_errors(errors)
     errors.each { |error| self.errors.add(error.keys.first, error.values.first) }
     throw(:abort)
+  end
+
+  def happening_now?
+    current_time = Time.current
+    event_start = self.date
+    event_end = event_start + self.duration.hours
+
+    current_time >= event_start && current_time <= event_end
   end
 end
