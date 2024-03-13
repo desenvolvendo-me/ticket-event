@@ -75,5 +75,11 @@ RSpec.describe Event, type: :model do
       event.update(is_visible_during_event: true)
       expect(event.visible_during_event?).to eq(true)
     end
+
+    it "should return false for visible_during_event? when is_visible_during_event is true but event has already ended" do
+      event.update(date: 3.hours.ago, duration: 2) # Assuming event started 3 hours ago and lasted for 2 hours
+      event.update(is_visible_during_event: true)
+      expect(event.visible_during_event?).to eq(false)
+    end
   end
 end
