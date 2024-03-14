@@ -27,13 +27,14 @@ class Certificate < ApplicationRecord
   has_one_attached :svg
 
   # TODO: remove to seed
-  # before_create :generate_verification_link
-  # def generate_verification_link
-  #   self.verification_link = SecureRandom.hex
-  # end
-  #
-  # def absolute_url
-  #   Rails.application.routes.url_helpers.verify_certificate_url(verification_link, host: ENV['BASE_URL'])
-  # end
+  before_create :generate_verification_link
+  def generate_verification_link
+    self.verification_link = SecureRandom.hex
+  end
+
+  def absolute_url
+    Rails.application.routes.url_helpers.verify_certificate_url(verification_link, host: ENV['BASE_URL'])
+  end
+  # END TODO: remove to seed
 
 end

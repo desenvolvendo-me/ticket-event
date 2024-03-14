@@ -18,8 +18,6 @@
 #  purchase_link                         :string
 #  slug                                  :string
 #  visible_after_time                    :time
-#  visible_during_event_end              :datetime
-#  visible_during_event_start            :datetime
 #  created_at                            :datetime         not null
 #  updated_at                            :datetime         not null
 #
@@ -34,8 +32,10 @@ class Event < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :certificates, dependent: :destroy
   has_many :lessons, dependent: :destroy
+  # TODO: remove to seed
   has_one :prize_draw, dependent: :destroy
   accepts_nested_attributes_for :prize_draw
+  # END TODO: remove to seed
 
   validates :name, :launch, presence: true
 
@@ -43,6 +43,7 @@ class Event < ApplicationRecord
   has_one_attached :certificate_template
   has_one_attached :image
 
+  # TODO: remove to seed
   before_save :validate_event
 
   def image_large
