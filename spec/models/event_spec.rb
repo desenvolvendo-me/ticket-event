@@ -17,8 +17,6 @@
 #  purchase_link                         :string
 #  slug                                  :string
 #  visible_after_time                    :time
-#  visible_during_event_end              :datetime
-#  visible_during_event_start            :datetime
 #  created_at                            :datetime         not null
 #  updated_at                            :datetime         not null
 #
@@ -58,7 +56,7 @@ RSpec.describe Event, type: :model do
     end
 
     it "should fill corresponding fields when is_visible_during_event is true" do
-      event.update(is_visible_during_event: true, visible_during_event_start: Time.now, visible_during_event_end: Time.now + 1.hour)
+      event.update(is_visible_during_event: true)
       expect(event.is_visible_to_registered_participants).to eq(false)
       expect(event.is_visible_after_time).to eq(false)
       expect(event.visible_after_time).to be_nil
@@ -114,6 +112,17 @@ RSpec.describe Event, type: :model do
     it "returns true if is_visible_during_event? and visible_after_time? are false" do
       event = Event.new(is_visible_during_event: false, is_visible_after_time: false)
       expect(event.visible_now?).to eq(true)
+    end
+  end
+
+  describe '#visible_participant?' do
+    context 'when the event is visible to registered participants' do
+      let(:event) { build(:event, is_visible_to_registered_participants: true) } # Usando build para evitar interações com o banco de dados
+
+      it 'returns true' do
+        allow_any_instance_of(Events::VisibleParticipant).to receive(:call).and_return(true)
+        expect(event.visible_participant?).to eq(true)
+      end
     end
   end
 end
