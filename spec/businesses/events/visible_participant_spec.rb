@@ -25,5 +25,18 @@ RSpec.describe Events::VisibleParticipant, type: :business_application do
         end
       end
     end
+
+    context 'when the event is not visible to registered participants' do
+      let(:is_visible_to_registered_participants) { false }
+
+      context 'when current_student_user is present' do
+        let(:current_student_user) { double("User") }
+        let(:visible_participant) { Events::VisibleParticipant.new(event, current_student_user) }
+
+        it 'returns true' do
+          expect(visible_participant.call).to eq(true)
+        end
+      end
+    end
   end
 end
