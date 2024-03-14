@@ -17,8 +17,6 @@
 #  purchase_link                         :string
 #  slug                                  :string
 #  visible_after_time                    :time
-#  visible_during_event_end              :datetime
-#  visible_during_event_start            :datetime
 #  created_at                            :datetime         not null
 #  updated_at                            :datetime         not null
 #
