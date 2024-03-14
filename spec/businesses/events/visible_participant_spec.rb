@@ -15,6 +15,15 @@ RSpec.describe Events::VisibleParticipant, type: :business_application do
           expect(visible_participant.call).to eq(true)
         end
       end
+
+      context 'when current_student_user not is present' do
+        let(:current_student_user) { nil }
+        let(:visible_participant) { Events::VisibleParticipant.new(event, current_student_user) }
+
+        it 'returns true' do
+          expect(visible_participant.call).to eq(false)
+        end
+      end
     end
   end
 end
