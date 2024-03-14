@@ -75,8 +75,12 @@ class Event < ApplicationRecord
     Events::VisibleAfterTime.new(self).call
   end
 
+  def visible_participant?
+    Events::VisibleParticipant.new(self, :current_student_user).call
+  end
+
   def visible_now?
-    visible_during_event? && visible_after_time?
+    visible_during_event? && visible_after_time? && visible_participant?
   end
 
   private
