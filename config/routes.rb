@@ -3,9 +3,7 @@ Rails.application.routes.draw do
   devise_for :student_users
   devise_for :manager_users
 
-
-
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -15,6 +13,13 @@ Rails.application.routes.draw do
 
 
   namespace :manager do
+    
+    resources :tickets do
+      member do
+        post 'send_email', to: 'tickets#send_email'
+      end
+    end
+    
     get 'home', to: "home#index", as: :home
 
     resources :events do

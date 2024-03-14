@@ -1,13 +1,14 @@
 class Manager::TicketsController < ApplicationController
   before_action :set_ticket, only: %i[ show edit update destroy ]
   before_action :set_event_options, only: [:select_student_csv, :show]
+  before_action :set_ticket, only: [:send_email, :show]
+
 
   def index
     @tickets = Ticket.all
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
   end
 
   def new
@@ -69,5 +70,9 @@ class Manager::TicketsController < ApplicationController
 
   def set_event_options
     @event_options = Event.all.map { |e| [e.name, e.id] }
+  end
+
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
   end
 end
