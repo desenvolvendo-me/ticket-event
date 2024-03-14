@@ -124,5 +124,14 @@ RSpec.describe Event, type: :model do
         expect(event.visible_participant?).to eq(true)
       end
     end
+
+    context 'when the event is not visible to registered participants' do
+      let(:event) { build(:event, is_visible_to_registered_participants: false) } # Usando build para evitar interações com o banco de dados
+
+      it 'returns false' do
+        allow_any_instance_of(Events::VisibleParticipant).to receive(:call).and_return(false)
+        expect(event.visible_participant?).to eq(false)
+      end
+    end
   end
 end
