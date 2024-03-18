@@ -3,19 +3,23 @@
 #
 # Table name: events
 #
-#  id             :bigint           not null, primary key
-#  active         :boolean          default(TRUE)
-#  community_link :string
-#  date           :datetime
-#  description    :string
-#  duration       :integer
-#  launch         :integer
-#  name           :string
-#  purchase_date  :datetime
-#  purchase_link  :string
-#  slug           :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id                                    :bigint           not null, primary key
+#  active                                :boolean          default(TRUE)
+#  community_link                        :string
+#  date                                  :datetime
+#  description                           :string
+#  duration                              :integer
+#  is_visible_after_time                 :boolean          default(FALSE)
+#  is_visible_during_event               :boolean          default(FALSE)
+#  is_visible_to_registered_participants :boolean          default(FALSE)
+#  launch                                :integer
+#  name                                  :string
+#  purchase_date                         :datetime
+#  purchase_link                         :string
+#  slug                                  :string
+#  visible_after_time                    :time
+#  created_at                            :datetime         not null
+#  updated_at                            :datetime         not null
 #
 # Indexes
 #
@@ -28,28 +32,30 @@ class Event < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :certificates, dependent: :destroy
   has_many :lessons, dependent: :destroy
+  # TODO: remove to seed
   has_one :prize_draw, dependent: :destroy
   accepts_nested_attributes_for :prize_draw
+  # END TODO: remove to seed
 
-  validates :name, :launch, :duration, presence: true
-  validate :valid_duration_format
+  validates :name, :launch, presence: true
 
   has_one_attached :template
   has_one_attached :certificate_template
   has_one_attached :image
 
-  def valid_duration_format
-    errors.add(:duration, :invalid) unless duration.is_a?(Integer) && duration.positive?
-  end
+  # TODO: remove to seed
+  before_save :validate_event
 
   def image_large
     return unless image.content_type.in?(%w[image/jpeg image/png])
     image.variant(resize_to_limit: [1600,900]).processed
   end
+
   def image_medium
     return unless image.content_type.in?(%w[image/jpeg image/png])
     image.variant(resize_to_limit: [940,348]).processed
   end
+
   def image_small
     return unless image.content_type.in?(%w[image/jpeg image/png])
     image.variant(resize_to_limit: [600,600]).processed
@@ -59,5 +65,34 @@ class Event < ApplicationRecord
 
   def launch_and_name
     "#{launch}-#{name}"
+  end
+
+  def visible_during_event?
+    Events::HappeningNow.new(self).call
+  end
+
+  def visible_after_time?
+    Events::VisibleAfterTime.new(self).call
+  end
+
+  def visible_participant?
+    Events::VisibleParticipant.new(self, :current_student_user).call
+  end
+
+  def visible_now?
+    visible_during_event? && visible_after_time? && visible_participant?
+  end
+
+  private
+
+  def validate_event
+    errors = Events::Validator.new(self).call
+
+    add_errors(errors) unless errors.blank?
+  end
+
+  def add_errors(errors)
+    errors.each { |error| self.errors.add(error.keys.first, error.values.first) }
+    throw(:abort)
   end
 end
