@@ -56,10 +56,7 @@ class External::LessonsController < ExternalController
   end
 
   def student_has_watched
-    if get_student
-      @lesson_ids = Lesson.where(event_id: @event).pluck(:id)
-      return @student_watched = StudentLesson.where(student_id: @student_data, lesson_id: @lesson_ids).exists?
-    end
+    Lessons::CheckStudentLessonWatched.new(@student_data, @event).call
   end
 
   def check_lesson
