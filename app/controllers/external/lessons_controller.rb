@@ -42,16 +42,11 @@ class External::LessonsController < ExternalController
   end
 
   def first_time_class(event)
-    if get_student
-      unless student_has_watched
-        lessons_and_student = @lesson_ids.map.with_index do |lesson_id, index|
-          status = index == 0 ? 'progress' : 'not started'
-          { student_id: @student_data.id, lesson_id: lesson_id, status: status}
-        end
+    result = Lessons::InitializeFirstClassForStudent.new(get_student, @student_data, event, @lesson_ids).call
 
-        StudentLesson.insert_all(lessons_and_student)
-        redirect_back(fallback_location: lessons_index_path(event.slug))
-      end
+    case result
+    when :success
+      redirect_back(fallback_location: lessons_index_path(event.slug))
     end
   end
 
