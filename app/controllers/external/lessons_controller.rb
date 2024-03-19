@@ -104,12 +104,7 @@ class External::LessonsController < ExternalController
   end
 
   def get_student
-    if student_user_signed_in?
-      @student = current_student_user
-      return @student_data = @student.student
-    else
-      return nil
-    end
+    Lessons::GetStudent.new(student_user_signed_in?, current_student_user).call
   end
 
   def get_next_lesson
