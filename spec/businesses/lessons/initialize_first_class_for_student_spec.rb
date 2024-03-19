@@ -22,5 +22,15 @@ RSpec.describe Lessons::InitializeFirstClassForStudent do
         end
       end
     end
+    
+    context 'when the student does not exist or has already watched a lesson' do
+      it 'returns :already_watched_or_no_student' do
+        allow(Lessons::CheckStudentLessonWatched).to receive(:new).and_return(watched_checker)
+        allow(watched_checker).to receive(:call).and_return(true)
+
+        service = described_class.new(false, nil, event, lesson_ids)
+        expect(service.call).to eq(:already_watched_or_no_student)
+      end
+    end
   end
 end
