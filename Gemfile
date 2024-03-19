@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.5"
 
+
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
@@ -36,6 +37,12 @@ gem "aws-sdk-s3", require: false
 gem 'image_processing', '~> 1.2'
 gem 'ffaker'
 gem 'faker'
+
+gem "net-http"
+gem "net-smtp"
+gem "net-imap"
+gem "uri", "0.10.0"
+gem 'faraday-retry'
 
 group :development, :test do
   gem 'rspec-rails', '~> 4.0'

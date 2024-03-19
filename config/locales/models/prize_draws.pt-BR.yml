@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      prize_draw:
+      prize_draws:
         one: "Sorteio"
         other: "Sorteios"
     attributes:
@@ -9,4 +9,11 @@ pt-BR:
         event: "Evento"
         ticket: "Ingresso"
         student: "Estudante"
-        date: "Data"
+        date_at: "Data"
+        name: "Nome"
+        prize: "Prêmio"
+        prize_draw_name: "Nome do Sorteio"
+        action: "Ações"
+        winner: "Vencedor do Sorteio"
+        number_ticket: "Número do Ingresso"
+        lose: "Nenhum ganhador sorteado"

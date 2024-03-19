@@ -1,0 +1,28 @@
+<section class="h-screen bg-white py-10 mb-10 dark:bg-gray-900">
+  <div class="bg-white shadow-xl mx-auto max-w-xl rounded-md">
+    <div class="p-3 fa-align-center">
+      <div class="flex flex-col items-center">
+        <% if @ticket.present? %>
+      </div>
+
+      <div class="flex flex-col items-center">
+        <div class="mb-2 font-semibold leading-none text-gray-900 dark:text-white text-2xl"><%= t('activerecord.attributes.prize_draw.winner') %></div>
+      </div>
+      <br>
+      <div class="flex flex-col items-center">
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"><%= t('activerecord.attributes.prize_draw.number_ticket') %></dt>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-4 dark:text-gray-400"><%= @ticket.number %></dd>
+      </div>
+      <div class="flex flex-col items-center">
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white"><%= t('activerecord.attributes.prize_draw.student') %></dt>
+        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400"><%= @ticket.student.name %></dd>
+      </div>
+      <% else %>
+        <div class="flex flex-col items-center">
+          <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white text-2xl">  </div><p><%= t('activerecord.attributes.prize_draw.lose') %></p>
+          </div>
+     <% end %>
+    </div>
+  </div>
+</section>
+

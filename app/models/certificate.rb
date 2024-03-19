@@ -2,11 +2,12 @@
 #
 # Table name: certificates
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  event_id   :bigint           not null
-#  student_id :bigint           not null
+#  id                :bigint           not null, primary key
+#  verification_link :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  event_id          :bigint           not null
+#  student_id        :bigint           not null
 #
 # Indexes
 #
@@ -24,4 +25,16 @@ class Certificate < ApplicationRecord
 
   has_one_attached :png
   has_one_attached :svg
+
+  # TODO: remove to seed
+  before_create :generate_verification_link
+  def generate_verification_link
+    self.verification_link = SecureRandom.hex
+  end
+
+  def absolute_url
+    Rails.application.routes.url_helpers.verify_certificate_url(verification_link, host: ENV['BASE_URL'])
+  end
+  # END TODO: remove to seed
+
 end

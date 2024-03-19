@@ -1,22 +1,32 @@
 Rails.application.routes.draw do
+
   devise_for :student_users
   devise_for :manager_users
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users
   root to: "welcome#index"
   get 'welcome/index'
 
+
   namespace :manager do
+    
+    resources :tickets do
+      member do
+        post 'send_email', to: 'tickets#send_email'
+      end
+    end
+    
     get 'home', to: "home#index", as: :home
 
     resources :events do
-      member do
-        post :run_prize_draw
+      resources :prize_draws do
+        member do
+          get :prize_draw_winner
+        end
       end
     end
 
@@ -34,7 +44,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tickets, only: [:index, :show]
+    resources :tickets
+
     get 'select_student_csv', to: "tickets#select_student_csv", as: :tickets_select_student_csv
     post 'import_student_csv', to: "tickets#import_student_csv", as: :tickets_import_student_csv
   end
@@ -66,5 +77,12 @@ Rails.application.routes.draw do
     get ':slug_event/lessons/:lesson_id/quiz/result', to: "quiz#result", as: :quiz_result
 
     get ':slug_event', to: "events#index", as: :event
+
+
+    get '/verify/:verification_link', to: 'certificates#verify', as: :verify_certificate
+
+
+
+
   end
 end

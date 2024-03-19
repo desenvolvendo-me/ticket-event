@@ -1,7 +1,8 @@
-<section class="bg-white dark:bg-gray-900 flex flex-col items-center">
-  <div class="max-w-screen-lg flex flex-col mx-2 sm:mx-5 md:mx-20 lg:py-16">
-    <card class="flex flex-col rounded-t-3xl overflow-hidden shadow-xl">
-      <% if student_user_signed_in? %>
+<% if @event.visible_now? %>
+  <section class="bg-white dark:bg-gray-900 flex flex-col items-center">
+    <div class="max-w-screen-lg flex flex-col mx-2 sm:mx-5 md:mx-20 lg:py-16">
+      <card class="flex flex-col rounded-t-3xl overflow-hidden shadow-xl">
+        <% if student_user_signed_in? %>
         <div class="flex-2 lg:mt-0 lg:col-span-5 lg:flex">
           <% if @lesson.thumbnail.attached? %>
             <%= image_tag @lesson.thumbnail, class: 'max-w-200px' %>
@@ -115,3 +116,4 @@
     <% end %>
   </div>
 </section>
+<% end %>

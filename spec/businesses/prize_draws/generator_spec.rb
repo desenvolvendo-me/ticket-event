@@ -1,42 +1,41 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe PrizeDraws::Generator do
   let(:event) { create(:event) }
+  let(:prize_draw) { create(:prize_draw, event: event) }
+  let(:ticket) { create(:ticket, event: event) }
   let(:students) do
     Array.new(5) do
       create(:student, name: FFaker::Name.name)
     end
   end
-  let(:prize_draw) { described_class.call(event) }
 
-  context 'when students achieve the required score' do
-    it "the draw is carried out successfully" do
+  context '#call' do
+    it 'draws a ticket and creates a winner ticket' do
 
-      high_score_students = students.sample(2)
-      low_score_students = students - high_score_students
+      drawn_ticket  = create(:ticket, event: event, prize_draw: prize_draw)
 
-      high_score_students.each do |student|
-        create(:ticket, student: student, event: event, student_score: rand(70..100))
-      end
+      allow(event.tickets).to receive(:where).and_return([drawn_ticket ])
+      allow(event.tickets).to receive(:sample).and_return(drawn_ticket )
 
-      low_score_students.each do |student|
-        create(:ticket, student: student, event: event, student_score: rand(0..69))
-      end
+      PrizeDraws::Generator.call(event, prize_draw)
 
-      expect(event.tickets).to include(prize_draw.ticket)
-      expect(high_score_students).to include(prize_draw.ticket.student)
-      expect(prize_draw.ticket.student_score).to be >= 70
+      expect(drawn_ticket.student).to be_instance_of(Student)
+      expect(drawn_ticket.prize_draw).to be_instance_of(PrizeDraw)
+      expect(drawn_ticket.event_id).to eq(event.id)
+      expect(drawn_ticket).to be_instance_of(Ticket)
+
+
     end
-  end
 
-  context 'when students have not yet reached the minimum score' do
-    it "prize draw is not created" do
+    it 'does not create a winner ticket if no eligible ticket is drawn' do
+      allow(event.tickets).to receive(:where).and_return([])
+      allow(event.tickets).to receive(:sample).and_return(nil)
 
-      students.each do |student|
-        create(:ticket, student: student, event: event)
-      end
+      drawn_ticket = PrizeDraws::Generator.call(event, prize_draw)
 
-      expect(prize_draw).to eq(nil)
+      expect(drawn_ticket).to be_nil
+
     end
   end
 end

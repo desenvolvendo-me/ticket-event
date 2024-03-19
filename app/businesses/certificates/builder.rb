@@ -17,6 +17,8 @@ module Certificates
 
     private
 
+
+
     def modify_svg_content
       setup_svg_content
 
@@ -24,7 +26,11 @@ module Certificates
         "NOME" => first_and_last_name(@student),
         "DT_INI" => event_start_date,
         "DT_FIM" => event_end_date,
-        "DT_EMI" => issuance_date
+        "DT_EMI" => issuance_date,
+        # TODO: remove to seed
+        "DURATION" => event_duration,
+        "VERIFICATION_LINK" => @certificate.absolute_url
+        # END TODO: remove to seed
       }
 
       replace_text_in_svg_content(replacements)
@@ -55,6 +61,10 @@ module Certificates
 
     def issuance_date
       I18n.l(@certificate.created_at.to_date, format: :default)
+    end
+
+    def event_duration
+      @event.duration.to_s
     end
 
     def replace_text_in_svg_content(replacements)
