@@ -27,5 +27,12 @@ RSpec.describe Lessons::CheckStudentLessonWatched do
         expect(service.call).to be false
       end
     end
+
+    context 'when student_data is not present' do
+      it 'returns false' do
+        service = Lessons::CheckStudentLessonWatched.new(nil, event)
+        expect(service.call).to be false
+      end
+    end
   end
 end
