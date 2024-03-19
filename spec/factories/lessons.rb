@@ -29,7 +29,7 @@ FactoryBot.define do
     event
 
     after(:create) do |lesson, evaluator|
-      create(:student_lesson, lesson: lesson, status: %w[progress not\ started finished].sample)
+      create(:student_lesson, lesson: lesson, status: 'not started')
     end
   end
 end
