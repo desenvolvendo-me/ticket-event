@@ -11,5 +11,12 @@ RSpec.describe Lessons::GetStudent, type: :service do
         expect(service.call).to eq(student)
       end
     end
+
+    context 'when student_user is not signed in' do
+      it 'returns nil' do
+        service = Lessons::GetStudent.new(false, nil)
+        expect(service.call).to be_nil
+      end
+    end
   end
 end
