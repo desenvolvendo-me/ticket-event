@@ -29,5 +29,14 @@ RSpec.describe Lessons::GetStatus do
         expect(result).to eq('finished')
       end
     end
+
+    context 'when the lesson has not started' do
+      let(:status) { [''] }
+
+      it 'returns "not started"' do
+        result = described_class.new(student, lesson).call
+        expect(result).to eq('not started')
+      end
+    end
   end
 end
