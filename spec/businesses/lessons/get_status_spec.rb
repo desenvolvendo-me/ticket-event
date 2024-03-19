@@ -20,5 +20,14 @@ RSpec.describe Lessons::GetStatus do
         expect(result).to eq('progress')
       end
     end
+
+    context 'when the lesson status is "finished"' do
+      let(:status) { ['finished'] }
+
+      it 'returns "finished"' do
+        result = described_class.new(student, lesson).call
+        expect(result).to eq('finished')
+      end
+    end
   end
 end
