@@ -20,5 +20,12 @@ RSpec.describe Lessons::CheckStudentLessonWatched do
         expect(service.call).to be true
       end
     end
+
+    context 'when the student has not watched any lesson' do
+      it 'returns false' do
+        service = Lessons::CheckStudentLessonWatched.new(student, event)
+        expect(service.call).to be false
+      end
+    end
   end
 end
