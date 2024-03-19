@@ -63,17 +63,7 @@ class External::LessonsController < ExternalController
   end
 
   def check_lesson
-    @status_lesson = StudentLesson.where(student_id: @student_data, lesson_id: @lesson).pluck(:status)
-
-    if @status_lesson[0] == "progress"
-      @status_lesson = "progress"
-    elsif @status_lesson[0] == "finished"
-      @status_lesson = "finished"
-    else
-      @status_lesson = "not started"
-    end
-
-    return @status_lesson
+    Lessons::GetStatus.new(@student_data, @lesson).call
   end
 
   def terminate_lesson
