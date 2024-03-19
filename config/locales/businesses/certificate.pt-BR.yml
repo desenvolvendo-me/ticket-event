@@ -4,4 +4,4 @@ pt-BR:
       default: "%d/%m/%Y"
   businesses:
     certificates:
-      no_name: "No name"
+      no_name: "Sem nome"
