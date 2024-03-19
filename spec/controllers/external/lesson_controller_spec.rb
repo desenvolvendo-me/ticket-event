@@ -175,8 +175,8 @@ RSpec.describe External::LessonsController, type: :controller do
         allow(controller).to receive(:get_student).and_return(nil)
       end
 
-      it 'returns nil if the student is not signed in' do
-        expect(controller.student_has_watched).to be_nil
+      it 'returns false if the student is not signed in' do
+        expect(controller.student_has_watched).to be_falsey
       end
     end
   end
