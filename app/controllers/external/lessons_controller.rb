@@ -3,7 +3,6 @@ class External::LessonsController < ExternalController
   before_action :get_ticket, only: %i[ form ]
   before_action :get_lesson, only: [ :show ]
   before_action :get_video_embedder, only: %i[ index show ]
-  before_action :authenticate_student_user!, only: :get_student
 
   helper_method :is_lesson_finished
   def index
@@ -13,17 +12,18 @@ class External::LessonsController < ExternalController
       @lessons_checker[index] = Access::Checker.call(lesson)
     end
     @video_embedder = Lessons::Embedder
-    get_student
+    @student_data = get_student
     check_lesson
     first_time_class(@event)
   end
 
   def show
+    @lessons = @event.lessons
     @purchase = Access::Checker.call(@event, :purchase)
     @lesson_checker = Access::Checker.call(@lesson)
     @is_first_lesson = is_first_lesson?(@lesson)
     @is_last_lesson = is_last_lesson?(@lesson)
-    get_student
+    @student_data = get_student
     check_lesson
     first_time_class(@event)
     get_next_lesson
@@ -42,12 +42,19 @@ class External::LessonsController < ExternalController
   end
 
   def first_time_class(event)
-    result = Lessons::InitializeFirstClassForStudent.new(get_student, @student_data, event, @lesson_ids).call
+    result = Lessons::InitializeFirstClassForStudent.new(@student_data, event, @lesson_ids).call
 
-    case result
-    when :success
-      redirect_back(fallback_location: lessons_index_path(event.slug))
-    end
+    # fallback_location = lessons_index_path(event.slug)
+    # puts "fallback_location #{fallback_location}"
+    # if request.referer
+    #   puts "request.referer #{request.referer}"
+    #   case result
+    #   when :success
+    #     unless request.referer == fallback_location
+    #       redirect_back(fallback_location: lessons_index_path(event.slug))
+    #     end
+    #   end
+    # end
   end
 
   def student_has_watched
@@ -55,7 +62,7 @@ class External::LessonsController < ExternalController
   end
 
   def check_lesson
-    Lessons::GetStatus.new(@student_data, @lesson).call
+    @status_lesson = Lessons::GetStatus.new(@student_data, @lesson).call
   end
 
   def terminate_lesson
@@ -100,22 +107,29 @@ class External::LessonsController < ExternalController
   end
 
   def get_next_lesson
-    @next_lesson = Lesson.find_by(id: (@lesson.id + 1), event_id: @event.id)
+    if (@lessons)
+      current_index = @lessons.index(@lesson)
+      next_index = current_index + 1
 
-    if @next_lesson
-      return @next_lesson = Lesson.find_by(id: (@lesson.id + 1), event_id: @event.id)
-    else
-      @next_lesson = @lesson
+      if next_index < @lessons.length
+        @next_lesson = @lessons[next_index]
+      else
+        @next_lesson = @lesson
+      end
+      puts "@next_lesson #{@next_lesson.title}"
     end
   end
 
   def get_previous_lesson
-    @previous_lesson = Lesson.find_by(id: (@lesson.id - 1), event_id: @event.id)
+    if (@lessons)
+      current_index = @lessons.index(@lesson)
+      previous_index = current_index - 1
 
-    if @previous_lesson
-      return @previous_lesson
-    else
-      @previous_lesson = @event.lessons.first
+      if previous_index >= 0
+        @previous_lesson = @lessons[previous_index]
+      else
+        @previous_lesson = @event.lessons.first
+      end
     end
   end
 
