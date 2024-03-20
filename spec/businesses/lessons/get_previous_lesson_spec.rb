@@ -21,5 +21,14 @@ RSpec.describe Lessons::GetPreviousLesson do
         expect(subject).to be_nil
       end
     end
+
+    context 'when lessons is nil' do
+      let(:lessons) { nil }
+      subject { described_class.new(lesson1, lessons).call }
+
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
   end
 end
