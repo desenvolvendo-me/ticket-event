@@ -13,5 +13,13 @@ RSpec.describe Lessons::GetNextLesson do
         expect(subject).to eq(lesson2)
       end
     end
+
+    context 'when the current lesson is the last one' do
+      subject { described_class.new(lesson2, lessons).call }
+
+      it 'returns the current lesson' do
+        expect(subject).to eq(lesson2)
+      end
+    end
   end
 end
