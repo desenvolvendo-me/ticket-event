@@ -17,7 +17,8 @@ module Students
         phone: row["phone"],
         name: row["fullname"],
         profile_social: row["profile_social"],
-        type_social: row["type_social"]
+        type_social: row["type_social"],
+        student_user_id: row["student_id"]
       )
     end
   end

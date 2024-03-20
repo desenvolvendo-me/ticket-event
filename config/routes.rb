@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     get ':slug_event/lessons', to: "lessons#index", as: :lessons_index
     get ':slug_event/lessons/:lesson_id', to: "lessons#show", as: :lesson
     get ':slug_event/lessons/:lesson_id/search', to: "lessons#search", as: :lesson_validate
+    patch ':slug_event/lessons/:lesson_id', to: "lessons#terminate_lesson", as: :terminate_lesson
     post ':slug_event/lessons/:lesson_id/search', to: "lessons#form", as: :form_lesson
 
     get ':slug_event/lessons/:lesson_id/quiz', to: "quiz#show", as: :quiz

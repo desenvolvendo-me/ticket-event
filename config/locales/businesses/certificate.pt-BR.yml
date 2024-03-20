@@ -2,3 +2,6 @@ pt-BR:
   date:
     formats:
       default: "%d/%m/%Y"
+  businesses:
+    certificates:
+      no_name: "Sem nome"

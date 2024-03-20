@@ -40,8 +40,12 @@
 <body>
   <div class="container">
     <h1>Bem-vindo ao Ticket Event!</h1>
-  
-    <p>Olá <%= @student.name %>,</p>
+
+    <% if @student.name.present? %>
+      <%= "Olá, #{@student.name}" %>
+    <% else %>
+      <%= "Olá, #{@student.email}" %>
+    <% end %>
 
     <p>Estamos felizes em tê-lo participando de nosso evento. Esperamos que você aproveite ao máximo essa experiência.</p>
 

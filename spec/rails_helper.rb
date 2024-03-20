@@ -56,6 +56,12 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
+  RSpec.configure do |config|
+    config.include Devise::Test::ControllerHelpers, type: :controller
+  end
+
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.

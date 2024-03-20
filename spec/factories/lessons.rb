@@ -27,5 +27,9 @@ FactoryBot.define do
     link { 'https://www.youtube.com/watch?v=your-video-id' }
     launch_datetime { Time.now + 5.hours }
     event
+
+    after(:create) do |lesson, evaluator|
+      create(:student_lesson, lesson: lesson, status: 'not started')
+    end
   end
 end
