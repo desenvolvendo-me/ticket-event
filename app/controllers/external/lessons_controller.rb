@@ -14,7 +14,6 @@ class External::LessonsController < ExternalController
     @video_embedder = Lessons::Embedder
     @student_data = get_student
     check_lesson
-    first_time_class(@event)
   end
 
   def show
@@ -25,7 +24,6 @@ class External::LessonsController < ExternalController
     @is_last_lesson = is_last_lesson?(@lesson)
     @student_data = get_student
     check_lesson
-    first_time_class(@event)
     get_next_lesson
     get_previous_lesson
   end
@@ -39,22 +37,6 @@ class External::LessonsController < ExternalController
     else
       redirect_to lesson_validate_path(params["slug_event"]), notice: I18n.t('lesson.form.unable_record')
     end
-  end
-
-  def first_time_class(event)
-    result = Lessons::InitializeFirstClassForStudent.new(@student_data, event, @lesson_ids).call
-
-    # fallback_location = lessons_index_path(event.slug)
-    # puts "fallback_location #{fallback_location}"
-    # if request.referer
-    #   puts "request.referer #{request.referer}"
-    #   case result
-    #   when :success
-    #     unless request.referer == fallback_location
-    #       redirect_back(fallback_location: lessons_index_path(event.slug))
-    #     end
-    #   end
-    # end
   end
 
   def student_has_watched
