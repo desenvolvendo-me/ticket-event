@@ -13,5 +13,13 @@ RSpec.describe Lessons::GetPreviousLesson do
         expect(subject).to eq(lesson1)
       end
     end
+
+    context 'when the current lesson is the first one' do
+      subject { described_class.new(lesson1, lessons).call }
+
+      it 'returns nil' do
+        expect(subject).to be_nil
+      end
+    end
   end
 end
