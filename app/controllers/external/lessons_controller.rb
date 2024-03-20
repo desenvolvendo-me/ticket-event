@@ -111,16 +111,7 @@ class External::LessonsController < ExternalController
   end
 
   def get_previous_lesson
-    if (@lessons)
-      current_index = @lessons.index(@lesson)
-      previous_index = current_index - 1
-
-      if previous_index >= 0
-        @previous_lesson = @lessons[previous_index]
-      else
-        @previous_lesson = @event.lessons.first
-      end
-    end
+    @previous_lesson = Lessons::GetPreviousLesson.new(@lesson, @lessons).call
   end
 
   def is_first_lesson?(lesson)
