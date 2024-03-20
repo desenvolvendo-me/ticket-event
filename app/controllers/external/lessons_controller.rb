@@ -107,17 +107,7 @@ class External::LessonsController < ExternalController
   end
 
   def get_next_lesson
-    if (@lessons)
-      current_index = @lessons.index(@lesson)
-      next_index = current_index + 1
-
-      if next_index < @lessons.length
-        @next_lesson = @lessons[next_index]
-      else
-        @next_lesson = @lesson
-      end
-      puts "@next_lesson #{@next_lesson.title}"
-    end
+    @next_lesson = Lessons::GetNextLesson.new(@lesson, @lessons).call
   end
 
   def get_previous_lesson
