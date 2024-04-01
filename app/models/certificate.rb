@@ -26,6 +26,8 @@ class Certificate < ApplicationRecord
   has_one_attached :png
   has_one_attached :svg
 
+  after_create :send_certificate_email
+
   # TODO: remove to seed
   before_create :generate_verification_link
   def generate_verification_link
@@ -36,5 +38,11 @@ class Certificate < ApplicationRecord
     Rails.application.routes.url_helpers.verify_certificate_url(verification_link, host: ENV['BASE_URL'])
   end
   # END TODO: remove to seed
+
+  private
+
+  def send_certificate_email
+    CertificateMailer.certificate_generated_email(self.student, self).deliver_now
+  end
 
 end
