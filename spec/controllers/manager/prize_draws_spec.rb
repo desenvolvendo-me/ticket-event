@@ -8,6 +8,12 @@ RSpec.describe Manager::PrizeDrawsController, type: :controller do
   end
 
   describe 'Test controller' do
+    let!(:manager_user) { create(:manager_user) }
+
+    before(:each) do
+      sign_in manager_user
+    end
+
     let(:event) { create(:event) }
     let(:ticket) { create(:ticket, prize_draw: prize_draw) }
     let(:prize_draw) { create(:prize_draw, event: event) }
